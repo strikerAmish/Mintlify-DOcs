@@ -1,0 +1,131 @@
+{
+  "source_file": "get_started.html",
+  "document_title": "Get Started | Negentro",
+  "meta_description": "",
+  "topbar_navigation": [
+    {
+      "label": "Get Started",
+      "href": "get_started.html",
+      "is_active": true
+    },
+    {
+      "label": "Platform",
+      "href": "platform.html",
+      "is_active": false
+    },
+    {
+      "label": "Open Source",
+      "href": "opensource.html",
+      "is_active": false
+    },
+    {
+      "label": "Integrations",
+      "href": "integrations.html",
+      "is_active": false
+    },
+    {
+      "label": "Agent Plugins",
+      "href": "agent_plugins.html",
+      "is_active": false
+    },
+    {
+      "label": "Cookbooks",
+      "href": "cookbooks.html",
+      "is_active": false
+    },
+    {
+      "label": "API Reference",
+      "href": "api_reference.html",
+      "is_active": false
+    },
+    {
+      "label": "Release Notes",
+      "href": "release_notes.html",
+      "is_active": false
+    }
+  ],
+  "sidebar_navigation": [],
+  "table_of_contents": [],
+  "pages": [
+    {
+      "id": "main",
+      "title": "Build with PiyAPI",
+      "breadcrumb": "",
+      "lead": "",
+      "rule5_notice": null,
+      "endpoint": null,
+      "sections": [
+        {
+          "heading": "Store your first memory",
+          "level": 2,
+          "paragraphs": [
+            "piyapi . memory . add ({ fact: \"User prefers Dark Mode\" , valid_at: \"2026-10-04\" , user_id: \"u_1029\" }) Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Add memory to your AI agent",
+          "level": 2,
+          "paragraphs": [
+            "Give your agents persistent context across conversations, sessions, and workflows."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Build context workflow",
+          "level": 2,
+          "paragraphs": [
+            "1. const p = await retrieve (); 2. resolveConflicts (p); 3. generateResponse (); Connect memory and context into a workflow your application can use immediately."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Framework Connectors",
+          "level": 2,
+          "paragraphs": [
+            "Use native client libraries and adapters for popular LLM frameworks."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Copy working example",
+          "level": 2,
+          "paragraphs": [
+            "const client = new PiyApi(KEY); client.agent.deploy(edTech_Config); Start from production-ready examples of coding agents, customer triage bots, and tutors."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Self-host in your VPC",
+          "level": 2,
+          "paragraphs": [
+            "Understand deployment options and run Negentro securely in your private infrastructure."
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "",
+          "code": "piyapi.memory.add({\n  fact: \"User prefers Dark Mode\",\n  valid_at: \"2026-10-04\",\n  user_id: \"u_1029\"\n})"
+        },
+        {
+          "title": "",
+          "language": "",
+          "code": "1. const p = await retrieve();\n2. resolveConflicts(p);\n3. generateResponse();"
+        },
+        {
+          "title": "",
+          "language": "",
+          "code": "const client = new PiyApi(KEY);\nclient.agent.deploy(edTech_Config);"
+        }
+      ],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "◈ Negentro Get Started Platform Open Source Integrations Agent Plugins Cookbooks API Reference Release Notes Search... ⌘K ◐ Dashboard Build with PiyAPI Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure. Get Started API Reference ▼ Expand All 01 ▼ Store your first memory piyapi . memory . add ({ fact: \"User prefers Dark Mode\" , valid_at: \"2026-10-04\" , user_id: \"u_1029\" }) Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency. 02 ▼ Add memory to your AI agent AI Agent → PiyGraph → UnifiedScorer → Payload Give your agents persistent context across conversations, sessions, and workflows. 03 ▼ Build context workflow 1. const p = await retrieve (); 2. resolveConflicts (p); 3. generateResponse (); Connect memory and context into a workflow your application can use immediately. 04 ▼ Framework Connectors LangChain LlamaIndex CrewAI AutoGen Mastra Use native client libraries and adapters for popular LLM frameworks. 05 ▼ Copy working example const client = new PiyApi(KEY); client.agent.deploy(edTech_Config); Start from production-ready examples of coding agents, customer triage bots, and tutors. 06 ▼ Self-host in your VPC App → VPC Peering → Negentro Core → PostgreSQL Understand deployment options and run Negentro securely in your private infrastructure."
+    }
+  ]
+}
