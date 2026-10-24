@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Negentro Cookbooks &amp; Tutorials — Practical AI Memory Workflows</title>
+  <meta name="description" content="Build practical AI applications with ready-to-use examples, workflows, and integrations powered by Negentro and PiyAPI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-sidebar:       #ffffff;
+      --bg-panel:         #ffffff;
+      --bg-card:          #ffffff;
+      --bg-code:          #0f172a;
+      --bg-code-header:   #1e293b;
+      --bg-hover:         #f8fafc;
+      --bg-active:        rgba(124, 58, 237, 0.08);
+      --border:           #f1f5f9;
+      --border-card:      #e2e8f0;
+      --border-muted:     #cbd5e1;
+      --accent:           #7c3aed;
+      --accent-hover:     #6d28d9;
+      --accent-light:     #8b5cf6;
+      --accent-dim:       rgba(124, 58, 237, 0.08);
+      --accent-glow:      rgba(124, 58, 237, 0.2);
+      --text-heading:     #0f172a;
+      --text-main:        #334155;
+      --text-muted:       #64748b;
+      --text-faint:       #94a3b8;
+      --text-code:        #e2e8f0;
+      --green:            #10b981;
+      --yellow:           #f59e0b;
+      --red:              #ef4444;
+      --blue:             #3b82f6;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --sidebar-w:        260px;
+      --toc-w:            220px;
+      --topbar-h:         64px;
+    }
+
+    [data-theme="dark"] {
+      --bg:               #0c0c0f;
+      --bg-sidebar:       #0e0e12;
+      --bg-panel:         #131318;
+      --bg-card:          #131318;
+      --bg-code:          #0a0a0f;
+      --bg-code-header:   #121218;
+      --bg-hover:         #1a1a24;
+      --bg-active:        rgba(167, 139, 250, 0.15);
+      --border:           #1e1e2a;
+      --border-card:      #272733;
+      --border-muted:     #323242;
+      --accent:           #a78bfa;
+      --accent-hover:     #c4b5fd;
+      --accent-light:     #c4b5fd;
+      --accent-dim:       rgba(167, 139, 250, 0.15);
+      --accent-glow:      rgba(167, 139, 250, 0.25);
+      --text-heading:     #f8fafc;
+      --text-main:        #cbd5e1;
+      --text-muted:       #94a3b8;
+      --text-faint:       #64748b;
+      --text-code:        #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* Top Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: transparent;
+      z-index: 1000;
+    }
+    #scroll-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Topbar */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 900;
+      gap: 1.5rem;
+    }
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: relative;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    .topbar-nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .topbar-nav a:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .topbar-nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .topbar-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -13px;
+      left: 10%;
+      right: 10%;
+      height: 2.5px;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-box:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+    .search-kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 3px;
+      padding: 0.1rem 0.35rem;
+      color: var(--text-muted);
+    }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      background: var(--bg);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+    .btn-dashboard {
+      background: #5850ec;
+      color: #ffffff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.48rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn-dashboard:hover {
+      background: #4f46e5;
+      box-shadow: 0 3px 12px rgba(88, 80, 236, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    #layout {
+      display: flex;
+      margin-top: var(--topbar-h);
+      min-height: calc(100vh - var(--topbar-h));
+    }
+
+    /* Left Sidebar */
+    #sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--topbar-h);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 0.85rem 3rem;
+      scrollbar-width: thin;
+      z-index: 100;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border-card); border-radius: 4px; }
+
+    .sidebar-group { margin-bottom: 1.35rem; }
+    .sidebar-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.35rem 0.75rem 0.5rem;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 450;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s;
+      margin-bottom: 2px;
+      position: relative;
+      text-decoration: none;
+    }
+    [data-theme="dark"] .sidebar-link { color: #94a3b8; }
+    .sidebar-link:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .sidebar-link.active {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.12);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .sidebar-link.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.18);
+    }
+    .sidebar-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .sidebar-link.needs-docs {
+      color: #ef4444 !important;
+      font-weight: 500;
+    }
+    .sidebar-link.needs-docs:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: #dc2626 !important;
+    }
+    .sidebar-link.needs-docs.active {
+      background: rgba(239, 68, 68, 0.12) !important;
+      color: #dc2626 !important;
+    }
+    .sidebar-badge-red {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      letter-spacing: 0.02em;
+    }
+
+    /* Main Content Area */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      max-width: calc(100vw - var(--sidebar-w));
+    }
+    #content {
+      flex: 1;
+      max-width: 860px;
+      padding: 2.5rem 3rem 6rem;
+      min-width: 0;
+    }
+
+    /* Right TOC */
+    #toc {
+      width: var(--toc-w);
+      flex-shrink: 0;
+      padding: 2.5rem 1.5rem 4rem 1rem;
+      position: sticky;
+      top: var(--topbar-h);
+      height: calc(100vh - var(--topbar-h));
+      overflow-y: auto;
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+    }
+    .toc-link {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0 0.35rem 0.75rem;
+      border-left: 2px solid transparent;
+      transition: all 0.12s;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .toc-link:hover { color: var(--text-heading); }
+    .toc-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Page View Containers */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Breadcrumbs */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .breadcrumb span { color: var(--text-faint); }
+
+    /* Headings & Typography */
+    h1 {
+      font-size: 2.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-heading);
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+    }
+    .lead-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-main);
+      font-weight: 450;
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .lead-tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.35rem;
+      font-style: italic;
+    }
+    p {
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-heading);
+      margin-top: 2.75rem;
+      margin-bottom: 0.45rem;
+      scroll-margin-top: calc(var(--topbar-h) + 1.5rem);
+    }
+    .section-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Feature bullets box */
+    .feature-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+    .feature-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Filter Toolbar */
+    .filter-bar {
+      display: inline-flex;
+      background: var(--bg-hover);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      margin-bottom: 1.25rem;
+      gap: 2px;
+    }
+    .filter-btn {
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .filter-btn:hover { color: var(--text-heading); }
+    .filter-btn.active {
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .filter-btn.active {
+      background: rgba(167, 139, 250, 0.2);
+      color: #c4b5fd;
+    }
+
+    /* Compatibility Table */
+    .compat-table-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .compat-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .compat-table th {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.85rem 1.25rem;
+      background: var(--bg-hover);
+      border-bottom: 1px solid var(--border-card);
+    }
+    .compat-table td {
+      padding: 0.95rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border);
+    }
+    .compat-table tr:last-child td { border-bottom: none; }
+    .compat-table tr:hover td { background: var(--bg-hover); }
+    .compat-link {
+      color: var(--accent);
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .compat-link:hover { text-decoration: underline; }
+    .compat-category {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .compat-tag {
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--bg-hover);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      display: inline-block;
+    }
+
+    /* 3-Column Horizontal Grid (Start here) */
+    .start-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+      margin-bottom: 2rem;
+    }
+    .start-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+    .start-card:hover {
+      border-color: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+    }
+    .card-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .start-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin-bottom: 0.45rem;
+    }
+    .start-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+    .start-link {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* 2-Column Grid (Playbooks, Ops, Integrations, Frameworks) */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.15rem;
+      margin-bottom: 2.5rem;
+    }
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      position: relative;
+    }
+    .guide-card:hover {
+      border-color: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+    }
+    .guide-card.is-red {
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+    .guide-card.is-red:hover {
+      border-color: #ef4444;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.12);
+    }
+    .guide-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .guide-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.35rem;
+      flex: 1;
+    }
+    .guide-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: auto;
+    }
+    .guide-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+    }
+    .guide-arrow {
+      color: var(--accent);
+      font-size: 0.95rem;
+      transition: transform 0.15s;
+    }
+    .guide-card:hover .guide-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Contribute Banner */
+    .contribute-banner {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(99, 102, 241, 0.06) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+      gap: 1.5rem;
+    }
+    .contribute-text h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+    .contribute-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+    .btn-contribute {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-contribute:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Action bar */
+    .page-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .action-pill {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+    }
+    .action-pill:hover {
+      border-color: var(--accent-light);
+      color: var(--text-heading);
+    }
+
+    /* Split Footer Nav Cards */
+    .split-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .split-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.12s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .split-card:hover {
+      border-color: var(--accent-light);
+      transform: translateY(-2px);
+    }
+    .split-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 0.35rem;
+    }
+    .split-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .split-card.next { text-align: right; }
+    .split-card.next .split-title { justify-content: flex-end; }
+
+    /* Document Status */
+    .rule5-notice {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-left: 4px solid #ef4444;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .rule5-notice h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+    .rule5-notice p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin-bottom: 0.65rem;
+    }
+    .rule5-notice ul {
+      margin-left: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Code Blocks */
+    .code-block {
+      background: var(--bg-code);
+      border: 1px solid var(--border-muted);
+      border-radius: var(--radius-md);
+      margin: 1.25rem 0 1.75rem;
+      overflow: hidden;
+    }
+    .code-header {
+      background: var(--bg-code-header);
+      padding: 0.55rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      transition: color 0.15s;
+    }
+    .copy-btn:hover { color: #f8fafc; }
+    pre {
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--text-code);
+    }
+    pre code { background: transparent; padding: 0; font-family: inherit; }
+
+    /* Code Tabs */
+    .code-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-card);
+      margin-top: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .code-tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .code-tab-btn:hover { color: var(--text-heading); }
+    .code-tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Subpage Hero */
+    .subpage-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .badge-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--bg-hover);
+      color: var(--text-muted);
+      border: 1px solid var(--border-card);
+    }
+    .badge-pill.purple {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--accent);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    .badge-pill.green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+    .badge-pill.red {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
+    .back-btn:hover { text-decoration: underline; }
+
+    /* Modal for Quick Search */
+    #search-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      backdrop-filter: blur(4px);
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+    #search-modal.active { display: flex; }
+    .modal-box {
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 580px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .modal-input-wrap {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      gap: 0.75rem;
+    }
+    .modal-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      color: var(--text-heading);
+      outline: none;
+    }
+    .modal-results {
+      max-height: 360px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+    .modal-item {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .modal-item:hover { background: var(--bg-hover); }
+    .modal-item-title { font-size: 0.9rem; font-weight: 500; color: var(--text-heading); }
+    .modal-item-cat { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 1180px) {
+      #toc { display: none; }
+      #content { max-width: 100%; padding: 2rem 2rem 5rem; }
+    }
+    @media (max-width: 860px) {
+      #sidebar { display: none; }
+      #main { margin-left: 0; max-width: 100vw; }
+      .start-grid, .two-col-grid { grid-template-columns: 1fr; }
+      .split-nav { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Progress Bar -->
+  <div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+  <!-- Topbar -->
+  <header id="topbar">
+    <a href="platform.html" class="topbar-logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+      </div>
+      <span>Negentro</span>
+    </a>
+
+    <nav class="topbar-nav">
+      <a href="get_started.html">Get Started</a>
+      <a href="platform.html">Platform</a>
+      <a href="opensource.html">Open Source</a>
+      <a href="integrations.html">Integrations</a>
+      <a href="agent_plugins.html">Agent Plugins</a>
+      <a href="cookbooks.html" class="active">Cookbooks</a>
+      <a href="api_reference.html">API Reference</a>
+      <a href="release_notes.html">Release Notes</a>
+    </nav>
+
+    <div class="topbar-right">
+      <div class="search-box" onclick="openSearchModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>Search</span>
+        <span class="search-kbd">⌘K</span>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button class="icon-btn" id="theme-toggle" title="Toggle theme" onclick="toggleTheme()">
+        <svg id="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <!-- GitHub -->
+      <a href="https://github.com" target="_blank" rel="noreferrer" class="icon-btn" title="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+      </a>
+
+      <!-- Dashboard Button -->
+      <button class="btn-dashboard" onclick="window.open('https://piyapi.cloud/login','_blank')">Dashboard</button>
+    </div>
+  </header>
+
+  <!-- Layout Container -->
+  <div id="layout">
+
+    <!-- Left Sidebar -->
+    <aside id="sidebar">
+      <!-- 1. GETTING STARTED -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Getting Started</div>
+        <div class="sidebar-link active" data-target="view-overview" onclick="showView('view-overview')">
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-link" data-target="view-start-here" onclick="showView('view-start-here')">
+          <span>Start Here</span>
+        </div>
+        <div class="sidebar-link" data-target="view-essentials" onclick="showView('view-essentials')">
+          <span>Essentials</span>
+        </div>
+      </div>
+
+      <!-- 2. COMPANION PLAYBOOKS -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Companion Playbooks</div>
+        <div class="sidebar-link" data-target="view-companion-negentro" onclick="showView('view-companion-negentro')">
+          <span>Build a Companion with Negentro</span>
+        </div>
+        <div class="sidebar-link" data-target="view-interactive-demo" onclick="showView('view-interactive-demo')"><span>Interactive Memory Demo</span></div>
+        <div class="sidebar-link" data-target="view-research-yt" onclick="showView('view-research-yt')"><span>Research Assistant</span></div>
+        <div class="sidebar-link" data-target="view-ai-tutor" onclick="showView('view-ai-tutor')">
+          <span>Personalized AI Tutor</span>
+        </div>
+        <div class="sidebar-link" data-target="view-travel-assistant" onclick="showView('view-travel-assistant')"><span>Smart Travel Assistant</span></div>
+        <div class="sidebar-link" data-target="view-coding-companion" onclick="showView('view-coding-companion')">
+          <span>Build a Coding Companion</span>
+        </div>
+        <div class="sidebar-link" data-target="view-self-hosted" onclick="showView('view-self-hosted')">
+          <span>Self-Hosted AI Companion</span>
+        </div>
+      </div>
+
+      <!-- 3. OPS & AUTOMATIONS -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Ops &amp; Automations</div>
+        <!-- Automated Email Intelligence: User explicitly gave this as the prime example of a RED button needing docs -->
+        <div class="sidebar-link" data-target="view-email-intelligence" onclick="showView('view-email-intelligence')"><span>Automated Email Intelligence</span></div>
+        <div class="sidebar-link" data-target="view-content-creation" onclick="showView('view-content-creation')"><span>Content Creation Workflow</span></div>
+        <div class="sidebar-link" data-target="view-multi-session" onclick="showView('view-multi-session')">
+          <span>Multi-Session Research Agent</span>
+        </div>
+        <div class="sidebar-link" data-target="view-support-agent" onclick="showView('view-support-agent')">
+          <span>Memory-Powered Support Agent</span>
+        </div>
+        <div class="sidebar-link" data-target="view-collaborative-task" onclick="showView('view-collaborative-task')"><span>Collaborative Task Assistant</span></div>
+      </div>
+
+      <!-- 4. INTEGRATIONS & PLATFORMS -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Integrations &amp; Platforms</div>
+        <div class="sidebar-link" data-target="view-agent-sdk" onclick="showView('view-agent-sdk')">
+          <span>Memory-Powered Agent SDK</span>
+        </div>
+        <div class="sidebar-link" data-target="view-api-tool" onclick="showView('view-api-tool')">
+          <span>Memory as an API Tool</span>
+        </div>
+        <div class="sidebar-link" data-target="view-mastra-agents" onclick="showView('view-mastra-agents')"><span>Persistent Agent Workflows</span></div>
+        <div class="sidebar-link" data-target="view-healthcare-adk" onclick="showView('view-healthcare-adk')">
+          <span>Healthcare Context</span>
+        </div>
+        <div class="sidebar-link" data-target="view-personal-search" onclick="showView('view-personal-search')">
+          <span>Personal Context Search</span>
+        </div>
+        <div class="sidebar-link" data-target="view-bedrock-memory" onclick="showView('view-bedrock-memory')"><span>Cloud AI Infrastructure</span></div>
+      </div>
+
+      <!-- 5. FRAMEWORKS & MULTIMODAL -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Frameworks &amp; Multimodal</div>
+        <div class="sidebar-link" data-target="view-ai-agents" onclick="showView('view-ai-agents')">
+          <span>AI Agents with Memory</span>
+        </div>
+        <div class="sidebar-link" data-target="view-multi-agent" onclick="showView('view-multi-agent')">
+          <span>Multi-Agent Collaboration</span>
+        </div>
+        <div class="sidebar-link" data-target="view-visual-memory" onclick="showView('view-visual-memory')"><span>Visual Memory Retrieval</span></div>
+        <div class="sidebar-link" data-target="view-persistent-persona" onclick="showView('view-persistent-persona')">
+          <span>Persistent Persona</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div id="main">
+      <main id="content">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: OVERVIEW (Default Figma View) -->
+        <!-- ========================================== -->
+        <div id="view-overview" class="page active">
+          <!-- Breadcrumb -->
+          <div class="breadcrumb">
+            <span>Cookbooks</span>
+            <span>/</span>
+            <span>Overview</span>
+          </div>
+
+          <h1>Cookbooks &amp; Tutorials</h1>
+          <div class="lead-subtitle">Build practical AI applications with ready-to-use examples, workflows, and integrations powered by Negentro.</div>
+          <div class="lead-tagline">From first memory workflows to production-ready agent systems.</div>
+
+          <p>Cookbooks provide practical implementation examples for building with Negentro. Each guide walks through a reusable application pattern — from simple memory workflows to full agent systems — with working code, architecture notes, and integration steps you can adapt directly into your own stack.</p>
+          <p>Whether you're wiring up agent workflows, designing memory strategies, connecting third-party integrations, or running a fully self-hosted deployment, these examples are structured to be copied, modified, and shipped — not just read.</p>
+
+          <!-- 5 Bullet Features -->
+          <div class="feature-box">
+            <ul class="feature-list">
+              <li class="feature-item"><span class="feature-dot"></span><span>More personalized AI applications</span></li>
+              <li class="feature-item"><span class="feature-dot"></span><span>More reliable context retrieval</span></li>
+              <li class="feature-item"><span class="feature-dot"></span><span>Reduced unnecessary model interactions</span></li>
+              <li class="feature-item"><span class="feature-dot"></span><span>Reusable memory workflows</span></li>
+              <li class="feature-item"><span class="feature-dot"></span><span>Practical implementation patterns</span></li>
+            </ul>
+          </div>
+
+          <!-- Section: Pick by compatibility -->
+          <h2 id="pick-by-compatibility">Pick by compatibility</h2>
+          <div class="section-desc">Every cookbook is tagged with the environment or Negentro setup it uses. Filter the library to find examples that match your stack.</div>
+
+          <!-- Filter Toolbar -->
+          <div class="filter-bar">
+            <button class="filter-btn" onclick="filterCompat('Self-hosted', this)">Self-hosted</button>
+            <button class="filter-btn" onclick="filterCompat('Platform', this)">Platform</button>
+            <button class="filter-btn active" onclick="filterCompat('All', this)">All</button>
+          </div>
+
+          <!-- Compatibility Table -->
+          <div class="compat-table-wrapper">
+            <table class="compat-table">
+              <thead>
+                <tr>
+                  <th>COOKBOOK</th>
+                  <th>CATEGORY</th>
+                  <th>WORKS WITH</th>
+                </tr>
+              </thead>
+              <tbody id="compat-table-body">
+                <tr data-env="Platform + Self-hosted">
+                  <td><a class="compat-link" onclick="showView('view-ai-tutor')">Personalized AI Tutor</a></td>
+                  <td class="compat-category">Companion</td>
+                  <td><span class="compat-tag">Platform + Self-hosted</span></td>
+                </tr>
+                <tr data-env="Self-hosted">
+                  <td><a class="compat-link" onclick="showView('view-coding-companion')">Build a Coding Companion</a></td>
+                  <td class="compat-category">Companion</td>
+                  <td><span class="compat-tag">Self-hosted</span></td>
+                </tr>
+                <tr data-env="Platform + Self-hosted">
+                  <td><a class="compat-link" onclick="showView('view-support-agent')">Memory-Powered Support Agent</a></td>
+                  <td class="compat-category">Operations</td>
+                  <td><span class="compat-tag">Platform + Self-hosted</span></td>
+                </tr>
+                <tr data-env="Platform">
+                  <td><a class="compat-link" onclick="showView('view-content-creation')">Content Creation Workflow</a></td>
+                  <td class="compat-category">Operations</td>
+                  <td><span class="compat-tag">Platform</span></td>
+                </tr>
+                <tr data-env="Self-hosted">
+                  <td><a class="compat-link" onclick="showView('view-multi-session')">Multi-Session Research Agent</a></td>
+                  <td class="compat-category">Operations</td>
+                  <td><span class="compat-tag">Self-hosted</span></td>
+                </tr>
+                <tr data-env="Platform + Self-hosted">
+                  <td><a class="compat-link" onclick="showView('view-visual-memory')">Visual Memory Retrieval</a></td>
+                  <td class="compat-category">Multimodal</td>
+                  <td><span class="compat-tag">Platform + Self-hosted</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section: Start here -->
+          <h2 id="start-here">Start here</h2>
+          <div class="section-desc">The fastest way to build something useful with Negentro.</div>
+
+          <div class="start-grid">
+            <!-- 1. Build an AI companion -->
+            <div class="start-card" onclick="showView('view-companion-negentro')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="start-title">Build an AI companion</div>
+              <div class="start-desc">Create a memory-powered assistant with a complete end-to-end lifecycle.</div>
+              <div class="start-link">Read guide →</div>
+            </div>
+
+            <!-- 2. Self-host with Ollama -->
+            <div class="start-card" onclick="showView('view-self-hosted')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div class="start-title">Self-host with Ollama</div>
+              <div class="start-desc">Run a local AI workflow with Ollama and persistent context.</div>
+              <div class="start-link">Read guide →</div>
+            </div>
+
+            <!-- 3. Partition memory by entity -->
+            <div class="start-card" onclick="showView('view-essentials')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <div class="start-title">Partition memory by entity</div>
+              <div class="start-desc">Scope memories by user, agent, session, or application.</div>
+              <div class="start-link">Read guide →</div>
+            </div>
+          </div>
+
+          <!-- Section: Essentials -->
+          <h2 id="essentials">Essentials</h2>
+          <div class="two-col-grid">
+            <!-- 1. Build a Companion with Negentro -->
+            <div class="guide-card" onclick="showView('view-companion-negentro')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 6v6l4 2"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Build a Companion with Negentro</div>
+              <div class="guide-desc">Learn the complete memory lifecycle for persistent AI companions.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">COMPANION</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 2. Partition Memory by Entity -->
+            <div class="guide-card" onclick="showView('view-essentials')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <div class="guide-title">Partition Memory by Entity</div>
+              <div class="guide-desc">Balance personalization with scoped context across users, agents, and applications.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">ARCHITECTURE</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 3. Tag and Organize Memories -->
+            <div class="guide-card" onclick="showView('view-essentials')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Tag and Organize Memories</div>
+              <div class="guide-desc">Use categories and tags to make retrieval, filtering, and auditing easier.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">ORGANIZATION</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 4. Export Memories -->
+            <div class="guide-card" onclick="showView('view-essentials')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Export Memories</div>
+              <div class="guide-desc">Back up, migrate, and audit stored memory data.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">DATA OPS</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Companion Playbooks -->
+          <h2 id="companion-playbooks">Companion Playbooks</h2>
+          <div class="section-desc">Build assistants that remember users, preferences, goals, and previous interactions.</div>
+
+          <div class="two-col-grid">
+            <!-- 1. Interactive Memory Demo -->
+            <div class="guide-card" onclick="showView('view-interactive-demo')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Interactive Memory Demo</span>
+                
+              </div>
+              <div class="guide-desc">See persistent memory working inside a real application.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">DEMO</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 2. Research Assistant for YouTube -->
+            <div class="guide-card" onclick="showView('view-research-yt')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Research Assistant for YouTube</span>
+                
+              </div>
+              <div class="guide-desc">Use personalized context for video research and retrieval.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">RESEARCH</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 3. Voice-First AI Companion -->
+            <div class="guide-card" onclick="showView('view-interactive-demo')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Voice-First AI Companion</span>
+                
+              </div>
+              <div class="guide-desc">Build a voice-first experience with persistent context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">VOICE</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 4. Personalized AI Tutor -->
+            <div class="guide-card" onclick="showView('view-ai-tutor')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Personalized AI Tutor</div>
+              <div class="guide-desc">Maintain student progress and context across sessions.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">EDUCATION</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 5. Smart Travel Assistant -->
+            <div class="guide-card" onclick="showView('view-travel-assistant')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.9-.2-1.8.3-2.1 1.2-.3.9.1 1.9.9 2.3l4.7 2.7L6 16.5 3.5 16 2 17.5l3.5 2 2 3.5 1.5-1.5-.5-2.5 3.6-2.8 2.7 4.7c.4.8 1.4 1.2 2.3.9.9-.3 1.4-1.2 1.2-2.1z"></path>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Smart Travel Assistant</span>
+                
+              </div>
+              <div class="guide-desc">Remember traveler preferences and planning context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">TRAVEL</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 6. Build a Node.js / Coding Companion -->
+            <div class="guide-card" onclick="showView('view-coding-companion')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div class="guide-title">Build a Node.js Companion</div>
+              <div class="guide-desc">Create a JavaScript-first companion that remembers user context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">SDK</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 7. Self-Hosted AI Companion -->
+            <div class="guide-card" onclick="showView('view-self-hosted')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Self-Hosted AI Companion</div>
+              <div class="guide-desc">Run a complete memory-powered assistant on your own infrastructure.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">SELF-HOSTED</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Ops & Automations -->
+          <h2 id="ops-and-automations">Ops &amp; Automations</h2>
+          <div class="section-desc">Use persistent context to automate recurring workflows and multi-step AI tasks.</div>
+
+          <div class="two-col-grid">
+            <!-- 1. Automated Email Intelligence -->
+            <div class="guide-card" onclick="showView('view-email-intelligence')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Automated Email Intelligence</span>
+                
+              </div>
+              <div class="guide-desc">Capture and recall relevant information from email workflows.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">AUTOMATION</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 2. Content Creation Workflow -->
+            <div class="guide-card" onclick="showView('view-content-creation')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Content Creation Workflow</span>
+                
+              </div>
+              <div class="guide-desc">Store tone, style, and content guidelines as reusable context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">CONTENT</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 3. Multi-Session Research Agent -->
+            <div class="guide-card" onclick="showView('view-multi-session')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Multi-Session Research Agent</div>
+              <div class="guide-desc">Run research workflows across multiple sessions without repeating context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">RESEARCH</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 4. Memory-Powered Support Agent -->
+            <div class="guide-card" onclick="showView('view-support-agent')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Memory-Powered Support Agent</div>
+              <div class="guide-desc">Give support agents persistent customer context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">SUPPORT</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 5. Collaborative Task Assistant -->
+            <div class="guide-card" onclick="showView('view-collaborative-task')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Collaborative Task Assistant</span>
+                
+              </div>
+              <div class="guide-desc">Coordinate multi-user workflows while maintaining relevant context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">COLLABORATION</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Integrations & Platforms -->
+          <h2 id="integrations-and-platforms">Integrations &amp; Platforms</h2>
+          <div class="section-desc">Use Negentro memory inside the platforms and tools that power your AI workflows.</div>
+
+          <div class="two-col-grid">
+            <!-- 1. Memory-Powered Agent SDK -->
+            <div class="guide-card" onclick="showView('view-agent-sdk')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Memory-Powered Agent SDK</div>
+              <div class="guide-desc">Callable memory tools for agent workflows.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">SDK</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 2. Memory as an API Tool -->
+            <div class="guide-card" onclick="showView('view-api-tool')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Memory as an API Tool</div>
+              <div class="guide-desc">Use persistent memory inside function-calling workflows.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">API</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 3. Persistent Mastra Agents -->
+            <div class="guide-card" onclick="showView('view-mastra-agents')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="6" y1="3" x2="6" y2="15"></line>
+                  <circle cx="18" cy="6" r="3"></circle>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <path d="M18 9a9 9 0 0 1-9 9"></path>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Persistent Mastra Agents</span>
+                
+              </div>
+              <div class="guide-desc">Build persistent agents with a Mastra-based workflow.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">FRAMEWORK</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 4. Healthcare Context with ADK -->
+            <div class="guide-card" onclick="showView('view-healthcare-adk')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Healthcare Context with ADK</div>
+              <div class="guide-desc">Maintain relevant context across agent sessions.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">HEALTHCARE</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 5. Search with Personal Context -->
+            <div class="guide-card" onclick="showView('view-personal-search')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <div class="guide-title">Search with Personal Context</div>
+              <div class="guide-desc">Build real-time search experiences with persistent user context.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">SEARCH</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 6. Bedrock with Persistent Memory -->
+            <div class="guide-card" onclick="showView('view-bedrock-memory')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Bedrock with Persistent Memory</span>
+                
+              </div>
+              <div class="guide-desc">Combine cloud AI infrastructure with Negentro memory.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">CLOUD</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Frameworks & Multimodal -->
+          <h2 id="frameworks-and-multimodal">Frameworks &amp; Multimodal</h2>
+          <div class="section-desc">Explore cookbooks that combine Negentro with agent frameworks and multimodal applications.</div>
+
+          <div class="two-col-grid">
+            <!-- 1. AI Agents with Memory -->
+            <div class="guide-card" onclick="showView('view-ai-agents')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                  <circle cx="12" cy="5" r="2"></circle>
+                  <path d="M12 7v4"></path>
+                  <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                  <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                </svg>
+              </div>
+              <div class="guide-title">AI Agents with Memory</div>
+              <div class="guide-desc">Build agents with persistent memory storage.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">AGENTS</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 2. Multi-Agent Collaboration -->
+            <div class="guide-card" onclick="showView('view-multi-agent')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="6" height="6" rx="1"></rect>
+                  <rect x="16" y="3" width="6" height="6" rx="1"></rect>
+                  <rect x="9" y="15" width="6" height="6" rx="1"></rect>
+                  <path d="M5 9v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"></path>
+                  <path d="M12 14v1"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Multi-Agent Collaboration</div>
+              <div class="guide-desc">Share relevant context across collaborating agents.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">MULTI-AGENT</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 3. Visual Memory Retrieval -->
+            <div class="guide-card" onclick="showView('view-visual-memory')">
+              <div class="card-icon-wrap" >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </div>
+              <div class="guide-title">
+                <span>Visual Memory Retrieval</span>
+                
+              </div>
+              <div class="guide-desc">Combine visual context with text-based conversations.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">MULTIMODAL</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+
+            <!-- 4. Persistent Persona -->
+            <div class="guide-card" onclick="showView('view-persistent-persona')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="guide-title">Persistent Persona</div>
+              <div class="guide-desc">Maintain persistent personality and preferences for agents.</div>
+              <div class="guide-bottom">
+                <span class="guide-tag">PERSONA</span>
+                <span class="guide-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Contribute a Cookbook -->
+          <h2 id="contribute-a-cookbook">Contribute a Cookbook</h2>
+          <div class="section-desc">Have a useful Negentro workflow or integration? Share it with the community.</div>
+
+          <div class="two-col-grid" style="margin-bottom:1.5rem;">
+            <!-- 1. Cookbook Template -->
+            <div class="guide-card" onclick="alert('Cookbook Template: Markdown boilerplate available in .github/cookbook-template.md')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Cookbook Template</div>
+              <div class="guide-desc">Follow the standard structure for narrative, implementation steps, and end-to-end workflows.</div>
+              <div class="start-link" style="margin-top:auto;">View template →</div>
+            </div>
+
+            <!-- 2. Contribution Guide -->
+            <div class="guide-card" onclick="window.open('https://github.com','_blank')">
+              <div class="card-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </div>
+              <div class="guide-title">Contribution Guide</div>
+              <div class="guide-desc">Learn how to submit your cookbook and prepare it for the repository.</div>
+              <div class="start-link" style="margin-top:auto;">Read guide →</div>
+            </div>
+          </div>
+
+          <!-- Purple Callout Banner -->
+          <div class="contribute-banner">
+            <div class="contribute-text">
+              <h3>Build something useful with Negentro?</h3>
+              <p>Share your cookbook and help other developers discover practical memory workflows.</p>
+            </div>
+            <button class="btn-contribute" onclick="window.open('https://github.com','_blank')">Contribute →</button>
+          </div>
+
+          <!-- Page Actions -->
+          <div class="page-actions">
+            <button class="action-pill" onclick="alert('Thank you! Edit suggestions modal opened.')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Suggest edits</span>
+            </button>
+            <button class="action-pill" onclick="window.open('https://github.com/issues','_blank')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Raise issue</span>
+            </button>
+          </div>
+
+          <!-- Split Footer Navigation -->
+          <div class="split-nav">
+            <a href="agent_plugins.html" class="split-card prev">
+              <span class="split-eyebrow">Previous</span>
+              <span class="split-title">← Agent Plugins</span>
+            </a>
+            <a href="api_reference.html" class="split-card next">
+              <span class="split-eyebrow">Next</span>
+              <span class="split-title">API Reference →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: START HERE (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-start-here" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Getting Started</span><span>/</span><span>Start Here</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Getting Started</span>
+            <span class="badge-pill green">Verified Production API</span>
+          </div>
+          <h1>Start Here: 3 Fast-Track Paths to Production Memory</h1>
+          <div class="lead-subtitle">Deploying persistent memory takes under five minutes with PiyAPI REST endpoints or language SDKs.</div>
+          
+          <h2>Path 1: Store &amp; Recall Memory in 2 Steps</h2>
+          <p>Initialize your client with your live API key, store unstructured conversation facts, and perform multi-signal hybrid recall (dense vector + BM25 trigram fused with RRF_K=30).</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">TypeScript / Node.js — Minimal Companion Loop</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>import { PiyAPIClient } from '@piyapi/sdk';
+
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_prod_key_here',
+});
+
+// 1. Ingest user interaction fact
+const memory = await client.memories.create({
+  content: 'User prefers dark mode UI and works primarily with React and TypeScript.',
+  tags: ['preferences', 'tech-stack'],
+  metadata: { source: 'onboarding_chat', user_id: 'usr_9918' }
+});
+
+// 2. Perform hybrid search during subsequent chat turns
+const relevant = await client.search.query({
+  query: 'What frontend framework does the user prefer?',
+  limit: 5,
+  include_metadata: true
+});
+
+console.log('Recalled memory:', relevant.results[0].content);</code></pre>
+          </div>
+
+          <h2>Path 2: Strict Multi-Tenant Namespace Isolation</h2>
+          <p>For SaaS applications with multi-tenant architectures, pass the <code>X-Namespace-Prefix</code> header on every request to guarantee zero scope leakage across client organizations.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">cURL — Namespace Scoping</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer YOUR API KEY" \
+  -H "X-Namespace-Prefix: tenant_acme_corp" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Enterprise security policy mandates 90-day key rotations.",
+    "tags": ["security", "policy"]
+  }'</code></pre>
+          </div>
+
+          <h2>Path 3: Local Ollama &amp; Air-Gapped Fallback</h2>
+          <p>When running in privacy-sensitive or edge environments, use the BYOK routing engine or run local containers with pgvector and Ollama embeddings.</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: ESSENTIALS (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-essentials" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Getting Started</span><span>/</span><span>Essentials</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Core Architecture</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.3, §4.26</span>
+          </div>
+          <h1>Memory Essentials: 4 Foundational Pillars</h1>
+          <div class="lead-subtitle">Architectural principles for managing persistent agent state across weeks of interaction.</div>
+
+          <h2>1. Entity Partitioning Strategy</h2>
+          <p>Separate memory into distinct layers using metadata scoping: <code>user_id</code> (personalization), <code>agent_id</code> (agent persona and guidelines), and <code>session_id</code> (short-term thread context).</p>
+
+          <h2>2. Bulk Memory Operations</h2>
+          <p>Manage memory datasets efficiently at scale using bulk tagging and bulk deprecation endpoints.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/bulk/memories/tag</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "memory_ids": ["8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d", "9b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e"],
+    "add_tags": ["verified", "q3-review"]
+  }'</code></pre>
+          </div>
+
+          <h2>3. GDPR &amp; Compliance Memory Exports</h2>
+          <p>Export entire tenant or user datasets atomically for audit compliance or data migration:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">GET /api/v1/compliance/export</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -s https://api.piyapi.cloud/api/v1/compliance/export?user_id=usr_9918 \
+  -H "Authorization: Bearer sk_live_prod_key_here"</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: BUILD A COMPANION WITH NEGENTRO (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-companion-negentro" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Build a Companion</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Companion</span>
+            <span class="badge-pill green">Fully Documented</span>
+          </div>
+          <h1>Build a Companion with Negentro &amp; PiyAPI</h1>
+          <div class="lead-subtitle">Step-by-step guide to giving an AI assistant persistent long-term memory across sessions.</div>
+
+          <h2>System Architecture</h2>
+          <p>A persistent AI companion requires three synchronized subsystems: (1) <strong>Fact Extraction</strong> from user conversations, (2) <strong>Hybrid Vector + BM25 Storage</strong> with bitemporal timestamps, and (3) <strong>Context Window Injection</strong> during generation.</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — End-to-End Companion Loop</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="YOUR API KEY")
+
+def chat_turn(user_id: str, prompt: str) -> str:
+    # Step 1: Recall relevant facts using hybrid RRF scoring
+    context_records = client.search.query(
+        query=prompt,
+        filter={"metadata.user_id": user_id},
+        limit=4
+    )
+    
+    # Step 2: Format context injection
+    memory_context = "\n".join([f"- {r['content']}" for r in context_records['results']])
+    
+    # Step 3: Run LLM inference with augmented context
+    system_prompt = f"""You are a helpful personal companion.
+User Background & Memories:
+{memory_context}"""
+    
+    # Step 4: After replying, mine new facts for persistence
+    client.memories.create(
+        content=prompt,
+        tags=["conversation"],
+        metadata={"user_id": user_id}
+    )
+    return "Response generated with active context."</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 5: PERSONALIZED AI TUTOR (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-ai-tutor" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Personalized AI Tutor</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Education</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.5, §4.15</span>
+          </div>
+          <h1>Personalized AI Tutor with Adaptive Feedback</h1>
+          <div class="lead-subtitle">Maintain student progress state, track mastery curves, and adjust curriculum pacing dynamically.</div>
+
+          <h2>1. Tracking Student Mastery Facts</h2>
+          <p>Store discrete facts about student performance, strengths, and areas requiring remediation:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/memories</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Student mastered quadratic factoring with real roots, but struggles with imaginary numbers.",
+    "tags": ["math", "algebra", "mastery"],
+    "metadata": { "student_id": "stu_4021", "level": "grade-10" }
+  }'</code></pre>
+          </div>
+
+          <h2>2. Reinforcement via Adaptive Feedback API</h2>
+          <p>When the student confirms an explanation was helpful, submit positive feedback to boost that concept's retrieval weight via <code>POST /api/v1/feedback/positive</code>.</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 6: BUILD A CODING COMPANION (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-coding-companion" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Coding Companion</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Developer Tools</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §6.1, §6.2</span>
+          </div>
+          <h1>Build a Coding Companion with MCP &amp; TypeScript</h1>
+          <div class="lead-subtitle">Integrate persistent repository memory directly into Cursor, Windsurf, Claude Desktop, and VS Code.</div>
+
+          <h2>IDE MCP Configuration</h2>
+          <p>Configure your IDE to connect to the <code>@piyapi/mcp-server</code> with standard stdio transport:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">mcpServers Configuration (claude_desktop_config.json / Cursor)</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "YOUR API KEY"
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 7: SELF-HOSTED AI COMPANION (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-self-hosted" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Self-Hosted Companion</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Deployment</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.1, §4.25</span>
+          </div>
+          <h1>Self-Hosted AI Companion with Ollama &amp; pgvector</h1>
+          <div class="lead-subtitle">Run an air-gapped cognitive memory engine entirely on local hardware.</div>
+
+          <h2>Docker Compose Setup</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">docker-compose.yml</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>version: '3.8'
+services:
+  piyapi-engine:
+    image: piyapi/cognitive-engine:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://piyapi:secret@postgres:5432/piyapi_db
+      - REDIS_URL=redis://redis:6379
+      - EMBEDDING_PROVIDER=ollama
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_DB=piyapi_db
+      - POSTGRES_USER=piyapi
+      - POSTGRES_PASSWORD=secret</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 8: MULTI-SESSION RESEARCH AGENT (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-multi-session" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Ops &amp; Automations</span><span>/</span><span>Multi-Session Agent</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Operations</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.10, §4.14</span>
+          </div>
+          <h1>Multi-Session Research Agent</h1>
+          <div class="lead-subtitle">Execute asynchronous, long-horizon research workflows without context degradation using the Session Mining Engine.</div>
+
+          <h2>Extracting Unstructured Session Insights</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/sessions/mine</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/sessions/mine \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      { "role": "user", "content": "I am analyzing quantum error correction benchmarks on neutral atom hardware." },
+      { "role": "assistant", "content": "Neutral atom systems typically leverage Rydberg blockade gates." }
+    ]
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 9: MEMORY-POWERED SUPPORT AGENT (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-support-agent" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Ops &amp; Automations</span><span>/</span><span>Support Agent</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Customer Support</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.17, §4.20</span>
+          </div>
+          <h1>Memory-Powered Customer Support Agent</h1>
+          <div class="lead-subtitle">Ingest customer ticket streams and empower support agents with continuous historical context.</div>
+
+          <h2>Continuous Sliding-Window Conversation Ingestion</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/conversations/ingest</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/conversations/ingest \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversation_id": "conv_support_8910",
+    "customer_id": "cust_3312",
+    "channel": "zendesk",
+    "turns": [
+      { "speaker": "customer", "text": "Our SSO setup fails with error ADFS_INVALID_ASSERTION." },
+      { "speaker": "agent", "text": "Checking certificate thumbprint validity in your tenant config." }
+    ]
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 10: MEMORY-POWERED AGENT SDK (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-agent-sdk" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>Agent SDK</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">SDK</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §5.1, §5.2, §5.3</span>
+          </div>
+          <h1>Memory-Powered Agent SDK (TypeScript, Python, LangChain)</h1>
+          <div class="lead-subtitle">Standardized SDK integrations for autonomous agent frameworks.</div>
+
+          <h2>LangChain Adapter Integration</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — LangChain Adapter</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from piyapi_langchain import PiyAPIMemoryRetriever
+
+retriever = PiyAPIMemoryRetriever(
+    api_key="YOUR API KEY",
+    top_k=5
+)
+
+# Retrieve relevant documents as LangChain Document objects
+docs = retriever.get_relevant_documents("user database preferences")
+for doc in docs:
+    print(doc.page_content, doc.metadata)</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 11: MEMORY AS AN API TOOL (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-api-tool" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>API Tool</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Tool Calling</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §6.2</span>
+          </div>
+          <h1>Memory as an API Tool (Function Calling)</h1>
+          <div class="lead-subtitle">Expose atomic memory storage and recall tools to OpenAI, Anthropic, and Gemini function calling.</div>
+
+          <h2>OpenAI Tools Definition Schema</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">JSON — Tool Definition</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "store_memory",
+        "description": "Store a user fact or preference into long-term bitemporal memory.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string", "description": "The atomic fact to store." },
+            "tags": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["content"]
+        }
+      }
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 12: HEALTHCARE CONTEXT (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-healthcare-adk" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>Healthcare Context</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Healthcare</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.11, §7.6</span>
+          </div>
+          <h1>Healthcare Context &amp; PHI/PII Redaction</h1>
+          <div class="lead-subtitle">HIPAA-compliant patient memory storage with cryptographic tokenization and zero-knowledge redaction.</div>
+
+          <h2>1. Checking PHI Risk Before Ingestion</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/tokenization/check</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/tokenization/check \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Patient John Doe (DOB 1982-04-12) reports hypertension and takes Lisinopril 20mg."
+  }'
+
+# Response:
+# {
+#   "has_phi": true,
+#   "entities": [
+#     {"type": "NAME", "text": "John Doe", "token": "[NAME_1]"},
+#     {"type": "DOB", "text": "1982-04-12", "token": "[DATE_1]"}
+#   ]
+# }</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 13: PERSONAL CONTEXT SEARCH (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-personal-search" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>Personal Context Search</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Search</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.4, §4.6</span>
+          </div>
+          <h1>Personal Context Search &amp; RAG Summaries</h1>
+          <div class="lead-subtitle">High-throughput hybrid search fused with Reciprocal Rank Fusion (RRF_K=30) and token-budget context assembly.</div>
+
+          <h2>Executing Hybrid Search</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/search</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer YOUR API KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "user preferred deployment region and cloud provider",
+    "limit": 5,
+    "min_score": 0.65,
+    "include_metadata": true
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 14: AI AGENTS WITH MEMORY (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-ai-agents" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Frameworks</span><span>/</span><span>AI Agents</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Agents</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.3, §5.2</span>
+          </div>
+          <h1>AI Agents with Unified 8-Operator Memory Surface</h1>
+          <div class="lead-subtitle">Standardized lifecycle operators: store, retrieve, update, delete, merge, summarize, pin, verify.</div>
+
+          <h2>Direct 8-Operator Dispatch</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/memory/op</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/memory/op \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "operator": "summarize",
+    "filter": { "tags": ["project_alpha"] },
+    "max_tokens": 500
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 15: MULTI-AGENT COLLABORATION (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-multi-agent" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Frameworks</span><span>/</span><span>Multi-Agent</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Swarm Architecture</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.10, §7.5</span>
+          </div>
+          <h1>Multi-Agent Collaboration with Speculative Branching</h1>
+          <div class="lead-subtitle">Isolate agent reasoning trials into ephemeral branches and merge verified discoveries with 3-way conflict resolution.</div>
+
+          <h2>Branch Creation &amp; Diffing</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/branches</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code># 1. Create trial branch
+curl -X POST https://api.piyapi.cloud/api/v1/branches \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "research_agent_hypothesis_4", "purpose": "Testing drug interaction" }'
+
+# 2. Inspect diff before merging to production memory
+curl -s https://api.piyapi.cloud/api/v1/branches/branch_123/diff \
+  -H "Authorization: Bearer sk_live_prod_key_here"</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 16: PERSISTENT PERSONA (Documented) -->
+        <!-- ========================================== -->
+        <div id="view-persistent-persona" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Frameworks</span><span>/</span><span>Persistent Persona</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Persona</span>
+            <span class="badge-pill green">Grounding: userguide.pdf §4.3, §6.2</span>
+          </div>
+          <h1>Persistent Persona &amp; Pinned Memory Weighting</h1>
+          <div class="lead-subtitle">Maintain deterministic agent tone, core principles, and identity using memory pinning and assistant boost.</div>
+
+          <h2>Pinning Persona Facts into Context</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/memories/:id/pin</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/memories/mem_persona_01/pin \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "is_pinned": true, "priority_weight": 2.5 }'</code></pre>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ========================================== -->
+        <!-- COOKBOOK TUTORIALS & PLAYBOOKS            -->
+        <!-- ========================================== -->
+
+        <!-- VIEW: AUTOMATED EMAIL INTELLIGENCE -->
+        <div id="view-email-intelligence" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Ops &amp; Automations</span><span>/</span><span>Automated Email Intelligence</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Automation</span>
+            <span class="badge-pill green">CDC Connector Active</span>
+          </div>
+          <h1>Automated Email Intelligence</h1>
+          <div class="lead-subtitle">Parse, vectorize, and extract persistent knowledge from high-volume email threads and attachments.</div>
+
+          <h2>1. Gmail CDC Connector Setup (User Guide §7.2)</h2>
+          <p>Register a Change Data Capture connector to continuously ingest email threads into your tenant's bitemporal memory pool:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/connectors</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/connectors \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "provider": "gmail",
+    "name": "Corporate Support Inbox",
+    "credentials": {
+      "access_token": "ya29.a0AfH6SM...",
+      "refresh_token": "1//04..."
+    },
+    "sync_frequency_sec": 300
+  }'</code></pre>
+          </div>
+
+          <h2>2. Thread Deduplication and Fact Mining</h2>
+          <p>Process inbound emails with automatic fact extraction and action item tagging:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — Email Pipeline Worker</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_prod_key_here")
+
+def ingest_email_thread(sender: str, subject: str, body: str):
+    # Mine facts and preserve sender identity
+    result = client.memories.create(
+        content=f"Email from {sender}: Subject '{subject}'. Content: {body}",
+        tags=["email", "customer-inquiry", "ops"],
+        metadata={"sender": sender, "subject": subject}
+    )
+    print(f"Created persistent memory ID: {result['id']}")</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: INTERACTIVE MEMORY DEMO -->
+        <div id="view-interactive-demo" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Interactive Demo</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Interactive Sandbox</span>
+            <span class="badge-pill green">User Guide §2 Grounded</span>
+          </div>
+          <h1>Interactive Memory Demo</h1>
+          <div class="lead-subtitle">Live sandbox demonstrating continuous memory extraction and hybrid scoring in action.</div>
+
+          <h2>5-Minute Verification Sequence</h2>
+          <p>Follow the end-to-end sandbox walkthrough to see facts stored, indexed with 11-signal UnifiedScorer, and recalled on demand:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Bash — Quickstart Sandbox</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code># 1. Store preference memory
+curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"content": "User prefers concise Python code examples using asyncio.", "user_id": "demo_user"}'
+
+# 2. Query with hybrid semantic + BM25 search
+curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "coding style preferences", "user_id": "demo_user"}'</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: RESEARCH ASSISTANT FOR YOUTUBE -->
+        <div id="view-research-yt" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>YouTube Research</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Research</span>
+            <span class="badge-pill green">Video Intelligence</span>
+          </div>
+          <h1>Research Assistant for YouTube</h1>
+          <div class="lead-subtitle">Ingest YouTube video transcripts, timestamps, and chapters into hybrid search.</div>
+
+          <h2>Transcript Ingestion Pipeline</h2>
+          <p>Extract transcripts from YouTube and index each chapter with timestamp metadata:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — YouTube Ingestion</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from youtube_transcript_api import YouTubeTranscriptApi
+from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_prod_key_here")
+
+def index_youtube_video(video_id: str, title: str):
+    transcript = YouTubeTranscriptApi.get_transcript(video_id)
+    full_text = " ".join([t['text'] for t in transcript[:20]])
+    
+    client.memories.create(
+        content=f"Video '{title}': {full_text}",
+        tags=["youtube", "research-transcript"],
+        metadata={"video_id": video_id, "title": title}
+    )
+    print("Video indexed successfully.")</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: SMART TRAVEL ASSISTANT -->
+        <div id="view-travel-assistant" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Companion Playbooks</span><span>/</span><span>Smart Travel Assistant</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Travel</span>
+            <span class="badge-pill green">Bitemporal Knowledge Graph</span>
+          </div>
+          <h1>Smart Travel Assistant</h1>
+          <div class="lead-subtitle">Remember traveler preferences, loyalty accounts, and trip planning context across seasons.</div>
+
+          <h2>Bitemporal Preference Management</h2>
+          <p>Record traveler preferences with seasonal validity dates (<code>valid_at</code>) to ensure winter ski preferences don't override summer beach bookings:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/memories</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Traveler loyalty: Delta SkyMiles #20918239, aisle seat preferred, vegetarian meal.",
+    "tags": ["travel", "loyalty", "preferences"],
+    "metadata": {"traveler_id": "usr_travel_88"}
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: CONTENT CREATION WORKFLOW -->
+        <div id="view-content-creation" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Ops &amp; Automations</span><span>/</span><span>Content Creation</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Content</span>
+            <span class="badge-pill green">Speculative Branching</span>
+          </div>
+          <h1>Content Creation Workflow</h1>
+          <div class="lead-subtitle">Store brand guidelines, voice definitions, and experiment with speculative copy branches.</div>
+
+          <h2>Branch-Based Editorial Variations (User Guide §7.5)</h2>
+          <p>Create an isolated speculative branch to test new marketing messaging without modifying core corporate guidelines:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">POST /api/v1/branches</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>curl -X POST https://api.piyapi.cloud/api/v1/branches \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "q4_campaign_copy",
+    "purpose": "A/B testing playful vs technical tone for developer marketing",
+    "base_branch": "main"
+  }'</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: COLLABORATIVE TASK ASSISTANT -->
+        <div id="view-collaborative-task" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Ops &amp; Automations</span><span>/</span><span>Collaborative Task Assistant</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Collaboration</span>
+            <span class="badge-pill green">Multi-User Memory</span>
+          </div>
+          <h1>Collaborative Task Assistant</h1>
+          <div class="lead-subtitle">Multi-user task synchronization and collaborative thread memory with strict boundary enforcement.</div>
+
+          <h2>Multi-User Shared Context</h2>
+          <p>Partition task state so team members share project-wide architectural goals while keeping personal draft notes private:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — Scoped Collaboration</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_prod_key_here")
+
+# Store to shared project graph
+client.memories.create(
+    content="Sprint milestone: Database migration to Aurora PostgreSQL scheduled for Friday 22:00 UTC.",
+    tags=["sprint-milestone", "shared-task"],
+    metadata={"scope": "project", "project_id": "proj_infra_01"}
+)</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: PERSISTENT MASTRA AGENTS -->
+        <div id="view-mastra-agents" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>Mastra Agents</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Framework</span>
+            <span class="badge-pill green">TypeScript Agent</span>
+          </div>
+          <h1>Persistent Mastra Agents</h1>
+          <div class="lead-subtitle">Connecting PiyAPI cognitive memory directly into the Mastra TypeScript agent framework.</div>
+
+          <h2>Mastra Memory Provider Setup</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">TypeScript — Mastra Agent Integration</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>import { Agent } from '@mastra/core';
+import { PiyAPIClient } from '@piyapi/sdk';
+
+const piyapi = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY });
+
+export const supportAgent = new Agent({
+  name: 'SupportCompanion',
+  instructions: 'Resolve customer tickets while recalling past user interactions and preferences.',
+  model: { provider: 'OPEN_AI', name: 'gpt-4o' },
+  tools: {
+    queryMemory: {
+      description: 'Search customer past context',
+      execute: async ({ userId, query }) => {
+        return await piyapi.memories.search({ query, userId, limit: 3 });
+      }
+    }
+  }
+});</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: CLOUD AI / BEDROCK -->
+        <div id="view-bedrock-memory" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Integrations</span><span>/</span><span>AWS Bedrock</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Cloud AI</span>
+            <span class="badge-pill green">AWS Bedrock Active</span>
+          </div>
+          <h1>AWS Bedrock with Persistent Memory</h1>
+          <div class="lead-subtitle">Combine AWS Bedrock foundation models with PiyAPI hybrid search and pgvector memory stores.</div>
+
+          <h2>Converse API &amp; Context Retrieval</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — Bedrock Converse Loop</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>import boto3
+from piyapi_memory import PiyAPIClient
+
+bedrock = boto3.client('bedrock-runtime', region_name='us-east-1')
+piyapi = PiyAPIClient(api_key="sk_live_prod_key_here")
+
+def generate_with_bedrock(user_id: str, prompt: str):
+    # 1. Retrieve user memory
+    mems = piyapi.memories.search(query=prompt, user_id=user_id, limit=3)
+    context = "\n".join([m['content'] for m in mems])
+    
+    # 2. Invoke Bedrock Converse API
+    response = bedrock.converse(
+        modelId="anthropic.claude-3-5-sonnet-20240620-v1:0",
+        messages=[{"role": "user", "content": [{"text": f"Context:\n{context}\n\nQuestion: {prompt}"}]}]
+    )
+    return response['output']['message']['content'][0]['text']</code></pre>
+          </div>
+        </div>
+
+        <!-- VIEW: VISUAL MEMORY RETRIEVAL -->
+        <div id="view-visual-memory" class="page">
+          <a class="back-btn" onclick="showView('view-overview')">← Back to Overview</a>
+          <div class="breadcrumb"><span>Cookbooks</span><span>/</span><span>Frameworks</span><span>/</span><span>Visual Memory</span></div>
+          <div class="subpage-badge-row">
+            <span class="badge-pill purple">Multimodal</span>
+            <span class="badge-pill green">CLIP Embeddings</span>
+          </div>
+          <h1>Visual Memory Retrieval</h1>
+          <div class="lead-subtitle">Store parsed image descriptions, UI wireframes, and multimodal embeddings for cross-modal search.</div>
+
+          <h2>Multimodal Ingestion Pipeline</h2>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">Python — Multimodal Vector Store</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><code>from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_prod_key_here")
+
+def store_visual_memory(image_url: str, scene_description: str, tags: list):
+    return client.memories.create(
+        content=f"Visual asset ({image_url}): {scene_description}",
+        tags=["multimodal", "visual-memory"] + tags,
+        metadata={"image_url": image_url, "type": "image_descriptor"}
+    )</code></pre>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Right Sticky Table of Contents -->
+      <aside id="toc">
+        <div class="toc-label">On This Page</div>
+        <a class="toc-link active" href="#pick-by-compatibility">Pick by compatibility</a>
+        <a class="toc-link" href="#start-here">Start here</a>
+        <a class="toc-link" href="#essentials">Essentials</a>
+        <a class="toc-link" href="#companion-playbooks">Companion Playbooks</a>
+        <a class="toc-link" href="#ops-and-automations">Ops &amp; Automations</a>
+        <a class="toc-link" href="#integrations-and-platforms">Integrations &amp; Platforms</a>
+        <a class="toc-link" href="#frameworks-and-multimodal">Frameworks &amp; Multimodal</a>
+        <a class="toc-link" href="#contribute-a-cookbook">Contribute a Cookbook</a>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div id="search-modal" onclick="closeSearchModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="modal-input" id="search-field" placeholder="Search cookbooks, recipes, playbooks..." oninput="handleSearch(this.value)">
+        <span class="search-kbd" onclick="closeSearchModal()">ESC</span>
+      </div>
+      <div class="modal-results" id="modal-results">
+        <div class="modal-item" onclick="showView('view-companion-negentro'); closeSearchModal();">
+          <div>
+            <div class="modal-item-title">Build a Companion with Negentro</div>
+            <div class="modal-item-cat">Companion Playbooks • Verified</div>
+          </div>
+          <span>→</span>
+        </div>
+        <div class="modal-item" onclick="showView('view-ai-tutor'); closeSearchModal();">
+          <div>
+            <div class="modal-item-title">Personalized AI Tutor</div>
+            <div class="modal-item-cat">Companion Playbooks • Verified</div>
+          </div>
+          <span>→</span>
+        </div>
+        <div class="modal-item" onclick="showView('view-email-intelligence'); closeSearchModal();">
+          <div>
+            <div class="modal-item-title">Automated Email Intelligence</div>
+            <div class="modal-item-cat">Ops &amp; Automations • Verified</div>
+          </div>
+          <span>→</span>
+        </div>
+        <div class="modal-item" onclick="showView('view-self-hosted'); closeSearchModal();">
+          <div>
+            <div class="modal-item-title">Self-Host with Ollama &amp; pgvector</div>
+            <div class="modal-item-cat">Deployment • Verified</div>
+          </div>
+          <span>→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      document.getElementById('scroll-bar').style.width = scrolled + '%';
+
+      // Highlight active TOC item based on scroll position in Overview
+      if (document.getElementById('view-overview').classList.contains('active')) {
+        const sections = [
+          'pick-by-compatibility',
+          'start-here',
+          'essentials',
+          'companion-playbooks',
+          'ops-and-automations',
+          'integrations-and-platforms',
+          'frameworks-and-multimodal',
+          'contribute-a-cookbook'
+        ];
+        let current = sections[0];
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= 120) {
+            current = id;
+          }
+        });
+        document.querySelectorAll('.toc-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+      }
+    });
+
+    // Theme toggle
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        document.getElementById('moon-icon').style.display = 'block';
+        document.getElementById('sun-icon').style.display = 'none';
+        localStorage.setItem('negentro-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('moon-icon').style.display = 'none';
+        document.getElementById('sun-icon').style.display = 'block';
+        localStorage.setItem('negentro-theme', 'dark');
+      }
+    }
+    // Load persisted theme
+    if (localStorage.getItem('negentro-theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('moon-icon').style.display = 'none';
+      document.getElementById('sun-icon').style.display = 'block';
+    }
+
+    // View Switcher (Single-Page App navigation)
+    function showView(viewId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(viewId);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Update sidebar active link
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-target') === viewId);
+      });
+
+      // Update TOC visibility
+      const toc = document.getElementById('toc');
+      if (toc) {
+        toc.style.display = (viewId === 'view-overview') ? 'block' : 'none';
+      }
+    }
+
+    // Compatibility Filter
+    function filterCompat(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const rows = document.querySelectorAll('#compat-table-body tr');
+      rows.forEach(row => {
+        const env = row.getAttribute('data-env') || '';
+        if (category === 'All') {
+          row.style.display = '';
+        } else if (category === 'Self-hosted') {
+          row.style.display = env.includes('Self-hosted') ? '' : 'none';
+        } else if (category === 'Platform') {
+          row.style.display = env.includes('Platform') ? '' : 'none';
+        }
+      });
+    }
+
+    // Copy Code Snippet
+    function copySnippet(btn) {
+      const code = btn.closest('.code-block').querySelector('pre code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = orig, 1500);
+      });
+    }
+
+    // Search Modal
+    function openSearchModal() {
+      document.getElementById('search-modal').classList.add('active');
+      document.getElementById('search-field').focus();
+    }
+    function closeSearchModal(e) {
+      document.getElementById('search-modal').classList.remove('active');
+    }
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      }
+      if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+    });
+
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.modal-item');
+      items.forEach(item => {
+        const title = item.querySelector('.modal-item-title').innerText.toLowerCase();
+        const cat = item.querySelector('.modal-item-cat').innerText.toLowerCase();
+        item.style.display = (title.includes(q) || cat.includes(q)) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

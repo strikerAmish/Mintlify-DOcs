@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started | Negentro</title>
+  <style>
+    :root {
+      --bg: #060d1b;
+      --bg-elevated: #101b2d;
+      --bg-panel: rgba(17, 24, 39, 0.9);
+      --bg-card: rgba(19, 27, 42, 0.9);
+      --bg-soft: rgba(255,255,255,0.02);
+      --text: #edf3ff;
+      --muted: #9aa7bd;
+      --border: rgba(148, 163, 184, 0.18);
+      --accent: #9b7cff;
+      --accent-strong: #7c5cf0;
+      --shadow: rgba(9, 13, 25, 0.55);
+      --pill: rgba(123, 92, 240, 0.12);
+      --code-bg: rgba(17, 24, 39, 0.82);
+      --search-bg: rgba(15, 23, 42, 0.7);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, rgba(97,84,242,0.12), transparent 30%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    #topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(150px, 1fr) minmax(230px, 360px) minmax(150px, 1fr);
+      grid-template-rows: auto auto;
+      align-items: center;
+      column-gap: 1rem;
+      padding: 0.65rem 1.1rem 0;
+      background: rgba(7, 12, 20, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 150px;
+      grid-column: 1;
+      grid-row: 1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(155,124,255,0.32));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      font-size: 0.7rem;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      gap: 0.35rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .topbar-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 0.9rem;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.92rem;
+      transition: 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.04);
+    }
+
+    .nav-link.active {
+      color: var(--text);
+      font-weight: 600;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 0.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 0;
+      justify-content: flex-end;
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .search-box {
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.62rem 0.8rem;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .search-kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.6rem;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      background: rgba(148, 163, 184, 0.08);
+      color: var(--muted);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .dashboard-btn {
+      border: 1px solid rgba(155,124,255,0.24);
+      background: rgba(155,124,255,0.12);
+      color: var(--text);
+      padding: 0.62rem 0.82rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .hero {
+      margin: 0 auto 1.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 1rem;
+    }
+
+    .hero-title {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .hero-sub {
+      margin: 0;
+      max-width: 700px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+
+    .primary-btn, .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.78rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.94rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .primary-btn {
+      color: white;
+      background: linear-gradient(180deg, #8a78ff, #755BEF);
+      box-shadow: 0 10px 24px rgba(123, 92, 240, 0.35);
+    }
+
+    .secondary-btn {
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .primary-btn:hover, .secondary-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(155,124,255,0.36);
+    }
+
+                /* ========================================================= */
+    /* 3-ABOVE / 3-BELOW VINE ARCHITECTURE                       */
+    /* (PERMANENTLY EXPANDED, INCREASED CONNECTOR DISTANCE)      */
+    /* ========================================================= */
+    .hero {
+      margin: 0 auto 3.5rem !important; /* Generous clearance preventing button overlap */
+    }
+
+    .vine-stage {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 4rem;
+    }
+
+    .vine-controls {
+      display: none !important; /* All cards are permanently expanded as requested */
+    }
+
+    .vine-grid-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Botanical Leaf-Shaped Cards (Permanently Expanded) */
+    .leaf-card {
+      position: relative;
+      background: rgba(17, 24, 39, 0.94);
+      border: 1.5px solid var(--border);
+      border-radius: 36px 6px 36px 6px; /* Organic leaf silhouette */
+      padding: 1.25rem 1.35rem 1.2rem;
+      box-shadow: 0 12px 32px rgba(2, 6, 17, 0.35);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    /* Monochromatic Outline Leaf Watermark */
+    .leaf-bg-watermark {
+      position: absolute;
+      right: -8px;
+      bottom: -10px;
+      width: 90px;
+      height: 90px;
+      color: #000000;
+      opacity: 0.08;
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 0;
+    }
+    [data-theme="dark"] .leaf-bg-watermark {
+      color: #c4b5fd;
+      opacity: 0.12;
+    }
+
+    .leaf-card:hover {
+      border-color: #a78bfa;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.25);
+    }
+    .leaf-card:hover .leaf-bg-watermark {
+      transform: scale(1.1) rotate(-4deg);
+      opacity: 0.16;
+    }
+
+    .leaf-header, .leaf-title {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ALL 6 CARDS ARE PERMANENTLY EXPANDED (NO TOGGLE / NO HOVER EXPANSION REQUIRED) */
+    .leaf-body {
+      position: relative;
+      z-index: 1;
+      display: block !important;
+      opacity: 1 !important;
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .leaf-toggle-icon {
+      display: none !important; /* No toggle icon needed since permanently expanded */
+    }
+
+    /* Central Curvy Vine with INCREASED VERTICAL DISTANCE & LONGER CURVED TENDRILS */
+    .central-vine-svg {
+      width: 100%;
+      height: 220px !important; /* Increased distance between cards and vine */
+      overflow: visible;
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px rgba(155, 124, 255, 0.6));
+      margin: 0 0;
+      z-index: 1;
+      position: relative;
+    }
+    .vine-main-curve {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .vine-tendril {
+      fill: none;
+      stroke: rgba(167, 139, 250, 0.8);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+    .vine-bead {
+      fill: var(--accent);
+      filter: drop-shadow(0 0 6px rgba(155, 124, 255, 0.95));
+    }
+
+    @media (max-width: 900px) {
+      .vine-grid-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .central-vine-svg {
+        display: none;
+      }
+    }
+
+    .code-window {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 12px;
+      padding: 0.75rem 0.7rem;
+      margin-bottom: 0.85rem;
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .code-window pre {
+      margin: 0;
+      width: 100%;
+      color: #dfe7ff;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      overflow: hidden;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .token-key { color: #91d7ff; }
+    .token-string { color: #8de2a6; }
+    .token-number { color: #f5c476; }
+    .token-func { color: #d7b3ff; }
+
+    .card-copy {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.82rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding-top: 0.4rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      min-width: 60px;
+      padding: 0.3rem 0.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(148,163,184,0.18);
+      color: #dfe7ff;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .mini-flow {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      font-size: 0.68rem;
+      color: #dfe7ff;
+      flex-wrap: wrap;
+    }
+
+    .mini-flow .node {
+      padding: 0.25rem 0.4rem;
+      border-radius: 6px;
+      background: rgba(155,124,255,0.18);
+      border: 1px solid rgba(155,124,255,0.3);
+      color: #efebff;
+      font-weight: 600;
+    }
+
+    .mini-flow .arrow {
+      color: #9aa7bd;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 1100px) {
+      .leaves-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .beam .desktop-suspension { display: none; }
+      .beam .tablet-suspension { display: block; }
+      .beam .desktop-anchor { display: none; }
+      .beam .tablet-anchor { display: block; }
+      .topbar-nav { display: none; }
+      .search-box { display: none; }
+    }
+
+    @media (max-width: 650px) {
+      .leaves-grid { grid-template-columns: 1fr; }
+      .hanging-stage { padding-top: 130px; }
+      .beam .tablet-suspension { display: none; }
+      .beam .mobile-suspension { display: block; }
+      .beam .tablet-anchor { display: none; }
+      .beam .mobile-anchor { display: block; }
+      .topbar-brand { min-width: auto; }
+      .dashboard-btn { display: none; }
+      #topbar { grid-template-columns: 1fr auto; }
+      .topbar-right { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+  <header id="topbar">
+    <a class="topbar-brand" href="platform.html">
+      <span class="brand-mark">◈</span>
+      <span>Negentro</span>
+    </a>
+
+    <nav class="topbar-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="get_started.html">Get Started</a>
+      <a class="nav-link" href="platform.html">Platform</a>
+      <a class="nav-link" href="opensource.html">Open Source</a>
+      <a class="nav-link" href="integrations.html">Integrations</a>
+      <a class="nav-link" href="agent_plugins.html">Agent Plugins</a>
+      <a class="nav-link" href="cookbooks.html">Cookbooks</a>
+      <a class="nav-link" href="api_reference.html">API Reference</a>
+      <a class="nav-link" href="release_notes.html">Release Notes</a>
+    </nav>
+
+    <div class="topbar-right">
+      <div class="search-box">
+        <span>Search...</span>
+        <span class="search-kbd">⌘K</span>
+      </div>
+      <button class="icon-btn" type="button" aria-label="Toggle theme">◐</button>
+      <button class="dashboard-btn" type="button">Dashboard</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero-title">Build with PiyAPI</h1>
+      <p class="hero-sub">Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure.</p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="platform.html">Get Started</a>
+        <a class="secondary-btn" href="api_reference.html">API Reference</a>
+      </div>
+    </section>
+
+        <section class="vine-stage" aria-label="Get started guides">
+      <div class="vine-controls">
+        <button class="toggle-all-btn" type="button" onclick="toggleAllLeaves()">
+          <span id="toggle-all-icon">▼</span>
+          <span id="toggle-all-text">Expand All</span>
+        </button>
+      </div>
+
+      <!-- ROW 1 (ABOVE THE CURVY VINE): Options 01, 02, 03 -->
+      <div class="vine-grid-row vine-row-top">
+        <!-- Leaf 1 -->
+        <article class="leaf-card expanded" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">01</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Store your first memory</h2>
+          <div class="leaf-body">
+            <div class="code-window">
+              <pre><span class="token-key">piyapi</span>.<span class="token-func">memory</span>.<span class="token-func">add</span>({
+  fact: <span class="token-string">"User prefers Dark Mode"</span>,
+  valid_at: <span class="token-string">"2026-10-04"</span>,
+  user_id: <span class="token-string">"u_1029"</span>
+})</pre>
+            </div>
+            <p class="card-copy">Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency.</p>
+          </div>
+        </article>
+
+        <!-- Leaf 2 -->
+        <article class="leaf-card" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">02</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Add memory to your AI agent</h2>
+          <div class="leaf-body">
+            <div class="code-window">
+              <div class="mini-flow">
+                <span class="node">AI Agent</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">PiyGraph</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">UnifiedScorer</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">Payload</span>
+              </div>
+            </div>
+            <p class="card-copy">Give your agents persistent context across conversations, sessions, and workflows.</p>
+          </div>
+        </article>
+
+        <!-- Leaf 3 -->
+        <article class="leaf-card" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">03</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Build context workflow</h2>
+          <div class="leaf-body">
+            <div class="code-window">
+              <pre>1. <span class="token-key">const</span> p = <span class="token-key">await</span> <span class="token-func">retrieve</span>();
+2. <span class="token-func">resolveConflicts</span>(p);
+3. <span class="token-func">generateResponse</span>();</pre>
+            </div>
+            <p class="card-copy">Connect memory and context into a workflow your application can use immediately.</p>
+          </div>
+        </article>
+      </div>
+
+            <!-- CENTRAL CURVY VINE WITH INCREASED CONNECTOR DISTANCE (220px) -->
+      <svg class="central-vine-svg" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Main organic curvy wave flowing horizontally through vertical center (Y=110) -->
+        <path class="vine-main-curve" d="M0 110 C180 50 380 170 600 110 S1020 50 1200 110" />
+        
+        <!-- 3 Long Curved Tendril Stems reaching UP to the 3 Top Leaves (from Y=110 up to Y=0) -->
+        <path class="vine-tendril" d="M200 95 C180 60 215 25 200 0" />
+        <path class="vine-tendril" d="M600 110 C580 70 620 30 600 0" />
+        <path class="vine-tendril" d="M1000 95 C980 60 1015 25 1000 0" />
+        
+        <!-- 3 Long Curved Tendril Stems reaching DOWN to the 3 Bottom Leaves (from Y=110 down to Y=220) -->
+        <path class="vine-tendril" d="M200 95 C220 135 180 180 200 220" />
+        <path class="vine-tendril" d="M600 110 C620 150 580 190 600 220" />
+        <path class="vine-tendril" d="M1000 95 C1020 135 980 180 1000 220" />
+        
+        <!-- Glowing Anchor Beads at Contact Points -->
+        <circle class="vine-bead" cx="200" cy="0" r="4.5" />
+        <circle class="vine-bead" cx="600" cy="0" r="4.5" />
+        <circle class="vine-bead" cx="1000" cy="0" r="4.5" />
+        <circle class="vine-bead" cx="200" cy="220" r="4.5" />
+        <circle class="vine-bead" cx="600" cy="220" r="4.5" />
+        <circle class="vine-bead" cx="1000" cy="220" r="4.5" />
+      </svg>
+
+      <!-- ROW 2 (BELOW THE CURVY VINE): Options 04, 05, 06 -->
+      <div class="vine-grid-row vine-row-bottom">
+        <!-- Leaf 4 -->
+        <article class="leaf-card" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">04</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Framework Connectors</h2>
+          <div class="leaf-body">
+            <div class="chips">
+              <span class="chip">LangChain</span>
+              <span class="chip">LlamaIndex</span>
+              <span class="chip">CrewAI</span>
+              <span class="chip">AutoGen</span>
+              <span class="chip">Mastra</span>
+            </div>
+            <p class="card-copy" style="margin-top:0.6rem;">Use native client libraries and adapters for popular LLM frameworks.</p>
+          </div>
+        </article>
+
+        <!-- Leaf 5 -->
+        <article class="leaf-card" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">05</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Copy working example</h2>
+          <div class="leaf-body">
+            <div class="code-window">
+              <pre><span class="token-key">const</span> client = <span class="token-key">new</span> PiyApi(KEY);
+client.agent.deploy(edTech_Config);</pre>
+            </div>
+            <p class="card-copy">Start from production-ready examples of coding agents, customer triage bots, and tutors.</p>
+          </div>
+        </article>
+
+        <!-- Leaf 6 -->
+        <article class="leaf-card" >
+          <svg class="leaf-bg-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12,88 Q32,32 88,12 Q68,68 12,88 Z" />
+            <path d="M12,88 Q45,55 88,12" />
+            <path d="M36,64 Q50,60 64,68" />
+            <path d="M50,50 Q64,44 74,50" />
+            <path d="M26,74 Q38,70 46,78" />
+          </svg>
+          <div class="leaf-header">
+            <span class="leaf-badge">06</span>
+            <span class="leaf-toggle-icon">▼</span>
+          </div>
+          <h2 class="leaf-title">Self-host in your VPC</h2>
+          <div class="leaf-body">
+            <div class="code-window">
+              <div class="mini-flow">
+                <span class="node">App</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">VPC Peering</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">Negentro Core</span>
+                <span class="arrow">&rarr;</span>
+                <span class="node">PostgreSQL</span>
+              </div>
+            </div>
+            <p class="card-copy">Understand deployment options and run Negentro securely in your private infrastructure.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    
+    // Ensure hover expands cards instantaneously
+    document.querySelectorAll('.leaf-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const body = card.querySelector('.leaf-body');
+        if (body) body.style.display = 'block';
+        const icon = card.querySelector('.leaf-toggle-icon');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      });
+      card.addEventListener('mouseleave', () => {
+        if (!card.classList.contains('expanded')) {
+          const body = card.querySelector('.leaf-body');
+          if (body) body.style.display = 'none';
+          const icon = card.querySelector('.leaf-toggle-icon');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    function toggleLeaf(card) {
+      card.classList.toggle('expanded');
+    }
+
+    let allExpanded = false;
+    function toggleAllLeaves() {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.leaf-card').forEach(c => {
+        if (allExpanded) c.classList.add('expanded');
+        else c.classList.remove('expanded');
+      });
+      const text = document.getElementById('toggle-all-text');
+      const icon = document.getElementById('toggle-all-icon');
+      if (text) text.textContent = allExpanded ? 'Collapse All' : 'Expand All';
+      if (icon) icon.textContent = allExpanded ? '▲' : '▼';
+    }
+  </script>
+</body>
+</html>
