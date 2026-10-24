@@ -1,0 +1,57 @@
+{
+  "filename": "docs_getstarted.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - Get Started Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `Docs / Get Started`\n* **Action:** `[Copy page]`\n\n---"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **Get Started**\n  * Quickstart\n  * Building Agents\n  * Workflows\n  * Infrastructure\n* **Platform**\n* **Open Source**\n* **Integrations**\n\n---"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* Quickstart\n* Agents\n* Workflows\n* Integrations\n* Examples\n* Infrastructure\n\n---"
+    },
+    {
+      "heading": "4. Hero Section",
+      "content": ""
+    },
+    {
+      "heading": "Build with PiyAPI",
+      "content": "Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure.\n\n**Buttons:** `Get Started` | `API Reference`\n\n---"
+    },
+    {
+      "heading": "5. Developer Grid (6 Cards)",
+      "content": ""
+    },
+    {
+      "heading": "Quickstart",
+      "content": "Initialize your PiyGraph. Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency.\n```javascript\npiyapi.memory.add({\n  fact: \"User prefers Dark Mode\",\n  valid_at: \"2026-10-04\",\n  user_id: \"u_1029\"\n})\n```"
+    },
+    {
+      "heading": "Agents",
+      "content": "Add state to your AI agent. Give your agents persistent context across sessions with Deterministic Conflict Resolution to prevent hallucinations.\n*(Visual: AI Agent \u2192 PiyGraph Memory \u2192 UnifiedScorer \u2192 Conflict-Free Payload)*"
+    },
+    {
+      "heading": "Workflows",
+      "content": "Retrieve context with UnifiedScorer. Build workflows that fuse dense vector HNSW and BM25 trigrams to retrieve exactly what the model needs.\n```javascript\n1. const payload = await retrieve(UnifiedScorer);\n2. resolveConflicts(payload);\n3. generateResponse();\n```"
+    },
+    {
+      "heading": "Integrations",
+      "content": "Use PiyAPI with your framework. Connect PiyAPI to your existing stack using our native SDKs and agentic framework plugins.\n*(Tags: Next.js | Python | LangChain | Node.js | LlamaIndex | Vercel AI)*"
+    },
+    {
+      "heading": "Examples",
+      "content": "Deploy a working Copilot. Start from production-ready examples of stateful coding agents, customer triage bots, and EdTech tutors.\n```javascript\nconst client = new PiyApi(API_KEY);\nclient.agent.deploy(edTechTutor_Config);\n```"
+    },
+    {
+      "heading": "Infrastructure",
+      "content": "Host on your own infrastructure. Understand VPC peering, data tokenization, and strict per-tenant isolation for enterprise compliance.\n*(Visual: Application \u2192 VPC Peering \u2192 PiyAPI Core \u2192 Your Secure DB)*\n\n---\n\n**Footer Actions:**\n`[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:**\n`NEXT: Platform \u2192`"
+    }
+  ]
+}

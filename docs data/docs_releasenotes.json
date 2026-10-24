@@ -1,0 +1,93 @@
+{
+  "filename": "docs_releasenotes.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - Release Notes Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `Release Notes`\n* **Action:** `[Copy page]`"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **RELEASE NOTES**\n  * Highlights\n  * SDKs & Tools\n  * Platform\n* **FILTER BY**\n  * All\n  * Product\n  * SDK\n  * Integration\n  * Plugin\n  * Infrastructure"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* Highlights\n* SDK & Tools\n* Platform\n* August 2026\n* July 2026\n* June 2026\n\n---"
+    },
+    {
+      "heading": "Highlights",
+      "content": "Platform updates, infrastructure improvements, and SDK releases.\n\n> **Note:** Sample content \u2014 illustrative release notes for demonstration purposes.\n\n*(Search and Filter Bar: `All updates` | `Search release notes...` | `2026` | `All`)*"
+    },
+    {
+      "heading": "August 2026",
+      "content": ""
+    },
+    {
+      "heading": "PiyAPI Coding Agent Plugin launches for VS Code",
+      "content": "`2026-08-24` | `Agent Plugin` | **HIGHLIGHT**\n\nThe VS Code plugin provides persistent project memory directly within the editor. The extension surfaces prior decisions, architectural conventions, and working context across isolated coding sessions.\n\n* **Automatic memory**: Captures working context in the background without manual tagging.\n* **Scoped recall**: Restricts `memory.search` to the current `project_id` to prevent cross-repo leakage.\n* **Inline suggestions**: Injects relevant past fixes directly into the diff view.\n\n> **Developer preview.** Available to design partners; general availability targeted for Q4.\n\n`[View documentation \u2192]`"
+    },
+    {
+      "heading": "Python SDK v4.2 \u2014 batched writes and async memory client",
+      "content": "`2026-08-19` | `SDK`\n\nA new `AsyncMemoryClient` and batched write support designed for high-throughput Python applications.\n\n* **Batch API**: Write up to 500 memories per request, reducing round trips by 90%.\n* **AsyncClient**: Mirrors the synchronous client API for `asyncio` compatibility.\n\n`[Migration guide \u2192]`"
+    },
+    {
+      "heading": "Project vs. personal memory scoping",
+      "content": "`2026-08-14` | `Memory`\n\nMemory queries and writes can now be strictly scoped to prevent crossover between shared project data and private user context.\n\n* **Scope param**: Pass `scope=project` or `scope=user` on every write and query operation.\n* **Isolation guarantee**: Hard boundary enforced at the storage layer, keyed by `user_id` and `project_id`.\n\n> [!WARNING]\n> **Migration note.** Existing memories default to `scope=user`. Update your endpoints if your application expects shared project context."
+    },
+    {
+      "heading": "REST API v1.3 \u2014 richer filtering on /v1/memories",
+      "content": "`2026-08-07` | `API`\n\nThe `/v1/memories` endpoint now supports compound filtering and date constraints.\n\n* **Filter operators**: Native support for `AND`/`OR` grouping structures.\n* **Session filter**: Restrict retrieval results to a specific `session_id` for conversation-level boundaries.\n\n---"
+    },
+    {
+      "heading": "July 2026",
+      "content": ""
+    },
+    {
+      "heading": "Native MCP support across the platform",
+      "content": "`2026-07-29` | `Platform` | **HIGHLIGHT**\n\nNative Model Context Protocol (MCP) support allows compatible clients to read and write memory directly to the PiyAPI engine.\n\n* **MCP server**: A single-line installation exposes native memory tools to the host environment.\n* **Tool discovery**: Hosts automatically detect `search`, `add`, and `update` tools.\n\n`[View documentation \u2192]`"
+    },
+    {
+      "heading": "TypeScript SDK v3.0 \u2014 full type-safe memory client",
+      "content": "`2026-07-22` | `SDK`\n\nThe SDK has been entirely rewritten with strict TypeScript definitions, tree-shakeable exports, and Edge runtime support.\n\n* **Edge-ready**: Executes in Vercel Edge and Cloudflare Workers environments with zero polyfills.\n* **Breaking change**: `client.memories.add()` now returns a strictly typed `Memory` object instead of raw JSON.\n\n`[Migration guide \u2192]`"
+    },
+    {
+      "heading": "LangChain and LlamaIndex memory adapters",
+      "content": "`2026-07-16` | `Open Source`\n\nNative memory backends are now available as drop-in replacements for the primary open-source agent frameworks.\n\n* **LangChain**: Implements `BaseMemory` with persistent cross-session state retention.\n* **LlamaIndex**: Distributed as a zero-config `ChatMemoryBuffer` replacement."
+    },
+    {
+      "heading": "UX Pilot AI and Google Gemini embedding support",
+      "content": "`2026-07-09` | `Provider`\n\nPiyAPI now supports UX Pilot AI and Google Gemini as dense vector embedding providers, alongside OpenAI.\n\n* **Provider config**: Configure via the `embedding_provider` project setting or explicitly per API call."
+    },
+    {
+      "heading": "Vector retrieval latency reduced by 40%",
+      "content": "`2026-07-02` | `Infrastructure`\n\nThe core retrieval index was re-architected to reduce p95 query latency globally.\n\n* **HNSW tuning**: Dynamic index parameters based on real-time collection size.\n* **Result caching**: Repeated `memory.search` requests utilizing identical filters are now served directly from cache.\n\n---"
+    },
+    {
+      "heading": "June 2026",
+      "content": ""
+    },
+    {
+      "heading": "PiyAPI Memory Platform \u2014 general availability",
+      "content": "`2026-06-26` | `Product` | **HIGHLIGHT**\n\nThe core persistent memory infrastructure is now generally available with SLA-backed uptime and strict tenant isolation.\n\n* **GA SLA**: 99.9% uptime commitment across all production tiers.\n* **Isolation model**: All memory records are strictly namespaced by `project_id` and `user_id`.\n\n`[View documentation \u2192]`"
+    },
+    {
+      "heading": "PiyAPI CLI 1.0",
+      "content": "`2026-06-19` | `Developer Tools`\n\nInspect, seed, and debug memory indices directly from the terminal.\n\n* **piyapi tail**: Streams live memory writes matching a specific `project_id`.\n* **piyapi seed**: Executes bulk imports from JSONL files for localized testing workflows."
+    },
+    {
+      "heading": "Dashboard: memory graph visualizer",
+      "content": "`2026-06-12` | `Platform`\n\nA visual interface for exploring relationships between memories, filterable by recency, category, and user entity.\n\n* **Graph view**: Renders topological semantic clusters directly from the production dataset.\n\n> **Developer preview.** Enable via the feature flags section in project settings."
+    },
+    {
+      "heading": "Slack and Zendesk connectors",
+      "content": "`2026-06-05` | `Integration`\n\nAutomatically index support conversations and team messages into scoped customer memory.\n\n* **Zendesk sync**: Resolved tickets are parsed and converted to memories keyed by `user_id`.\n* **Slack app**: Available via the Slack App Directory; requires channel authorization to begin indexing."
+    },
+    {
+      "heading": "REST API rate limits raised for Pro tier",
+      "content": "`2026-06-01` | `API`\n\nPro workspaces receive a 5x increase to the global request ceiling across all memory endpoints.\n\n* **New limit**: 5,000 requests per minute per project on the REST API.\n\n---\n\n**Footer Actions:** `[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:** `\u2190 PREVIOUS: API Reference` | `NEXT: SDK & Tools \u2192`\n\n---\n\n> **Editor's Note: Navbar & Content Adjustments**\n> * **Right Sidebar (\"On this page\")**: The Figma design had `SDK & Tools` and `Platform` underneath `Highlights`, but the main content only spans chronological updates. I retained `SDK & Tools` and `Platform` in the markdown sidebar to perfectly match the Figma, representing logical sub-pages.\n> * **Footer Navigation**: Added a `\u2190 PREVIOUS: API Reference` link to correctly connect the global documentation workflow.\n> * **Content Typo Fix**: Corrected a redundant Figma sentence regarding UX Pilot AI to accurately state that Gemini and UX Pilot are supported alongside OpenAI."
+    }
+  ]
+}

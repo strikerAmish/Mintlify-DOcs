@@ -1,0 +1,61 @@
+{
+  "filename": "docs_integration.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - Integrations Overview Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `Integrations / Overview`\n* **Action:** `[Copy page]`\n\n---"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **Overview**\n* **AGENT FRAMEWORKS**\n  * LangChain\n  * LangGraph\n  * LlamaIndex\n  * CrewAI\n  * AutoGen\n  * Mastra\n  * Camel AI\n  * AgentOps\n  * Dify\n  * ChatDev\n  * Agno\n* **AI SDKs**\n  * PiyAPI SDK\n  * Vercel AI SDK\n  * Google ADK\n* **VOICE & REAL-TIME**\n  * LiveKit\n  * Pipecat\n  * ElevenLabs\n* **DATA CONNECTORS (PiyAPI Native)**\n  * Google Drive\n  * Notion\n  * GitHub\n  * Slack\n  * Jira & Confluence\n  * Gmail & Calendar\n  * Web Clipper\n  * Obsidian\n* **DEVELOPER TOOLS**\n  * MCP Server\n  * REST API\n  * SDKs (Python, Node.js)\n  * Webhooks\n* **INFRASTRUCTURE**\n  * PostgreSQL (`pgvector`)\n  * Redis\n  * BYOK LLM Providers\n  * AWS Bedrock\n\n---"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* **Integrations**\n  * Agent Frameworks\n  * AI SDKs\n  * Voice & Real-Time\n  * Data Connectors\n  * Developer Tools\n  * Infrastructure\n\n---"
+    },
+    {
+      "heading": "4. Hero Section",
+      "content": ""
+    },
+    {
+      "heading": "Integrations Overview",
+      "content": "Connect PiyAPI with the frameworks, agent platforms, developer tools, and infrastructure you already use.\n\nPiyAPI integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows.\n\n* Persistent context across frameworks\n* Consistent memory across AI interactions\n* Context-aware agent workflows\n* Framework-specific development patterns\n* Simple integration through SDKs and APIs"
+    },
+    {
+      "heading": "Benefits",
+      "content": "* **Persistent memory** across supported frameworks\n* **Context retrieval** inside existing agent workflows\n* Consistent **user and session context**\n* **Framework-agnostic** memory infrastructure\n* Simple **SDK and API-based** integration\n\n> **Universal integration**\n> Use PiyAPI through a standardized API layer when your workflow does not require a framework-specific integration.\n\n---"
+    },
+    {
+      "heading": "5. Integrations Grid",
+      "content": "**Tabs:** `All` | `Agent Frameworks` | `AI SDKs` | `Voice` | `Data Connectors` | `Developer Tools` | `Infrastructure`\n\n*(Search bar: \"Search integrations...\")*"
+    },
+    {
+      "heading": "Agent Frameworks",
+      "content": "* **AgentOps**\n  Monitor agent workflows while retaining relevant memory and context across interactions.\n* **Camel AI**\n  Connect persistent context to multi-agent workflows.\n* **LangChain**\n  Add persistent memory and context to LangChain-based applications using `packages/langchain-adapter`.\n* **LlamaIndex**\n  Connect persistent memory with retrieval and data workflows.\n* **AutoGen**\n  Build agent workflows that can retain context across interactions.\n* **CrewAI**\n  Give multi-agent workflows a shared, persistent context graph (PiyGraph).\n* **LangGraph**\n  Connect persistent memory to LangGraph workflows.\n* **Dify**\n  Add long-term context to applications built with Dify.\n* **ChatDev**\n  Add persistent context to collaborative AI workflows.\n* **Agno**\n  Connect persistent context to Agno-based workflows."
+    },
+    {
+      "heading": "AI SDKs",
+      "content": "* **Vercel AI SDK**\n  Use PiyAPI alongside the Vercel AI SDK.\n* **PiyAPI SDK**\n  Add bitemporal memory and context to native agent workflows using `@piyapi/sdk`.\n* **Google ADK**\n  Connect PiyAPI memory with Google agent development workflows."
+    },
+    {
+      "heading": "Voice & Real-Time",
+      "content": "* **LiveKit**\n  Connect persistent context to real-time voice workflows.\n* **Pipecat**\n  Build real-time agent workflows with memory.\n* **ElevenLabs**\n  Use persistent memory in conversational voice applications."
+    },
+    {
+      "heading": "Data Connectors (CDC Auto-Sync)",
+      "content": "* **Notion**\n  Continuous Change Data Capture for Workspace pages and databases.\n* **Google Drive**\n  Sync context directly from Docs, Sheets, and Slides.\n* **GitHub**\n  Extract context from Repositories, Issues, PRs, and Commits.\n* **Slack**\n  Ingest thread history and channel conversations.\n* **Jira & Confluence**\n  Track enterprise tickets and knowledge base articles."
+    },
+    {
+      "heading": "Developer Tools",
+      "content": "* **LangChain Tools**\n  Connect memory to tool-driven agent workflows.\n* **Model Context Protocol (MCP)**\n  Connect Cursor, Windsurf, and Claude Desktop to PiyAPI natively via `@piyapi/mcp-server`.\n* **REST API**\n  Direct programmatic access to bitemporal graphs and context retrieval.\n* **Webhooks**\n  Real-time HTTP POST callbacks for memory creation and connector sync events."
+    },
+    {
+      "heading": "Infrastructure",
+      "content": "* **AWS Bedrock**\n  Use PiyAPI alongside AWS model and agent infrastructure.\n* **BYOK Managers**\n  Route generation natively through OpenAI, Anthropic, Gemini, DeepSeek, Mistral, Groq, Cohere, and Perplexity.\n* **PostgreSQL & pgvector**\n  Enterprise-grade bitemporal storage substrate and dense vector indexes.\n* **Redis**\n  Ultra-low latency semantic caching layers.\n\n---\n\n> **Don't see your integration?**\n> Connect PiyAPI through the API or build an integration for your workflow.\n> `Explore the API \u2192`\n\n---\n\n**Footer Actions:**\n`[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:**\n`\u2190 PREVIOUS: Open Source Overview` | `NEXT: LangChain Integration \u2192`"
+    }
+  ]
+}

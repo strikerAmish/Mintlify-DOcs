@@ -1,0 +1,125 @@
+{
+  "filename": "docs_opensource.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - Open Source Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `Open Source / Overview`\n* **Action:** `[Copy page]`\n\n---"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **Overview**\n* **Python SDK Quickstart**\n* **Node.js Quickstart**\n* **Self-hosted Server**\n* **Web Studio**\n* **REST API**\n* **Configuration**\n* **LLMs**\n* **Vector Databases**\n* **Embeddings**\n* **Storage**\n* **Metadata Filtering**\n* **Reranking**\n* **Multimodal Support**\n\n---"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* Get started\n* Go further\n* Default components\n* Configuration\n* Self-hosted architecture\n* Build on the open-source\n\n---"
+    },
+    {
+      "heading": "4. Hero Section",
+      "content": ""
+    },
+    {
+      "heading": "Open Source Overview",
+      "content": "Run PiyAPI on your own infrastructure with full control over your data, configuration, and deployment environment.\n\n**Tags:** `Open Source` | `Self-hosted` | `Developer Infrastructure`\n\nPiyAPI Open Source provides the flexibility to deploy our cognitive memory engine entirely within your VPC. Maintain strict data privacy, enterprise compliance, and total configuration control without sacrificing the power of bitemporal reasoning.\n\nDevelopers can install the SDK directly into an application as a lightweight library, or run the full PiyAPI server as an independent, scalable microservice. Both approaches allow you to configure storage, embeddings, and BYOK (Bring Your Own Key) model routing to match your existing infrastructure.\n\nThe stack is designed to be fully extensible\u2014connect your existing PostgreSQL databases, plug in custom LLMs, and build active inference workflows tailored to your exact deployment constraints.\n\n---"
+    },
+    {
+      "heading": "5. Run PiyAPI your way (Cards)",
+      "content": ""
+    },
+    {
+      "heading": "As a library",
+      "content": "Install the lightweight SDK directly into your TypeScript or Python application for immediate, embedded bitemporal memory."
+    },
+    {
+      "heading": "As a self-hosted server",
+      "content": "Run the full PiyAPI Gateway and Memory Engine as an independent Docker service with complete control over Redis caching, `pgvector` indexing, and LLM routing.\n\n---"
+    },
+    {
+      "heading": "6. Get started (Cards)",
+      "content": ""
+    },
+    {
+      "heading": "Python Quickstart",
+      "content": "Install the `piyapi-memory` package and verify that hybrid memory storage and retrieval work in a few lines of code.\n`Learn more \u2192`"
+    },
+    {
+      "heading": "Node.js Quickstart",
+      "content": "Install the `@piyapi/sdk` package and connect your first stateful agent workflow.\n`Learn more \u2192`"
+    },
+    {
+      "heading": "Self-hosted server",
+      "content": "Deploy the PiyAPI Docker container locally or on your Kubernetes cluster and configure your bitemporal infrastructure.\n`Learn more \u2192`\n\n---"
+    },
+    {
+      "heading": "7. Go further (Cards)",
+      "content": ""
+    },
+    {
+      "heading": "Configure components",
+      "content": "Configure BYOK routing, embedding providers, `pgvector` storage, and tune the UnifiedScorer for your specific deployment.\n`Learn more \u2192`"
+    },
+    {
+      "heading": "Self-hosting features",
+      "content": "Explore enterprise namespace isolation, semantic cache purging, multimodal CDC connectors, and compliance-grade redaction tools.\n`Learn more \u2192`"
+    },
+    {
+      "heading": "Build with cookbooks",
+      "content": "Use practical examples for LangChain agents, CrewAI, MCP server integrations, and real-world compliance workflows.\n`Learn more \u2192`\n\n> **Need a managed alternative?**\n> Compare the self-hosted open-source deployment with the fully managed PiyAPI Cloud Platform, or switch to the **Platform** documentation.\n\n---"
+    },
+    {
+      "heading": "8. Default components",
+      "content": "PiyAPI ships with sane, production-ready defaults for each part of the pipeline. Every component can be replaced or explicitly configured to match your existing VPC infrastructure and provider preferences."
+    },
+    {
+      "heading": "Library defaults",
+      "content": "| COMPONENT | DEFAULT |\n|:---|:---|\n| **LLM** | OpenAI (via BYOK) |\n| **Embeddings** | OpenAI `text-embedding-3-small` |\n| **Vector store** | `pgvector` |\n| **History store** | PostgreSQL |"
+    },
+    {
+      "heading": "Self-hosted defaults",
+      "content": "| COMPONENT | DEFAULT |\n|:---|:---|\n| **Reranker** | UnifiedScorer (BM25 + RRF) |\n| **Storage** | PostgreSQL (Bitemporal KG) |\n| **Metadata cache** | Redis |\n| **Providers** | Multi-Provider BYOK Routing |\n\n---"
+    },
+    {
+      "heading": "9. Configure your stack",
+      "content": "```typescript\n// piyapi.config.ts\nimport { createPiyAPI } from '@piyapi/sdk';\n\nconst piyapi = createPiyAPI({\n  llm: \"openai:gpt-4o\",\n  embeddings: \"openai:text-embedding-3-small\",\n  // Connect directly to your existing infrastructure\n  vectorStore: \"pgvector://localhost:5432/piyapi\",\n  storage: \"postgres://localhost:5432/piyapi_graph\",\n  cache: \"redis://localhost:6379\"\n});\n```\n\n---"
+    },
+    {
+      "heading": "10. Self-hosted architecture",
+      "content": "*(Visual: Self-hosted architecture diagram)*\n\n**Nodes:**\n`[1] Your Application` \u2192 `[2] PiyAPI Server` \u2192 (`Memory`, `Retrieval`, `Embeddings`, `LLM`, `Storage`) \u2192 `[3] Your Infrastructure`\n\n---"
+    },
+    {
+      "heading": "11. Configuration",
+      "content": ""
+    },
+    {
+      "heading": "LLMs",
+      "content": "Route generation through any provider using our unified BYOK manager. Support for OpenAI, Anthropic, Gemini, DeepSeek, Mistral, Groq, Cohere, and Perplexity is handled natively."
+    },
+    {
+      "heading": "Embeddings",
+      "content": "Choose the embedding provider and model used for vector generation. Easily swap out defaults for specialized models depending on your latency and accuracy requirements."
+    },
+    {
+      "heading": "Vector databases",
+      "content": "Connect the storage backend used for dense HNSW retrieval. Defaults to PostgreSQL with `pgvector` for robust, transaction-safe vector operations."
+    },
+    {
+      "heading": "Storage",
+      "content": "Configure where persistent bitemporal graph data (PiyGraph) and conversational history are stored."
+    },
+    {
+      "heading": "Metadata filtering",
+      "content": "Control how stored context is filtered and retrieved using strict namespace scoping (`X-Namespace-Prefix`) and arbitrary tagging rules."
+    },
+    {
+      "heading": "Reranking",
+      "content": "Fine-tune the UnifiedScorer reranking layer (combining BM25 trigram search and 11 distinct retrieval signals) when hyper-precise retrieval is required for your agents.\n\n---"
+    },
+    {
+      "heading": "12. Build on the open-source stack",
+      "content": "* Replace infrastructure components (e.g., swap Redis for an alternative caching layer)\n* Configure multi-provider routing and failover logic to prevent LLM downtime\n* Integrate directly with your existing enterprise PostgreSQL databases\n* Build custom Active Inference workflows and agent MCP tools\n\n> **Open-source note**\n> Keep your deployment configuration explicit so model, storage, and retrieval dependencies remain easy to understand, version control, and operate across your team.\n\n---\n\n**Footer Actions:**\n`[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:**\n`\u2190 PREVIOUS: Platform Overview` | `NEXT: Integrations Overview \u2192`"
+    }
+  ]
+}

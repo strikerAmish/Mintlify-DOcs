@@ -1,0 +1,910 @@
+=== PAGE 1 ===
+PiyAPI Technical Documentation https://piyapi.cloud/login
+PIYAPI CLIENT DEVELOPER & ENTERPRISE USER
+GUIDE
+Authoritative Technical Documentation for Client Developers & Enterprise Architects
+Live API Base URL: https://api.piyapi.cloud
+Developer Dashboard & Login: https://piyapi.cloud/login
+OpenAPI Specification: https://api.piyapi.cloud/docs/raw/openapi.json
+Verification Status: Verified against Live Production Endpoints & 329K LOC Cognitive Engine using Active
+Production API Keys (sk_live_... )
+Table of Contents
+1. Executive Summary & System Architecture
+2. 5-Minute Client Quickstart Guide
+3. Authentication & Namespace Scoping
+4. Complete REST API Reference with JSON Schemas
+5. 4.1 System & Health Probes (/health , /ready )
+6. 4.2 Authentication & Key Management (/api/v1/auth , /api/v1/api-keys , /api/v1/verify )
+7. 4.3 Memory Operations & Unified 8-Operator Surface (/api/v1/memories , /api/v1/memory/op )
+8. 4.4 Vector & Hybrid Search Engine (/api/v1/search )
+9. 4.5 Cognitive RAG Q&A Engine (/api/v1/ask )
+10. 4.6 Context Retrieval & Summarization (/api/v1/context , /api/v1/summaries )
+11. 4.7 BYOK - Bring Your Own Key (/api/v1/byok )
+12. 4.8 Data Connectors & CDC Auto-Sync (12 Providers) (/api/v1/connectors )
+13. 4.9 PiyGraph Knowledge Graph & Bitemporal Time Travel (/api/v1/kg , /api/v1/graph )
+14. 4.10 Speculative Memory Branching & Diffing (/api/v1/branches )
+15. 4.11 Privacy, Tokenization & PHI Redaction (/api/v1/tokenization )
+16. 4.12 Enterprise SSO, Compliance & Legal Hold (/auth/saml , /auth/oidc , /api/v1/compliance )
+17. 4.13 Cognitive Health & Transparency Dashboard (/api/v1/me/memories )
+18. 4.14 Session Mining Engine (/api/v1/sessions/mine )
+19. 4.15 Adaptive Learning & Feedback API (/api/v1/feedback )
+20. 4.16 Document Processing & Citations (/api/v1/documents , /api/v1/citations )
+21. 4.17 Conversation Ingestion Pipeline (/api/v1/conversations )
+22. 4.18 Partner Platform B2B API (/api/v1/partner )
+23. 4.19 Feature Flag Evaluation Engine (/api/v1/flags )
+24. 4.20 Admin Operations, User Impersonation & Cache Controls (/api/v1/admin )
+25. 4.21 Prometheus & Observability Metrics (/metrics )
+26. 4.22 Legacy Data Migration Engine (/api/v1/migration )
+27. 4.23 Subscriptions, Billing & Promotional Codes (/api/v1/billing )
+28. 4.24 Data Residency & Geo-Fencing (/api/v1/data-residency )
+
+=== PAGE 2 ===
+29. 4.25 Enterprise On-Prem License Keys (/api/v1/license )
+30. 4.26 Bulk Memory Operations (/api/v1/bulk )
+31. 4.27 Usage Telemetry & Billing Breakdown (/api/v1/usage )
+32. 4.28 AI Inference Modes (/api/v1/admin/ai-mode )
+33. 4.29 User Consent Management (/api/v1/consent )
+34. 4.30 Tenant Analytics Dashboard (/api/v1/dashboard )
+35. Software Development Kits (SDKs) & Integrations
+36. 5.1 TypeScript / Node.js SDK (@piyapi/sdk )
+37. 5.2 Python SDK (piyapi-memory )
+38. 5.3 LangChain Adapter (packages/langchain-adapter )
+39. Model Context Protocol (MCP) Server Setup & Tool Reference
+40. 6.1 MCP Architecture & IDE Integration (Cursor, Windsurf, Claude Desktop, VS Code)
+41. 6.2 Full Catalog of 30 MCP Tools, 3 Resources, and 3 Prompts
+42. Enterprise Integrations & Connection Features
+43. 7.1 BYOK Multi-Provider Routing & Failover Logic
+44. 7.2 All 12 CDC Data Connectors (Credentials Schemas & Sync Cursors)
+45. 7.3 Agent Skills Framework (.agents/skills/data-connectors )
+46. 7.4 Bitemporal Memory Reasoning (valid_at  vs system_at )
+47. 7.5 Speculative Memory Branching & Diffing Workflow
+48. 7.6 PHI / PII Privacy Redaction Workflow
+49. 7.7 White-Labeled B2B Partner Sub-Accounts Workflow
+50. 7.8 Enterprise SAML 2.0 & OIDC SSO Setup
+51. 7.9 Legal Hold Litigation Blocks & Dual-Custody Breakglass
+52. Webhooks & Real-Time Event System
+53. 8.1 Webhook Endpoint Registration & Management
+54. 8.2 Event Payload Schemas (memory.created , sync.completed , byok.key_failed )
+55. 8.3 HMAC-SHA256 Signature Verification (TypeScript & Python Code)
+56. 8.4 Delivery Retries & Manual Delivery Triggers
+57. Rate Limits, Error Handling & Troubleshooting Guide
+58. 9.1 Tiered Rate Limits & Quotas
+59. 9.2 Standardized JSON Error Response Format
+60. 9.3 Complete Error Code Reference Matrix
+61. 9.4 Client Troubleshooting Decision Tree
+62. Admin Control & Platform Administration Guide
+10.1 Role-Based Access Control (RBAC) & Admin Authentication
+10.2 User & Tenant Management (/api/v1/admin/users )
+10.3 Support User Impersonation (POST /api/v1/admin/users/:id/impersonate )
+10.4 Plan & Quota Overrides (PATCH /api/v1/admin/users/:id/plan , /api/v1/admin/enterprise-
+quotas )
+10.5 Business Metrics & Cost Monitoring (/api/v1/admin/metrics/business ,
+/api/v1/admin/metrics/costs )
+10.6 Cache Management & Semantic Cache Purging (/api/v1/admin/cache/clear )
+10.7 Global AI Model Routing & PHI Rules Engine (/api/v1/admin/ai , /api/v1/admin/phi-rules )
+
+=== PAGE 3 ===
+1. Executive Summary & System Architecture
+PiyAPI is an enterprise-grade cognitive memory engine engineered for AI-native applications, intelligent agents, and
+enterprise workflows. It provides LLMs with a persistent, long-term bitemporal memory fabric, multi-signal hybrid
+search, dynamic context window assembly, knowledge graph reasoning (PiyGraph), active inference (Friston Free
+Energy Principle framework), and privacy-first data handling.
+┌──────────────────────────────────────────────────────────────┐
+│                        CLIENT LAYER                          │
+│  TypeScript SDK  │  Python SDK  │  MCP Server  │  cURL       │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│             PIYAPI REST GATEWAY (api.piyapi.cloud)           │
+│   Namespace Scoping  │  Rate Limiter  │  Auth & BYOK Guard   │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        ▼                      ▼                      ▼
+┌───────────────┐     ┌─────────────────┐     ┌────────────────┐
+│ MEMORY ENGINE │     │ COGNITIVE ENGINE│     │ INTEGRATIONS   │
+│ • 8-Operators │     │ • Hybrid RAG    │     │ • BYOK Manager │
+│ • Bitemporal  │     │ • PiyGraph KG   │     │ • 12 Connectors│
+│ • Branching   │     │ • Active Infer  │     │ • 30 MCP Tools │
+└───────┬───────┘     └────────┬────────┘     └───────┬────────┘
+        └──────────────────────┼──────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│                   DATA & VECTOR SUBSTRATE                    │
+│   PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache    │
+└──────────────────────────────────────────────────────────────┘
+Key Technical Subsystems
+1. Hybrid Retrieval Pipeline: Combines dense vector similarity (pgvector  HNSW indexes) and BM25 trigram
+full-text search fused using Reciprocal Rank Fusion (RRF_K=30 ).
+2. UnifiedScorer Engine: Evaluates 11 signals in a single functional pass (vector similarity, BM25 text score,
+recency decay, entity overlap, contradiction penalty, assistant boost, pin weight, etc.).
+3. 8-Operator Memory Surface: Standardized lifecycle operators (store , retrieve , update , delete ,
+merge , summarize , pin , verify ).
+4. PiyGraph Knowledge Graph: Bitemporal entity-relation graph tracking real-world validity (valid_at )
+separately from system recording time (system_at ).
+5. BYOK (Bring Your Own Key): Encrypted multi-provider LLM key manager supporting OpenAI, Anthropic,
+Google Gemini, DeepSeek, Mistral, Groq, Cohere, and Perplexity.
+6. 12 SaaS CDC Data Connectors: Continuous Change Data Capture ingestion engine for Google Drive, Notion,
+GitHub, Slack, Jira/Confluence, Gmail/Calendar, Web Clipper, ChatGPT, Claude, Gemini, Obsidian, and
+OpenClaw.
+7. White-Labeled Partner B2B API: Multi-tenant provisioner for SaaS vendors to manage sub-accounts and set
+per-user rate limit caps.
+8. Admin Control Suite: Full platform administration suite for user management, support impersonation, plan
+overrides, cache flushing, business metrics, and AI model routing.
+
+=== PAGE 4 ===
+2. 5-Minute Client Quickstart Guide
+Get up and running with PiyAPI in 5 minutes using simple HTTP cURL calls or client SDKs.
+Step 1: Create an Account & Acquire API Key
+curl -X POST https://api.piyapi.cloud/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "developer@example.com",
+    "password": "StrongPassword123!",
+    "name": "Alex Developer"
+  }'
+Step 2: Store Your First Memory
+curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer YOUR API KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "User prefers dark mode UI and works primarily with React and TypeScript.",
+    "tags": ["preferences", "tech-stack"],
+    "metadata": { "source": "onboarding_chat", "user_id": "usr_9918" }
+  }'
+Step 3: Perform Hybrid Search
+curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer YOUR API KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "What frontend framework does the user prefer?",
+    "limit": 5,
+    "include_metadata": true
+  }'
+Step 4: Ask RAG Engine with Citations
+curl -X POST https://api.piyapi.cloud/api/v1/ask \
+  -H "Authorization: Bearer YOUR API KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Summarize the user code preferences and UI choice.",
+    "temperature": 0.2
+  }'
+
+=== PAGE 5 ===
+3. Authentication & Namespace Scoping
+PiyAPI supports three client authentication modes and enterprise tenant isolation.
+3.1 Authentication Headers
+Mode A: JWT Bearer Token (User Sessions & Web Dashboards)
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsIn...
+Mode B: API Keys (Backend Microservices & Agent Tools)
+Passed via Authorization: Bearer  or X-API-Key :
+Authorization: Bearer YOUR API KEY
+Mode C: BYOK Direct Routing Header (Optional)
+X-BYOK-Provider: openai
+3.2 Key Verification Endpoint (GET /api/v1/verify ) — Live Verified
+Clients can test API key validity:
+curl -s https://api.piyapi.cloud/api/v1/verify \
+  -H "Authorization: Bearer YOUR API KEY"
+# Response: {"status":"valid","key_id":"...","scopes":["memory:read","memory:write"]}
+3.3 Enterprise Namespace Isolation (X-Namespace-Prefix )
+X-Namespace-Prefix: proj_acme_prod
+When set, memory queries, knowledge graph traversals, and search indices will be strictly filtered to records
+matching this namespace prefix.
+
+=== PAGE 6 ===
+4. Complete REST API Reference with JSON Schemas
+4.1 System & Health Probes
+GET /health  — Operational Liveness
+Request: GET https://api.piyapi.cloud/health
+Response Schema (200 OK):
+{
+  "status": "ok",
+  "timestamp": "2026-08-03T15:10:00.123Z"
+}
+GET /ready  — Dependency Readiness
+Request: GET https://api.piyapi.cloud/ready
+Response Schema (200 OK):
+{
+  "status": "ready",
+  "timestamp": "2026-08-03T15:10:00.123Z",
+  "checks": {
+    "redis": { "status": "healthy", "latency_ms": 1 },
+    "database": { "status": "healthy", "latency_ms": 3 }
+  }
+}
+4.2 Authentication & Key Management
+POST /api/v1/auth/login  — User Authentication
+Request Payload:
+{
+  "email": "developer@example.com",
+  "password": "StrongPassword123!"
+}
+Response Schema (200 OK):
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsIn...",
+  "refreshToken": "d8a1e2f3-4b5c-...",
+  "user": {
+    "id": "7c817a60-f566-4cd0-9046-3c8222f43126",
+    "email": "developer@example.com",
+    "name": "Alex Developer"
+  }
+}
+POST /api/v1/api-keys  — Create Scoped API Key
+Request Payload:
+
+=== PAGE 7 ===
+{
+  "name": "Production Agent Worker",
+  "scopes": ["memory:read", "memory:write", "search:execute"],
+  "expires_in_days": 90,
+  "namespace_prefix": "prod_agent"
+}
+Response Schema (201 Created):
+{
+  "id": "key_01h9x8y7...",
+  "name": "Production Agent Worker",
+  "secret": "sk_live_9f8e7d6c5b4a3...",
+  "scopes": ["memory:read", "memory:write", "search:execute"]
+}
+4.3 Memory Operations & Unified 8-Operator Surface
+POST /api/v1/memories  — Store Single Memory (Live Verified)
+Request Payload:
+{
+  "content": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
+  "tags": ["compliance", "soc2", "audit"],
+  "metadata": { "client_id": "cli_8812", "urgency": "high" },
+  "valid_at": "2026-08-01T00:00:00.000Z"
+}
+Response Schema (200 OK / 201 Created - Empirically Verified Live Output):
+{
+  "memory": {
+    "id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+    "content": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
+    "namespace": "default",
+    "tags": ["compliance", "soc2", "audit"],
+    "created_at": "2026-08-03T15:10:00.000Z"
+  }
+}
+POST /api/v1/memories/batch  — Batch Store Memories
+Request Payload:
+{
+  "memories": [
+    { "content": "Batch memory item A", "tags": ["batch"] },
+    { "content": "Batch memory item B", "tags": ["batch"] }
+  ]
+}
+Response Schema (201 Created):
+{
+  "created": 2,
+  "memories": [
+    { "id": "uuid-1...", "content": "Batch memory item A" },
+    { "id": "uuid-2...", "content": "Batch memory item B" }
+  ]
+}
+
+=== PAGE 8 ===
+POST /api/v1/memory/op  — Unified 8-Operator Surface
+Unified endpoint supporting: store , retrieve , update , delete , merge , summarize , pin , verify .
+Request Payload (operator: "merge" ):
+{
+  "operator": "merge",
+  "target_memory_ids": ["uuid-1...", "uuid-2..."],
+  "new_content": "Merged incident summary...",
+  "tags": ["ops", "merged_incident"]
+}
+Response Schema (200 OK):
+{
+  "status": "success",
+  "operator": "merge",
+  "result_memory_id": "uuid-merged...",
+  "archived_memory_ids": ["uuid-1...", "uuid-2..."]
+}
+4.4 Vector & Hybrid Search Engine (/api/v1/search )
+Request Payload:
+{
+  "query": "SOC2 audit report requests",
+  "limit": 5,
+  "alpha": 0.7,
+  "tags": ["compliance"],
+  "min_score": 0.25
+}
+Response Schema (200 OK):
+{
+  "query": "SOC2 audit report requests",
+  "total": 1,
+  "results": [
+    {
+      "id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+      "content": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
+      "score": 0.892,
+      "vector_score": 0.854,
+      "bm25_score": 0.931
+    }
+  ]
+}
+4.5 Cognitive RAG Q&A Engine (/api/v1/ask )
+Request Payload (Live Verified):
+{
+  "query": "What is the status of client compliance requests?",
+  "temperature": 0.2
+}
+Response Schema (200 OK):
+
+=== PAGE 9 ===
+{
+  "answer": "The client requested a SOC2 Type II compliance audit report for Q3 2026 [Citation 1].",
+  "citations": [
+    {
+      "index": 1,
+      "memory_id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+      "snippet": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
+      "relevance_score": 0.94
+    }
+  ],
+  "confidence": 0.96
+}
+4.6 Context Retrieval & Summarization (/api/v1/context , /api/v1/summaries )
+POST /api/v1/context/retrieve : Token-budget context assembly for LLM system prompts.
+{
+  "query": "Prepare context for client status update",
+  "max_tokens": 1500,
+  "format": "markdown"
+}
+GET /api/v1/summaries : Fetch rolling summaries of user history.
+4.7 BYOK - Bring Your Own Key (/api/v1/byok )
+GET /api/v1/byok/status : Check opt-in status and active key count.
+POST /api/v1/byok/opt-in : Enable BYOK mode ({"acknowledged": true} ).
+POST /api/v1/byok/keys : Add encrypted LLM key (openai , anthropic , gemini , deepseek , mistral ,
+groq , cohere , perplexity ).
+4.8 Data Connectors & CDC Auto-Sync (12 Providers) (/api/v1/connectors )
+PiyAPI supports 12 native connectors: google_drive , notion , github , slack , jira , gmail , web_clipper ,
+openai , claude , gemini , obsidian , open_claw .
+GET /api/v1/connectors/integrations  — List Active Integrations (Live Verified)
+Header: Authorization: Bearer YOUR API KEY
+Response Schema (200 OK):
+{
+  "integrations": [],
+  "total": 0
+}
+POST /api/v1/connectors/web-clip  — Ingest Chrome Web Clip (Live Verified)
+Request Payload:
+{
+  "url": "https://arxiv.org/abs/2410.10813",
+  "title": "LongMemEval Benchmark",
+  "markdown": "# LongMemEval Paper Content...",
+  "tags": ["web_clip", "arxiv"]
+}
+
+=== PAGE 10 ===
+Response Schema (201 Created):
+{
+  "message": "Web clip processed successfully",
+  "document": { "id": "doc_123...", "memory_id": "mem_456..." }
+}
+4.9 PiyGraph Knowledge Graph (/api/v1/kg )
+POST /api/v1/kg/ingest  — Extract Entity-Relation Triples (Live Verified)
+Request Payload:
+{
+  "content": "Acme Corp partnered with PiyAPI on August 1, 2026."
+}
+Response Schema (201 Created - Empirically Verified Live Output):
+{
+  "episodeId": "fac6aeda-c386-4142-b7d3-99979e462892",
+  "entitiesExtracted": 2,
+  "entitiesResolved": 2,
+  "entitiesMerged": 0,
+  "factsExtracted": 1,
+  "factsConflictsResolved": 0,
+  "communitiesUpdated": 0,
+  "pipelineMs": 119
+}
+GET /api/v1/kg/stats  — Fetch Graph Statistics (Live Verified)
+Response Schema (200 OK):
+{
+  "entitiesCount": 2,
+  "factsCount": 1,
+  "communitiesCount": 1
+}
+4.10 Speculative Memory Branching & Diffing (/api/v1/branches )
+POST /api/v1/branches  — Create Isolated Branch (Live Verified)
+Request Payload:
+{
+  "name": "live_key_branch",
+  "purpose": "Verification testing"
+}
+Response Schema (201 Created):
+
+=== PAGE 11 ===
+{
+  "id": "branch_88127...",
+  "name": "live_key_branch",
+  "purpose": "Verification testing",
+  "status": "active",
+  "created_at": "2026-08-03T15:26:00.000Z"
+}
+GET /api/v1/branches/:id/diff : Returns diff of memory additions/deletions between branch and main.
+POST /api/v1/branches/:id/merge : Merge speculative branch back to main.
+POST /api/v1/branches/:id/discard : Discard trial branch cleanly.
+4.11 Privacy, Tokenization & PHI Redaction (/api/v1/tokenization )
+POST /api/v1/tokenize  — Redact Sensitive Text (Live Verified)
+Request Payload (Empirically Verified Schema):
+{
+  "content": "Patient Jane Smith DOB 1990-01-01",
+  "scopeId": "org:7c817a60-f566-4cd0-9046-3c8222f43126",
+  "source": "api_ingest"
+}
+Response Schema (200 OK):
+{
+  "tokenized_text": "Patient [NAME_1] DOB [DATE_1]",
+  "map_id": "map_99812..."
+}
+4.12 Enterprise SSO & Compliance (/auth/saml , /auth/oidc , /api/v1/compliance )
+GET /auth/saml : SAML 2.0 Enterprise Single Sign-On.
+GET /auth/oidc : OpenID Connect Enterprise Single Sign-On.
+POST /api/v1/compliance/export : GDPR Right of Access export.
+POST /api/v1/compliance/forget : GDPR Right to be Forgotten deletion.
+4.13 Cognitive Health & Transparency Dashboard (/api/v1/me/memories )
+GET /api/v1/me/memories : End-user transparency dashboard feed allowing clients to audit stored personal
+memories and vector weights.
+4.14 Session Mining Engine (/api/v1/sessions/mine )
+Request Payload:
+{
+  "messages": [
+    { "role": "user", "content": "I prefer using PostgreSQL and Python for my AI projects." },
+    { "role": "assistant", "content": "Noted! I'll tailor code examples accordingly." }
+  ]
+}
+
+=== PAGE 12 ===
+Response Schema (200 OK):
+{
+  "mined_facts": [
+    { "fact": "User prefers PostgreSQL and Python for AI projects", "confidence": 0.95 }
+  ],
+  "proposed_memories": 1
+}
+4.15 Adaptive Learning & Feedback API (/api/v1/feedback )
+POST /api/v1/feedback/positive : { "memory_id": "uuid...", "query": "database preferences" }
+POST /api/v1/feedback/negative : { "memory_id": "uuid...", "query": "database preferences" }
+4.16 Document Processing & Citations (/api/v1/documents , /api/v1/citations )
+POST /api/v1/documents/upload : Direct PDF, DOCX, TXT document chunking & ingestion pipeline.
+GET /api/v1/citations/:id : Fetch exact source document chunk snippet ranges and relevance metrics.
+4.17 Conversation Ingestion Pipeline (/api/v1/conversations )
+POST /api/v1/conversations/ingest : Sliding-window conversation ingestion for building continuous walking
+memory profiles.
+4.18 Partner Platform B2B API (/api/v1/partner )
+POST /api/v1/partner/users : { "external_id": "client_99", "email": "user@client.com" }
+PUT /api/v1/partner/users/:id/limits : Set per-user rate limit caps.
+4.19 Feature Flag Evaluation Engine (/api/v1/flags )
+GET /api/v1/flags/:name/eval : Evaluate feature flag boolean state for client user context.
+4.20 Admin Operations, User Impersonation & Cache Controls (/api/v1/admin )
+POST /api/v1/admin/users/:id/impersonate : Generates short-lived debug token for customer support
+troubleshooting.
+POST /api/v1/admin/cache/clear : Purges Redis query and vector cache.
+4.21 Prometheus & Observability Metrics (/metrics )
+GET /metrics : Exposes OpenTelemetry & Prometheus format metrics for Grafana dashboards.
+4.22 Legacy Data Migration Engine (/api/v1/migration )
+POST /api/v1/migration/dryrun : Preview record transformations without modifying database.
+POST /api/v1/migration/run : Execute migration job with batch tracking.
+
+=== PAGE 13 ===
+4.23 Subscriptions, Billing & Promotional Codes (/api/v1/billing )
+GET /api/v1/billing/subscription  — Tenant Subscription Status (Live Verified)
+Request: GET https://api.piyapi.cloud/api/v1/billing/subscription
+Response Schema (200 OK - Empirically Verified Live Output):
+{
+  "plan": "pro",
+  "status": "active",
+  "current_period_end": "2026-09-01T00:00:00.000Z",
+  "cancel_at_period_end": false
+}
+4.24 Data Residency & Geo-Fencing (/api/v1/data-residency )
+GET /api/v1/data-residency : Check current tenant data residency location (us-east-1 , eu-central-1 ,
+ap-south-1 ).
+PUT /api/v1/data-residency : Lock tenant vector storage and database records to a specific geo-region for
+GDPR / HIPAA compliance ({"region": "eu-central-1"} ).
+4.25 Enterprise On-Prem License Keys (/api/v1/license )
+GET /api/v1/license : Check status and validity of on-premise air-gapped license key.
+POST /api/v1/license/activate : Activate enterprise license file for air-gapped deployment
+({"license_key": "LIC-2026-ENT-..."} ).
+4.26 Bulk Memory Operations (/api/v1/bulk )
+POST /api/v1/bulk/memories/delete : Bulk delete memories matching tag or metadata criteria ({"tags":
+["deprecated"]} ).
+POST /api/v1/bulk/memories/tag : Bulk append or replace tags across multiple memory records
+({"memory_ids": ["..."], "add_tags": ["reviewed"]} ).
+4.27 Usage Telemetry & Billing Breakdown (/api/v1/usage )
+GET /api/v1/usage/summary : Fetch current billing period token consumption and request count.
+GET /api/v1/usage/breakdown : Detailed breakdown by service (Vector Search, RAG Ask, Graph Extraction,
+Connector Ingestion).
+4.28 AI Inference Modes (/api/v1/admin/ai-mode )
+GET /api/v1/admin/ai-mode : Fetch current active platform inference mode (fast , precise , balanced ,
+cost_optimized , hybrid ).
+PUT /api/v1/admin/ai-mode : Update global default inference routing mode.
+4.29 User Consent Management (/api/v1/consent )
+GET /api/v1/consent : Retrieve active user privacy consent record.
+
+=== PAGE 14 ===
+POST /api/v1/consent : Update cookie and AI data processing consent state ({"analytics_consent": true,
+"ai_training_consent": false} ).
+4.30 Tenant Analytics Dashboard (/api/v1/dashboard )
+GET /api/v1/dashboard/stats : Aggregated tenant statistics (total memories, search throughput, active
+connectors, latency p95/p99).
+
+=== PAGE 15 ===
+5. Software Development Kits (SDKs) & Integrations
+5.1 TypeScript / Node.js SDK (@piyapi/sdk )
+import { PiyAPIClient } from '@piyapi/sdk';
+const client = new PiyAPIClient({
+  apiKey:
+    process.env.PIYAPI_API_KEY ||
+    'YOUR API KEY',
+});
+async function main() {
+  const memory = await client.memories.create({
+    content: 'User prefers PostgreSQL and Python for AI projects.',
+    tags: ['preferences', 'tech-stack'],
+  });
+  console.log('Created Memory ID:', memory.id);
+}
+main();
+5.2 Python SDK (piyapi-memory )
+from piyapi_memory import PiyAPIClient
+client = PiyAPIClient(api_key="sk_live_your_key_here")
+memory = client.memories.create(
+    content="User prefers PostgreSQL and Python for AI projects.",
+    tags=["preferences", "tech-stack"]
+)
+5.3 LangChain Adapter (packages/langchain-adapter )
+from piyapi_langchain import PiyAPIMemoryRetriever
+retriever = PiyAPIMemoryRetriever(api_key="sk_live_your_key_here")
+docs = retriever.get_relevant_documents("user database preferences")
+
+=== PAGE 16 ===
+6. Model Context Protocol (MCP) Server Setup & Tool Reference
+The PiyAPI MCP Server (@piyapi/mcp-server ) provides standard stdio transport for IDE tools (30 Tools, 3
+Resources, 3 Prompts).
+6.1 IDE Config (Cursor / Windsurf / Claude Desktop)
+{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "YOUR API KEY"
+      }
+    }
+  }
+}
+6.2 Complete Catalog of 30 MCP Tools
+
+=== PAGE 17 ===
+Tool Name Input Parameters Client Description
+store_memory content  (str), tags  (array), metadata
+(obj)
+Store memory with vector embedding and
+graph links
+get_memory id  (uuid) Retrieve specific memory object by UUID
+update_memory id  (uuid), content  (str), tags  (array) Update content/tags, creating a new revision
+delete_memory id  (uuid) Soft-delete a memory item
+list_memories tags  (array), limit  (int), page  (int) List memories with tag/date filtering
+pin_memory id  (uuid), is_pinned  (bool) Pin/unpin memory in LLM context window
+budget
+rollback_memory id  (uuid), version  (int) Rollback memory to a specific version
+search_memories query  (str), limit  (int), min_score
+(float)
+Hybrid search (semantic vector + BM25
+trigram)
+fuzzy_search query  (str), limit  (int) Typo-tolerant trigram search for misspelled
+input
+get_context query  (str), max_tokens  (int) Token-budget-aware context assembly for
+prompt
+ask_memory question  (str), temperature  (float) RAG-powered Q&A with structured citations
+get_conversation conversation_id  (str), limit  (int) Retrieve structured conversation turn history
+create_relationship source_id  (uuid), target_id  (uuid),
+relation Create edge link between two memories
+delete_relationship relationship_id  (uuid) Delete edge link between two memories
+get_graph limit  (int) Fetch memory node/edge graph
+graph_traverse start_id  (uuid), max_hops  (int) Perform 1-3 hop graph traversal
+create_context_session session_name  (str) Initialize stateful context tracking session
+kg_ingest text  (str), valid_at  (str) Extract entities and facts into PiyGraph
+kg_search query  (str), entity_types  (array) Semantic search over KG entity store
+kg_entities entity_type  (str), limit  (int) List extracted entities
+kg_stats None Fetch entity, fact, and community metrics
+kg_time_travel as_of  (iso_date) Point-in-time state query for knowledge graph
+version_history id  (uuid) View complete revision log of a memory
+deduplicate threshold  (float), auto_merge  (bool) Find and merge near-duplicate memories
+check_phi text  (str) Audit text for PHI/PII privacy risk
+batch_create memories  (array) Atomic creation of up to 100 memories
+feedback_positive memory_id  (uuid), query  (str) Record positive feedback for adaptive ranking
+feedback_negative memory_id  (uuid), query  (str) Record negative feedback for adaptive ranking
+export_all None Export user dataset for GDPR compliance
+get_connector_logs connector_id  (uuid), limit  (int) Inspect CDC data connector sync logs
+
+=== PAGE 18 ===
+7. Enterprise Integrations & Connection Features
+7.1 BYOK Multi-Provider Routing & Failover Logic
+Routes requests through 8 supported LLM key vendors (openai , anthropic , gemini , deepseek , mistral , groq ,
+cohere , perplexity ).
+7.2 All 12 CDC Data Connectors (Credentials Schemas & Sync Cursors)
+Continuous Change Data Capture ingestion engine for: google_drive , notion , github , slack , jira , gmail ,
+web_clipper , openai , claude , gemini , obsidian , open_claw .
+Provider Purpose Authentication / Credential Schema
+google_drive Google Docs, Sheets, Slides { "access_token": "...", "refresh_token": "..." }
+notion Workspace pages & databases { "integration_token": "secret_..." }
+github Repos, Issues, PRs, Commits { "access_token": "gho_..." }
+slack Channel & Thread history { "bot_token": "xoxb-..." }
+jira Jira tickets & Confluence KB { "api_token": "...", "domain": "acme.atlassian.net" }
+gmail Emails & Calendar events { "access_token": "...", "refresh_token": "..." }
+web_clipper 1-click Chrome Extension Client API Key header
+openai ChatGPT conversation exports JSON export upload
+claude Claude conversation exports JSON export upload
+gemini Gemini conversation exports JSON export upload
+obsidian Obsidian markdown vaults Vault path / sync token
+open_claw Web scrapers & RSS feeds Webhook ingest token
+7.3 Agent Skills Framework (.agents/skills/data-connectors )
+AI agent runtimes (Cursor, Windsurf, LangChain, AutoGen, CrewAI) read .agents/skills/data-connectors/SKILL.md
+to trigger connector syncs (trigger_connector_sync ), clip web articles (clip_web_page ), and inspect logs
+(get_connector_logs ) via MCP tools.
+7.4 Bitemporal Memory Reasoning (valid_at  vs system_at )
+Tracks real-world occurrence time (valid_at ) separately from system recording time (system_at ). Point-in-time
+historical state is queried via GET /api/v1/kg/time-travel .
+7.5 Speculative Memory Branching & Diffing Workflow
+Isolate agent multi-turn trials:
+POST /api/v1/branches { "name": "live_key_branch", "purpose": "Testing hypothesis" }
+GET /api/v1/branches/branch_123/diff
+POST /api/v1/branches/branch_123/merge
+7.6 PHI / PII Privacy Redaction Workflow
+
+=== PAGE 19 ===
+POST /api/v1/tokenize : Replaces SSNs, names, DOBs, medical IDs with tokens ([NAME_1] ).
+POST /api/v1/detokenize : Restores original text for authorized client sessions.
+7.7 White-Labeled B2B Partner Sub-Accounts Workflow
+SaaS vendors call POST /api/v1/partner/users  to issue isolated API keys for their own customers while maintaining
+central billing oversight.
+7.8 Enterprise SAML 2.0 & OIDC SSO Setup
+SAML Endpoint: GET /auth/saml/login  (Metadata at GET /auth/saml/metadata ).
+OIDC Endpoint: GET /auth/oidc/login .
+Organization Admin Config: POST /api/v1/admin/organizations/:orgId/sso .
+7.9 Legal Hold Litigation Blocks & Dual-Custody Breakglass
+Legal Holds: POST /api/v1/legal-holds  prevents soft/hard deletion of tenant memories during active
+litigation.
+Breakglass: POST /api/v1/breakglass/request  and POST /api/v1/breakglass/approve  requires dual-admin
+authorization to override security access logs.
+
+=== PAGE 20 ===
+8. Webhooks & Real-Time Event System
+PiyAPI delivers real-time HTTP POST callbacks when events occur in your memory space.
+8.1 Webhook Endpoint Registration & Management
+Create Webhook: POST /api/v1/webhooks
+List Webhooks: GET /api/v1/webhooks
+Test Ping: POST /api/v1/webhooks/:id/test
+Retry Failed Delivery: POST /api/v1/webhooks/deliveries/:deliveryId/retry
+{
+  "url": "https://api.yourdomain.com/webhooks/piyapi",
+  "events": ["memory.created", "memory.updated", "connector.sync_completed", "byok.key_failed"],
+  "secret": "whsec_YourSecretKey123"
+}
+8.2 Event Payload Schemas
+Event: memory.created
+{
+  "event": "memory.created",
+  "timestamp": "2026-08-03T15:10:00.000Z",
+  "data": {
+    "memory_id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+    "tags": ["preferences"],
+    "namespace": "prod_agent"
+  }
+}
+Event: connector.sync_completed
+{
+  "event": "connector.sync_completed",
+  "timestamp": "2026-08-03T15:10:00.000Z",
+  "data": {
+    "integration_id": "conn_9918...",
+    "provider": "github",
+    "records_synced": 42
+  }
+}
+8.3 HMAC-SHA256 Signature Verification
+Every callback includes the X-PiyAPI-Signature  header:
+X-PiyAPI-Signature: t=1775867263,v1=5d41402abc4b2a76b9719d911017c592...
+TypeScript / Node.js Verification Code:
+
+=== PAGE 21 ===
+import crypto from 'crypto';
+function verifyWebhookSignature(rawBody: string, signatureHeader: string, secret: string): boolean {
+  const parts = signatureHeader.split(',');
+  const timestamp = parts.find((p) => p.startsWith('t='))?.split('=')[1];
+  const signature = parts.find((p) => p.startsWith('v1='))?.split('=')[1];
+  if (!timestamp || !signature) return false;
+  const payload = `${timestamp}.${rawBody}`;
+  const expectedSignature = crypto.createHmac('sha256', secret).update(payload).digest('hex');
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature));
+}
+Python Verification Code:
+import hmac
+import hashlib
+def verify_webhook_signature(raw_body: str, signature_header: str, secret: str) -> bool:
+    parts = dict(item.split('=') for item in signature_header.split(','))
+    timestamp = parts.get('t')
+    signature = parts.get('v1')
+    if not timestamp or not signature:
+        return False
+    payload = f"{timestamp}.{raw_body}".encode('utf-8')
+    expected = hmac.new(secret.encode('utf-8'), payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(signature, expected)
+
+=== PAGE 22 ===
+9. Rate Limits, Error Handling & Troubleshooting Guide
+9.1 Tiered Rate Limits & Quotas
+Plan Tier API Requests / Minute Daily Token Quota Max Batch Size Burst Allowance
+Free 60 req/min 100,000 tokens 10 memories 10 req
+Pro 600 req/min 2,000,000 tokens 50 memories 50 req
+Enterprise 6,000 req/min Custom / Unlimited 100 memories 500 req
+HTTP Response Rate Limit Headers:
+X-RateLimit-Limit : Maximum requests per window.
+X-RateLimit-Remaining : Remaining request quota.
+X-RateLimit-Reset : Unix timestamp when quota resets.
+9.2 Standardized JSON Error Response Format
+All error responses strictly adhere to the unified error schema:
+{
+  "error": "VALIDATION_ERROR",
+  "message": "Invalid memoryId: must be a valid UUID",
+  "timestamp": "2026-08-03T15:10:00.123Z",
+  "requestId": "req_01h9x8y7z6a5b4c3d2e1"
+}
+9.3 Complete Error Code Reference Matrix
+HTTP
+Code Error String Technical Cause Recommended Client Action
+400 VALIDATION_ERROR Schema validation error or invalid
+parameter format.
+Inspect error message  and fix JSON
+payload schema.
+401 AUTHENTICATION_ERROR Expired/invalid JWT token or missing API
+Key.
+Re-authenticate /auth/login  or
+check X-API-Key .
+403 FORBIDDEN Missing API key scope or cross-tenant org
+boundary violation.
+Verify API key scopes or org access
+permissions.
+404 NOT_FOUND Resource (memory, connector, branch)
+does not exist.
+Confirm UUID validity and namespace
+scope.
+409 CONFLICT Duplicate key, version conflict, or duplicate
+external_id.
+Handle conflict or retry with updated
+revision ID.
+429 RATE_LIMIT_EXCEEDED Request rate limit cap exceeded for plan
+tier.
+Implement exponential backoff retry
+policy.
+500 INTERNAL_ERROR Server-side unhandled exception. Quote requestId  and contact PiyAPI
+Support.
+503 SERVICE_UNAVAILABLE PostgreSQL pool reconnecting or Redis
+connection retry. Retry request after 1-2 second delay.
+
+=== PAGE 23 ===
+9.4 Client Troubleshooting Decision Tree
+                   ┌──────────────────────────────────────┐
+                   │        API Call Failed / Error       │
+                   └──────────────────┬───────────────────┘
+                                      │
+              ┌───────────────────────┴───────────────────────┐
+              ▼                                               ▼
+    [HTTP 4xx Client Error]                         [HTTP 5xx Server Error]
+              │                                               │
+     ┌────────┴────────┐                             ┌────────┴────────┐
+     ▼                 ▼                             ▼                 ▼
+  [401/403]         [429]                          [503]             [500]
+Check Auth Token   Exponential                 Wait 2 seconds     Contact Support
+ & Key Scopes       Backoff                      & Retry Request   with `requestId`
+
+=== PAGE 24 ===
+10. Admin Control & Platform Administration Guide
+PiyAPI provides a comprehensive Admin Control Suite for platform administrators, security operations teams, and
+customer support engineers.
+10.1 Role-Based Access Control (RBAC) & Admin Authentication
+Admin routes require an Admin JWT Session or Superuser API key. PiyAPI enforces four administrative role tiers:
+Role Tier Access Scope Description
+founder Superuser (Cross-Tenant) Full platform superuser. Can manage all tenants, SSO configs, and global settings.
+admin Tenant Admin Admin access to user management, billing, quotas, and cache clearing.
+operator Operations / Support Operator surface access (support impersonation, metrics monitoring).
+auditor Read-Only Compliance Read-only access to audit logs, compliance reports, and legal holds.
+Authorization: Bearer YOUR_ADMIN_JWT_TOKEN
+10.2 User & Tenant Management (/api/v1/admin/users )
+GET /api/v1/admin/users  — List All Platform Users
+Request: GET https://api.piyapi.cloud/api/v1/admin/users?page=1&limit=50&plan=pro&status=active
+Response Schema (200 OK):
+{
+  "users": [
+    {
+      "id": "7c817a60-f566-4cd0-9046-3c8222f43126",
+      "email": "developer@example.com",
+      "name": "Alex Developer",
+      "subscription_tier": "pro",
+      "status": "active",
+      "created_at": "2026-08-01T10:00:00.000Z"
+    }
+  ],
+  "total": 1,
+  "page": 1,
+  "limit": 50
+}
+GET /api/v1/admin/users/:id/usage  — Inspect Tenant Usage Metrics
+Request: GET https://api.piyapi.cloud/api/v1/admin/users/7c817a60-f566-4cd0-9046-
+3c8222f43126/usage
+Response Schema (200 OK):
+{
+  "user_id": "7c817a60-f566-4cd0-9046-3c8222f43126",
+  "total_memories_stored": 4520,
+  "total_search_queries": 12840,
+  "total_tokens_consumed": 1850000,
+  "active_connectors": 3,
+  "byok_enabled": true
+}
+
+=== PAGE 25 ===
+10.3 Support User Impersonation (POST /api/v1/admin/users/:id/impersonate )
+Platform admins can generate a short-lived, forensically audited impersonation session token to reproduce client-
+reported issues directly in the context of that tenant.
+Request Payload:
+{
+  "reason": "Debugging search zero results bug reported in ticket #SUP-8812"
+}
+Response Schema (200 OK):
+{
+  "impersonationToken": "eyJhbGciOiJIUzI1NiIsIn...",
+  "expires_in_seconds": 3600,
+  "target_user_id": "7c817a60-f566-4cd0-9046-3c8222f43126",
+  "audit_log_id": "audit_991827..."
+}
+10.4 Plan & Quota Overrides (PATCH /api/v1/admin/users/:id/plan , /api/v1/admin/enterprise-quotas )
+PATCH /api/v1/admin/users/:id/plan  — Update User Subscription Plan
+Request Payload:
+{
+  "plan": "enterprise",
+  "reason": "Enterprise custom contract upgrade approved"
+}
+Response Schema (200 OK):
+{
+  "user_id": "7c817a60-f566-4cd0-9046-3c8222f43126",
+  "new_subscription_tier": "enterprise",
+  "updated_at": "2026-08-03T15:20:00.000Z"
+}
+10.5 Business Metrics & Cost Monitoring (/api/v1/admin/metrics )
+GET /api/v1/admin/metrics/business  — Platform Business Telemetry
+Response Schema (200 OK):
+{
+  "mrr_usd": 145000,
+  "arr_usd": 1740000,
+  "total_active_tenants": 1280,
+  "plan_distribution": {
+    "free": 850,
+    "pro": 380,
+    "enterprise": 50
+  }
+}
+GET /api/v1/admin/metrics/costs  — Provider LLM Cost Tracking
+Response Schema (200 OK):
+
+=== PAGE 26 ===
+{
+  "total_llm_cost_mtd_usd": 12450.8,
+  "by_provider": {
+    "openai": 8200.5,
+    "anthropic": 3150.3,
+    "gemini": 1100.0
+  }
+}
+10.6 Cache Management & Semantic Cache Purging (/api/v1/admin/cache )
+POST /api/v1/admin/cache/clear : Flushes all Redis query result caches.
+POST /api/v1/admin/cache/clear/embedding : Flushes semantic embedding vector cache.
+10.7 Global AI Model Routing & PHI Rules Engine (/api/v1/admin/ai , /api/v1/admin/phi-rules )
+POST /api/v1/admin/ai/config : Set default system LLM and embedding model.
+POST /api/v1/admin/phi-rules : Register custom PHI regex detection patterns.
+Client Developer & Enterprise User Guide — PiyAPI Cognitive Memory Platform.
+https://piyapi.cloud/login PiyAPI Cognitive Memory Platform — Developer & Enterprise Guide
+

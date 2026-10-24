@@ -1,0 +1,45 @@
+{
+  "filename": "docs_apireference.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - API Reference Overview Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `API Reference / Overview`\n* **Action:** `[Copy page]`"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **API REFERENCE**\n  * Overview\n* **ORGANIZATIONS & PROJECTS**\n  * Organizations\n  * Projects\n* **CORE MEMORY OPERATIONS**\n  * Add Memories `POST`\n  * Get Memories `GET`\n  * Search Memories `POST`\n  * Update Memory `PATCH`\n  * Delete Memory `DEL`\n* **MEMORY MANAGEMENT**\n  * Create Memory Export\n  * Feedback\n  * Get Memory\n  * Memory History\n  * Get Memory Export\n  * Submit Update Memories\n  * Batch Delete Memories\n  * Delete Memories\n* **EVENTS**\n  * Get Events `GET`"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* API Reference Overview\n* Quick Start Guide\n* Core Operations\n* API Categories\n* Authentication\n* Next Steps\n\n---"
+    },
+    {
+      "heading": "API Reference Overview",
+      "content": "REST APIs for memory management, search, entity operations, and persistent context.\n\nThe PiyAPI REST API provides programmatic access to persistent memory and context operations, allowing applications and agents to create, retrieve, search, update, and manage memory through standard HTTP requests.\n\n**API VERSION**: `v1`\n**BASE URL**: `Configure in your deployment`\n\n> **Quick start**\n> Get your API key and make your first memory request in a few minutes.\n> `[Get API key \u2192]`"
+    },
+    {
+      "heading": "Quick Start Guide",
+      "content": "**01 Add Memories**\nStore information and context from your application's conversations or events. `[See Add Memories \u2192]`\n\n**02 Search Memories**\nRetrieve relevant memories using semantic or contextual search. `[See Search Memories \u2192]`\n\n**03 Get Memories**\nRetrieve a specific stored memory when you already know its identifier. `[See Get Memories \u2192]`\n\n```bash\ncurl -X POST \"https://<your-piyapi-endpoint>/v1/memories\" \\\n  -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"user_id\": \"user_123\", \"content\": \"User prefers concise explanations\"}'\n```"
+    },
+    {
+      "heading": "Core Operations",
+      "content": "| METHOD | ENDPOINT | DESCRIPTION |\n|:---|:---|:---|\n| **POST** | `/v1/memories` | **Add Memories**<br>Store new memories from conversations and interactions. |\n| **POST** | `/v1/memories/search` | **Search Memories**<br>Find relevant memories using semantic search and filters. |\n| **PATCH** | `/v1/memories/:id` | **Update Memory**<br>Modify existing memory content or metadata. |\n| **DELETE** | `/v1/memories/:id` | **Delete Memory**<br>Remove a specific memory or perform supported deletion operations. |"
+    },
+    {
+      "heading": "API Categories",
+      "content": "Explore the API by functionality.\n\n* **Memory APIs**: Core memory operations including create, search, update, delete, history, and export workflows.\n* **Events APIs**: Track and inspect asynchronous memory-related events.\n* **Entities APIs**: Manage users, agents, applications, and associated memory data.\n* **Organizations & Projects**: Manage organization-level access, projects, and collaboration boundaries.\n* **Webhooks**: Receive real-time notifications for supported memory and system events.\n\n> **Building a multi-tenant application?**\n> Learn how Organizations & Projects can be used to separate access, resources, and collaboration boundaries.\n> `[Organizations & Projects \u2192]`"
+    },
+    {
+      "heading": "Authentication",
+      "content": "All requests to the PiyAPI API must include a valid API key passed via the `Authorization` header using the Bearer scheme. Requests without a valid key will be rejected.\n\n```text\nHeader\nAuthorization: Bearer <PIYAPI_API_KEY>\n```\n\n* API keys should be stored server-side.\n* Requests should be made through secure server-side environments.\n* Do not expose secrets in client-side code.\n\n```javascript\nconst response = await fetch(\n  \"https://<your-piyapi-endpoint>/v1/memories\",\n  { headers: { Authorization: `Bearer ${process.env.PIYAPI_API_KEY}` } }\n)\n```\n\n*(Diagram: `Your Application` --[HTTP Request]--> `PiyAPI API (Memory / Context Layer)` --[JSON Response]--> `Response`)*\n\n> [!WARNING]\n> Keep your API key secure. Never expose API credentials in client-side code or public repositories. Use environment variables and server-side requests."
+    },
+    {
+      "heading": "Next Steps",
+      "content": "* **Add your first memory**: Start storing persistent context through the API. `\u2192`\n* **Search with filters**: Learn advanced search and filtering techniques. `\u2192`\n* **Build with cookbooks**: See complete API workflows inside practical projects. `\u2192`\n\n---\n\n**Footer Actions:** `[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:** `\u2190 PREVIOUS: Cookbooks` | `NEXT: Organizations & Projects \u2192`\n\n---\n\n> **Editor's Note: Navbar Adjustments**\n> * **Right Sidebar (\"On this page\")**: The first link in the Figma design originally read `Negentro REST API`. This was changed to `API Reference Overview` to match the exact `H1` title of the page and to adhere to the global replacement of the \"Negentro\" placeholder with the accurate \"PiyAPI\" product name, ensuring the technical flow remains consistent.\n> * **Left Sidebar (API Endpoints)**: The `DEL` badge next to `Delete Memory` was preserved exactly as designed in Figma, though technically it represents a `DELETE` HTTP method."
+    }
+  ]
+}

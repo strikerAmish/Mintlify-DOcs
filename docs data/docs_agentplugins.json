@@ -1,0 +1,85 @@
+{
+  "filename": "docs_agentplugins.md",
+  "sections": [
+    {
+      "heading": "PiyAPI - Agent Plugins Documentation",
+      "content": ""
+    },
+    {
+      "heading": "1. Top Configuration",
+      "content": "* **Breadcrumb:** `Agent Plugins / Coding Agents / Claude Code`\n* **Action:** `[Copy page]`"
+    },
+    {
+      "heading": "2. Left Sidebar Navigation",
+      "content": "* **CODING AGENTS**\n  * Claude Code\n  * Cursor\n  * Codex\n  * OpenCode\n  * Gemini CLI\n  * Cline\n  * Kimi Code\n  * Antigravity\n* **AGENT HARNESSES**\n  * OpenClaw\n  * Hermes Agent\n  * Pi Agent\n  * DeepSeek Harness\n* **PLUGIN RESOURCES**\n  * Plugin Overview\n  * Installation\n  * Configuration\n  * Commands\n  * Memory\n  * Troubleshooting"
+    },
+    {
+      "heading": "3. Right Sidebar Navigation (\"On this page\")",
+      "content": "* Prerequisites\n* Quick start\n* Managing the plugin\n* What you can do\n* Commands\n* Search tool\n* Sidekick agent\n* How it works\n* Memory scoping\n* Search scope\n* Settings\n* Upgrading\n* Troubleshooting\n* Telemetry\n\n---"
+    },
+    {
+      "heading": "Claude Code",
+      "content": "Persistent cross-session memory for Claude Code.\n\nConnect the PiyAPI plugin to your Claude Code environment to persist relevant bitemporal context across sessions and retrieve it on demand. \n\n> **Current plugin version:** `v1.2.0`"
+    },
+    {
+      "heading": "Prerequisites",
+      "content": "1. **PiyAPI API key**: Required for authentication. Export this as `PIYAPI_API_KEY`.\n2. **Supported agent environment**: The Claude Code CLI must be installed and accessible on your `$PATH`.\n3. **Runtime dependencies**: Node.js 18+ and the `piyapi-cli`."
+    },
+    {
+      "heading": "Quick start",
+      "content": "To install the plugin, bind it to your Claude Code session, and confirm the connection:\n\n```bash\nexport PIYAPI_API_KEY=\"sk_live_your-api-key\"\npiyapi plugin install claude-code\npiyapi plugin status\n```\n\n**Setup Flow:** `1. Install` \u2192 `2. Configure` \u2192 `3. Restart agent` \u2192 `4. Verify`"
+    },
+    {
+      "heading": "Managing the plugin",
+      "content": "Use the CLI to manage the plugin lifecycle:\n\n```bash\npiyapi plugin install claude-code\npiyapi plugin update claude-code\npiyapi plugin uninstall claude-code\npiyapi plugin status\n```"
+    },
+    {
+      "heading": "What you can do",
+      "content": "* **Automatic memory**: Captures relevant context from coding sessions in the background.\n* **Commands**: Exposes explicit CLI commands for searching, checking status, forgetting, and pausing/resuming memory capture.\n* **Search tool**: Query previous sessions and retrieve relevant context on demand via the UnifiedScorer.\n* **Sidekick agent**: Spin up an isolated investigation or implementation workflow while preserving the primary working context."
+    },
+    {
+      "heading": "Commands",
+      "content": "| COMMAND | DESCRIPTION |\n|:---|:---|\n| `/memory:search` | Search memories from earlier sessions. |\n| `/memory:status` | Check current memory and configuration state. |\n| `/memory:forget` | Delete or forget selected memories. |\n| `/memory:pause` | Pause automatic memory capture. |\n| `/memory:resume` | Resume automatic memory capture. |\n| `/memory:remember` | Explicitly force-capture a specific input. |"
+    },
+    {
+      "heading": "Search tool",
+      "content": "Use the search tool to query prior sessions and retrieve context bounded by relevance and scope.\n\n```javascript\nmemory.search('authentication flow', { scope: \"project\" })\n```\n\n```json\n{\n  \"results\": [\n    {\n      \"memory_id\": \"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d\",\n      \"content\": \"Authentication uses JWT tokens for the main API...\",\n      \"score\": 0.91\n    }\n  ]\n}\n```"
+    },
+    {
+      "heading": "Sidekick agent",
+      "content": "The sidekick agent handles isolated investigation or implementation work in a separate context, then returns its findings to the main agent without polluting the primary working memory.\n\n*(Workflow: `Main Agent` \u2192 `Sidekick` \u2192 `Investigation` \u2192 `Result` \u2192 `Main Agent`)*"
+    },
+    {
+      "heading": "How it works",
+      "content": "1. **Capture**: Records relevant activity from the agent session.\n2. **Flush**: Sends captured context to the PiyAPI engine after meaningful interaction boundaries.\n3. **Extract**: Parses useful project context, architectural decisions, constraints, and preferences.\n4. **Recall**: Retrieves relevant bitemporal memories during subsequent sessions.\n\n*(Architecture: `Agent Session` \u2192 `Capture` \u2192 `PiyAPI Memory` \u2192 `Extract` \u2192 `Store` \u2192 `Recall` \u2192 `Next Session`)*"
+    },
+    {
+      "heading": "Memory scoping",
+      "content": "Memory is strictly scoped between shared project context and personal context. Relevant overlap is surfaced dynamically during retrieval via Context Assembly.\n\n*(Data Flow: `Personal Memory` + `Project Memory` + `Session Context` \u2192 `Context Assembly (Retrieve, Filter, Combine)` \u2192 `Relevant Context`)*"
+    },
+    {
+      "heading": "Search scope",
+      "content": "| SCOPE | RETURNED CONTEXT |\n|:---|:---|\n| `repo` | Project-wide memory. |\n| `dir` | Directory-specific memory. |\n| `user` | Personal user memory. |\n| `session` | Current task memory. |\n\n*Example: Setting scope to `dir` restricts retrieval strictly to memories captured within the current working directory.*"
+    },
+    {
+      "heading": "Settings",
+      "content": "Configure the plugin via environment variables:\n\n| SETTING | DEFAULT | DESCRIPTION |\n|:---|:---|:---|\n| `api_key` | `none` | Authenticates requests to the PiyAPI engine. |\n| `user_id` | `none` | Identifies the memory owner. |\n| `top_k` | `5` | Maximum number of memories returned per search. |\n| `max_content_chars` | `4000` | Maximum characters captured per memory block. |\n| `search_scope` | `repo` | Default scope used for retrieval. |\n| `telemetry` | `true` | Enables anonymous usage telemetry. |\n\n```bash\nexport PIYAPI_API_KEY=\"...\"\nexport PIYAPI_USER_ID=\"...\"\nexport PIYAPI_SEARCH_SCOPE=\"repo\"\n```"
+    },
+    {
+      "heading": "Upgrading",
+      "content": "Before upgrading to a new plugin version, verify the following checklist to avoid breaking your existing configuration or memory behavior:\n\n* [x] Review changed configuration keys\n* [x] Check command deprecations/changes\n* [x] Verify memory compatibility\n* [x] Re-run plugin setup\n* [x] Confirm agent compatibility"
+    },
+    {
+      "heading": "Troubleshooting",
+      "content": "| PROBLEM | RESOLUTION |\n|:---|:---|\n| **Missing API key** | Export the `PIYAPI_API_KEY` and restart the plugin. |\n| **Unauthorized** | Verify the API key and account permissions via `GET /api/v1/verify`. |\n| **No memory after session** | Ensure memory capture is enabled and the plugin successfully flushed the session. |\n| **Plugin won't start** | Verify your agent version is supported and the plugin installation succeeded. |\n| **Search returns nothing** | Check the active search scope and verify memories exist within that boundary. |"
+    },
+    {
+      "heading": "Telemetry",
+      "content": "**What may be collected:**\n* Event type\n* Plugin version\n* Runtime information\n* Basic performance and error metadata\n\n*Document the exact telemetry behavior here before production release.*\n\n```bash\nexport PIYAPI_TELEMETRY=false\n```\n\n---"
+    },
+    {
+      "heading": "Related agent plugins",
+      "content": "* **PiyAPI MCP**: Connect PiyAPI memory through MCP-compatible workflows. `\u2192`\n* **Codex Integration**: Add persistent context to supported Codex workflows. `\u2192`\n* **Cursor**: Persistent memory for Cursor. `\u2192`\n* **OpenCode**: Context-aware OpenCode workflows. `\u2192`\n* **Gemini CLI**: Memory for Gemini CLI agents. `\u2192`\n* **Cline**: Persistent context for Cline. `\u2192`\n\n---\n\n> **Building with PiyAPI?**\n> Explore the open-source stack, contribute integrations, or browse the developer community.\n> `[Join the community \u2192]`\n\n---\n\n**Footer Actions:** `[Suggest edits]` | `[Raise issue]`\n\n**Footer Navigation:** `\u2190 PREVIOUS: Agent Plugins Overview` | `NEXT: Cursor \u2192`"
+    }
+  ]
+}
