@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Negentro Integrations Overview — Frameworks, SDKs &amp; Tools</title>
-  <meta name="description" content="Connect Negentro with agent frameworks, AI SDKs, voice platforms, developer tools, and infrastructure you already use.">
+  <title>PiyAPI Integrations Overview — Frameworks, SDKs &amp; Tools</title>
+  <meta name="description" content="Connect PiyAPI with agent frameworks, AI SDKs, voice platforms, developer tools, and infrastructure you already use.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -820,6 +820,17 @@
       .prev-card { border-right: none; border-bottom: 1px solid var(--border); }
       .global-footer { margin-left: 0; padding: 1.5rem; }
     }
+  
+    /* --- PiyAPI Rich Documentation Utilities --- */
+    .code-tabs { background: #0b1120; border: 1px solid #334155; border-radius: 8px; overflow: hidden; margin: 1.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .tab-bar { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); background: #0f172a; padding: 0 0.5rem; overflow-x: auto; }
+    .tab-btn { font-size: 0.8rem; font-weight: 500; font-family: 'Inter', sans-serif; color: #94a3b8; padding: 0.65rem 1rem; border: none; background: transparent; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s ease; white-space: nowrap; }
+    .tab-btn:hover { color: #f8fafc; }
+    .tab-btn.active { color: #818cf8; border-bottom-color: #818cf8; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .badge { padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+
   </style>
 </head>
 <body>
@@ -834,7 +845,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <nav class="topbar-nav">
     <a href="index.html">Get Started</a>
@@ -925,10 +936,10 @@
         <div class="breadcrumb">Integrations / Overview</div>
         <h1 class="page-title">Integrations Overview</h1>
         <div class="page-lead" style="font-weight: 500; color: var(--text-heading); font-size: 1.05rem; margin-bottom: 0.5rem;">
-          Connect Negentro with the frameworks, agent platforms, developer tools, and infrastructure you already use.
+          Connect PiyAPI with the frameworks, agent platforms, developer tools, and infrastructure you already use.
         </div>
         <p class="page-lead">
-          Negentro integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows.
+          PiyAPI integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows.
         </p>
 
         <ul class="feature-list">
@@ -956,7 +967,7 @@
           </svg>
           <div>
             <div class="universal-title">Universal integration</div>
-            <div class="universal-body">Use Negentro through a standardized API layer when your workflow does not require a framework-specific integration.</div>
+            <div class="universal-body">Use PiyAPI through a standardized API layer when your workflow does not require a framework-specific integration.</div>
           </div>
         </div>
 
@@ -1065,7 +1076,7 @@
               <span class="int-badge">AI SDK</span>
             </div>
             <div class="int-title">Vercel AI SDK</div>
-            <div class="int-desc">Use Negentro alongside the Vercel AI SDK.</div>
+            <div class="int-desc">Use PiyAPI alongside the Vercel AI SDK.</div>
             <div class="int-arrow">&rarr;</div>
           </div>
 
@@ -1153,7 +1164,7 @@
               <span class="int-badge">AI SDK</span>
             </div>
             <div class="int-title">Google ADK</div>
-            <div class="int-desc">Connect Negentro memory with Google agent development workflows.</div>
+            <div class="int-desc">Connect PiyAPI memory with Google agent development workflows.</div>
             <div class="int-arrow">&rarr;</div>
           </div>
 
@@ -1164,7 +1175,7 @@
               <span class="int-badge">Infrastructure</span>
             </div>
             <div class="int-title">AWS Bedrock</div>
-            <div class="int-desc">Use Negentro alongside AWS model and agent infrastructure.</div>
+            <div class="int-desc">Use PiyAPI alongside AWS model and agent infrastructure.</div>
             <div class="int-arrow">&rarr;</div>
           </div>
 
@@ -1183,7 +1194,7 @@
         <!-- Dashed Bottom Banner -->
         <div class="dashed-banner">
           <div class="dashed-title">Don't see your integration?</div>
-          <div class="dashed-desc">Connect Negentro through the API or build an integration for your workflow.</div>
+          <div class="dashed-desc">Connect PiyAPI through the API or build an integration for your workflow.</div>
           <a class="dashed-link" href="#" onclick="showPage('rest-api'); return false;">Explore the API &rarr;</a>
         </div>
 
@@ -1218,787 +1229,1302 @@
       <!-- =============================================================== -->
       <!-- LANGCHAIN INTEGRATION PAGE                                      -->
       <!-- =============================================================== -->
-      <div class="page" id="page-langchain">
+      
+
+      <!-- PAGE: langchain -->
+<div class="page" id="page-langchain">
         <div class="breadcrumb">Integrations / Agent Frameworks / LangChain</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Official Adapter</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Python &amp; JS</span>
+        </div>
         <h1 class="page-title">LangChain Integration</h1>
-        <div class="page-lead">Official LangChain adapter (<code>packages/langchain-adapter</code>) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents.</div>
+        <div class="page-lead">Drop-in memory adapter and runnable memory hooks for LangChain chains and agents.</div>
 
-        <h2 class="doc-h2" id="lc-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install packages/langchain-adapter</span>
-<span class="tok-cmt"># Or install client memory library</span>
-<span class="tok-cmd">pip install piyapi-memory</span></pre>
+        <h2 id="lc-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install langchain langchain-openai piyapi-memory
+export PIYAPI_API_KEY="piy_live_sec_..."</code></pre>
         </div>
 
-        <h2 class="doc-h2" id="lc-code">Code Example (from User Guide §5.3)</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi_langchain</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIMemoryRetriever</span>
-
-<span class="tok-cmt"># Initialize memory retriever with API key and namespace scope</span>
-<span class="tok-prop">retriever</span> = <span class="tok-cmd">PiyAPIMemoryRetriever</span>(
-    <span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>,
-    <span class="tok-prop">user_id</span>=<span class="tok-str">"dev_lead"</span>,
-    <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>
-)
-
-<span class="tok-cmt"># Retrieve relevant context documents directly for LangChain chains and agents</span>
-<span class="tok-prop">docs</span> = <span class="tok-prop">retriever</span>.<span class="tok-cmd">get_relevant_documents</span>(<span class="tok-str">"user database preferences"</span>)
-<span class="tok-kw">for</span> <span class="tok-prop">doc</span> <span class="tok-kw">in</span> <span class="tok-prop">docs</span>:
-    <span class="tok-cmd">print</span>(<span class="tok-prop">doc</span>.<span class="tok-prop">page_content</span>)</pre>
-        </div>
-
-        <div style="margin-top: 1.5rem; font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
-          <strong>Supported Capabilities:</strong> Bitemporal validity filtering (<code>valid_at</code>), 11-signal UnifiedScorer reranking, and scoped namespace isolation across user sessions.
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- =============================================================== -->
-      <!-- FRAMEWORK & TOOL INTEGRATIONS (AUTHENTIC IMPLEMENTATIONS)       -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-langgraph">
-        <div class="breadcrumb">Integrations / Agent Frameworks / LangGraph</div>
-        <h1 class="page-title">LangGraph Integration</h1>
-        <div class="page-lead">Connect cyclic state machines and multi-actor graphs with bitemporal memory and checkpoint persistence.</div>
-
-        <h2 class="doc-h2" id="lg-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install langgraph langchain-openai piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="lg-code">StateGraph Memory Node Example</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">typing</span> <span class="tok-kw">import</span> <span class="tok-prop">TypedDict</span>, <span class="tok-prop">List</span>
-<span class="tok-kw">from</span> <span class="tok-prop">langgraph.graph</span> <span class="tok-kw">import</span> <span class="tok-cmd">StateGraph</span>, <span class="tok-prop">END</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-cmt"># Initialize PiyAPI client</span>
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-kw">class</span> <span class="tok-cmd">AgentState</span>(<span class="tok-prop">TypedDict</span>):
-    <span class="tok-prop">messages</span>: <span class="tok-prop">List</span>[<span class="tok-prop">dict</span>]
-    <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>
-    <span class="tok-prop">retrieved_context</span>: <span class="tok-prop">str</span>
-
-<span class="tok-kw">def</span> <span class="tok-cmd">recall_memory_node</span>(<span class="tok-prop">state</span>: <span class="tok-cmd">AgentState</span>):
-    <span class="tok-cmt"># Query bitemporal memory using UnifiedScorer (11 signals)</span>
-    <span class="tok-prop">query</span> = <span class="tok-prop">state</span>[<span class="tok-str">"messages"</span>][-1][<span class="tok-str">"content"</span>]
-    <span class="tok-prop">results</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
-        <span class="tok-prop">query</span>=<span class="tok-prop">query</span>,
-        <span class="tok-prop">user_id</span>=<span class="tok-prop">state</span>[<span class="tok-str">"user_id"</span>],
-        <span class="tok-prop">limit</span>=5
-    )
-    <span class="tok-prop">context</span> = <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">r</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">r</span> <span class="tok-kw">in</span> <span class="tok-prop">results</span>])
-    <span class="tok-kw">return</span> {<span class="tok-str">"retrieved_context"</span>: <span class="tok-prop">context</span>}
-
-<span class="tok-cmt"># Construct LangGraph workflow</span>
-<span class="tok-prop">workflow</span> = <span class="tok-cmd">StateGraph</span>(<span class="tok-cmd">AgentState</span>)
-<span class="tok-prop">workflow</span>.<span class="tok-cmd">add_node</span>(<span class="tok-str">"recall"</span>, <span class="tok-prop">recall_memory_node</span>)
-<span class="tok-prop">workflow</span>.<span class="tok-cmd">set_entry_point</span>(<span class="tok-str">"recall"</span>)
-<span class="tok-prop">workflow</span>.<span class="tok-cmd">add_edge</span>(<span class="tok-str">"recall"</span>, <span class="tok-prop">END</span>)
-<span class="tok-prop">app</span> = <span class="tok-prop">workflow</span>.<span class="tok-cmd">compile</span>()</pre>
-        </div>
-        <div style="margin-top: 1.5rem; font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
-          <strong>Key Advantages:</strong> Cyclic graphs retain user preferences, historical constraints, and decision logs across infinite conversational turns without bloating the active prompt window.
-        </div>
-      </div>
-
-      <div class="page" id="page-llamaindex">
-        <div class="breadcrumb">Integrations / Agent Frameworks / LlamaIndex</div>
-        <h1 class="page-title">LlamaIndex Integration</h1>
-        <div class="page-lead">Connect PiyAPI hybrid vector retrieval and knowledge graph indices directly into LlamaIndex query engines.</div>
-
-        <h2 class="doc-h2" id="llama-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install llama-index piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="llama-code">Hybrid Retriever Setup</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">llama_index.core.retrievers</span> <span class="tok-kw">import</span> <span class="tok-cmd">BaseRetriever</span>
-<span class="tok-kw">from</span> <span class="tok-prop">llama_index.core.schema</span> <span class="tok-kw">import</span> <span class="tok-cmd">NodeWithScore</span>, <span class="tok-cmd">TextNode</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-kw">class</span> <span class="tok-cmd">PiyAPILlamaRetriever</span>(<span class="tok-cmd">BaseRetriever</span>):
-    <span class="tok-kw">def</span> <span class="tok-cmd">__init__</span>(<span class="tok-prop">self</span>, <span class="tok-prop">api_key</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
-        <span class="tok-prop">self</span>.<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-prop">api_key</span>)
-        <span class="tok-prop">self</span>.<span class="tok-prop">user_id</span> = <span class="tok-prop">user_id</span>
-        <span class="tok-cmd">super</span>().<span class="tok-cmd">__init__</span>()
-
-    <span class="tok-kw">def</span> <span class="tok-cmd">_retrieve</span>(<span class="tok-prop">self</span>, <span class="tok-prop">query_bundle</span>):
-        <span class="tok-prop">memories</span> = <span class="tok-prop">self</span>.<span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
-            <span class="tok-prop">query</span>=<span class="tok-prop">query_bundle</span>.<span class="tok-prop">query_str</span>,
-            <span class="tok-prop">user_id</span>=<span class="tok-prop">self</span>.<span class="tok-prop">user_id</span>,
-            <span class="tok-prop">limit</span>=5
-        )
-        <span class="tok-kw">return</span> [
-            <span class="tok-cmd">NodeWithScore</span>(
-                <span class="tok-prop">node</span>=<span class="tok-cmd">TextNode</span>(<span class="tok-prop">text</span>=<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>]),
-                <span class="tok-prop">score</span>=<span class="tok-prop">m</span>.<span class="tok-cmd">get</span>(<span class="tok-str">"score"</span>, 1.0)
-            ) <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">memories</span>
-        ]</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-crewai">
-        <div class="breadcrumb">Integrations / Agent Frameworks / CrewAI</div>
-        <h1 class="page-title">CrewAI Integration</h1>
-        <div class="page-lead">Provide multi-agent crews with a unified shared context graph (PiyGraph) and tool-level memory synchronization.</div>
-
-        <h2 class="doc-h2" id="crew-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install crewai piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="crew-code">Shared Context Tool Example (User Guide §7.3)</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">crewai</span> <span class="tok-kw">import</span> <span class="tok-cmd">Agent</span>, <span class="tok-cmd">Crew</span>, <span class="tok-cmd">Task</span>
-<span class="tok-kw">from</span> <span class="tok-prop">crewai.tools</span> <span class="tok-kw">import</span> <span class="tok-cmd">tool</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-prop">@tool</span>(<span class="tok-str">"Query Shared Team Knowledge"</span>)
-<span class="tok-kw">def</span> <span class="tok-cmd">search_team_memory</span>(<span class="tok-prop">query</span>: <span class="tok-prop">str</span>) -> <span class="tok-prop">str</span>:
-    <span class="tok-cmt"># Searches the shared PiyGraph knowledge graph for historical architectural facts</span>
-    <span class="tok-prop">res</span> = <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-prop">query</span>, <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>, <span class="tok-prop">limit</span>=3)
-    <span class="tok-kw">return</span> <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">res</span>])
-
-<span class="tok-prop">researcher</span> = <span class="tok-cmd">Agent</span>(
-    <span class="tok-prop">role</span>=<span class="tok-str">'Senior Systems Architect'</span>,
-    <span class="tok-prop">goal</span>=<span class="tok-str">'Design resilient microservices adhering to recorded enterprise guidelines'</span>,
-    <span class="tok-prop">tools</span>=[<span class="tok-prop">search_team_memory</span>],
-    <span class="tok-prop">verbose</span>=<span class="tok-kw">True</span>
-)</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-autogen">
-        <div class="breadcrumb">Integrations / Agent Frameworks / AutoGen</div>
-        <h1 class="page-title">AutoGen Integration</h1>
-        <div class="page-lead">Retain cross-turn conversational state, mined facts, and user preferences in Microsoft AutoGen multi-agent swarms.</div>
-
-        <h2 class="doc-h2" id="ag-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install autogen-agentchat piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="ag-code">ConversableAgent Memory Hook</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">autogen</span> <span class="tok-kw">import</span> <span class="tok-cmd">ConversableAgent</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-kw">def</span> <span class="tok-cmd">sync_turn_to_memory</span>(<span class="tok-prop">recipient</span>, <span class="tok-prop">messages</span>, <span class="tok-prop">sender</span>, <span class="tok-prop">config</span>):
-    <span class="tok-cmt"># Automatically extract facts and persist to PiyAPI bitemporal storage</span>
-    <span class="tok-kw">if</span> <span class="tok-prop">messages</span>:
-        <span class="tok-prop">last_msg</span> = <span class="tok-prop">messages</span>[-1][<span class="tok-str">"content"</span>]
-        <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>(
-            <span class="tok-prop">content</span>=<span class="tok-prop">last_msg</span>,
-            <span class="tok-prop">user_id</span>=<span class="tok-str">"autogen_session_01"</span>,
-            <span class="tok-prop">tags</span>=[<span class="tok-str">"autogen"</span>, <span class="tok-str">"session-turn"</span>]
-        )
-    <span class="tok-kw">return</span> <span class="tok-kw">False</span>, <span class="tok-kw">None</span>
-
-<span class="tok-prop">agent</span> = <span class="tok-cmd">ConversableAgent</span>(
-    <span class="tok-prop">name</span>=<span class="tok-str">"AssistantWithMemory"</span>,
-    <span class="tok-prop">llm_config</span>={<span class="tok-str">"model"</span>: <span class="tok-str">"gpt-4o"</span>}
-)
-<span class="tok-prop">agent</span>.<span class="tok-cmd">register_hook</span>(<span class="tok-prop">hookable_method</span>=<span class="tok-str">"process_message_before_send"</span>, <span class="tok-prop">hook</span>=<span class="tok-prop">sync_turn_to_memory</span>)</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-mastra">
-        <div class="breadcrumb">Integrations / Agent Frameworks / Mastra</div>
-        <h1 class="page-title">Mastra Integration</h1>
-        <div class="page-lead">Deploy production TypeScript agents with native Mastra Agent workflows and @piyapi/sdk memory storage.</div>
-
-        <h2 class="doc-h2" id="mastra-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">npm install @mastra/core @piyapi/sdk</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="mastra-code">TypeScript Agent Setup</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">Agent</span> } <span class="tok-kw">from</span> <span class="tok-str">'@mastra/core'</span>;
-<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
-
-<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
-
-<span class="tok-kw">export const</span> <span class="tok-prop">supportAgent</span> = <span class="tok-kw">new</span> <span class="tok-cmd">Agent</span>({
-  <span class="tok-prop">name</span>: <span class="tok-str">'CustomerSuccessAgent'</span>,
-  <span class="tok-prop">instructions</span>: <span class="tok-str">'You assist enterprise customers by recalling past deployment tickets and SLAs.'</span>,
-  <span class="tok-prop">model</span>: { <span class="tok-prop">provider</span>: <span class="tok-str">'OPEN_AI'</span>, <span class="tok-prop">name</span>: <span class="tok-str">'gpt-4o'</span> },
-  <span class="tok-prop">tools</span>: {
-    <span class="tok-prop">fetchContext</span>: {
-      <span class="tok-prop">description</span>: <span class="tok-str">'Recall historical customer facts'</span>,
-      <span class="tok-prop">execute</span>: <span class="tok-kw">async</span> ({ <span class="tok-prop">userId</span>, <span class="tok-prop">query</span> }) => {
-        <span class="tok-kw">return await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>({ <span class="tok-prop">query</span>, <span class="tok-prop">userId</span> });
-      }
-    }
-  }
-});</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-uxpilot">
-        <div class="breadcrumb">Integrations / AI SDKs / UX Pilot AI Agents SDK</div>
-        <h1 class="page-title">UX Pilot AI Agents SDK</h1>
-        <div class="page-lead">Synchronize dynamic UI interactions, design decisions, and telemetry with persistent bitemporal user memory.</div>
-
-        <h2 class="doc-h2" id="ux-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">npm install @uxpilot/agent-sdk @piyapi/sdk</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="ux-code">UI Interaction Memory Hook</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">UXPilotAgent</span> } <span class="tok-kw">from</span> <span class="tok-str">'@uxpilot/agent-sdk'</span>;
-<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
-
-<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
-<span class="tok-kw">const</span> <span class="tok-prop">uxAgent</span> = <span class="tok-kw">new</span> <span class="tok-cmd">UXPilotAgent</span>({ <span class="tok-prop">appId</span>: <span class="tok-str">'dashboard_v2'</span> });
-
-<span class="tok-prop">uxAgent</span>.<span class="tok-cmd">onAction</span>(<span class="tok-kw">async</span> (<span class="tok-prop">action</span>) => {
-  <span class="tok-kw">if</span> (<span class="tok-prop">action</span>.<span class="tok-prop">type</span> === <span class="tok-str">'user_preference_changed'</span>) {
-    <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>({
-      <span class="tok-prop">userId</span>: <span class="tok-prop">action</span>.<span class="tok-prop">userId</span>,
-      <span class="tok-prop">content</span>: <span class="tok-str">`User selected layout: ${action.payload.theme} with compact sidebar.`</span>,
-      <span class="tok-prop">tags</span>: [<span class="tok-str">'ui-preference'</span>, <span class="tok-str">'uxpilot'</span>]
-    });
-  }
-});</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-google-adk">
-        <div class="breadcrumb">Integrations / AI SDKs / Google ADK</div>
-        <h1 class="page-title">Google ADK Integration</h1>
-        <div class="page-lead">Connect Google Agent Development Kit and Gemini models with long-term memory and knowledge graph synchronization.</div>
-
-        <h2 class="doc-h2" id="gadk-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install google-adk piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="gadk-code">Gemini Agent Memory Tool</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">google.genai</span> <span class="tok-kw">import</span> <span class="tok-cmd">types</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-kw">def</span> <span class="tok-cmd">recall_user_facts</span>(<span class="tok-prop">query</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>) -> <span class="tok-prop">str</span>:
-    <span class="tok-cmt"># Searches user memories for personal preferences, prior tickets, and project constraints</span>
-    <span class="tok-prop">hits</span> = <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-prop">query</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">user_id</span>, <span class="tok-prop">limit</span>=3)
-    <span class="tok-kw">return</span> <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">h</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">h</span> <span class="tok-kw">in</span> <span class="tok-prop">hits</span>])</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-vercel-ai">
-        <div class="breadcrumb">Integrations / AI SDKs / Vercel AI SDK</div>
-        <h1 class="page-title">Vercel AI SDK Integration</h1>
-        <div class="page-lead">Stream generative responses while capturing and recalling user memory in real-time Next.js and Node.js applications.</div>
-
-        <h2 class="doc-h2" id="vai-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">npm install ai @ai-sdk/openai @piyapi/sdk</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="vai-code">Next.js Route Handler with Auto-Persistence</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">streamText</span> } <span class="tok-kw">from</span> <span class="tok-str">'ai'</span>;
-<span class="tok-kw">import</span> { <span class="tok-cmd">openai</span> } <span class="tok-kw">from</span> <span class="tok-str">'@ai-sdk/openai'</span>;
-<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
-
-<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
-
-<span class="tok-kw">export async function</span> <span class="tok-cmd">POST</span>(<span class="tok-prop">req</span>: <span class="tok-cmd">Request</span>) {
-  <span class="tok-kw">const</span> { <span class="tok-prop">messages</span>, <span class="tok-prop">userId</span> } = <span class="tok-kw">await</span> <span class="tok-prop">req</span>.<span class="tok-cmd">json</span>();
-  <span class="tok-kw">const</span> <span class="tok-prop">lastMessage</span> = <span class="tok-prop">messages</span>[<span class="tok-prop">messages</span>.<span class="tok-prop">length</span> - 1].<span class="tok-prop">content</span>;
-
-  <span class="tok-cmt">// 1. Retrieve persistent user context</span>
-  <span class="tok-kw">const</span> <span class="tok-prop">memories</span> = <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>({ <span class="tok-prop">query</span>: <span class="tok-prop">lastMessage</span>, <span class="tok-prop">userId</span>, <span class="tok-prop">limit</span>: 3 });
-  <span class="tok-kw">const</span> <span class="tok-prop">systemContext</span> = <span class="tok-prop">memories</span>.<span class="tok-cmd">map</span>(<span class="tok-prop">m</span> => <span class="tok-prop">m</span>.<span class="tok-prop">content</span>).<span class="tok-cmd">join</span>(<span class="tok-str">'\n'</span>);
-
-  <span class="tok-cmt">// 2. Stream response with context</span>
-  <span class="tok-kw">return</span> <span class="tok-cmd">streamText</span>({
-    <span class="tok-prop">model</span>: <span class="tok-cmd">openai</span>(<span class="tok-str">'gpt-4o'</span>),
-    <span class="tok-prop">system</span>: <span class="tok-str">`User Profile Context:\n${systemContext}`</span>,
-    <span class="tok-prop">messages</span>,
-    <span class="tok-prop">onFinish</span>: <span class="tok-kw">async</span> ({ <span class="tok-prop">text</span> }) => {
-      <span class="tok-cmt">// Auto-extract and persist learnings</span>
-      <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>({ <span class="tok-prop">content</span>: <span class="tok-str">`Q: ${lastMessage} | A: ${text}`</span>, <span class="tok-prop">userId</span> });
-    }
-  }).<span class="tok-cmd">toDataStreamResponse</span>();
-}</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-livekit">
-        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / LiveKit</div>
-        <h1 class="page-title">LiveKit Integration</h1>
-        <div class="page-lead">Real-time speech-to-speech agent memory synchronization with sub-100ms context injection for conversational voice.</div>
-
-        <h2 class="doc-h2" id="lk-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install livekit-agents livekit-plugins-openai piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="lk-code">Voice Agent Lifecycle Example</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">livekit.agents</span> <span class="tok-kw">import</span> <span class="tok-cmd">JobContext</span>, <span class="tok-cmd">WorkerOptions</span>, <span class="tok-cmd">cli</span>
-<span class="tok-kw">from</span> <span class="tok-prop">livekit.agents.voice_assistant</span> <span class="tok-kw">import</span> <span class="tok-cmd">VoiceAssistant</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-kw">async def</span> <span class="tok-cmd">entrypoint</span>(<span class="tok-prop">ctx</span>: <span class="tok-cmd">JobContext</span>):
-    <span class="tok-kw">await</span> <span class="tok-prop">ctx</span>.<span class="tok-cmd">connect</span>()
-    <span class="tok-prop">participant</span> = <span class="tok-kw">await</span> <span class="tok-prop">ctx</span>.<span class="tok-cmd">wait_for_participant</span>()
-
-    <span class="tok-cmt"># Pre-warm context by retrieving participant history</span>
-    <span class="tok-prop">mems</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-str">"preferences"</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">participant</span>.<span class="tok-prop">identity</span>)
-    <span class="tok-prop">summary</span> = <span class="tok-str">" "</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">mems</span>])
-
-    <span class="tok-prop">assistant</span> = <span class="tok-cmd">VoiceAssistant</span>(
-        <span class="tok-prop">instructions</span>=<span class="tok-str">f"You are a friendly voice assistant. User knowledge: {summary}"</span>
-    )
-    <span class="tok-prop">assistant</span>.<span class="tok-cmd">start</span>(<span class="tok-prop">ctx</span>.<span class="tok-prop">room</span>, <span class="tok-prop">participant</span>)</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-pipecat">
-        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / Pipecat</div>
-        <h1 class="page-title">Pipecat Integration</h1>
-        <div class="page-lead">Add low-latency contextual recall into Pipecat multimodal voice, audio, and video pipelines.</div>
-
-        <h2 class="doc-h2" id="pipe-install">Installation</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-cmd">pip install pipecat-ai piyapi-memory</span></pre>
-        </div>
-
-        <h2 class="doc-h2" id="pipe-code">Pipeline Frame Processor</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">pipecat.processors.frame_processor</span> <span class="tok-kw">import</span> <span class="tok-cmd">FrameProcessor</span>
-<span class="tok-kw">from</span> <span class="tok-prop">pipecat.frames.frames</span> <span class="tok-kw">import</span> <span class="tok-cmd">TranscriptionFrame</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-kw">class</span> <span class="tok-cmd">PiyAPIMemorySync</span>(<span class="tok-cmd">FrameProcessor</span>):
-    <span class="tok-kw">def</span> <span class="tok-cmd">__init__</span>(<span class="tok-prop">self</span>, <span class="tok-prop">api_key</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
-        <span class="tok-cmd">super</span>().<span class="tok-cmd">__init__</span>()
-        <span class="tok-prop">self</span>.<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-prop">api_key</span>)
-        <span class="tok-prop">self</span>.<span class="tok-prop">user_id</span> = <span class="tok-prop">user_id</span>
-
-    <span class="tok-kw">async def</span> <span class="tok-cmd">process_frame</span>(<span class="tok-prop">self</span>, <span class="tok-prop">frame</span>, <span class="tok-prop">direction</span>):
-        <span class="tok-kw">if</span> <span class="tok-cmd">isinstance</span>(<span class="tok-prop">frame</span>, <span class="tok-cmd">TranscriptionFrame</span>):
-            <span class="tok-cmt"># Flush finalized user transcripts into memory</span>
-            <span class="tok-prop">self</span>.<span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>(<span class="tok-prop">content</span>=<span class="tok-prop">frame</span>.<span class="tok-prop">text</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">self</span>.<span class="tok-prop">user_id</span>)
-        <span class="tok-kw">await</span> <span class="tok-prop">self</span>.<span class="tok-cmd">push_frame</span>(<span class="tok-prop">frame</span>, <span class="tok-prop">direction</span>)</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-elevenlabs">
-        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / ElevenLabs</div>
-        <h1 class="page-title">ElevenLabs Integration</h1>
-        <div class="page-lead">Inject persistent bitemporal memories and customer personas directly into ElevenLabs Conversational AI voice agents.</div>
-
-        <h2 class="doc-h2" id="el-code">Dynamic Prompt Context Injection</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> <span class="tok-prop">requests</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-kw">def</span> <span class="tok-cmd">start_elevenlabs_conversation</span>(<span class="tok-prop">agent_id</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
-    <span class="tok-cmt"># 1. Fetch relevant persistent memory</span>
-    <span class="tok-prop">user_facts</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-str">"caller preferences"</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">user_id</span>, <span class="tok-prop">limit</span>=3)
-    <span class="tok-prop">context_str</span> = <span class="tok-str">"; "</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">f</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">f</span> <span class="tok-kw">in</span> <span class="tok-prop">user_facts</span>])
-
-    <span class="tok-cmt"># 2. Get signed WebSocket URL with dynamic variables</span>
-    <span class="tok-prop">res</span> = <span class="tok-prop">requests</span>.<span class="tok-cmd">post</span>(
-        <span class="tok-str">f"https://api.elevenlabs.io/v1/convai/conversation/get_signed_url?agent_id={agent_id}"</span>,
-        <span class="tok-prop">headers</span>={<span class="tok-str">"xi-api-key"</span>: <span class="tok-str">"your_elevenlabs_key"</span>},
-        <span class="tok-prop">json</span>={<span class="tok-str">"dynamic_variables"</span>: {<span class="tok-str">"user_context"</span>: <span class="tok-prop">context_str</span>}}
-    )
-    <span class="tok-kw">return</span> <span class="tok-prop">res</span>.<span class="tok-cmd">json</span>()[<span class="tok-str">"signed_url"</span>]</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-cloud-providers">
-        <div class="breadcrumb">Integrations / Infrastructure / Cloud Providers</div>
-        <h1 class="page-title">Cloud AI Infrastructure (AWS Bedrock, Azure, GCP)</h1>
-        <div class="page-lead">Enterprise memory infrastructure with BYOK KMS envelope encryption, VPC peering, and managed cloud model runtimes.</div>
-
-        <h2 class="doc-h2" id="cloud-bedrock">AWS Bedrock Integration</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> <span class="tok-prop">boto3</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
-
-<span class="tok-prop">bedrock</span> = <span class="tok-prop">boto3</span>.<span class="tok-cmd">client</span>(<span class="tok-str">'bedrock-runtime'</span>, <span class="tok-prop">region_name</span>=<span class="tok-str">'us-east-1'</span>)
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-
-<span class="tok-cmt"># Retrieve memories fused with Bedrock Titan Embeddings & pgvector HNSW</span>
-<span class="tok-prop">memories</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
-    <span class="tok-prop">query</span>=<span class="tok-str">"PCI-DSS audit compliance history"</span>,
-    <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>
-)</pre>
-        </div>
-
-        <h2 class="doc-h2" id="cloud-byok">BYOK KMS Envelope Encryption (User Guide §4.12)</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          PiyAPI supports customer-managed encryption keys (CMEK) via AWS KMS, Azure Key Vault, and Google Cloud KMS. All AES-256-GCM data encryption keys (DEKs) are wrapped with your master Key Encryption Key (KEK) before writing to persistent PostgreSQL storage.
-        </p>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- MCP INTEGRATION PAGE                                            -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-mcp">
-        <div class="breadcrumb">Integrations / MCP</div>
-        <h1 class="page-title">Model Context Protocol (MCP)</h1>
-        <div class="page-lead">
-          Connect Cursor, Windsurf, Claude Desktop, and AI agents natively to Negentro via @piyapi/mcp-server.
-        </div>
+        <h2 id="lc-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Drop-in Memory Adapter</h2>
         
-        <h2 class="doc-h2" id="mcp-config">IDE Configuration</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Add the Negentro MCP Server to Claude Desktop, Cursor, or Windsurf configuration file:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>mcp_config.json</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre>{
-  <span class="tok-str">"mcpServers"</span>: {
-    <span class="tok-str">"negentro"</span>: {
-      <span class="tok-str">"command"</span>: <span class="tok-str">"npx"</span>,
-      <span class="tok-str">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"@piyapi/mcp-server"</span>],
-      <span class="tok-str">"env"</span>: {
-        <span class="tok-str">"PIYAPI_API_KEY"</span>: <span class="tok-str">"sk_live_your_key_here"</span>
-      }
-    }
-  }
-}</pre>
-        </div>
-
-        <h2 class="doc-h2" id="mcp-tools">Core Tools Catalog</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          The MCP server exposes standard agent tools for reading and writing memory:
-        </p>
-        <ul class="feature-list">
-          <li><code>add_memory(fact, valid_at, user_id)</code> &mdash; Records temporal memories with auto-conflict resolution.</li>
-          <li><code>search_memory(query, limit, scope)</code> &mdash; Hybrid vector and graph semantic recall.</li>
-          <li><code>get_context(session_id)</code> &mdash; Retrieves consolidated session and user preferences.</li>
-        </ul>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- REST API INTEGRATION PAGE                                       -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-rest-api">
-        <div class="breadcrumb">Integrations / REST API</div>
-        <h1 class="page-title">REST API Integration</h1>
-        <div class="page-lead">
-          Direct programmatic access to bitemporal memory graphs, user context, and sessions over HTTPS.
-        </div>
-
-        <h2 class="doc-h2" id="rest-store">Store Memory</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Send facts, observations, and system events to the bitemporal memory engine:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>cURL &mdash; POST /v1/memories</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre>curl -X POST https://api.piyapi.cloud/v1/memories \
-  -H "Authorization: Bearer $PIYAPI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "fact": "User is migrating backend to FastAPI and prefers async SQLAlchemy",
-    "user_id": "usr_99182",
-    "valid_at": "2026-10-25T00:00:00Z"
-  }'</pre>
-        </div>
-
-        <h2 class="doc-h2" id="rest-search">Hybrid Vector Search</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Perform sub-50ms hybrid semantic and vector similarity search across memories:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>cURL &mdash; POST /v1/memories/search</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre>curl -X POST https://api.piyapi.cloud/v1/memories/search \
-  -H "Authorization: Bearer $PIYAPI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "database migration preferences",
-    "user_id": "usr_99182",
-    "limit": 5
-  }'</pre>
-        </div>
-
-        <div style="margin-top: 1.5rem;">
-          <a class="primary-btn" href="api_reference.html" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.6rem 1.1rem; font-size:0.9rem; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none;">
-            View Complete API Reference &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- SDKS INTEGRATION PAGE                                           -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-sdks">
-        <div class="breadcrumb">Integrations / SDKs</div>
-        <h1 class="page-title">Client SDKs</h1>
-        <div class="page-lead">
-          Official type-safe client libraries for TypeScript/Node.js and Python with built-in retry and connection pooling.
-        </div>
-
-        <h2 class="doc-h2" id="sdk-ts">TypeScript SDK</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Install the official Node.js / TypeScript client library:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>Terminal</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre>npm install @piyapi/sdk</pre>
-        </div>
-        <div class="terminal-card" style="margin-top:0.75rem;">
-          <div class="terminal-header">
-            <span>TypeScript</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">import</span> { <span class="tok-prop">PiyApiClient</span> } <span class="tok-cmd">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
-
-<span class="tok-cmd">const</span> <span class="tok-prop">client</span> = <span class="tok-cmd">new</span> <span class="tok-prop">PiyApiClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
-<span class="tok-cmd">await</span> <span class="tok-prop">client</span>.<span class="tok-prop">memory</span>.<span class="tok-cmd">add</span>({
-  <span class="tok-prop">fact</span>: <span class="tok-str">"User requested weekly performance metrics in CSV format"</span>,
-  <span class="tok-prop">userId</span>: <span class="tok-str">"usr_102"</span>
-});</pre>
-        </div>
-
-        <h2 class="doc-h2" id="sdk-py">Python SDK</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Install the official Python package with async and sync support:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>Terminal</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre>pip install piyapi</pre>
-        </div>
-        <div class="terminal-card" style="margin-top:0.75rem;">
-          <div class="terminal-header">
-            <span>Python</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">from</span> <span class="tok-prop">piyapi</span> <span class="tok-cmd">import</span> <span class="tok-prop">PiyAPIClient</span>
-
-<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
-<span class="tok-prop">client</span>.<span class="tok-prop">memory</span>.<span class="tok-cmd">add</span>(
-    <span class="tok-prop">fact</span>=<span class="tok-str">"Prefers Dark Mode"</span>,
-    <span class="tok-prop">user_id</span>=<span class="tok-str">"u_1029"</span>
-)</pre>
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- WEBHOOKS INTEGRATION PAGE                                       -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-webhooks">
-        <div class="breadcrumb">Integrations / Webhooks</div>
-        <h1 class="page-title">Webhooks Integration</h1>
-        <div class="page-lead">
-          Real-time HTTP POST notifications when memories are created, updated, pruned, or synced.
-        </div>
-
-        <h2 class="doc-h2" id="wh-signature">Signature Verification</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Verify webhook payloads using HMAC SHA-256 signatures passed in the <code>X-Negentro-Signature</code> header:
-        </p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>verify_webhook.py</span>
-            <button class="terminal-copy-btn" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">import</span> <span class="tok-prop">hmac</span>, <span class="tok-prop">hashlib</span>
-
-<span class="tok-cmd">def</span> <span class="tok-cmd">verify_signature</span>(<span class="tok-prop">payload_bytes</span>, <span class="tok-prop">signature_header</span>, <span class="tok-prop">webhook_secret</span>):
-    <span class="tok-prop">expected</span> = <span class="tok-prop">hmac</span>.<span class="tok-cmd">new</span>(<span class="tok-prop">webhook_secret</span>.<span class="tok-cmd">encode</span>(), <span class="tok-prop">payload_bytes</span>, <span class="tok-prop">hashlib</span>.<span class="tok-prop">sha256</span>).<span class="tok-cmd">hexdigest</span>()
-    <span class="tok-cmd">return</span> <span class="tok-prop">hmac</span>.<span class="tok-cmd">compare_digest</span>(<span class="tok-prop">expected</span>, <span class="tok-prop">signature_header</span>)</pre>
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- POSTGRESQL INTEGRATION PAGE                                     -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-postgresql">
-        <div class="breadcrumb">Integrations / PostgreSQL</div>
-        <h1 class="page-title">PostgreSQL &amp; pgvector</h1>
-        <div class="page-lead">
-          Enterprise storage engine backed by PostgreSQL with pgvector for bitemporal relation management and dense vector indexing.
-        </div>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Negentro uses PostgreSQL as its primary transaction and audit store. Memories are modeled as bitemporal intervals:
-        </p>
-        <ul class="feature-list">
-          <li><code>valid_time</code> (t_start, t_end) &mdash; When the fact was true in the real world.</li>
-          <li><code>system_time</code> (recorded_at, invalid_at) &mdash; When the fact was recorded or superseded in the database.</li>
-          <li><code>HNSW Indexes</code> &mdash; Sub-10ms similarity queries with configurable <code>m=16</code> and <code>ef_construction=64</code>.</li>
-        </ul>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- REDIS INTEGRATION PAGE                                          -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-redis">
-        <div class="breadcrumb">Integrations / Redis</div>
-        <h1 class="page-title">Redis Semantic Caching</h1>
-        <div class="page-lead">
-          Ultra-low latency in-memory tier for hot memory retrieval, session scopes, and semantic deduplication.
-        </div>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Redis caches parsed user facts and hot context vectors with sub-2ms lookup latency.
-        </p>
-        <ul class="feature-list">
-          <li><strong>Session State Store:</strong> Instantaneous active turn retrieval.</li>
-          <li><strong>Semantic Invalidation:</strong> Cache invalidation triggered on memory updates.</li>
-        </ul>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- VECTOR DATABASES INTEGRATION PAGE                               -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-vectordbs">
-        <div class="breadcrumb">Integrations / Vector Databases</div>
-        <h1 class="page-title">Vector Databases</h1>
-        <div class="page-lead">
-          Plug-and-play connectors for external vector databases including Pinecone, Qdrant, Weaviate, Milvus, and Chroma.
-        </div>
-        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
-          Connect your existing vector store directly into Negentro's unified graph indexing and retrieval pipeline.
-        </p>
-        <ul class="feature-list">
-          <li><strong>Qdrant &amp; Pinecone:</strong> Cloud-managed serverless vector indexing.</li>
-          <li><strong>Weaviate &amp; Milvus:</strong> Self-hosted cluster support for high-throughput enterprise pipelines.</li>
-          <li><strong>Chroma:</strong> Lightweight local embedding storage for development and edge environments.</li>
-        </ul>
-      </div>
-
-    </div><!-- /#content -->
-
-    <!-- RIGHT TOC -->
-    <div id="toc">
-      <div class="toc-label">On this page</div>
-      <div id="toc-links"></div>
+<div class="code-tabs" id="lc-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
     </div>
-  </div><!-- /#main -->
-</div><!-- /#layout -->
+    <button class="tab-btn active" onclick="switchTab('lc-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('lc-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('lc-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from langchain_openai import ChatOpenAI
+from langchain.chains import ConversationChain
+from piyapi.adapters.langchain import PiyChatMessageHistory
+
+# Bind LangChain conversation history directly to PiyAPI cognitive substrate
+history = PiyChatMessageHistory(
+    user_id="user_enterprise_101",
+    session_id="sess_langchain_01",
+    api_key="your_api_key",
+    surprise_threshold=0.05
+)
+
+llm = ChatOpenAI(model="gpt-4o")
+chain = ConversationChain(llm=llm, memory=history)
+
+response = chain.invoke({"input": "We have finalized our database migration to PostgreSQL 16."})
+print(response["response"])</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { ChatOpenAI } from "@langchain/openai";
+import { ConversationChain } from "langchain/chains";
+import { PiyChatMessageHistory } from "@piyapi/sdk/langchain";
+
+const memory = new PiyChatMessageHistory({
+  userId: "user_enterprise_101",
+  sessionId: "sess_langchain_01",
+  apiKey: process.env.PIYAPI_API_KEY!
+});
+
+const model = new ChatOpenAI({ modelName: "gpt-4o" });
+const chain = new ConversationChain({ llm: model, memory });
+const res = await chain.call({ input: "Finalized DB migration to PostgreSQL 16." });
+console.log(res.response);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"user_enterprise_101","messages":[{"role":"user","content":"Finalized DB migration to PG16"}]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('overview')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Integrations Directory</span>
+          <span class="footer-next" onclick="showPage('langgraph')" style="color:#818cf8;cursor:pointer;">NEXT: LangGraph &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: langgraph -->
+<div class="page" id="page-langgraph">
+        <div class="breadcrumb">Integrations / Agent Frameworks / LangGraph</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Stateful Graphs</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Checkpointer Substrate</span>
+        </div>
+        <h1 class="page-title">LangGraph Multi-Agent Persistence</h1>
+        <div class="page-lead">Persistent graph checkpointer and cross-node episodic memory for LangGraph state machines.</div>
+
+        <h2 id="lg-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install langgraph langchain-core piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="lg-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Persistent StateGraph Checkpointer</h2>
+        
+<div class="code-tabs" id="lg-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('lg-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('lg-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('lg-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from langgraph.graph import StateGraph, START, END
+from piyapi.adapters.langgraph import PiyCheckpointer
+
+# Initialize persistent memory checkpointer
+checkpointer = PiyCheckpointer(
+    user_id="analyst_team",
+    workspace_id="ws_financial_reports"
+)
+
+builder = StateGraph(dict)
+# Define research and drafting nodes
+builder.add_node("research", lambda state: {"facts": "Ingested 12 earnings reports"})
+builder.add_node("draft", lambda state: {"summary": "Q3 EBITDA up 18% YoY"})
+builder.add_edge(START, "research")
+builder.add_edge("research", "draft")
+builder.add_edge("draft", END)
+
+# Compile graph with persistent PiyAPI memory checkpointer
+graph = builder.compile(checkpointer=checkpointer)
+result = graph.invoke({"task": "Analyze Q3 tech earnings"}, config={"configurable": {"thread_id": "thread_44"}})
+print("LangGraph Execution Output:", result)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { StateGraph, START, END } from "@langchain/langgraph";
+import { PiyCheckpointer } from "@piyapi/sdk/langgraph";
+
+const checkpointer = new PiyCheckpointer({
+  userId: "analyst_team",
+  workspaceId: "ws_financial_reports"
+});
+
+const builder = new StateGraph({
+  channels: { facts: { value: null }, summary: { value: null } }
+});
+
+const graph = builder.compile({ checkpointer });</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories?user_id=analyst_team&scope=session" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('langchain')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: LangChain</span>
+          <span class="footer-next" onclick="showPage('llamaindex')" style="color:#818cf8;cursor:pointer;">NEXT: LlamaIndex &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: llamaindex -->
+<div class="page" id="page-llamaindex">
+        <div class="breadcrumb">Integrations / Agent Frameworks / LlamaIndex</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">VectorStore &amp; Retriever</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">HybridScorer</span>
+        </div>
+        <h1 class="page-title">LlamaIndex Cognitive Storage &amp; Retriever</h1>
+        <div class="page-lead">Plug PiyAPI into LlamaIndex for bitemporal index querying and hybrid context retrieval.</div>
+
+        <h2 id="llama-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install llama-index-core llama-index-embeddings-openai piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="llama-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Custom Retriever Implementation</h2>
+        
+<div class="code-tabs" id="llama-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('llama-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('llama-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('llama-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from llama_index.core import VectorStoreIndex
+from piyapi.adapters.llamaindex import PiyVectorStore
+
+# Mount PiyAPI as the vector & graph storage engine
+vector_store = PiyVectorStore(
+    user_id="researcher_alice",
+    namespace="medical_guidelines"
+)
+
+index = VectorStoreIndex.from_vector_store(vector_store)
+query_engine = index.as_query_engine(similarity_top_k=5)
+
+response = query_engine.query("What are the recommended second-line therapies for hypertension?")
+print("LlamaIndex Answer:", str(response))</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { VectorStoreIndex } from "llamaindex";
+import { PiyVectorStore } from "@piyapi/sdk/llamaindex";
+
+const store = new PiyVectorStore({
+  userId: "researcher_alice",
+  namespace: "medical_guidelines"
+});
+
+const index = await VectorStoreIndex.fromVectorStore(store);
+const queryEngine = index.asQueryEngine({ similarityTopK: 5 });
+const response = await queryEngine.query({ query: "Hypertension therapies" });
+console.log(response.response);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/search" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"researcher_alice","query":"second line hypertension therapies"}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('langgraph')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: LangGraph</span>
+          <span class="footer-next" onclick="showPage('crewai')" style="color:#818cf8;cursor:pointer;">NEXT: CrewAI &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: crewai -->
+<div class="page" id="page-crewai">
+        <div class="breadcrumb">Integrations / Agent Frameworks / CrewAI</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Multi-Agent Teams</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Shared Blackboard</span>
+        </div>
+        <h1 class="page-title">CrewAI Shared Memory Substrate</h1>
+        <div class="page-lead">Coordinate multi-agent crews with persistent shared context and role-isolated private memory.</div>
+
+        <h2 id="crew-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install crewai piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="crew-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Shared Crew Memory Configuration</h2>
+        
+<div class="code-tabs" id="crew-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('crew-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('crew-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('crew-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from crewai import Agent, Crew, Task
+from piyapi.adapters.crewai import PiyCrewMemory
+
+# Initialize shared episodic blackboard for the entire crew
+crew_memory = PiyCrewMemory(
+    crew_id="crew_mna_due_diligence",
+    api_key="your_api_key",
+    shared_scope="global"
+)
+
+researcher = Agent(
+    role="M&A Senior Analyst",
+    goal="Uncover undisclosed liabilities in SEC 10-K filings",
+    backstory="Ex-forensic auditor with deep accounting expertise",
+    memory=crew_memory
+)
+
+writer = Agent(
+    role="Investment Memo Writer",
+    goal="Synthesize risks into executive summaries",
+    backstory="Wall Street principal authoring buy-side memos",
+    memory=crew_memory
+)
+
+crew = Crew(agents=[researcher, writer], tasks=[], memory=True)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">// TypeScript CrewAI Bridge
+import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+await piy.memories.add({
+  userId: "crew_mna_due_diligence",
+  scope: "global",
+  messages: [{ role: "assistant", content: "M&A target has $42M pending litigation in Delaware." }]
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"crew_mna_due_diligence","scope":"global","messages":[{"role":"assistant","content":"Pending litigation verified"}]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('llamaindex')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: LlamaIndex</span>
+          <span class="footer-next" onclick="showPage('autogen')" style="color:#818cf8;cursor:pointer;">NEXT: AutoGen &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: autogen -->
+<div class="page" id="page-autogen">
+        <div class="breadcrumb">Integrations / Agent Frameworks / AutoGen</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">ConversableAgent</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">GroupChat Manager</span>
+        </div>
+        <h1 class="page-title">Microsoft AutoGen Memory Integration</h1>
+        <div class="page-lead">Persistent memory hooks for Microsoft AutoGen ConversableAgent and GroupChatManager.</div>
+
+        <h2 id="ag-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install pyautogen piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="ag-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. ConversableAgent Memory Hook</h2>
+        
+<div class="code-tabs" id="autogen-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('autogen-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('autogen-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('autogen-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">import autogen
+from piyapi.adapters.autogen import register_piyapi_memory
+
+user_proxy = autogen.UserProxyAgent(name="user_proxy", code_execution_config={"work_dir": "coding"})
+assistant = autogen.AssistantAgent(name="assistant", llm_config={"model": "gpt-4o"})
+
+# Hook AutoGen into PiyAPI's cognitive memory substrate
+register_piyapi_memory(
+    agent=assistant,
+    user_id="autogen_dev_session",
+    surprise_threshold=0.05
+)
+
+user_proxy.initiate_chat(assistant, message="Refactor our microservices to use gRPC instead of REST.")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+await piy.memories.add({
+  userId: "autogen_dev_session",
+  messages: [{ role: "user", content: "Microservices refactor to gRPC initialized." }]
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories?user_id=autogen_dev_session&limit=5" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('crewai')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: CrewAI</span>
+          <span class="footer-next" onclick="showPage('mastra')" style="color:#818cf8;cursor:pointer;">NEXT: Mastra &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: mastra -->
+<div class="page" id="page-mastra">
+        <div class="breadcrumb">Integrations / Agent Frameworks / Mastra</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">TypeScript Framework</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Workflow Threads</span>
+        </div>
+        <h1 class="page-title">Mastra Agent Framework Integration</h1>
+        <div class="page-lead">Persistent storage and thread memory provider for Mastra TypeScript agents.</div>
+
+        <h2 id="mastra-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">npm install @mastra/core @piyapi/sdk</code></pre>
+        </div>
+
+        <h2 id="mastra-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Mastra Agent Memory Provider</h2>
+        
+<div class="code-tabs" id="mastra-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('mastra-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('mastra-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('mastra-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python"># Python Bridge for Mastra workflow
+from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+client.memories.add(
+    user_id="mastra_agent_worker_01",
+    messages=[{"role": "assistant", "content": "Processed onboarding step #3 for Acme Corp."}]
+)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { Agent } from '@mastra/core';
+import { PiyMemoryStorage } from '@piyapi/sdk/mastra';
+
+export const onboardingAgent = new Agent({
+  name: 'OnboardingAgent',
+  instructions: 'Guide B2B customers through API setup and billing verification.',
+  model: { provider: 'OPEN_AI', name: 'gpt-4o' },
+  memory: new PiyMemoryStorage({
+    apiKey: process.env.PIYAPI_API_KEY!,
+    scope: 'user'
+  })
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/search" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"mastra_agent_worker_01","query":"onboarding status"}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('autogen')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: AutoGen</span>
+          <span class="footer-next" onclick="showPage('uxpilot')" style="color:#818cf8;cursor:pointer;">NEXT: UXPilot &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: uxpilot -->
+<div class="page" id="page-uxpilot">
+        <div class="breadcrumb">Integrations / Agent Frameworks / UXPilot</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Design Automation</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Interaction Memory</span>
+        </div>
+        <h1 class="page-title">UXPilot UI/UX Interaction Memory</h1>
+        <div class="page-lead">Track design component revisions, user testing feedback, and brand guidelines across Figma sessions.</div>
+
+        <h2 id="ux-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">npm install @piyapi/sdk @uxpilot/core</code></pre>
+        </div>
+
+        <h2 id="ux-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. UI Interaction Hook</h2>
+        
+<div class="code-tabs" id="ux-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('ux-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('ux-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('ux-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+client.memories.pin(
+    user_id="ux_design_system",
+    rule="Buttons must use 8px border-radius, #6366f1 primary purple, and Inter font-weight 600."
+)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.pin({
+  userId: "ux_design_system",
+  rule: "Buttons must use 8px border-radius and #6366f1 primary purple."
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories/pinned?user_id=ux_design_system" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('mastra')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Mastra</span>
+          <span class="footer-next" onclick="showPage('google-adk')" style="color:#818cf8;cursor:pointer;">NEXT: Google ADK &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: google-adk -->
+<div class="page" id="page-google-adk">
+        <div class="breadcrumb">Integrations / AI SDKs / Google ADK</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Google Cloud</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Gemini Tool Adapter</span>
+        </div>
+        <h1 class="page-title">Google Agent Development Kit (ADK)</h1>
+        <div class="page-lead">Integrate persistent cognitive memory into Gemini 1.5 Pro and Flash agents using Google ADK.</div>
+
+        <h2 id="gadk-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install google-adk google-generativeai piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="gadk-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Gemini Agent Tool Schema</h2>
+        
+<div class="code-tabs" id="gadk-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('gadk-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('gadk-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('gadk-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">import google.generativeai as genai
+from piyapi import PiyMemoryClient
+
+piy = PiyMemoryClient()
+
+def recall_memory_tool(query: str) -> str:
+    res = piy.memories.search(user_id="user_adk_01", query=query)
+    return "\n".join([r.content for r in res.results])
+
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-pro",
+    tools=[recall_memory_tool]
+)
+
+response = model.generate_content("What was decided regarding our Kubernetes ingress setup?")
+print(response.text)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { GoogleGenerativeAI } from "@google/generative-ai";
+import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const model = ai.getGenerativeModel({ model: "gemini-1.5-pro" });</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/search" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"user_adk_01","query":"Kubernetes ingress decisions"}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('uxpilot')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: UXPilot</span>
+          <span class="footer-next" onclick="showPage('vercel-ai')" style="color:#818cf8;cursor:pointer;">NEXT: Vercel AI SDK &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: vercel-ai -->
+<div class="page" id="page-vercel-ai">
+        <div class="breadcrumb">Integrations / AI SDKs / Vercel AI SDK</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Next.js &amp; SvelteKit</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Streaming UI</span>
+        </div>
+        <h1 class="page-title">Vercel AI SDK Integration</h1>
+        <div class="page-lead">Stream persistent memory directly into Next.js App Router route handlers with zero latency overhead.</div>
+
+        <h2 id="vai-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">npm install ai @ai-sdk/openai @piyapi/sdk</code></pre>
+        </div>
+
+        <h2 id="vai-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Next.js App Router (app/api/chat/route.ts)</h2>
+        
+<div class="code-tabs" id="vercel-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('vercel-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('vercel-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('vercel-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python"># Python backend equivalent for FastAPI
+from fastapi import FastAPI
+from piyapi import PiyMemoryClient
+
+app = FastAPI()
+piy = PiyMemoryClient()
+
+@app.post("/api/chat")
+async def chat_handler(payload: dict):
+    user_id = payload.get("user_id")
+    messages = payload.get("messages")
+    # Ingest turn into memory
+    res = piy.memories.add(user_id=user_id, messages=messages)
+    return {"status": "ok", "events": len(res.events)}</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { streamText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+import { PiyMemoryClient } from '@piyapi/sdk';
+
+const piy = new PiyMemoryClient({ apiKey: process.env.PIYAPI_API_KEY! });
+
+export async function POST(req: Request) {
+  const { messages, userId } = await req.json();
+
+  // 1. Recall hot memories for user
+  const context = await piy.memories.search({
+    userId,
+    query: messages[messages.length - 1].content,
+    limit: 5
+  });
+
+  const systemPrompt = `You are a helpful assistant. Context:\n${context.results.map(r => r.content).join('\n')}`;
+
+  // 2. Stream response
+  const result = streamText({
+    model: openai('gpt-4o'),
+    system: systemPrompt,
+    messages,
+    async onFinish({ text }) {
+      // 3. Persist completed turn asynchronously
+      await piy.memories.add({
+        userId,
+        messages: [
+          messages[messages.length - 1],
+          { role: 'assistant', content: text }
+        ]
+      });
+    }
+  });
+
+  return result.toDataStreamResponse();
+}</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "http://localhost:3000/api/chat" \
+  -H "Content-Type: application/json" \
+  -d '{"userId":"user_123","messages":[{"role":"user","content":"What are my team goals?"}]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('google-adk')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Google ADK</span>
+          <span class="footer-next" onclick="showPage('livekit')" style="color:#818cf8;cursor:pointer;">NEXT: LiveKit &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: livekit -->
+<div class="page" id="page-livekit">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / LiveKit</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">WebRTC Voice</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Sub-15ms Latency</span>
+        </div>
+        <h1 class="page-title">LiveKit Real-Time Audio Memory Integration</h1>
+        <div class="page-lead">Integrate ultra-low latency memory recall into LiveKit WebRTC audio and video agents.</div>
+
+        <h2 id="lk-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install livekit-agents livekit-plugins-openai piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="lk-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. LiveKit Agent Worker Implementation</h2>
+        
+<div class="code-tabs" id="lk-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('lk-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('lk-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('lk-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from livekit.agents import JobContext, WorkerOptions, cli
+from piyapi import PiyMemoryClient
+
+piy = PiyMemoryClient()
+
+async def entrypoint(ctx: JobContext):
+    await ctx.connect()
+    participant = await ctx.wait_for_participant()
+    
+    # Warm in-memory cache (<15ms)
+    recalled = piy.memories.retrieve(
+        user_id=participant.identity,
+        query="Caller account tier and previous ticket summaries"
+    )
+    print(f"Preloaded {len(recalled.results)} caller facts.")
+
+if __name__ == "__main__":
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint))</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+const recalled = await piy.memories.retrieve({
+  userId: "caller_webrtc_99",
+  query: "account preferences and billing history"
+});
+console.log(`Preloaded ${recalled.results.length} caller facts.`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories?user_id=caller_webrtc_99&limit=5" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('vercel-ai')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Vercel AI SDK</span>
+          <span class="footer-next" onclick="showPage('pipecat')" style="color:#818cf8;cursor:pointer;">NEXT: Pipecat &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: pipecat -->
+<div class="page" id="page-pipecat">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / Pipecat</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Voice Pipelines</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Frame Processor</span>
+        </div>
+        <h1 class="page-title">Pipecat Voice Pipeline Integration</h1>
+        <div class="page-lead">Real-time memory frame processor for Pipecat conversational voice applications.</div>
+
+        <h2 id="pipecat-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install pipecat-ai piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="pipecat-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Pipecat Memory Frame Processor</h2>
+        
+<div class="code-tabs" id="pipecat-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('pipecat-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('pipecat-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('pipecat-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from pipecat.processors.frame_processor import FrameDirection, FrameProcessor
+from piyapi import PiyMemoryClient
+
+class PiyMemoryProcessor(FrameProcessor):
+    def __init__(self, user_id: str):
+        super().__init__()
+        self.user_id = user_id
+        self.piy = PiyMemoryClient()
+
+    async def process_frame(self, frame, direction: FrameDirection):
+        await super().process_frame(frame, direction)
+        # Intercept completed transcribed user text
+        if hasattr(frame, "text") and frame.text:
+            self.piy.memories.add(
+                user_id=self.user_id,
+                messages=[{"role": "user", "content": frame.text}]
+            )
+        await self.push_frame(frame, direction)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+// Process transcript buffer
+await piy.memories.add({
+  userId: "pipecat_caller_01",
+  messages: [{ role: "user", content: "Caller confirmed prescription refill." }]
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"pipecat_caller_01","messages":[{"role":"user","content":"Prescription refill confirmed"}]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('livekit')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: LiveKit</span>
+          <span class="footer-next" onclick="showPage('elevenlabs')" style="color:#818cf8;cursor:pointer;">NEXT: ElevenLabs &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: elevenlabs -->
+<div class="page" id="page-elevenlabs">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / ElevenLabs</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Conversational AI</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Voice Context</span>
+        </div>
+        <h1 class="page-title">ElevenLabs Conversational AI Integration</h1>
+        <div class="page-lead">Inject dynamic user memory and emotional context into ElevenLabs Conversational AI agents.</div>
+
+        <h2 id="eleven-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install elevenlabs piyapi-memory</code></pre>
+        </div>
+
+        <h2 id="eleven-code" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. ElevenLabs Dynamic Prompt Hook</h2>
+        
+<div class="code-tabs" id="eleven-tabs">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('eleven-tabs', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('eleven-tabs', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('eleven-tabs', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from elevenlabs.client import ElevenLabs
+from piyapi import PiyMemoryClient
+
+eleven = ElevenLabs()
+piy = PiyMemoryClient()
+
+user_id = "patient_elena"
+recalled = piy.memories.search(user_id=user_id, query="Recent medical inquiries and preferred voice tone")
+context_prompt = "\n".join([r.content for r in recalled.results])
+
+# Inject memory into ElevenLabs dynamic prompt variables
+conversation_init = {
+    "agent_id": "eleven_agent_nurse_01",
+    "dynamic_variables": {
+        "user_name": "Elena",
+        "medical_context": context_prompt
+    }
+}
+print("Initialized ElevenLabs agent with persistent memory context.")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const piy = new PiyMemoryClient();
+const recalled = await piy.memories.search({
+  userId: "patient_elena",
+  query: "medical inquiries"
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories?user_id=patient_elena&limit=3" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('pipecat')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Pipecat</span>
+          <span class="footer-next" onclick="showPage('cloud-providers')" style="color:#818cf8;cursor:pointer;">NEXT: Cloud Providers &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: cloud-providers -->
+<div class="page" id="page-cloud-providers">
+        <div class="breadcrumb">Integrations / Infrastructure / Cloud Providers</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Enterprise Cloud</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">AWS, GCP &amp; Azure</span>
+        </div>
+        <h1 class="page-title">Enterprise Cloud Deployment (AWS, GCP, Azure)</h1>
+        <div class="page-lead">Deploy PiyAPI into dedicated VPCs with AWS PrivateLink, GCP Private Service Connect, and Azure Private Link.</div>
+
+        <h2 id="cloud-vpc" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. VPC PrivateLink Setup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">terraform</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-hcl"># AWS PrivateLink Endpoint for PiyAPI Engine
+resource "aws_vpc_endpoint" "piyapi" {
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.vpce.us-east-1.piyapi-privatelink"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = [aws_subnet.private_a.id, aws_subnet.private_b.id]
+  security_group_ids  = [aws_security_group.piyapi_vpce.id]
+  private_dns_enabled = true
+}</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('elevenlabs')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: ElevenLabs</span>
+          <span class="footer-next" onclick="showPage('mcp')" style="color:#818cf8;cursor:pointer;">NEXT: Model Context Protocol &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: mcp -->
+<div class="page" id="page-mcp">
+        <div class="breadcrumb">Integrations / Protocols / Model Context Protocol</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">MCP Protocol</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Stdio &amp; SSE</span>
+        </div>
+        <h1 class="page-title">Model Context Protocol (MCP) Server</h1>
+        <div class="page-lead">Deploy PiyAPI as a first-class MCP server supporting standard stdio and Server-Sent Events (SSE) transports.</div>
+
+        <h2 id="mcp-setup" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Stdio Server Startup</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># Run MCP Server via stdio
+npx -y @piyapi/mcp-server \
+  --api-key="$PIYAPI_API_KEY" \
+  --workspace="$(pwd)" \
+  --surprise-threshold=0.05</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('cloud-providers')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Cloud Providers</span>
+          <span class="footer-next" onclick="showPage('rest-api')" style="color:#818cf8;cursor:pointer;">NEXT: REST API &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: rest-api -->
+<div class="page" id="page-rest-api">
+        <div class="breadcrumb">Integrations / Protocols / REST API</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">OpenAPI 3.1</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">JSON REST</span>
+        </div>
+        <h1 class="page-title">PiyAPI REST API Overview</h1>
+        <div class="page-lead">Direct HTTPS endpoints for storing, querying, pin-anchoring, and auditing long-term memory.</div>
+
+        <h2 id="rest-auth" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Authentication &amp; Headers</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/health" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "X-Workspace-ID: ws_production" \
+  -H "Content-Type: application/json"</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('mcp')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: MCP</span>
+          <span class="footer-next" onclick="showPage('sdks')" style="color:#818cf8;cursor:pointer;">NEXT: Client SDKs &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: sdks -->
+<div class="page" id="page-sdks">
+        <div class="breadcrumb">Integrations / Protocols / Client SDKs</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Official SDKs</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">TypeScript &amp; Python</span>
+        </div>
+        <h1 class="page-title">Official Client SDKs Guide</h1>
+        <div class="page-lead">Complete guide to @piyapi/sdk (npm) and piyapi-memory (PyPI).</div>
+
+        <h2 id="sdk-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Client Options</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">bash</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># Node.js
+npm install @piyapi/sdk
+
+# Python
+pip install piyapi-memory</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('rest-api')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: REST API</span>
+          <span class="footer-next" onclick="showPage('webhooks')" style="color:#818cf8;cursor:pointer;">NEXT: Webhooks &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: webhooks -->
+<div class="page" id="page-webhooks">
+        <div class="breadcrumb">Integrations / Protocols / Webhooks</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Event-Driven</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">HMAC SHA-256</span>
+        </div>
+        <h1 class="page-title">CDC Webhooks &amp; Event Ingestion</h1>
+        <div class="page-lead">Stream real-time changes from GitHub, Slack, Notion, and Gmail into organizational memory.</div>
+
+        <h2 id="webhook-verify" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. HMAC Signature Verification</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">python</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-python">import hmac, hashlib
+
+def verify_piyapi_webhook(raw_payload: bytes, signature_header: str, secret: str) -> bool:
+    computed = hmac.new(secret.encode(), raw_payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(f"sha256={computed}", signature_header)</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('sdks')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Client SDKs</span>
+          <span class="footer-next" onclick="showPage('postgresql')" style="color:#818cf8;cursor:pointer;">NEXT: PostgreSQL &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: postgresql -->
+<div class="page" id="page-postgresql">
+        <div class="breadcrumb">Integrations / Storage Substrates / PostgreSQL</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Relational Substrate</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">pgvector HNSW</span>
+        </div>
+        <h1 class="page-title">PostgreSQL &amp; pgvector Substrate</h1>
+        <div class="page-lead">Enterprise relational storage engine with pgvector for bitemporal relations and HNSW vector indexing.</div>
+
+        <h2 id="pg-schema" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Relational Schema &amp; HNSW Indexing</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">sql</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-sql">CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE TABLE piy_memories (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id VARCHAR(128) NOT NULL,
+    workspace_id VARCHAR(128) NOT NULL,
+    content TEXT NOT NULL,
+    embedding vector(1536),
+    valid_time TSTZRANGE NOT NULL,
+    tx_time TIMESTAMPTZ DEFAULT clock_timestamp(),
+    confidence NUMERIC(4,3) DEFAULT 1.000,
+    metadata JSONB
+);
+
+CREATE INDEX idx_piy_hnsw ON piy_memories USING hnsw (embedding vector_cosine_ops);
+CREATE INDEX idx_piy_valid_time ON piy_memories USING gist (valid_time);</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('webhooks')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Webhooks</span>
+          <span class="footer-next" onclick="showPage('redis')" style="color:#818cf8;cursor:pointer;">NEXT: Redis &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: redis -->
+<div class="page" id="page-redis">
+        <div class="breadcrumb">Integrations / Storage Substrates / Redis</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">L1 Working Memory</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Sub-2ms Cache</span>
+        </div>
+        <h1 class="page-title">Redis Semantic Caching Tier</h1>
+        <div class="page-lead">Ultra-low latency in-memory tier for in-flight working memory buffers, session scoping, and Redlock distributed state.</div>
+
+        <h2 id="redis-config" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Redis Working Memory Configuration</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">redis.conf</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-ini">maxmemory 4gb
+maxmemory-policy volatile-lru
+appendonly yes
+appendfsync everysec</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('postgresql')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: PostgreSQL</span>
+          <span class="footer-next" onclick="showPage('vectordbs')" style="color:#818cf8;cursor:pointer;">NEXT: Vector Databases &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: vectordbs -->
+<div class="page" id="page-vectordbs">
+        <div class="breadcrumb">Integrations / Storage Substrates / Vector Databases</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Vector Connectors</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Qdrant, Pinecone, Milvus</span>
+        </div>
+        <h1 class="page-title">External Vector Database Substrates</h1>
+        <div class="page-lead">Plug-and-play connectors for Qdrant, Pinecone, Weaviate, Milvus, and Chroma external vector storage.</div>
+
+        <h2 id="vectordb-config" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Supported Vector Backends</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Database</th>
+                <th style="padding:8px 12px;">Connection Type</th>
+                <th style="padding:8px 12px;">Filtering Capability</th>
+                <th style="padding:8px 12px;">Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Qdrant</td>
+                <td style="padding:8px 12px;">gRPC / REST</td>
+                <td style="padding:8px 12px;">Payload metadata &amp; temporal range</td>
+                <td style="padding:8px 12px;">Self-hosted on-premise &amp; air-gapped clusters.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Pinecone</td>
+                <td style="padding:8px 12px;">Serverless REST</td>
+                <td style="padding:8px 12px;">Metadata filtering &amp; namespaces</td>
+                <td style="padding:8px 12px;">Serverless cloud scaling with zero maintenance.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Milvus</td>
+                <td style="padding:8px 12px;">gRPC Cluster</td>
+                <td style="padding:8px 12px;">Scalar expression filtering</td>
+                <td style="padding:8px 12px;">Billion-scale enterprise vector fleets.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Weaviate</td>
+                <td style="padding:8px 12px;">GraphQL / REST</td>
+                <td style="padding:8px 12px;">Hybrid sparse/dense index</td>
+                <td style="padding:8px 12px;">Hybrid BM25 + dense search pipelines.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('redis')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Redis</span>
+          <span class="footer-next" onclick="showPage('overview')" style="color:#818cf8;cursor:pointer;">NEXT: Integrations Directory &rarr;</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <footer class="global-footer">
   <a href="index.html" class="topbar-logo" style="font-size: 0.95rem;">
@@ -2007,7 +2533,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <div class="global-footer-links">
     <a href="https://github.com/piyapi" target="_blank">GitHub</a>
@@ -2017,10 +2543,28 @@
     <a href="opensource.html">Open Source</a>
     <a href="api_reference.html">API Reference</a>
   </div>
-  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+  <div class="global-footer-copy">&copy; 2024 PiyAPI. All rights reserved.</div>
 </footer>
 
 <script>
+
+function switchTab(containerId, tabName) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const buttons = container.querySelectorAll('.tab-btn');
+  const panels = container.querySelectorAll('.tab-panel');
+  buttons.forEach(btn => {
+    const text = btn.innerText.toLowerCase();
+    const match = (tabName === 'py' && text.includes('python')) ||
+                  (tabName === 'ts' && text.includes('typescript')) ||
+                  (tabName === 'curl' && (text.includes('curl') || text.includes('rest')));
+    btn.classList.toggle('active', match);
+  });
+  panels.forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-tab') === tabName);
+  });
+}
+
 const TOC_MAP = {
   'overview': [
     {id:'integrations-directory', label:'Integrations', filter:'all'},
@@ -2030,26 +2574,26 @@ const TOC_MAP = {
     {id:'integrations-directory', label:'Developer Tools', filter:'dev-tool'},
     {id:'integrations-directory', label:'Infrastructure', filter:'infrastructure'}
   ],
-  'langchain': [{id:'lc-install', label:'Installation'}, {id:'lc-code', label:'Adapter Example'}],
-  'langgraph': [{id:'lg-install', label:'Installation'}, {id:'lg-code', label:'StateGraph Example'}],
-  'llamaindex': [{id:'llama-install', label:'Installation'}, {id:'llama-code', label:'Retriever Setup'}],
-  'crewai': [{id:'crew-install', label:'Installation'}, {id:'crew-code', label:'Shared Context Tool'}],
-  'autogen': [{id:'ag-install', label:'Installation'}, {id:'ag-code', label:'ConversableAgent Hook'}],
-  'mastra': [{id:'mastra-install', label:'Installation'}, {id:'mastra-code', label:'TypeScript Agent'}],
-  'uxpilot': [{id:'ux-install', label:'Installation'}, {id:'ux-code', label:'UI Interaction Hook'}],
-  'google-adk': [{id:'gadk-install', label:'Installation'}, {id:'gadk-code', label:'Gemini Agent Tool'}],
-  'vercel-ai': [{id:'vai-install', label:'Installation'}, {id:'vai-code', label:'Next.js Route Handler'}],
-  'livekit': [{id:'lk-install', label:'Installation'}, {id:'lk-code', label:'Voice Agent Lifecycle'}],
-  'pipecat': [{id:'pipe-install', label:'Installation'}, {id:'pipe-code', label:'Pipeline Frame Processor'}],
-  'elevenlabs': [{id:'el-code', label:'Dynamic Prompt Injection'}],
-  'mcp': [{id:'mcp-config', label:'IDE Configuration'}, {id:'mcp-tools', label:'Core Tools Catalog'}],
-  'rest-api': [{id:'rest-store', label:'Store Memory'}, {id:'rest-search', label:'Hybrid Vector Search'}],
-  'sdks': [{id:'sdk-ts', label:'TypeScript SDK'}, {id:'sdk-py', label:'Python SDK'}],
-  'webhooks': [{id:'wh-signature', label:'Signature Verification'}],
-  'postgresql': [],
-  'redis': [],
-  'vectordbs': [],
-  'cloud-providers': [{id:'cloud-bedrock', label:'AWS Bedrock'}, {id:'cloud-byok', label:'BYOK KMS Encryption'}]
+  'langchain': [{id:'lc-install', label:'1. Installation'}, {id:'lc-code', label:'2. Adapter Code'}],
+  'langgraph': [{id:'lg-install', label:'1. Installation'}, {id:'lg-code', label:'2. StateGraph Checkpointer'}],
+  'llamaindex': [{id:'llama-install', label:'1. Installation'}, {id:'llama-code', label:'2. Custom Retriever'}],
+  'crewai': [{id:'crew-install', label:'1. Installation'}, {id:'crew-code', label:'2. Shared Memory'}],
+  'autogen': [{id:'ag-install', label:'1. Installation'}, {id:'ag-code', label:'2. ConversableAgent Hook'}],
+  'mastra': [{id:'mastra-install', label:'1. Installation'}, {id:'mastra-code', label:'2. Memory Provider'}],
+  'uxpilot': [{id:'ux-install', label:'1. Installation'}, {id:'ux-code', label:'2. Interaction Hook'}],
+  'google-adk': [{id:'gadk-install', label:'1. Installation'}, {id:'gadk-code', label:'2. Gemini Tool'}],
+  'vercel-ai': [{id:'vai-install', label:'1. Installation'}, {id:'vai-code', label:'2. Next.js Route'}],
+  'livekit': [{id:'lk-install', label:'1. Installation'}, {id:'lk-code', label:'2. LiveKit Worker'}],
+  'pipecat': [{id:'pipecat-install', label:'1. Installation'}, {id:'pipecat-code', label:'2. Frame Processor'}],
+  'elevenlabs': [{id:'eleven-install', label:'1. Installation'}, {id:'eleven-code', label:'2. Voice Hook'}],
+  'cloud-providers': [{id:'cloud-vpc', label:'1. PrivateLink Setup'}],
+  'mcp': [{id:'mcp-setup', label:'1. Stdio Server'}],
+  'rest-api': [{id:'rest-auth', label:'1. Authentication'}],
+  'sdks': [{id:'sdk-install', label:'1. Client SDKs'}],
+  'webhooks': [{id:'webhook-verify', label:'1. HMAC Verification'}],
+  'postgresql': [{id:'pg-schema', label:'1. pgvector Schema'}],
+  'redis': [{id:'redis-config', label:'1. Working Cache'}],
+  'vectordbs': [{id:'vectordb-config', label:'1. Vector Backends'}]
 };
 
 let currentPage = 'overview';

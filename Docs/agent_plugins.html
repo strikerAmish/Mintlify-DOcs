@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Negentro Agent Plugins — Claude Code &amp; Ecosystem</title>
-  <meta name="description" content="Persistent cross-session memory for AI coding agents and harnesses. Negentro Agent Plugins documentation.">
+  <title>PiyAPI Agent Plugins — Claude Code &amp; Ecosystem</title>
+  <meta name="description" content="Persistent cross-session memory for AI coding agents and harnesses. PiyAPI Agent Plugins documentation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -965,7 +965,7 @@
       transform: translateX(3px);
     }
 
-    /* Building with Negentro? Banner */
+    /* Building with PiyAPI? Banner */
     .building-banner {
       background: #f7e8fb;
       border: 1px solid #ebd3f5;
@@ -1126,7 +1126,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <nav class="topbar-nav">
     <a href="index.html">Get Started</a>
@@ -1210,7 +1210,7 @@
         <div class="breadcrumb">Agent Plugins / Coding Agents / Claude Code</div>
         <h1 class="page-title">Claude Code</h1>
         <div class="page-subtitle">Persistent cross-session memory for Claude Code.</div>
-        <p class="page-lead">Connect Negentro to your coding agent so relevant context can persist across sessions and become available when you need it.</p>
+        <p class="page-lead">Connect PiyAPI to your coding agent so relevant context can persist across sessions and become available when you need it.</p>
 
         <!-- Current Version Banner -->
         <div class="version-banner">
@@ -1223,7 +1223,7 @@
         <div class="prereq-list">
           <div class="prereq-item">
             <span class="prereq-num">01</span>
-            <div>Negentro account / API key &mdash; required to authenticate requests. Set it as <span class="code-badge">NEGENTRO_API_KEY</span> ,</div>
+            <div>PiyAPI account / API key &mdash; required to authenticate requests. Set it as <span class="code-badge">PIYAPI_API_KEY</span> ,</div>
           </div>
           <div class="prereq-item">
             <span class="prereq-num">02</span>
@@ -1242,7 +1242,7 @@
             <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
             <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
           </div>
-          <pre><span class="tok-kw">export</span> <span class="tok-prop">NEGENTRO_API_KEY</span>=<span class="tok-str">"your-api-key"</span>
+          <pre><span class="tok-kw">export</span> <span class="tok-prop">PIYAPI_API_KEY</span>=<span class="tok-str">"your-api-key"</span>
 <span class="tok-cmd">negentro plugin install claude-code</span>
 <span class="tok-cmd">negentro plugin status</span></pre>
         </div>
@@ -1385,7 +1385,7 @@
             <div class="node-arrow">&rarr;</div>
             <div class="node-pill"><span class="node-num">02</span> Capture</div>
             <div class="node-arrow">&rarr;</div>
-            <div class="node-pill highlight"><span class="node-num" style="color:var(--accent);">03</span> Negentro Memory</div>
+            <div class="node-pill highlight"><span class="node-num" style="color:var(--accent);">03</span> PiyAPI Memory</div>
             <div class="node-arrow">&rarr;</div>
             <div class="node-pill"><span class="node-num">04</span> Extract</div>
             <div class="node-arrow">&rarr;</div>
@@ -1398,7 +1398,7 @@
         </div>
         <div class="prereq-list" style="margin-top: 1.5rem;">
           <div class="prereq-item"><span class="prereq-num">01</span><div><strong>Capture</strong> &mdash; capture relevant activity from the agent session.</div></div>
-          <div class="prereq-item"><span class="prereq-num">02</span><div><strong>Flush</strong> &mdash; send captured context to Negentro after meaningful interaction boundaries.</div></div>
+          <div class="prereq-item"><span class="prereq-num">02</span><div><strong>Flush</strong> &mdash; send captured context to PiyAPI after meaningful interaction boundaries.</div></div>
           <div class="prereq-item"><span class="prereq-num">03</span><div><strong>Extract</strong> &mdash; identify useful info such as project context, decisions, constraints, preferences.</div></div>
           <div class="prereq-item"><span class="prereq-num">04</span><div><strong>Recall</strong> &mdash; retrieve relevant memories during a later session.</div></div>
         </div>
@@ -1473,7 +1473,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td><code>api_key</code></td><td>none</td><td>Authenticates requests to Negentro.</td></tr>
+              <tr><td><code>api_key</code></td><td>none</td><td>Authenticates requests to PiyAPI.</td></tr>
               <tr><td><code>user_id</code></td><td>none</td><td>Identifies the memory owner.</td></tr>
               <tr><td><code>top_k</code></td><td>5</td><td>Number of memories returned per search.</td></tr>
               <tr><td><code>max_content_chars</code></td><td>4000</td><td>Max characters captured per memory.</td></tr>
@@ -1487,9 +1487,9 @@
             <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
             <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
           </div>
-          <pre><span class="tok-kw">export</span> <span class="tok-prop">NEGENTRO_API_KEY</span>=<span class="tok-str">"..."</span>
-<span class="tok-kw">export</span> <span class="tok-prop">NEGENTRO_USER_ID</span>=<span class="tok-str">"..."</span>
-<span class="tok-kw">export</span> <span class="tok-prop">NEGENTRO_SEARCH_SCOPE</span>=<span class="tok-str">"repo"</span></pre>
+          <pre><span class="tok-kw">export</span> <span class="tok-prop">PIYAPI_API_KEY</span>=<span class="tok-str">"..."</span>
+<span class="tok-kw">export</span> <span class="tok-prop">PIYAPI_USER_ID</span>=<span class="tok-str">"..."</span>
+<span class="tok-kw">export</span> <span class="tok-prop">PIYAPI_SEARCH_SCOPE</span>=<span class="tok-str">"repo"</span></pre>
         </div>
 
         <!-- Upgrading -->
@@ -1514,7 +1514,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td><strong>Missing API key</strong></td><td>Configure the Negentro API key and restart the plugin.</td></tr>
+              <tr><td><strong>Missing API key</strong></td><td>Configure the PiyAPI API key and restart the plugin.</td></tr>
               <tr><td><strong>Unauthorized</strong></td><td>Verify the API key and account permissions.</td></tr>
               <tr><td><strong>No memory after session</strong></td><td>Check that memory capture is enabled and that the plugin completed its session flush.</td></tr>
               <tr><td><strong>Plugin won't start</strong></td><td>Verify the supported agent version and plugin installation.</td></tr>
@@ -1534,20 +1534,20 @@
         </ul>
         <p class="doc-p" style="font-size: 0.84rem; color: var(--text-faint); font-style: italic; margin-bottom: 1rem;">Document the exact telemetry behavior here before production release.</p>
         <div class="query-box" style="margin: 0.75rem 0 2.5rem; background: var(--bg-card); display: flex; align-items: center; justify-content: space-between;">
-          <span><span class="tok-kw">export</span> NEGENTRO_TELEMETRY=false</span>
-          <button class="terminal-copy" onclick="copySnippetText('export NEGENTRO_TELEMETRY=false', this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          <span><span class="tok-kw">export</span> PIYAPI_TELEMETRY=false</span>
+          <button class="terminal-copy" onclick="copySnippetText('export PIYAPI_TELEMETRY=false', this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
         </div>
 
         <!-- Related agent plugins -->
         <h2 class="doc-h2" id="related-agent-plugins">Related agent plugins</h2>
         <div class="related-cards-grid">
-          <!-- Negentro MCP -->
+          <!-- PiyAPI MCP -->
           <div class="related-card" onclick="showPage('cursor')">
             <svg class="related-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2v6m0 8v6M8 8v8m8-8v8M6 8h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z"/>
             </svg>
-            <div class="related-card-title">Negentro MCP</div>
-            <div class="related-card-desc">Connect Negentro memory through MCP-compatible agent workflows.</div>
+            <div class="related-card-title">PiyAPI MCP</div>
+            <div class="related-card-desc">Connect PiyAPI memory through MCP-compatible agent workflows.</div>
             <div class="related-card-arrow">&rarr;</div>
           </div>
 
@@ -1602,9 +1602,9 @@
           </div>
         </div>
 
-        <!-- Building with Negentro? Banner -->
+        <!-- Building with PiyAPI? Banner -->
         <div class="building-banner">
-          <div class="building-banner-title">Building with Negentro?</div>
+          <div class="building-banner-title">Building with PiyAPI?</div>
           <div class="building-banner-desc">Explore the open-source stack, contribute integrations, or browse the developer community.</div>
           <a class="building-banner-link" href="https://github.com/piyapi" target="_blank">Join the community &rarr;</a>
         </div>
@@ -1637,513 +1637,905 @@
       <!-- =============================================================== -->
       <!-- 2. CURSOR (DOCUMENTED IN USERGUIDE.PDF)                        -->
       <!-- =============================================================== -->
-      <div class="page" id="page-cursor">
-        <div class="breadcrumb">Agent Plugins / Coding Agents / Cursor</div>
-        <h1 class="page-title">Cursor</h1>
-        <div class="page-subtitle">Persistent memory &amp; Model Context Protocol (MCP) server for Cursor.</div>
-        <p class="page-lead">Integrate Negentro directly into Cursor using the standard stdio MCP transport to provide full access to 30 cognitive memory tools, semantic search, and context assembly.</p>
+      
 
-        <div class="version-banner">
-          <div class="version-check">&#10003;</div>
-          <div>Current MCP server: <span class="version-badge">@piyapi/mcp-server v1.0.4</span></div>
+      <!-- PAGE: cursor -->
+<div class="page" id="page-cursor">
+        <div class="breadcrumb">Agent Plugins / Coding Agents / Cursor</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">MCP Protocol</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">IDE Extension</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">v1.2.0</span>
+        </div>
+        <h1 class="page-title">Cursor Integration</h1>
+        <div class="page-subtitle">Persistent repository memory and AST symbol recall for Cursor Agent and Composer.</div>
+
+        <div class="callout callout-info" style="display:flex;gap:0.85rem;padding:1.1rem 1.3rem;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.25);border-radius:8px;margin:1.5rem 0;color:#93c5fd;font-size:0.9rem;">
+          <div>&bull;</div>
+          <div><strong>Context Retention Moat:</strong> When refactoring multi-file features in Cursor Composer, traditional context windows truncate previous discussion. PiyAPI MCP maintains an external bitemporal index of your codebase, architectural decisions, and past bugfixes.</div>
         </div>
 
-        <h2 class="doc-h2" id="cursor-mcp-config">MCP Server Configuration</h2>
-        <p class="doc-p">Add the Negentro MCP server to your Cursor configuration file (<code>.cursor/mcp.json</code> or global Cursor settings):</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+        <h2 id="cursor-mcp-config" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. MCP Server Configuration (.cursor/mcp.json)</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Add the PiyAPI MCP server to your project-specific or global Cursor MCP configuration:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>.cursor/mcp.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
           </div>
-          <pre>{
-  <span class="tok-prop">"mcpServers"</span>: {
-    <span class="tok-prop">"negentro"</span>: {
-      <span class="tok-prop">"command"</span>: <span class="tok-str">"npx"</span>,
-      <span class="tok-prop">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"@piyapi/mcp-server"</span>],
-      <span class="tok-prop">"env"</span>: {
-        <span class="tok-prop">"PIYAPI_API_KEY"</span>: <span class="tok-str">"sk_live_your_api_key_here"</span>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "mcpServers": {
+    "piyapi-memory": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "YOUR_PIYAPI_API_KEY",
+        "PIYAPI_WORKSPACE_ID": "ws_cursor_repo_main",
+        "PIYAPI_SURPRISE_THRESHOLD": "0.05"
       }
     }
   }
-}</pre>
+}</code></pre>
         </div>
 
-        <h2 class="doc-h2" id="cursor-tools">Available MCP Tools in Cursor</h2>
-        <p class="doc-p">Once connected, Cursor's AI composer and chat can invoke 30 specialized memory tools:</p>
-        <div class="doc-table-wrap">
-          <table class="doc-table">
+        <h2 id="cursor-tools" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Available MCP Tools in Cursor</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Once connected, Cursor Agent automatically gains access to these core tools:</p>
+
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
             <thead>
-              <tr>
-                <th>TOOL NAME</th>
-                <th>PARAMETERS</th>
-                <th>CLIENT DESCRIPTION</th>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Tool Name</th>
+                <th style="padding:8px 12px;">Parameters</th>
+                <th style="padding:8px 12px;">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td><code>store_memory</code></td><td><code>content, tags, metadata</code></td><td>Store memory with vector embedding and graph links.</td></tr>
-              <tr><td><code>get_memory</code></td><td><code>id</code></td><td>Retrieve specific memory object by UUID.</td></tr>
-              <tr><td><code>search_memories</code></td><td><code>query, limit, min_score</code></td><td>Hybrid search (dense vector + BM25 trigram).</td></tr>
-              <tr><td><code>fuzzy_search</code></td><td><code>query, limit</code></td><td>Typo-tolerant trigram search for misspelled input.</td></tr>
-              <tr><td><code>get_context</code></td><td><code>query, max_tokens</code></td><td>Token-budget-aware context assembly for prompt.</td></tr>
-              <tr><td><code>ask_memory</code></td><td><code>question, temperature</code></td><td>RAG-powered Q&amp;A with structured citations.</td></tr>
-              <tr><td><code>pin_memory</code></td><td><code>id, is_pinned</code></td><td>Pin/unpin memory in LLM context window budget.</td></tr>
-              <tr><td><code>graph_traverse</code></td><td><code>start_id, max_hops</code></td><td>Perform 1-3 hop graph traversal across linked entities.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">recall_memory</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">query, limit, scope</td>
+                <td style="padding:8px 12px;">Searches past bugfixes, architecture rules, and conventions.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">store_memory</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">content, metadata</td>
+                <td style="padding:8px 12px;">Persists newly discovered architectural decisions or resolved issues.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">pin_rule</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">rule, category</td>
+                <td style="padding:8px 12px;">Permanently anchors code style or security invariants.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">kg_time_travel</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">query, as_of_timestamp</td>
+                <td style="padding:8px 12px;">Queries repository memory as it existed at a past git commit.</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h2 class="doc-h2" id="cursor-skills">Agent Skills Framework</h2>
-        <p class="doc-p">Cursor automatically inspects repository-level skills from <code>.agents/skills/data-connectors/SKILL.md</code> to discover connected systems and credentials.</p>
-        <div class="terminal-card">
-          <pre><span class="tok-cmt"># Cursor Skill discovery path</span>
-.agents/skills/data-connectors/SKILL.md</pre>
+        <h2 id="cursor-skills" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">3. Pinned Rules in .cursorrules</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Add memory instructions to your <code>.cursorrules</code> file to enforce automatic memory recall before any major refactoring:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>.cursorrules</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-markdown"># PiyAPI Memory Directives for Cursor
+1. Before modifying database models or API routes, invoke `recall_memory` with keywords from the prompt.
+2. If an architectural decision is made (e.g., choice of library, schema change), invoke `store_memory`.
+3. Never bypass pinned invariants recalled from `recall_memory`.</code></pre>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('claude-code')">&larr; PREVIOUS: Claude Code</span>
-            <span class="footer-next" onclick="showPage('openclaw')">NEXT: OpenClaw &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('claude-code')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Claude Code</span>
+          <span class="footer-next" onclick="showPage('codex')" style="color:#818cf8;cursor:pointer;">NEXT: Codex &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 3. CODEX (MISSING DOCS -> MARKED RED)                          -->
-      <!-- =============================================================== -->
-      <!-- =============================================================== -->
-      <!-- 3. CODEX                                                        -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-codex">
+      <!-- PAGE: codex -->
+<div class="page" id="page-codex">
         <div class="breadcrumb">Agent Plugins / Coding Agents / Codex</div>
-        <h1 class="page-title">Codex</h1>
-        <div class="page-subtitle">Persistent context integration for OpenAI Codex and CLI workflows.</div>
-        <p class="page-lead">Connect the PiyAPI plugin to OpenAI Codex terminal sessions to preserve architectural decisions and recall past project solutions on demand.</p>
-
-        <div class="version-banner">
-          <div class="version-check">&#10003;</div>
-          <div>Current plugin version: <span class="version-badge">v1.2.0 (Active)</span></div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">CLI Stdio</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Terminal Agent</span>
         </div>
+        <h1 class="page-title">OpenAI Codex CLI Integration</h1>
+        <div class="page-subtitle">Cross-session terminal state, command intent prediction, and error mitigation for OpenAI Codex.</div>
 
-        <h2 class="doc-h2" id="codex-quickstart">Quick Start</h2>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+        <h2 id="codex-quickstart" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Quick Start</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Install the PiyAPI Codex adapter via pip and export your API key:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
           </div>
-          <pre><span class="tok-cmd">export PIYAPI_API_KEY="sk_live_your_api_key"</span>
-<span class="tok-cmd">piyapi plugin install codex</span>
-<span class="tok-cmd">piyapi plugin status</span></pre>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">pip install piyapi-memory
+export PIYAPI_API_KEY="your_api_key_here"
+export PIYAPI_WORKSPACE_ID="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"</code></pre>
         </div>
 
-        <h2 class="doc-h2" id="codex-mcp">MCP Stdio Configuration</h2>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"mcpServers"</span>: {
-    <span class="tok-prop">"piyapi-codex"</span>: {
-      <span class="tok-prop">"command"</span>: <span class="tok-str">"npx"</span>,
-      <span class="tok-prop">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"@piyapi/mcp-server"</span>],
-      <span class="tok-prop">"env"</span>: { <span class="tok-prop">"PIYAPI_API_KEY"</span>: <span class="tok-str">"sk_live_your_key_here"</span> }
+        <h2 id="codex-mcp" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. MCP Stdio Configuration</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Link Codex to the PiyAPI stdio daemon to record command successes and diagnose repeated compiler errors:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>codex.config.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "plugins": [
+    {
+      "name": "piyapi-codex",
+      "command": "python -m piyapi.adapters.codex",
+      "active_inference": true,
+      "surprise_threshold": 0.05
     }
-  }
-}</pre>
+  ]
+}</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('cursor')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Cursor</span>
+          <span class="footer-next" onclick="showPage('opencode')" style="color:#818cf8;cursor:pointer;">NEXT: OpenCode &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 4. OPENCODE                                                     -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-opencode">
+      <!-- PAGE: opencode -->
+<div class="page" id="page-opencode">
         <div class="breadcrumb">Agent Plugins / Coding Agents / OpenCode</div>
-        <h1 class="page-title">OpenCode</h1>
-        <div class="page-subtitle">Context-aware OpenCode terminal workflows.</div>
-        <p class="page-lead">Integrate open-source coding agents with bitemporal memory and automatic fact mining.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Open Source</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Local Terminal Agent</span>
+        </div>
+        <h1 class="page-title">OpenCode Integration</h1>
+        <div class="page-subtitle">Automated memory persistence for open-source terminal coding agents.</div>
 
-        <h2 class="doc-h2" id="opencode-install">Installation &amp; Setup</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">piyapi plugin install opencode</span>
-<span class="tok-cmd">opencode --memory-provider piyapi</span></pre>
+        <h2 id="opencode-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Installation &amp; Flags</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Launch OpenCode with the native PiyAPI memory flag to maintain state across restarts:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># Run OpenCode with PiyAPI plugin attached
+opencode --memory-provider=piyapi \
+         --piyapi-key="$PIYAPI_API_KEY" \
+         --workspace="./src" \
+         --auto-pin-adr=true</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('codex')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Codex</span>
+          <span class="footer-next" onclick="showPage('gemini-cli')" style="color:#818cf8;cursor:pointer;">NEXT: Gemini CLI &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 5. GEMINI CLI                                                   -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-gemini-cli">
+      <!-- PAGE: gemini-cli -->
+<div class="page" id="page-gemini-cli">
         <div class="breadcrumb">Agent Plugins / Coding Agents / Gemini CLI</div>
-        <h1 class="page-title">Gemini CLI</h1>
-        <div class="page-subtitle">Long-term reasoning memory and context flushing for Google Gemini terminal agents.</div>
-        <p class="page-lead">Pair Google Gemini CLI developer workflows with instant access to project memory and bitemporal knowledge graph lookups.</p>
-
-        <h2 class="doc-h2" id="gemini-setup">Configuration</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">gemini config set extensions.memory @piyapi/gemini-plugin</span>
-<span class="tok-cmd">export PIYAPI_API_KEY="sk_live_your_api_key"</span></pre>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Google Gemini</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Multimodal CLI</span>
         </div>
-      </div>
+        <h1 class="page-title">Google Gemini CLI Extension</h1>
+        <div class="page-subtitle">Inject long-term multimodal memory into Google Gemini CLI developer workflows.</div>
 
-      <!-- =============================================================== -->
-      <!-- 6. CLINE                                                        -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-cline">
-        <div class="breadcrumb">Agent Plugins / Coding Agents / Cline</div>
-        <h1 class="page-title">Cline (VS Code)</h1>
-        <div class="page-subtitle">Autonomous coding in VS Code powered by PiyAPI MCP tools.</div>
-        <p class="page-lead">Configure the Cline extension in VS Code to retrieve and store codebase knowledge through official MCP tools.</p>
+        <h2 id="gemini-setup" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Configuration &amp; Extension</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Register the PiyAPI tool provider in your Gemini developer config:</p>
 
-        <h2 class="doc-h2" id="cline-config">Cline MCP Settings</h2>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"mcpServers"</span>: {
-    <span class="tok-prop">"piyapi"</span>: {
-      <span class="tok-prop">"command"</span>: <span class="tok-str">"npx"</span>,
-      <span class="tok-prop">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"@piyapi/mcp-server"</span>],
-      <span class="tok-prop">"env"</span>: { <span class="tok-prop">"PIYAPI_API_KEY"</span>: <span class="tok-str">"sk_live_your_key_here"</span> }
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>~/.gemini/config.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "extensions": {
+    "piyapi-memory": {
+      "endpoint": "https://api.piyapi.cloud/v1",
+      "api_key": "${PIYAPI_API_KEY}",
+      "tools": ["recall_memory", "store_memory", "pin_rule", "find_contradictions"]
     }
   }
-}</pre>
+}</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('opencode')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: OpenCode</span>
+          <span class="footer-next" onclick="showPage('cline')" style="color:#818cf8;cursor:pointer;">NEXT: Cline &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 7. KIMI CODE                                                    -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-kimi-code">
-        <div class="breadcrumb">Agent Plugins / Coding Agents / Kimi Code</div>
-        <h1 class="page-title">Kimi Code</h1>
-        <div class="page-subtitle">Bitemporal memory indexing with 200k+ token window management for Kimi.</div>
-        <p class="page-lead">Empower Kimi Code with instant recall of prior user instructions, repository decisions, and bug workarounds.</p>
-
-        <h2 class="doc-h2" id="kimi-install">CLI Setup</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">kimi-code --plugin @piyapi/kimi-plugin</span></pre>
+      <!-- PAGE: cline -->
+<div class="page" id="page-cline">
+        <div class="breadcrumb">Agent Plugins / Coding Agents / Cline</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">VS Code Extension</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Autonomous ReAct</span>
         </div>
-      </div>
+        <h1 class="page-title">Cline (Claude Dev) Integration</h1>
+        <div class="page-subtitle">Seamless MCP integration for autonomous coding agents inside VS Code.</div>
 
-      <!-- =============================================================== -->
-      <!-- 8. ANTIGRAVITY                                                  -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-antigravity">
-        <div class="breadcrumb">Agent Plugins / Coding Agents / Antigravity</div>
-        <h1 class="page-title">Google Antigravity</h1>
-        <div class="page-subtitle">Native agentic pairing and workspace skill integration for Google DeepMind Antigravity IDE.</div>
-        <p class="page-lead">Direct integration with the Antigravity Agent Skills Framework (<code>.agents/skills/data-connectors</code>) and native MCP stdio transport.</p>
+        <h2 id="cline-config" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Cline MCP Settings</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Add the PiyAPI MCP server to Cline's configuration file (<code>cline_mcp_settings.json</code>):</p>
 
-        <h2 class="doc-h2" id="ag-integration">Customization Root &amp; Skills</h2>
-        <p class="doc-p">Antigravity agents automatically discover PiyAPI skills in <code>.agents/skills/data-connectors/SKILL.md</code> to trigger Change Data Capture syncs and point-in-time time travel.</p>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">piyapi plugin install antigravity</span>
-<span class="tok-cmd">piyapi skills sync</span></pre>
-        </div>
-      </div>
-
-      <!-- 9. OPENCLAW (DOCUMENTED IN USERGUIDE.PDF)                      -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-openclaw">
-        <div class="breadcrumb">Agent Plugins / Agent Harnesses / OpenClaw</div>
-        <h1 class="page-title">OpenClaw</h1>
-        <div class="page-subtitle">Continuous Change Data Capture &amp; Webhook Ingestion for OpenClaw.</div>
-        <p class="page-lead">OpenClaw agents run autonomous web scrapers and RSS monitors. The Negentro connector provides dedicated webhook ingest tokens to stream unstructured web findings directly into your memory graph.</p>
-
-        <div class="version-banner">
-          <div class="version-check">&#10003;</div>
-          <div>CDC Connector status: <span class="version-badge">open_claw v2.4 (Active)</span></div>
-        </div>
-
-        <h2 class="doc-h2" id="openclaw-auth">Authentication &amp; Webhook Token</h2>
-        <p class="doc-p">Configure your OpenClaw agent runtime with a dedicated webhook ingest token from Section 7.2 of the Negentro platform:</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>cline_mcp_settings.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
           </div>
-          <pre>{
-  <span class="tok-prop">"connector"</span>: <span class="tok-str">"open_claw"</span>,
-  <span class="tok-prop">"purpose"</span>: <span class="tok-str">"Web scrapers &amp; RSS feeds"</span>,
-  <span class="tok-prop">"auth_schema"</span>: {
-    <span class="tok-prop">"webhook_ingest_token"</span>: <span class="tok-str">"whsec_live_9a8b7c6d5e4f3a2b1c"</span>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "YOUR_PIYAPI_KEY",
+        "PIYAPI_SURPRISE_THRESHOLD": "0.05"
+      },
+      "disabled": false,
+      "autoApprove": ["recall_memory", "get_graph", "search_memories"]
+    }
   }
-}</pre>
+}</code></pre>
         </div>
 
-        <h2 class="doc-h2" id="openclaw-cdc">CDC Ingestion Pipeline</h2>
-        <p class="doc-p">Scraped pages are chunked, embedded with bitemporal valid-time timestamps, and evaluated with the UnifiedScorer for automatic recency decay and deduplication.</p>
-
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('cursor')">&larr; PREVIOUS: Cursor</span>
-            <span class="footer-next" onclick="showPage('deepseek-harness')">NEXT: DeepSeek Harness &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('gemini-cli')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Gemini CLI</span>
+          <span class="footer-next" onclick="showPage('kimi-code')" style="color:#818cf8;cursor:pointer;">NEXT: Kimi Code &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 10. HERMES AGENT                                                -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-hermes-agent">
+      <!-- PAGE: kimi-code -->
+<div class="page" id="page-kimi-code">
+        <div class="breadcrumb">Agent Plugins / Coding Agents / Kimi Code</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Moonshot AI</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Long-Context Memory</span>
+        </div>
+        <h1 class="page-title">Moonshot Kimi Code Integration</h1>
+        <div class="page-subtitle">Augment Kimi's massive context window with persistent cross-session knowledge graphs.</div>
+
+        <h2 id="kimi-install" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. CLI Setup</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Configure Kimi CLI to route persistent memories to the PiyAPI Cloud:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">kimi config set mcp.servers.piyapi.command "npx"
+kimi config set mcp.servers.piyapi.args "['-y', '@piyapi/mcp-server']"
+kimi config set mcp.servers.piyapi.env.PIYAPI_API_KEY "$PIYAPI_API_KEY"</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('cline')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Cline</span>
+          <span class="footer-next" onclick="showPage('antigravity')" style="color:#818cf8;cursor:pointer;">NEXT: Antigravity &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: antigravity -->
+<div class="page" id="page-antigravity">
+        <div class="breadcrumb">Agent Plugins / Coding Agents / Antigravity</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Agentic IDE</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Sidecar Architecture</span>
+        </div>
+        <h1 class="page-title">Google Antigravity Agentic IDE Integration</h1>
+        <div class="page-subtitle">Native memory sidecar for pair programming, skills execution, and subagent state handoffs.</div>
+
+        <h2 id="ag-integration" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Skills &amp; MCP Configuration (.agents/mcp_config.json)</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Integrate PiyAPI into Antigravity's workspace customizations root:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>.agents/mcp_config.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "mcpServers": {
+    "piyapi-cognitive": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "${env:PIYAPI_API_KEY}",
+        "PIYAPI_WORKSPACE_ID": "antigravity_core",
+        "PIYAPI_ENABLE_ACTIVE_INFERENCE": "true"
+      }
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Sidecar Memory Execution in Antigravity</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Antigravity subagents automatically commit completed task reflections to the episodic memory substrate. When switching between tasks, the agent recalls previous bug investigations, test logs, and user preferences with zero context loss.</p>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('kimi-code')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Kimi Code</span>
+          <span class="footer-next" onclick="showPage('openclaw')" style="color:#818cf8;cursor:pointer;">NEXT: OpenClaw &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: openclaw -->
+<div class="page" id="page-openclaw">
+        <div class="breadcrumb">Agent Plugins / Agent Harnesses / OpenClaw</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Autonomous Harness</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Multi-Turn Web Agent</span>
+        </div>
+        <h1 class="page-title">OpenClaw Autonomous Harness</h1>
+        <div class="page-subtitle">Long-horizon web automation and multi-session task state coordination.</div>
+
+        <h2 id="openclaw-auth" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Authentication &amp; Token Configuration</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Connect OpenClaw workers to the central PiyAPI episodic memory blackboard:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>openclaw.env</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash">OPENCLAW_MEMORY_BACKEND="piyapi"
+PIYAPI_API_KEY="piy_live_sec_..."
+PIYAPI_WORKSPACE_ID="openclaw_prod_fleet"
+PIYAPI_SHARED_SCOPE="global"</code></pre>
+        </div>
+
+        <h2 id="openclaw-cdc" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. CDC Ingestion Pipeline</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">OpenClaw streams completed form fills, web scrapings, and DOM states to the Change Data Capture (CDC) engine, enabling speculative execution branches to merge without conflicts.</p>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('antigravity')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Antigravity</span>
+          <span class="footer-next" onclick="showPage('hermes-agent')" style="color:#818cf8;cursor:pointer;">NEXT: Hermes Agent &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: hermes-agent -->
+<div class="page" id="page-hermes-agent">
         <div class="breadcrumb">Agent Plugins / Agent Harnesses / Hermes Agent</div>
-        <h1 class="page-title">Hermes Agent</h1>
-        <div class="page-subtitle">Autonomous agent harness with persistent bitemporal memory and sidekick execution.</div>
-        <p class="page-lead">Hermes Agent delegates complex reasoning to isolated sidekick agents while maintaining primary context in PiyAPI bitemporal storage.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">System 1 / System 2</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Fast Reasoning Reader</span>
+        </div>
+        <h1 class="page-title">Hermes Agent Harness Integration</h1>
+        <div class="page-subtitle">Dual-process cognition: Sub-15ms fast lane cache paired with slow reasoning memory reader.</div>
 
-        <h2 class="doc-h2" id="hermes-harness">Harness Configuration</h2>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"harness"</span>: <span class="tok-str">"hermes"</span>,
-  <span class="tok-prop">"memory_backend"</span>: <span class="tok-str">"piyapi"</span>,
-  <span class="tok-prop">"api_key"</span>: <span class="tok-str">"sk_live_your_key_here"</span>
-}</pre>
+        <h2 id="hermes-harness" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Harness Configuration</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Add the memory scratchpad hook to your Hermes worker bootstrap:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>hermes.config.py</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-python">from hermes import AgentHarness
+from piyapi.adapters.hermes import PiyMemoryHook
+
+harness = AgentHarness(
+    model="hermes-3-llama-3.1-70b",
+    memory_hook=PiyMemoryHook(
+        api_key="your_api_key",
+        enable_active_inference=True,
+        fast_cache_ttl=3600
+    )
+)</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('openclaw')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: OpenClaw</span>
+          <span class="footer-next" onclick="showPage('pi-agent')" style="color:#818cf8;cursor:pointer;">NEXT: Pi Agent &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 11. PI AGENT                                                    -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-pi-agent">
+      <!-- PAGE: pi-agent -->
+<div class="page" id="page-pi-agent">
         <div class="breadcrumb">Agent Plugins / Agent Harnesses / Pi Agent</div>
-        <h1 class="page-title">Pi Agent</h1>
-        <div class="page-subtitle">Lightweight autonomous agent harness with personal context scoping.</div>
-        <p class="page-lead">Integrate Pi Agent with deterministic personal and project scoped memory partitions.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Empathetic Conversational</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Sleep Consolidation</span>
+        </div>
+        <h1 class="page-title">Pi Agent Harness Integration</h1>
+        <div class="page-subtitle">Longitudinal relationship tracking, tone resonance, and 24-hour biological sleep consolidation.</div>
 
-        <h2 class="doc-h2" id="pi-scoping">Scoped Execution</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">pi-agent run --memory-scope project --key $PIYAPI_API_KEY</span></pre>
+        <h2 id="pi-scoping" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Scoped Execution &amp; Consolidation</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Pi agents rely on user-scoped memory with automatic 6-phase biological sleep consolidation to summarize daily emotional milestones:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>pi_agent.py</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+# Trigger consolidation cycle for user
+summary = client.graph.sleep_consolidate(
+    user_id="user_companion_77",
+    force_phase=6  # Final synaptic pruning
+)
+print("Consolidation complete. Pruned edges:", summary.pruned_count)</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('hermes-agent')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Hermes Agent</span>
+          <span class="footer-next" onclick="showPage('deepseek-harness')" style="color:#818cf8;cursor:pointer;">NEXT: DeepSeek Harness &rarr;</span>
         </div>
       </div>
 
-      <!-- 12. DEEPSEEK HARNESS (DOCUMENTED IN USERGUIDE.PDF)             -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-deepseek-harness">
+      <!-- PAGE: deepseek-harness -->
+<div class="page" id="page-deepseek-harness">
         <div class="breadcrumb">Agent Plugins / Agent Harnesses / DeepSeek Harness</div>
-        <h1 class="page-title">DeepSeek Harness</h1>
-        <div class="page-subtitle">Encrypted multi-provider LLM routing and memory context for DeepSeek agents.</div>
-        <p class="page-lead">DeepSeek agent harnesses leverage Negentro's BYOK encrypted key manager and failover routing to maintain state across complex reasoning and tool execution chains.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">DeepSeek R1 / V3</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">BYOK Routing</span>
+        </div>
+        <h1 class="page-title">DeepSeek Reasoning Harness Integration</h1>
+        <div class="page-subtitle">Chain-of-Thought (CoT) trajectory memory persistence with private key routing.</div>
 
-        <h2 class="doc-h2" id="deepseek-byok">BYOK Configuration</h2>
-        <p class="doc-p">Add your encrypted DeepSeek API key via the platform BYOK management endpoint:</p>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">curl -X POST https://api.negentro.cloud/api/v1/byok/keys \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $NEGENTRO_API_KEY"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{"vendor": "deepseek", "api_key": "sk-deepseek-..."}'</span></pre>
+        <h2 id="deepseek-byok" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. BYOK Configuration &amp; Private Key Routing</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Route DeepSeek reasoning queries directly through PiyAPI's zero-logging BYOK key manager:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>deepseek_harness.json</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "provider": "deepseek",
+  "model": "deepseek-reasoner",
+  "byok_key": "${env:DEEPSEEK_API_KEY}",
+  "memory_gateway": "https://api.piyapi.cloud/v1",
+  "persist_cot_traces": true
+}</code></pre>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('openclaw')">&larr; PREVIOUS: OpenClaw</span>
-            <span class="footer-next" onclick="showPage('plugin-overview')">NEXT: Plugin Overview &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('pi-agent')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Pi Agent</span>
+          <span class="footer-next" onclick="showPage('livekit')" style="color:#818cf8;cursor:pointer;">NEXT: LiveKit &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 13. LIVEKIT                                                     -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-livekit">
+      <!-- PAGE: livekit -->
+<div class="page" id="page-livekit">
         <div class="breadcrumb">Agent Plugins / Agent Harnesses / LiveKit</div>
-        <h1 class="page-title">LiveKit Agent Harness</h1>
-        <div class="page-subtitle">Real-time voice and multimodal agent harness with sub-100ms conversational memory.</div>
-        <p class="page-lead">Connect LiveKit Agents framework with pre-warmed participant context and automatic speech transcription ingestion.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Voice &amp; Real-Time</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Sub-15ms Latency</span>
+        </div>
+        <h1 class="page-title">LiveKit Real-Time Voice Agent Memory</h1>
+        <div class="page-subtitle">Inject ultra-low latency conversational recall into real-time WebRTC audio agents.</div>
 
-        <h2 class="doc-h2" id="livekit-harness">Agent Lifecycle Hook</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">livekit.agents</span> <span class="tok-kw">import</span> <span class="tok-cmd">JobContext</span>
-<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+        <h2 id="livekit-harness" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Agent Lifecycle Hook</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Integrate PiyAPI memory into the LiveKit Agents Python SDK worker:</p>
 
-<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>livekit_worker.py</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-python">from livekit.agents import JobContext, WorkerOptions, cli
+from piyapi import PiyMemoryClient
 
-<span class="tok-kw">async def</span> <span class="tok-cmd">on_participant_joined</span>(<span class="tok-prop">participant</span>):
-    <span class="tok-prop">mems</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-str">"preferences"</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">participant</span>.<span class="tok-prop">identity</span>)
-    <span class="tok-cmd">print</span>(<span class="tok-str">f"Loaded {len(mems)} historical memories for {participant.identity}"</span>)</pre>
+piy = PiyMemoryClient()
+
+async def entrypoint(ctx: JobContext):
+    await ctx.connect()
+    participant = await ctx.wait_for_participant()
+    
+    # 1. Warm memory cache (<15ms)
+    recalled = piy.memories.retrieve(
+        user_id=participant.identity,
+        query="Recent support inquiries and caller preferences"
+    )
+    print(f"Preloaded {len(recalled.results)} facts for voice agent.")
+
+if __name__ == "__main__":
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint))</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('deepseek-harness')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: DeepSeek Harness</span>
+          <span class="footer-next" onclick="showPage('plugin-overview')" style="color:#818cf8;cursor:pointer;">NEXT: Plugin Overview &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 14. PLUGIN OVERVIEW                                            -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-plugin-overview">
+      <!-- PAGE: plugin-overview -->
+<div class="page" id="page-plugin-overview">
         <div class="breadcrumb">Agent Plugins / Plugin Resources / Overview</div>
-        <h1 class="page-title">Plugin Overview</h1>
-        <div class="page-subtitle">Architecture and capabilities of Negentro Agent Plugins.</div>
-        <p class="page-lead">Negentro Agent Plugins enable AI agents to maintain cross-session memory, access unified context assembly, and query previous interactions without polluting token windows.</p>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Architecture Blueprint</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">40+ MCP Tools</span>
+        </div>
+        <h1 class="page-title">PiyAPI Agent Plugins Architecture</h1>
+        <div class="page-subtitle">The universal cognitive runtime bridging Claude Code, Cursor, Antigravity, and autonomous harnesses.</div>
 
-        <h2 class="doc-h2" id="ov-core-pillars">Core Pillars</h2>
-        <div class="feature-blocks">
-          <div>
-            <div class="feature-block-title">1. Bitemporal Graph Memory</div>
-            <div class="feature-block-desc">Stores both valid time (when the fact was true in the real world) and transaction time (when the system recorded it), allowing precise version rollbacks.</div>
-          </div>
-          <div>
-            <div class="feature-block-title">2. UnifiedScorer Retrieval</div>
-            <div class="feature-block-desc">Combines dense HNSW vector similarity, sparse BM25 text match, recency decay, and relation graphs for high-precision retrieval.</div>
-          </div>
-          <div>
-            <div class="feature-block-title">3. Model Context Protocol (MCP)</div>
-            <div class="feature-block-desc">Standard stdio transport providing 30 native tools for Cursor, Windsurf, Claude Desktop, and CLI agents.</div>
-          </div>
+        <h2 id="ov-core-pillars" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Core Pillars of the Plugin Ecosystem</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Modern AI coding agents lose all context upon command line exit. PiyAPI transforms ephemeral coding sessions into a continuous, compounding intelligence flywheel through four architectural pillars:</p>
+
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Pillar</th>
+                <th style="padding:8px 12px;">Engine Component</th>
+                <th style="padding:8px 12px;">Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Active Inference</td>
+                <td style="padding:8px 12px;">Friston Free Energy Principle (&Delta; &le; 0.05)</td>
+                <td style="padding:8px 12px;">Prevents memory bloat by only storing high-surprise conversational facts.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Bitemporal Graph</td>
+                <td style="padding:8px 12px;">PiyGraph Dual-Clock (valid_time vs tx_time)</td>
+                <td style="padding:8px 12px;">Enables time-travel diffing of codebase architectural assumptions.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Sleep Consolidation</td>
+                <td style="padding:8px 12px;">6-Phase Synaptic Reorganization</td>
+                <td style="padding:8px 12px;">Reconciles contradictory git commits and summarizes completed PRs.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">Sovereign Unlearning</td>
+                <td style="padding:8px 12px;">Cryptographic Graph Shredder (GDPR Art 17)</td>
+                <td style="padding:8px 12px;">Permanently and certifiably revokes credentials and confidential keys.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('claude-code')">&larr; PREVIOUS: Claude Code</span>
-            <span class="footer-next" onclick="showPage('installation')">NEXT: Installation &rarr;</span>
-          </div>
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Categorized MCP 40+ Tool Catalog</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Any MCP-compliant host gains instant access to these categorized tool endpoints:</p>
+
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Category</th>
+                <th style="padding:8px 12px;">Key Tools</th>
+                <th style="padding:8px 12px;">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Memory Lifecycle</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">store_memory, update_memory, get_memory, delete_memory, batch_create, pin_memory</td>
+                <td style="padding:8px 12px;">Complete CRUD with automated embedding generation and graph linking.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Search &amp; Retrieval</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">search_memories, fuzzy_search, get_context, create_context_session, ask_memory</td>
+                <td style="padding:8px 12px;">Hybrid search, typo tolerance, and token-aware context packing for LLMs.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Knowledge Graph</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">get_graph, graph_traverse, create_relationship, delete_relationship, kg_search</td>
+                <td style="padding:8px 12px;">Multi-hop traversals, entity lookups, and community cluster extraction.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Time Travel</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">kg_time_travel, version_history, rollback_memory</td>
+                <td style="padding:8px 12px;">Reconstruct memory state as of any historical timestamp or commit.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Cognitive Quality</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">session_mine, deduplicate, find_contradictions, memory_audit, feedback_positive</td>
+                <td style="padding:8px 12px;">Mine candidate memories from transcripts and resolve contradictory beliefs.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Data Connectors</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">list_connectors, trigger_connector_sync, clip_web_page, get_connector_logs</td>
+                <td style="padding:8px 12px;">Trigger manual CDC syncs for GitHub, Google Drive, Notion, and Slack.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-weight:600;color:#f8fafc;">Security &amp; Privacy</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">check_phi, export_all</td>
+                <td style="padding:8px 12px;">Scan content for PII/PHI and generate GDPR compliance export bundles.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('livekit')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: LiveKit</span>
+          <span class="footer-next" onclick="showPage('installation')" style="color:#818cf8;cursor:pointer;">NEXT: Installation &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 15. INSTALLATION                                               -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-installation">
+      <!-- PAGE: installation -->
+<div class="page" id="page-installation">
         <div class="breadcrumb">Agent Plugins / Plugin Resources / Installation</div>
-        <h1 class="page-title">Installation</h1>
-        <div class="page-subtitle">Install and register agent plugins across your development environment.</div>
-        <p class="page-lead">Install plugins via the Negentro CLI or configure your IDE's Model Context Protocol client.</p>
-
-        <h2 class="doc-h2" id="inst-cli">Via Negentro CLI</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">npm install -g @piyapi/cli</span>
-<span class="tok-cmd">negentro plugin install &lt;plugin-name&gt;</span></pre>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Universal CLI</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Cross-Platform</span>
         </div>
+        <h1 class="page-title">Plugin Installation Guide</h1>
+        <div class="page-subtitle">Install the PiyAPI CLI and MCP server across Linux, macOS, and Windows.</div>
 
-        <h2 class="doc-h2" id="inst-mcp">Via npx stdio (Cursor / Claude Desktop)</h2>
-        <div class="terminal-card">
-          <pre><span class="tok-cmd">npx -y @piyapi/mcp-server</span></pre>
-        </div>
+        <h2 id="inst-cli" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Universal Package Managers</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Choose the installer matching your developer environment:</p>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('plugin-overview')">&larr; PREVIOUS: Overview</span>
-            <span class="footer-next" onclick="showPage('configuration')">NEXT: Configuration &rarr;</span>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash / zsh / powershell</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
           </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># Option A: Global Node.js CLI & MCP server
+npm install -g @piyapi/cli @piyapi/mcp-server
+
+# Option B: Python CLI & pipeline SDK
+pip install piyapi-cli piyapi-memory
+
+# Option C: macOS Homebrew
+brew install piyapi/tap/piyapi-cli
+
+# Option D: Linux / macOS cURL binary installer
+curl -fsSL https://get.piyapi.cloud/install.sh | bash</code></pre>
+        </div>
+
+        <h2 id="inst-mcp" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Zero-Install via npx stdio</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">You do not need to install anything globally if your IDE supports npx execution:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># Run server interactively or test stdio protocol
+npx -y @piyapi/mcp-server --help</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('plugin-overview')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Plugin Overview</span>
+          <span class="footer-next" onclick="showPage('configuration')" style="color:#818cf8;cursor:pointer;">NEXT: Configuration &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 16. CONFIGURATION                                              -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-configuration">
+      <!-- PAGE: configuration -->
+<div class="page" id="page-configuration">
         <div class="breadcrumb">Agent Plugins / Plugin Resources / Configuration</div>
-        <h1 class="page-title">Configuration</h1>
-        <div class="page-subtitle">Configure environment variables, scopes, and telemetry.</div>
-        
-        <h2 class="doc-h2" id="cfg-env">Environment Variables Matrix</h2>
-        <div class="doc-table-wrap">
-          <table class="doc-table">
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Config Schema</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Multi-Tenant</span>
+        </div>
+        <h1 class="page-title">Plugin Configuration Reference</h1>
+        <div class="page-subtitle">Master reference for environment variables, config files, and scope policies.</div>
+
+        <h2 id="cfg-env" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Environment Variables</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
             <thead>
-              <tr><th>VARIABLE</th><th>DEFAULT</th><th>DESCRIPTION</th></tr>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Variable</th>
+                <th style="padding:8px 12px;">Default</th>
+                <th style="padding:8px 12px;">Description</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td><code>NEGENTRO_API_KEY</code></td><td>none</td><td>API authentication key.</td></tr>
-              <tr><td><code>NEGENTRO_USER_ID</code></td><td>none</td><td>User scope identifier.</td></tr>
-              <tr><td><code>NEGENTRO_SEARCH_SCOPE</code></td><td><code>repo</code></td><td>Default boundary (<code>repo</code>, <code>dir</code>, <code>user</code>, <code>session</code>).</td></tr>
-              <tr><td><code>NEGENTRO_TOP_K</code></td><td><code>5</code></td><td>Number of candidates retrieved.</td></tr>
-              <tr><td><code>NEGENTRO_TELEMETRY</code></td><td><code>true</code></td><td>Anonymous performance metrics.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">PIYAPI_API_KEY</td>
+                <td style="padding:8px 12px;color:#ef4444;">Required</td>
+                <td style="padding:8px 12px;">Authentication token issued by PiyAPI Cloud Console.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">PIYAPI_BASE_URL</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">https://api.piyapi.cloud</td>
+                <td style="padding:8px 12px;">Target endpoint. Override for self-hosted or VPC deployments.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">PIYAPI_WORKSPACE_ID</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">Current Git Root</td>
+                <td style="padding:8px 12px;">Partition key isolating codebase memories between repositories.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">PIYAPI_SURPRISE_THRESHOLD</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">0.05</td>
+                <td style="padding:8px 12px;">Variational Free Energy filter. Lower values retain more memories.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">PIYAPI_REDACT_PHI</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">true</td>
+                <td style="padding:8px 12px;">Enables 20+ region PHI/PII regex and NER redaction firewall.</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('installation')">&larr; PREVIOUS: Installation</span>
-            <span class="footer-next" onclick="showPage('commands')">NEXT: Commands &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('installation')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Installation</span>
+          <span class="footer-next" onclick="showPage('commands')" style="color:#818cf8;cursor:pointer;">NEXT: Commands &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 17. COMMANDS                                                   -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-commands">
+      <!-- PAGE: commands -->
+<div class="page" id="page-commands">
         <div class="breadcrumb">Agent Plugins / Plugin Resources / Commands</div>
-        <h1 class="page-title">Command Reference</h1>
-        <div class="page-subtitle">Complete reference of agent slash commands.</div>
-        
-        <div class="doc-table-wrap">
-          <table class="doc-table">
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">CLI &amp; Slash</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Productivity</span>
+        </div>
+        <h1 class="page-title">CLI &amp; Slash Commands Reference</h1>
+        <div class="page-subtitle">Built-in interactive commands for managing memory directly inside agent terminals.</div>
+
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
             <thead>
-              <tr><th>COMMAND</th><th>ARGS</th><th>DESCRIPTION</th></tr>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Command</th>
+                <th style="padding:8px 12px;">Arguments</th>
+                <th style="padding:8px 12px;">Description</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td><code>/memory:search</code></td><td><code>&lt;query&gt;</code></td><td>Query past session memories with semantic ranking.</td></tr>
-              <tr><td><code>/memory:status</code></td><td>none</td><td>Print active plugin version, user scope, and memory count.</td></tr>
-              <tr><td><code>/memory:remember</code></td><td><code>&lt;text&gt;</code></td><td>Force-capture an explicit memory block.</td></tr>
-              <tr><td><code>/memory:forget</code></td><td><code>&lt;id&gt;</code></td><td>Soft-delete a specific memory from retrieval.</td></tr>
-              <tr><td><code>/memory:pause</code></td><td>none</td><td>Temporarily pause automatic context recording.</td></tr>
-              <tr><td><code>/memory:resume</code></td><td>none</td><td>Resume automatic background context capture.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:search</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">&lt;query&gt; [--limit N]</td>
+                <td style="padding:8px 12px;">Executes 6-strategy hybrid recall against current workspace knowledge.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:pin</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">&lt;rule text&gt;</td>
+                <td style="padding:8px 12px;">Permanently anchors an architectural rule into the agent's procedural memory.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:audit</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">[--verbose]</td>
+                <td style="padding:8px 12px;">Scans current session beliefs for contradictions or hallucinations.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:time_travel</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">&lt;ISO timestamp&gt;</td>
+                <td style="padding:8px 12px;">Rewinds bitemporal graph state to inspect past repository assumptions.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:unlearn</td>
+                <td style="padding:8px 12px;font-family:monospace;color:#94a3b8;">&lt;entity / keyword&gt;</td>
+                <td style="padding:8px 12px;">Invokes Sovereign Unlearn Engine (GDPR Art 17) to cryptographically shred nodes.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#818cf8;">/memory:status</td>
+                <td style="padding:8px 12px;color:#94a3b8;">none</td>
+                <td style="padding:8px 12px;">Displays active workspace ID, surprise threshold, and memory counts across L1-L4.</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('configuration')">&larr; PREVIOUS: Configuration</span>
-            <span class="footer-next" onclick="showPage('memory')">NEXT: Memory &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('configuration')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Configuration</span>
+          <span class="footer-next" onclick="showPage('memory')" style="color:#818cf8;cursor:pointer;">NEXT: Memory &rarr;</span>
         </div>
       </div>
 
-      <!-- =============================================================== -->
-      <!-- 18. MEMORY                                                     -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-memory">
+      <!-- PAGE: memory -->
+<div class="page" id="page-memory">
         <div class="breadcrumb">Agent Plugins / Plugin Resources / Memory</div>
-        <h1 class="page-title">Memory Architecture</h1>
-        <div class="page-subtitle">Bitemporal memory lifecycle and context scoping.</div>
-        
-        <h2 class="doc-h2" id="mem-lifecycle-steps">The 4-Step Lifecycle</h2>
-        <div class="prereq-list">
-          <div class="prereq-item"><span class="prereq-num">01</span><div><strong>Capture:</strong> Records agent conversation turns, edits, and tool results.</div></div>
-          <div class="prereq-item"><span class="prereq-num">02</span><div><strong>Flush:</strong> Dispatches payloads at interaction boundaries or idle triggers.</div></div>
-          <div class="prereq-item"><span class="prereq-num">03</span><div><strong>Extract:</strong> LLM extractor parses key technical decisions, constraints, and dependencies.</div></div>
-          <div class="prereq-item"><span class="prereq-num">04</span><div><strong>Recall:</strong> UnifiedScorer fetches context when new prompts are submitted.</div></div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Cognitive Lifecycle</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">4-Step Pipeline</span>
         </div>
+        <h1 class="page-title">Agent Memory Lifecycle &amp; Mechanics</h1>
+        <div class="page-subtitle">How PiyAPI stores, refines, and consolidates memory throughout development workflows.</div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('commands')">&larr; PREVIOUS: Commands</span>
-            <span class="footer-next" onclick="showPage('troubleshooting')">NEXT: Troubleshooting &rarr;</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- 19. TROUBLESHOOTING                                            -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-troubleshooting">
-        <div class="breadcrumb">Agent Plugins / Plugin Resources / Troubleshooting</div>
-        <h1 class="page-title">Troubleshooting</h1>
-        <div class="page-subtitle">Diagnostics and solutions for common plugin issues.</div>
+        <h2 id="mem-lifecycle-steps" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. The 4-Step Memory Lifecycle</h2>
         
-        <div class="doc-table-wrap">
-          <table class="doc-table">
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
             <thead>
-              <tr><th>ERROR / SYMPTOM</th><th>CAUSE</th><th>SOLUTION</th></tr>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Phase</th>
+                <th style="padding:8px 12px;">Action</th>
+                <th style="padding:8px 12px;">Substrate Mechanism</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td><code>401 Unauthorized</code></td><td>Missing or invalid API key.</td><td>Export <code>NEGENTRO_API_KEY</code> and test with <code>curl /api/v1/verify</code>.</td></tr>
-              <tr><td>Empty search results</td><td>Overly strict search scope.</td><td>Change scope from <code>dir</code> to <code>repo</code> or increase <code>top_k</code>.</td></tr>
-              <tr><td>Plugin crash on start</td><td>Node.js runtime &lt; 18.</td><td>Upgrade to Node.js LTS (18+ or 20+).</td></tr>
-              <tr><td>Session not flushed</td><td>Process killed abruptly.</td><td>Use <code>/memory:remember</code> or trigger graceful shutdown.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">1. Ingest &amp; Tokenize</td>
+                <td style="padding:8px 12px;">Intercept developer dialogue or git commit</td>
+                <td style="padding:8px 12px;">20+ region PHI firewall scrubs secrets; extracts AST symbols.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">2. Surprise Gating</td>
+                <td style="padding:8px 12px;">Evaluate Friston FEP Surprise Score</td>
+                <td style="padding:8px 12px;">Facts with &Delta; &gt; 0.05 are flagged for persistent bitemporal indexing.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">3. Sleep Consolidation</td>
+                <td style="padding:8px 12px;">Periodic offline reorganization</td>
+                <td style="padding:8px 12px;">Bayesian truth engine updates belief confidences and prunes stale edges.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;color:#818cf8;font-weight:600;">4. Hybrid Retrieval</td>
+                <td style="padding:8px 12px;">Context injection on new developer prompt</td>
+                <td style="padding:8px 12px;">HybridScorer combines dense vectors, BM25, graph walks, and temporal recency.</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="page-footer-nav">
-          <div class="footer-prev-next">
-            <span class="footer-prev" onclick="showPage('memory')">&larr; PREVIOUS: Memory</span>
-            <span class="footer-next" onclick="showPage('claude-code')">NEXT: Claude Code &rarr;</span>
-          </div>
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('commands')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Commands</span>
+          <span class="footer-next" onclick="showPage('troubleshooting')" style="color:#818cf8;cursor:pointer;">NEXT: Troubleshooting &rarr;</span>
         </div>
       </div>
 
-    </div><!-- /#content -->
+      <!-- PAGE: troubleshooting -->
+<div class="page" id="page-troubleshooting">
+        <div class="breadcrumb">Agent Plugins / Plugin Resources / Troubleshooting</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;">
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Diagnostics</span>
+          <span class="badge" style="background:#ef444420;color:#f87171;border:1px solid #ef444440;padding:3px 10px;border-radius:12px;font-size:0.75rem;">Error Matrix</span>
+        </div>
+        <h1 class="page-title">Troubleshooting &amp; Diagnostics</h1>
+        <div class="page-subtitle">Diagnostic matrix and mitigation steps for common agent plugin issues.</div>
 
-    <!-- RIGHT TOC -->
-    <div id="toc">
-      <div class="toc-label">On this page</div>
-      <div id="toc-links"></div>
+        <h2 id="tb-diagnostics" style="font-size:1.35rem;font-weight:600;margin-top:2rem;">1. Error &amp; Symptom Diagnostic Matrix</h2>
+
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead>
+              <tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;">
+                <th style="padding:8px 12px;">Error / Symptom</th>
+                <th style="padding:8px 12px;">Root Cause</th>
+                <th style="padding:8px 12px;">Mitigation &amp; Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#ef4444;">401 Unauthorized</td>
+                <td style="padding:8px 12px;">Missing, revoked, or expired <code>PIYAPI_API_KEY</code>.</td>
+                <td style="padding:8px 12px;">Verify key in PiyAPI Cloud Console. Test via <code>curl -H "Authorization: Bearer $KEY" https://api.piyapi.cloud/v1/health</code>.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#ef4444;">MCP stdio pipe hang</td>
+                <td style="padding:8px 12px;">Node.js subprocess crashed or stderr output corrupted json-rpc stream.</td>
+                <td style="padding:8px 12px;">Ensure Node.js 18+ is installed. Set <code>DEBUG=false</code> in <code>mcp.json</code> to prevent raw text logs on stdout.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#ef4444;">Empty search results</td>
+                <td style="padding:8px 12px;">Overly narrow workspace filter or confidence cutoff too high.</td>
+                <td style="padding:8px 12px;">Lower <code>min_confidence</code> from 0.90 to 0.70. Verify workspace ID matches git root.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#ef4444;">PHI false positives</td>
+                <td style="padding:8px 12px;">Variable names matching healthcare or PII patterns.</td>
+                <td style="padding:8px 12px;">Disable PHI check for coding workspaces via <code>PIYAPI_REDACT_PHI=false</code>.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:8px 12px;font-family:monospace;color:#ef4444;">Session flush failed</td>
+                <td style="padding:8px 12px;">Terminal closed abruptly before sleep consolidation ran.</td>
+                <td style="padding:8px 12px;">Run <code>/memory:pin</code> or trigger a manual sync before terminating terminal tabs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">2. Viewing Diagnostic Logs</h2>
+        <p style="color:#94a3b8;font-size:0.9rem;">Inspect plugin daemon activity logs directly via the CLI:</p>
+
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">
+            <span>bash</span>
+            <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-bash"># View live plugin telemetry and surprise score events
+piyapi logs --tail 50 --level debug</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('memory')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Memory</span>
+          <span class="footer-next" onclick="showPage('claude-code')" style="color:#818cf8;cursor:pointer;">NEXT: Claude Code &rarr;</span>
+        </div>
+      </div>
+
     </div>
-  </div><!-- /#main -->
-</div><!-- /#layout -->
+  </div>
 
 <footer class="global-footer">
   <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
@@ -2152,7 +2544,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <div class="global-footer-links">
     <a href="https://github.com/piyapi" target="_blank">GitHub</a>
@@ -2162,7 +2554,7 @@
     <a href="opensource.html">Open Source</a>
     <a href="#">API Reference</a>
   </div>
-  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+  <div class="global-footer-copy">&copy; 2024 PiyAPI. All rights reserved.</div>
 </footer>
 
 <script>
@@ -2185,60 +2577,64 @@ const TOC_MAP = {
     {id:'related-agent-plugins', label:'Related agent plugins'}
   ],
   'cursor': [
-    {id:'cursor-mcp-config', label:'MCP Server Config'},
-    {id:'cursor-tools', label:'Available MCP Tools'},
-    {id:'cursor-skills', label:'Agent Skills Framework'}
+    {id:'cursor-mcp-config', label:'1. MCP Server Config'},
+    {id:'cursor-tools', label:'2. Available MCP Tools'},
+    {id:'cursor-skills', label:'3. Pinned Rules (.cursorrules)'}
   ],
   'codex': [
-    {id:'codex-quickstart', label:'Quick Start'},
-    {id:'codex-mcp', label:'MCP Stdio Config'}
+    {id:'codex-quickstart', label:'1. Quick Start'},
+    {id:'codex-mcp', label:'2. MCP Stdio Config'}
   ],
   'opencode': [
-    {id:'opencode-install', label:'Installation'}
+    {id:'opencode-install', label:'1. Installation & Flags'}
   ],
   'gemini-cli': [
-    {id:'gemini-setup', label:'Configuration'}
+    {id:'gemini-setup', label:'1. Configuration & Extension'}
   ],
   'cline': [
-    {id:'cline-config', label:'Cline MCP Settings'}
+    {id:'cline-config', label:'1. Cline MCP Settings'}
   ],
   'kimi-code': [
-    {id:'kimi-install', label:'CLI Setup'}
+    {id:'kimi-install', label:'1. CLI Setup'}
   ],
   'antigravity': [
-    {id:'ag-integration', label:'Skills Framework'}
+    {id:'ag-integration', label:'1. Skills & MCP Config'}
   ],
   'openclaw': [
-    {id:'openclaw-auth', label:'Authentication & Token'},
-    {id:'openclaw-cdc', label:'CDC Ingestion Pipeline'}
+    {id:'openclaw-auth', label:'1. Authentication & Token'},
+    {id:'openclaw-cdc', label:'2. CDC Ingestion Pipeline'}
   ],
   'hermes-agent': [
-    {id:'hermes-harness', label:'Harness Configuration'}
+    {id:'hermes-harness', label:'1. Harness Configuration'}
   ],
   'pi-agent': [
-    {id:'pi-scoping', label:'Scoped Execution'}
+    {id:'pi-scoping', label:'1. Scoped Execution & Consolidation'}
   ],
   'deepseek-harness': [
-    {id:'deepseek-byok', label:'BYOK Configuration'}
+    {id:'deepseek-byok', label:'1. BYOK Configuration'}
   ],
   'livekit': [
-    {id:'livekit-harness', label:'Agent Lifecycle Hook'}
+    {id:'livekit-harness', label:'1. Agent Lifecycle Hook'}
   ],
   'plugin-overview': [
-    {id:'ov-core-pillars', label:'Core Pillars'}
+    {id:'ov-core-pillars', label:'1. Core Pillars of Ecosystem'}
   ],
   'installation': [
-    {id:'inst-cli', label:'Via Negentro CLI'},
-    {id:'inst-mcp', label:'Via npx stdio'}
+    {id:'inst-cli', label:'1. Package Managers'},
+    {id:'inst-mcp', label:'2. Zero-Install via npx'}
   ],
   'configuration': [
-    {id:'cfg-env', label:'Environment Variables'}
+    {id:'cfg-env', label:'1. Environment Variables'}
   ],
-  'commands': [],
+  'commands': [
+    {id:'commands-table', label:'1. Commands Reference'}
+  ],
   'memory': [
-    {id:'mem-lifecycle-steps', label:'The 4-Step Lifecycle'}
+    {id:'mem-lifecycle-steps', label:'1. 4-Step Lifecycle'}
   ],
-  'troubleshooting': []
+  'troubleshooting': [
+    {id:'tb-diagnostics', label:'1. Diagnostic Matrix'}
+  ]
 };
 
 let currentPage = 'claude-code';

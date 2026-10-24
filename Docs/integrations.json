@@ -1,7 +1,7 @@
 {
   "source_file": "integrations.html",
-  "document_title": "Negentro Integrations Overview \u2014 Frameworks, SDKs & Tools",
-  "meta_description": "Connect Negentro with agent frameworks, AI SDKs, voice platforms, developer tools, and infrastructure you already use.",
+  "document_title": "PiyAPI Integrations — Agent Frameworks, Voice & Cloud Substrates",
+  "meta_description": "Comprehensive integrations ecosystem for LangChain, LangGraph, LlamaIndex, CrewAI, LiveKit, Vercel AI, and enterprise data backends.",
   "topbar_navigation": [
     {
       "label": "Get Started",
@@ -212,7 +212,7 @@
       "id": "page-overview",
       "title": "Integrations Overview",
       "breadcrumb": "Integrations / Overview",
-      "lead": "Connect Negentro with the frameworks, agent platforms, developer tools, and infrastructure you already use.",
+      "lead": "Connect PiyAPI with the frameworks, agent platforms, developer tools, and infrastructure you already use.",
       "rule5_notice": null,
       "endpoint": null,
       "sections": [
@@ -240,7 +240,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "Integrations / Overview Integrations Overview Connect Negentro with the frameworks, agent platforms, developer tools, and infrastructure you already use. Negentro integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows. Persistent context across frameworks Consistent memory across AI interactions Context-aware agent workflows Framework-specific development patterns Simple integration through SDKs and APIs Benefits Persistent memory across supported frameworks Context retrieval inside existing agent workflows Consistent user and session context Framework-agnostic memory infrastructure Simple SDK and API-based integration Universal integration Use Negentro through a standardized API layer when your workflow does not require a framework-specific integration. Integrations All Agent Frameworks AI SDKs Voice Developer Tools Infrastructure Agent Framework AgentOps Monitor agent workflows while retaining relevant memory and context across interactions. \u2192 Agent Framework Camel AI Connect persistent context to multi-agent workflows. \u2192 Agent Framework LangChain Add persistent memory and context to LangChain-based applications. \u2192 Agent Framework LlamaIndex Connect persistent memory with retrieval and data workflows. \u2192 Agent Framework AutoGen Build agent workflows that can retain context across interactions. \u2192 Agent Framework CrewAI Give multi-agent workflows persistent context. \u2192 Agent Framework LangGraph Connect persistent memory to LangGraph workflows. \u2192 AI SDK Vercel AI SDK Use Negentro alongside the Vercel AI SDK. \u2192 Developer Tools LangChain Tools Connect memory to tool-driven agent workflows. \u2192 Agent Framework Dify Add long-term context to applications built with Dify. \u2192 Voice LiveKit Connect persistent context to real-time voice workflows. \u2192 Voice ElevenLabs Use persistent memory in conversational voice applications. \u2192 Voice Pipecat Build real-time agent workflows with memory. \u2192 Agent Framework Agno Connect persistent context to Agno-based workflows. \u2192 AI SDK UX Pilot AI Agents SDK Add memory and context to agent workflows. \u2192 AI SDK Google ADK Connect Negentro memory with Google agent development workflows. \u2192 Infrastructure AWS Bedrock Use Negentro alongside AWS model and agent infrastructure. \u2192 Agent Framework ChatDev Add persistent context to collaborative AI workflows. \u2192 Don't see your integration? Connect Negentro through the API or build an integration for your workflow. Explore the API \u2192 Suggest edits Raise issue \u2190 Previous Open Source Overview Next \u2192 LangChain Integration \u2192"
+      "raw_text": "Integrations / Overview Integrations Overview Connect Negentro with the frameworks, agent platforms, developer tools, and infrastructure you already use. Negentro integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows. Persistent context across frameworks Consistent memory across AI interactions Context-aware agent workflows Framework-specific development patterns Simple integration through SDKs and APIs Benefits Persistent memory across supported frameworks Context retrieval inside existing agent workflows Consistent user and session context Framework-agnostic memory infrastructure Simple SDK and API-based integration Universal integration Use Negentro through a standardized API layer when your workflow does not require a framework-specific integration. Integrations All Agent Frameworks AI SDKs Voice Developer Tools Infrastructure Agent Framework AgentOps Monitor agent workflows while retaining relevant memory and context across interactions. → Agent Framework Camel AI Connect persistent context to multi-agent workflows. → Agent Framework LangChain Add persistent memory and context to LangChain-based applications. → Agent Framework LlamaIndex Connect persistent memory with retrieval and data workflows. → Agent Framework AutoGen Build agent workflows that can retain context across interactions. → Agent Framework CrewAI Give multi-agent workflows persistent context. → Agent Framework LangGraph Connect persistent memory to LangGraph workflows. → AI SDK Vercel AI SDK Use Negentro alongside the Vercel AI SDK. → Developer Tools LangChain Tools Connect memory to tool-driven agent workflows. → Agent Framework Dify Add long-term context to applications built with Dify. → Voice LiveKit Connect persistent context to real-time voice workflows. → Voice ElevenLabs Use persistent memory in conversational voice applications. → Voice Pipecat Build real-time agent workflows with memory. → Agent Framework Agno Connect persistent context to Agno-based workflows. → AI SDK UX Pilot AI Agents SDK Add memory and context to agent workflows. → AI SDK Google ADK Connect Negentro memory with Google agent development workflows. → Infrastructure AWS Bedrock Use Negentro alongside AWS model and agent infrastructure. → Agent Framework ChatDev Add persistent context to collaborative AI workflows. → Don't see your integration? Connect Negentro through the API or build an integration for your workflow. Explore the API → Suggest edits Raise issue ← Previous Open Source Overview Next → LangChain Integration →"
     },
     {
       "id": "page-langchain",
@@ -257,7 +257,7 @@
           "bullets": []
         },
         {
-          "heading": "Code Example (from User Guide \u00a75.3)",
+          "heading": "Code Example (from User Guide §5.3)",
           "level": 2,
           "paragraphs": [],
           "bullets": []
@@ -279,7 +279,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "Integrations / Agent Frameworks / LangChain LangChain Integration Official LangChain adapter ( packages/langchain-adapter ) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents. Installation Copy pip install packages/langchain-adapter # Or install client memory library pip install piyapi-memory Code Example (from User Guide \u00a75.3) Copy from piyapi_langchain import PiyAPIMemoryRetriever # Initialize memory retriever with API key and namespace scope retriever = PiyAPIMemoryRetriever ( api_key = \"sk_live_your_key_here\" , user_id = \"dev_lead\" , scope = \"project\" ) # Retrieve relevant context documents directly for LangChain chains and agents docs = retriever . get_relevant_documents ( \"user database preferences\" ) for doc in docs : print ( doc . page_content ) Supported Capabilities: Bitemporal validity filtering ( valid_at ), 11-signal UnifiedScorer reranking, and scoped namespace isolation across user sessions."
+      "raw_text": "Integrations / Agent Frameworks / LangChain LangChain Integration Official LangChain adapter ( packages/langchain-adapter ) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents. Installation Copy pip install packages/langchain-adapter # Or install client memory library pip install piyapi-memory Code Example (from User Guide §5.3) Copy from piyapi_langchain import PiyAPIMemoryRetriever # Initialize memory retriever with API key and namespace scope retriever = PiyAPIMemoryRetriever ( api_key = \"sk_live_your_key_here\" , user_id = \"dev_lead\" , scope = \"project\" ) # Retrieve relevant context documents directly for LangChain chains and agents docs = retriever . get_relevant_documents ( \"user database preferences\" ) for doc in docs : print ( doc . page_content ) Supported Capabilities: Bitemporal validity filtering ( valid_at ), 11-signal UnifiedScorer reranking, and scoped namespace isolation across user sessions."
     },
     {
       "id": "page-langgraph",
@@ -374,7 +374,7 @@
           "bullets": []
         },
         {
-          "heading": "Shared Context Tool Example (User Guide \u00a77.3)",
+          "heading": "Shared Context Tool Example (User Guide §7.3)",
           "level": 2,
           "paragraphs": [],
           "bullets": []
@@ -396,7 +396,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "Integrations / Agent Frameworks / CrewAI CrewAI Integration Provide multi-agent crews with a unified shared context graph (PiyGraph) and tool-level memory synchronization. Installation Copy pip install crewai piyapi-memory Shared Context Tool Example (User Guide \u00a77.3) Copy from crewai import Agent , Crew , Task from crewai.tools import tool from piyapi import PiyAPIClient client = PiyAPIClient ( api_key = \"sk_live_your_key_here\" ) @tool ( \"Query Shared Team Knowledge\" ) def search_team_memory ( query : str ) -> str : # Searches the shared PiyGraph knowledge graph for historical architectural facts res = client . memories . search ( query = query , scope = \"project\" , limit =3) return \"\\n\" . join ([ m [ \"content\" ] for m in res ]) researcher = Agent ( role = 'Senior Systems Architect' , goal = 'Design resilient microservices adhering to recorded enterprise guidelines' , tools =[ search_team_memory ], verbose = True )"
+      "raw_text": "Integrations / Agent Frameworks / CrewAI CrewAI Integration Provide multi-agent crews with a unified shared context graph (PiyGraph) and tool-level memory synchronization. Installation Copy pip install crewai piyapi-memory Shared Context Tool Example (User Guide §7.3) Copy from crewai import Agent , Crew , Task from crewai.tools import tool from piyapi import PiyAPIClient client = PiyAPIClient ( api_key = \"sk_live_your_key_here\" ) @tool ( \"Query Shared Team Knowledge\" ) def search_team_memory ( query : str ) -> str : # Searches the shared PiyGraph knowledge graph for historical architectural facts res = client . memories . search ( query = query , scope = \"project\" , limit =3) return \"\\n\" . join ([ m [ \"content\" ] for m in res ]) researcher = Agent ( role = 'Senior Systems Architect' , goal = 'Design resilient microservices adhering to recorded enterprise guidelines' , tools =[ search_team_memory ], verbose = True )"
     },
     {
       "id": "page-autogen",
@@ -714,7 +714,7 @@
           "bullets": []
         },
         {
-          "heading": "BYOK KMS Envelope Encryption (User Guide \u00a74.12)",
+          "heading": "BYOK KMS Envelope Encryption (User Guide §4.12)",
           "level": 2,
           "paragraphs": [
             "PiyAPI supports customer-managed encryption keys (CMEK) via AWS KMS, Azure Key Vault, and Google Cloud KMS. All AES-256-GCM data encryption keys (DEKs) are wrapped with your master Key Encryption Key (KEK) before writing to persistent PostgreSQL storage."
@@ -733,7 +733,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "Integrations / Infrastructure / Cloud Providers Cloud AI Infrastructure (AWS Bedrock, Azure, GCP) Enterprise memory infrastructure with BYOK KMS envelope encryption, VPC peering, and managed cloud model runtimes. AWS Bedrock Integration Copy import boto3 from piyapi import PiyAPIClient bedrock = boto3 . client ( 'bedrock-runtime' , region_name = 'us-east-1' ) piyapi = PiyAPIClient ( api_key = \"sk_live_your_key_here\" ) # Retrieve memories fused with Bedrock Titan Embeddings & pgvector HNSW memories = piyapi . memories . search ( query = \"PCI-DSS audit compliance history\" , scope = \"project\" ) BYOK KMS Envelope Encryption (User Guide \u00a74.12) PiyAPI supports customer-managed encryption keys (CMEK) via AWS KMS, Azure Key Vault, and Google Cloud KMS. All AES-256-GCM data encryption keys (DEKs) are wrapped with your master Key Encryption Key (KEK) before writing to persistent PostgreSQL storage. On this page Negentro GitHub X LinkedIn Documentation Open Source API Reference &copy; 2024 Negentro. All rights reserved."
+      "raw_text": "Integrations / Infrastructure / Cloud Providers Cloud AI Infrastructure (AWS Bedrock, Azure, GCP) Enterprise memory infrastructure with BYOK KMS envelope encryption, VPC peering, and managed cloud model runtimes. AWS Bedrock Integration Copy import boto3 from piyapi import PiyAPIClient bedrock = boto3 . client ( 'bedrock-runtime' , region_name = 'us-east-1' ) piyapi = PiyAPIClient ( api_key = \"sk_live_your_key_here\" ) # Retrieve memories fused with Bedrock Titan Embeddings & pgvector HNSW memories = piyapi . memories . search ( query = \"PCI-DSS audit compliance history\" , scope = \"project\" ) BYOK KMS Envelope Encryption (User Guide §4.12) PiyAPI supports customer-managed encryption keys (CMEK) via AWS KMS, Azure Key Vault, and Google Cloud KMS. All AES-256-GCM data encryption keys (DEKs) are wrapped with your master Key Encryption Key (KEK) before writing to persistent PostgreSQL storage. On this page Negentro GitHub X LinkedIn Documentation Open Source API Reference &copy; 2024 Negentro. All rights reserved."
     }
   ]
 }

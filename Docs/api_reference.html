@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Negentro API Reference — REST APIs for Persistent Memory &amp; Context</title>
-  <meta name="description" content="Programmatic REST API reference for Negentro and PiAPI cognitive memory operations, search, entity management, and context assembly.">
+  <title>PiyAPI API Reference — REST APIs for Persistent Memory &amp; Context</title>
+  <meta name="description" content="Programmatic REST API reference for PiyAPI and PiAPI cognitive memory operations, search, entity management, and context assembly.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1070,6 +1070,16 @@
       .prev-card { border-right: none; border-bottom: 1px solid var(--border); }
       .global-footer { margin-left: 0; padding: 1.5rem; }
     }
+  
+    /* --- PiyAPI Rich Documentation Utilities --- */
+    .code-tabs { background: #0b1120; border: 1px solid #334155; border-radius: 8px; overflow: hidden; margin: 1.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .tab-bar { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); background: #0f172a; padding: 0 0.5rem; overflow-x: auto; }
+    .tab-btn { font-size: 0.8rem; font-weight: 500; font-family: 'Inter', sans-serif; color: #94a3b8; padding: 0.65rem 1rem; border: none; background: transparent; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s ease; white-space: nowrap; }
+    .tab-btn:hover { color: #f8fafc; }
+    .tab-btn.active { color: #818cf8; border-bottom-color: #818cf8; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
   </style>
 </head>
 <body>
@@ -1084,7 +1094,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <nav class="topbar-nav">
     <a href="index.html">Get Started</a>
@@ -1186,7 +1196,7 @@
         <div class="breadcrumb">API Reference / Overview</div>
         <h1 class="page-title">API Reference Overview</h1>
         <p class="page-lead">REST APIs for memory management, search, entity operations, and persistent context.</p>
-        <p class="page-sublead">The Negentro REST API provides programmatic access to persistent memory and context operations, allowing applications and agents to create, retrieve, search, update, and manage memory through standard HTTP requests.</p>
+        <p class="page-sublead">The PiyAPI REST API provides programmatic access to persistent memory and context operations, allowing applications and agents to create, retrieve, search, update, and manage memory through standard HTTP requests.</p>
 
         <!-- API Version & Base URL Meta Box -->
         <div class="api-meta-grid">
@@ -1249,7 +1259,7 @@
             <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
           </div>
           <pre><span class="tok-cmd">curl -X POST "https://&lt;your-negentro-api&gt;/v1/memories" \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $NEGENTRO_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
   <span class="tok-prop">-d</span> <span class="tok-str">'{"user_id": "user_123", "content": "User prefers concise explanations"}'</span></pre>
         </div>
@@ -1381,7 +1391,7 @@
         <!-- AUTHENTICATION SECTION                                        -->
         <!-- ============================================================= -->
         <h2 class="doc-h2" id="authentication">Authentication</h2>
-        <p class="doc-subtitle">All requests to the Negentro API must include a valid API key passed via the Authorization header using the Bearer scheme. Requests without a valid key will be rejected.</p>
+        <p class="doc-subtitle">All requests to the PiyAPI API must include a valid API key passed via the Authorization header using the Bearer scheme. Requests without a valid key will be rejected.</p>
 
         <!-- Header code card -->
         <div class="terminal-card" style="margin-bottom: 1.5rem;">
@@ -1389,7 +1399,7 @@
             <span>Header</span>
             <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
           </div>
-          <pre><span class="tok-cmd">Authorization: Bearer &lt;NEGENTRO_API_KEY&gt;</span></pre>
+          <pre><span class="tok-cmd">Authorization: Bearer &lt;PIYAPI_API_KEY&gt;</span></pre>
         </div>
 
         <ul class="auth-bullets">
@@ -1406,7 +1416,7 @@
           </div>
           <pre><span class="tok-kw">const</span> <span class="tok-prop">response</span> = <span class="tok-kw">await</span> <span class="tok-cmd">fetch</span>(
   <span class="tok-str">"https://&lt;your-negentro-api&gt;/v1/memories"</span>,
-  { <span class="tok-prop">headers</span>: { <span class="tok-prop">Authorization</span>: <span class="tok-str">`Bearer ${process.env.NEGENTRO_API_KEY}`</span> } }
+  { <span class="tok-prop">headers</span>: { <span class="tok-prop">Authorization</span>: <span class="tok-str">`Bearer ${process.env.PIYAPI_API_KEY}`</span> } }
 )</pre>
         </div>
 
@@ -1424,7 +1434,7 @@
 
           <div class="flow-node">
             <div class="flow-node-icon accent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <span class="flow-node-label" style="color: var(--accent);">Negentro API</span>
+            <span class="flow-node-label" style="color: var(--accent);">PiyAPI API</span>
           </div>
 
           <div class="flow-connector">
@@ -1502,386 +1512,1139 @@
       <!-- =============================================================== -->
       <!-- CORE MEMORY OPERATIONS SUBPAGES (GROUNDED IN USERGUIDE.PDF)     -->
       <!-- =============================================================== -->
-      <div class="page" id="page-add-memories">
-        <div class="breadcrumb">API Reference / Core Memory Operations / Add Memories</div>
+      
+
+      <!-- PAGE: add-memories -->
+<div class="page" id="page-add-memories">
+        <div class="breadcrumb">API Reference / Core Memory / Add Memories</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories</span>
+        </div>
         <h1 class="page-title">Add Memories</h1>
-        <p class="page-lead">Store new information, agent interactions, and bitemporal facts into persistent memory.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>POST /api/v1/memories</span>
-              <span class="terminal-badge">LIVE VERIFIED</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/memories \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "content": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
-    "tags": ["compliance", "soc2", "audit"],
-    "metadata": { "client_id": "cli_8812", "urgency": "high" },
-    "valid_at": "2026-08-01T00:00:00.000Z"
-  }'</span></pre>
-        </div>
-        <p class="doc-subtitle">Response Schema (201 Created):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"memory"</span>: {
-    <span class="tok-prop">"id"</span>: <span class="tok-str">"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d"</span>,
-    <span class="tok-prop">"content"</span>: <span class="tok-str">"Client requested SOC2 Type II compliance audit report for Q3 2026."</span>,
-    <span class="tok-prop">"namespace"</span>: <span class="tok-str">"default"</span>,
-    <span class="tok-prop">"tags"</span>: [<span class="tok-str">"compliance"</span>, <span class="tok-str">"soc2"</span>, <span class="tok-str">"audit"</span>],
-    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-03T15:10:00.000Z"</span>
-  }
-}</pre>
-        </div>
-      </div>
+        <p class="page-lead">Create one or more persistent episodic memories with automated Active Inference surprise gating and PHI redaction.</p>
 
-      <div class="page" id="page-get-memories">
-        <div class="breadcrumb">API Reference / Core Memory Operations / Get Memories</div>
-        <h1 class="page-title">Get Memories</h1>
-        <p class="page-lead">List stored memories scoped to your user or project with tag and date range filtering.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>GET /api/v1/memories</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X GET "https://api.piyapi.cloud/api/v1/memories?limit=10&amp;tags=compliance" \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-search-memories">
-        <div class="breadcrumb">API Reference / Core Memory Operations / Search Memories</div>
-        <h1 class="page-title">Search Memories</h1>
-        <p class="page-lead">Execute multi-signal hybrid search fusing pgvector HNSW dense vectors and BM25 trigram full-text scores.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>POST /api/v1/search</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/search \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "query": "SOC2 audit report requests",
-    "limit": 5,
-    "alpha": 0.7,
-    "tags": ["compliance"],
-    "min_score": 0.25
-  }'</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-update-memory">
-        <div class="breadcrumb">API Reference / Core Memory Operations / Update Memory</div>
-        <h1 class="page-title">Update Memory</h1>
-        <p class="page-lead">Modify content, tags, or bitemporal validity of an existing memory record, generating a new revision version.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>PATCH /api/v1/memories/:id</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X PATCH https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "content": "Updated compliance audit report status: Approved.",
-    "tags": ["compliance", "soc2", "approved"]
-  }'</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-delete-memory">
-        <div class="breadcrumb">API Reference / Core Memory Operations / Delete Memory</div>
-        <h1 class="page-title">Delete Memory</h1>
-        <p class="page-lead">Soft-delete a memory record or remove it from the active context assembly graph.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>DELETE /api/v1/memories/:id</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X DELETE https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-feedback">
-        <div class="breadcrumb">API Reference / Memory Management / Feedback</div>
-        <h1 class="page-title">Adaptive Feedback API</h1>
-        <p class="page-lead">Train the UnifiedScorer ranking engine with positive and negative retrieval feedback.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>POST /api/v1/feedback/positive</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/feedback/positive \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{ "memory_id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d", "query": "database preferences" }'</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-get-memory">
-        <div class="breadcrumb">API Reference / Memory Management / Get Memory</div>
-        <h1 class="page-title">Get Memory by ID</h1>
-        <p class="page-lead">Retrieve a single memory object by its unique UUID identifier.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>GET /api/v1/memories/:id</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-memory-history">
-        <div class="breadcrumb">API Reference / Memory Management / Memory History</div>
-        <h1 class="page-title">Memory Version History</h1>
-        <p class="page-lead">Inspect complete revision logs, timestamp diffs, and bitemporal valid_at history for a given memory.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>GET /api/v1/memories/:id/history</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d/history \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-submit-update">
-        <div class="breadcrumb">API Reference / Memory Management / Submit Update Memories</div>
-        <h1 class="page-title">Bulk Update Memories</h1>
-        <p class="page-lead">Bulk append or replace tags and metadata across multiple memory records in a single transactional operation.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>POST /api/v1/bulk/memories/tag</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{ "memory_ids": ["uuid-1...", "uuid-2..."], "add_tags": ["reviewed", "soc2"] }'</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-batch-delete">
-        <div class="breadcrumb">API Reference / Memory Management / Batch Delete Memories</div>
-        <h1 class="page-title">Batch Delete Memories</h1>
-        <p class="page-lead">Bulk delete memories matching specific tag criteria, category filters, or time boundaries.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>POST /api/v1/bulk/memories/delete</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/delete \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
-  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
-  <span class="tok-prop">-d</span> <span class="tok-str">'{ "tags": ["deprecated", "temporary"] }'</span></pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-delete-memories">
-        <div class="breadcrumb">API Reference / Memory Management / Delete Memories</div>
-        <h1 class="page-title">Delete Memories</h1>
-        <p class="page-lead">Targeted multi-record soft deletion and namespace purge operations.</p>
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <span>DELETE /api/v1/memories</span>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X DELETE "https://api.piyapi.cloud/api/v1/memories?scope=temporary" \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-      </div>
-
-      <!-- =============================================================== -->
-      <!-- COMPLIANCE & EVENTS SPECIFICATIONS -->
-      <!-- =============================================================== -->
-      <!-- =============================================================== -->
-      <!-- ORGANIZATIONS, PROJECTS, COMPLIANCE & EVENTS                   -->
-      <!-- =============================================================== -->
-      <div class="page" id="page-organizations">
-        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Organizations</div>
-        <h1 class="page-title">Organizations API</h1>
-        <p class="page-lead">Manage multi-tenant organization boundaries, team access, and enterprise SSO SAML/OIDC configuration.</p>
-
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>POST /api/v1/admin/organizations</span>
-              <span class="terminal-badge">ENTERPRISE</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/admin/organizations \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_SUPER_ADMIN_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "name": "Acme Global Systems",
-    "slug": "acme-global",
-    "domain": "acme.com",
-    "tier": "enterprise"
-  }'</span></pre>
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Request Headers</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;"><th style="padding:8px 12px;">Header</th><th style="padding:8px 12px;">Type</th><th style="padding:8px 12px;">Description</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">Authorization</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;">Bearer &lt;PIYAPI_API_KEY&gt;</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">X-Workspace-ID</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;">Optional partition key isolating memory namespaces.</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <p class="doc-subtitle">Response Schema (201 Created):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"organization"</span>: {
-    <span class="tok-prop">"id"</span>: <span class="tok-str">"org_9a8b7c6d5e4f"</span>,
-    <span class="tok-prop">"name"</span>: <span class="tok-str">"Acme Global Systems"</span>,
-    <span class="tok-prop">"slug"</span>: <span class="tok-str">"acme-global"</span>,
-    <span class="tok-prop">"tier"</span>: <span class="tok-str">"enterprise"</span>,
-    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-15T09:00:00.000Z"</span>
-  }
-}</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-projects">
-        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Projects</div>
-        <h1 class="page-title">Projects API</h1>
-        <p class="page-lead">Create and isolate memory graphs, API keys, and workspace resources across multiple projects.</p>
-
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>POST /api/v1/projects</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/projects \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "name": "Customer Support Copilot",
-    "description": "Production agent memory partition for enterprise support tickets"
-  }'</span></pre>
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Request Body Parameters</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;"><th style="padding:8px 12px;">Field</th><th style="padding:8px 12px;">Type</th><th style="padding:8px 12px;">Required</th><th style="padding:8px 12px;">Description</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">user_id</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#ef4444;">Required</td><td style="padding:8px 12px;">Unique identity anchor for the user, agent, or tenant.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">messages</td><td style="padding:8px 12px;">array[object]</td><td style="padding:8px 12px;color:#ef4444;">Required</td><td style="padding:8px 12px;">List of dialogue messages (role: user/assistant, content: text).</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">scope</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Isolation level: 'user', 'session', 'agent', or 'global' (default: 'user').</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">metadata</td><td style="padding:8px 12px;">object</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Arbitrary JSON key-value pairs indexed for scalar filtering.</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <p class="doc-subtitle">Response Schema (201 Created):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"project"</span>: {
-    <span class="tok-prop">"id"</span>: <span class="tok-str">"proj_1a2b3c4d5e"</span>,
-    <span class="tok-prop">"name"</span>: <span class="tok-str">"Customer Support Copilot"</span>,
-    <span class="tok-prop">"status"</span>: <span class="tok-str">"active"</span>,
-    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-15T09:30:00.000Z"</span>
-  }
-}</pre>
-        </div>
-      </div>
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="add-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('add-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('add-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('add-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
 
-      <div class="page" id="page-create-export">
-        <div class="breadcrumb">API Reference / Memory Management / Create Memory Export</div>
-        <h1 class="page-title">Create Memory Export</h1>
-        <p class="page-lead">Initiate asynchronous GDPR Article 15 (Right of Access) compliance export archives for a user dataset.</p>
+client = PiyMemoryClient()
+res = client.memories.add(
+    user_id="usr_01J8K9",
+    messages=[{"role": "user", "content": "Customer prefers quarterly invoicing over Stripe."}],
+    metadata={"department": "finance", "tier": "enterprise"}
+)
+print(f"Memory stored: {res.events[0].id}, surprise: {res.surprise_score}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
 
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>POST /api/v1/compliance/export</span>
-              <span class="terminal-badge">GDPR COMPLIANT</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/compliance/export \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
-    "user_id": "usr_9921",
-    "format": "json",
-    "include_metadata": true
-  }'</span></pre>
-        </div>
+const client = new PiyMemoryClient();
+const res = await client.memories.add({
+  userId: "usr_01J8K9",
+  messages: [{ role: "user", content: "Customer prefers quarterly invoicing over Stripe." }],
+  metadata: { department: "finance", tier: "enterprise" }
+});
+console.log(`Stored memory: ${res.events[0].id}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "usr_01J8K9",
+    "messages": [{"role": "user", "content": "Customer prefers quarterly invoicing over Stripe."}],
+    "metadata": {"department": "finance"}
+  }'</code></pre>
+  </div>
+</div>
 
-        <p class="doc-subtitle">Response Schema (202 Accepted):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"export_id"</span>: <span class="tok-str">"exp_7f8a9b1c2d"</span>,
-  <span class="tok-prop">"user_id"</span>: <span class="tok-str">"usr_9921"</span>,
-  <span class="tok-prop">"status"</span>: <span class="tok-str">"pending"</span>,
-  <span class="tok-prop">"estimated_completion_sec"</span>: 15
-}</pre>
-        </div>
-      </div>
 
-      <div class="page" id="page-get-export">
-        <div class="breadcrumb">API Reference / Memory Management / Get Memory Export</div>
-        <h1 class="page-title">Get Memory Export</h1>
-        <p class="page-lead">Poll the status of an ongoing export job and obtain secure download links for generated archives.</p>
-
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>GET /api/v1/compliance/export/:export_id</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/compliance/export/exp_7f8a9b1c2d \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-
-        <p class="doc-subtitle">Response Schema (200 OK):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"export_id"</span>: <span class="tok-str">"exp_7f8a9b1c2d"</span>,
-  <span class="tok-prop">"status"</span>: <span class="tok-str">"completed"</span>,
-  <span class="tok-prop">"download_url"</span>: <span class="tok-str">"https://exports.piyapi.cloud/archives/usr_9921_export_2026.zip?token=..."</span>,
-  <span class="tok-prop">"records_exported"</span>: 142,
-  <span class="tok-prop">"expires_at"</span>: <span class="tok-str">"2026-08-16T12:00:00.000Z"</span>
-}</pre>
-        </div>
-      </div>
-
-      <div class="page" id="page-get-events">
-        <div class="breadcrumb">API Reference / Events / Get Events</div>
-        <h1 class="page-title">Get Events</h1>
-        <p class="page-lead">Retrieve chronological audit events for memory creations, updates, connector syncs, and webhook executions.</p>
-
-        <div class="terminal-card">
-          <div class="terminal-header">
-            <div class="terminal-header-left">
-              <span>GET /api/v1/events</span>
-            </div>
-            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmd">curl -X GET "https://api.piyapi.cloud/api/v1/events?limit=5&amp;type=memory.created" \</span>
-  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
-        </div>
-
-        <p class="doc-subtitle">Response Schema (200 OK):</p>
-        <div class="terminal-card">
-          <pre>{
-  <span class="tok-prop">"events"</span>: [
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Response 201 Created</h2>
+        <div class="terminal-card" style="margin:1rem 0;">
+          <div class="terminal-header" style="padding:0.4rem 1rem;background:#0f172a;border-bottom:1px solid #334155;border-radius:8px 8px 0 0;font-family:monospace;font-size:0.75rem;color:#94a3b8;">json</div>
+          <pre style="margin:0;padding:1rem;background:#0b1120;border-radius:0 0 8px 8px;overflow-x:auto;"><code class="language-json">{
+  "status": "success",
+  "surprise_score": 0.0841,
+  "events": [
     {
-      <span class="tok-prop">"id"</span>: <span class="tok-str">"evt_8192038"</span>,
-      <span class="tok-prop">"type"</span>: <span class="tok-str">"memory.created"</span>,
-      <span class="tok-prop">"timestamp"</span>: <span class="tok-str">"2026-08-15T10:14:22.100Z"</span>,
-      <span class="tok-prop">"actor_id"</span>: <span class="tok-str">"usr_9921"</span>,
-      <span class="tok-prop">"payload"</span>: {
-        <span class="tok-prop">"memory_id"</span>: <span class="tok-str">"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d"</span>,
-        <span class="tok-prop">"namespace"</span>: <span class="tok-str">"default"</span>
-      }
+      "id": "mem_01J8K9P2X",
+      "user_id": "usr_01J8K9",
+      "content": "Customer prefers quarterly invoicing over Stripe.",
+      "scope": "user",
+      "confidence": 0.982,
+      "valid_time": "2026-10-25T02:00:00Z",
+      "tx_time": "2026-10-25T02:00:00.124Z"
     }
   ]
-}</pre>
+}</code></pre>
+        </div>
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('projects')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Projects</span>
+          <span class="footer-next" onclick="showPage('get-memories')" style="color:#818cf8;cursor:pointer;">NEXT: Get Memories &rarr;</span>
         </div>
       </div>
 
-    </div><!-- /#content -->
+      <!-- PAGE: get-memories -->
+<div class="page" id="page-get-memories">
+        <div class="breadcrumb">API Reference / Core Memory / Get Memories</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories</span>
+        </div>
+        <h1 class="page-title">Get Memories</h1>
+        <p class="page-lead">Retrieve a paginated list of persistent memories filtered by user, session, or time window.</p>
 
-    <!-- RIGHT TOC ("ON THIS PAGE") -->
-    <div id="toc">
-      <div class="toc-label">On this page</div>
-      <div id="toc-links">
-        <a class="toc-link active" onclick="showPage('overview'); scrollToSection('overview')">Negentro REST API</a>
-        <a class="toc-link" onclick="showPage('overview'); scrollToSection('quick-start-guide')">Quick Start Guide</a>
-        <a class="toc-link" onclick="showPage('overview'); scrollToSection('core-operations')">Core Operations</a>
-        <a class="toc-link" onclick="showPage('overview'); scrollToSection('api-categories')">API Categories</a>
-        <a class="toc-link" onclick="showPage('overview'); scrollToSection('authentication')">Authentication</a>
-        <a class="toc-link" onclick="showPage('overview'); scrollToSection('next-steps')">Next Steps</a>
-      </div>
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Query Parameters</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;"><th style="padding:8px 12px;">Parameter</th><th style="padding:8px 12px;">Type</th><th style="padding:8px 12px;">Required</th><th style="padding:8px 12px;">Description</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">user_id</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#ef4444;">Required</td><td style="padding:8px 12px;">Target user identifier.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">limit</td><td style="padding:8px 12px;">integer</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Max items returned (default 20, max 100).</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">scope</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Filter by scope ('user', 'session', 'agent', 'global').</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="get-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
     </div>
-  </div><!-- /#main -->
-</div><!-- /#layout -->
+    <button class="tab-btn active" onclick="switchTab('get-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('get-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('get-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+memories = client.memories.list(user_id="usr_01J8K9", limit=10)
+for m in memories.items:
+    print(f"[{m.id}] {m.content}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const res = await client.memories.list({ userId: "usr_01J8K9", limit: 10 });
+res.items.forEach(m => console.log(m.content));</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories?user_id=usr_01J8K9&limit=10" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('add-memories')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Add Memories</span>
+          <span class="footer-next" onclick="showPage('search-memories')" style="color:#818cf8;cursor:pointer;">NEXT: Search Memories &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: search-memories -->
+<div class="page" id="page-search-memories">
+        <div class="breadcrumb">API Reference / Core Memory / Search Memories</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/search</span>
+        </div>
+        <h1 class="page-title">Search Memories</h1>
+        <p class="page-lead">Execute 6-strategy hybrid search combining vector embeddings, BM25 exact match, graph walk distance, and recency decay.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Request Body Parameters</h2>
+        <div class="doc-table-wrap" style="overflow-x:auto;margin:1rem 0;">
+          <table class="doc-table" style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="border-bottom:2px solid #334155;text-align:left;color:#94a3b8;"><th style="padding:8px 12px;">Field</th><th style="padding:8px 12px;">Type</th><th style="padding:8px 12px;">Required</th><th style="padding:8px 12px;">Description</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">user_id</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#ef4444;">Required</td><td style="padding:8px 12px;">User or workspace identifier.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">query</td><td style="padding:8px 12px;">string</td><td style="padding:8px 12px;color:#ef4444;">Required</td><td style="padding:8px 12px;">Natural language search query.</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">limit</td><td style="padding:8px 12px;">integer</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Maximum ranked results (default 5).</td></tr>
+              <tr style="border-bottom:1px solid #1e293b;"><td style="padding:8px 12px;font-family:monospace;color:#818cf8;">min_confidence</td><td style="padding:8px 12px;">float</td><td style="padding:8px 12px;color:#94a3b8;">Optional</td><td style="padding:8px 12px;">Minimum Bayesian belief score (0.0 to 1.0, default 0.75).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="search-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('search-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('search-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('search-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+res = client.memories.search(
+    user_id="usr_01J8K9",
+    query="invoicing and payment methods",
+    limit=3,
+    min_confidence=0.85
+)
+for r in res.results:
+    print(f"[{r.score:.3f}] {r.content}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const res = await client.memories.search({
+  userId: "usr_01J8K9",
+  query: "invoicing and payment methods",
+  limit: 3
+});
+res.results.forEach(r => console.log(`[${r.score}] ${r.content}`));</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/search" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"usr_01J8K9","query":"invoicing preferences","limit":3}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('get-memories')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Get Memories</span>
+          <span class="footer-next" onclick="showPage('update-memory')" style="color:#818cf8;cursor:pointer;">NEXT: Update Memory &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: update-memory -->
+<div class="page" id="page-update-memory">
+        <div class="breadcrumb">API Reference / Core Memory / Update Memory</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#f59e0b20;color:#fbbf24;border:1px solid #f59e0b40;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">PATCH</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/{memory_id}</span>
+        </div>
+        <h1 class="page-title">Update Memory</h1>
+        <p class="page-lead">Revise an existing memory belief non-destructively, preserving historical version lineage in PiyGraph.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="patch-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('patch-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('patch-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('patch-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+updated = client.memories.update(
+    memory_id="mem_01J8K9P2X",
+    content="Customer switched to semi-annual invoicing via ACH.",
+    metadata={"status": "revised"}
+)
+print("Updated belief. New version:", updated.version)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const res = await client.memories.update({
+  memoryId: "mem_01J8K9P2X",
+  content: "Customer switched to semi-annual invoicing via ACH."
+});
+console.log(`Updated version: ${res.version}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X PATCH "https://api.piyapi.cloud/v1/memories/mem_01J8K9P2X" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"Customer switched to semi-annual invoicing via ACH."}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('search-memories')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Search Memories</span>
+          <span class="footer-next" onclick="showPage('delete-memory')" style="color:#818cf8;cursor:pointer;">NEXT: Delete Memory &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: delete-memory -->
+<div class="page" id="page-delete-memory">
+        <div class="breadcrumb">API Reference / Core Memory / Delete Memory</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#ef444420;color:#f87171;border:1px solid #ef444440;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">DELETE</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/{memory_id}</span>
+        </div>
+        <h1 class="page-title">Delete Memory</h1>
+        <p class="page-lead">Revoke a memory node and sever connected graph edges with GDPR Article 17 cryptographic certifiability.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="del-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('del-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('del-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('del-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+client.memories.delete(memory_id="mem_01J8K9P2X")
+print("Memory deleted and shredded.")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.delete({ memoryId: "mem_01J8K9P2X" });
+console.log("Memory deleted.");</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X DELETE "https://api.piyapi.cloud/v1/memories/mem_01J8K9P2X" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('update-memory')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Update Memory</span>
+          <span class="footer-next" onclick="showPage('get-memory')" style="color:#818cf8;cursor:pointer;">NEXT: Get Memory &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: get-memory -->
+<div class="page" id="page-get-memory">
+        <div class="breadcrumb">API Reference / Memory Management / Get Memory</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/{memory_id}</span>
+        </div>
+        <h1 class="page-title">Get Memory by ID</h1>
+        <p class="page-lead">Retrieve the complete bitemporal node details, entity links, and confidence metrics for a single memory.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="get-single-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('get-single-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('get-single-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('get-single-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+mem = client.memories.get(memory_id="mem_01J8K9P2X")
+print(f"Content: {mem.content}, Confidence: {mem.confidence}, ValidTime: {mem.valid_time}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const mem = await client.memories.get({ memoryId: "mem_01J8K9P2X" });
+console.log(`Content: ${mem.content}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories/mem_01J8K9P2X" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('delete-memory')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Delete Memory</span>
+          <span class="footer-next" onclick="showPage('memory-history')" style="color:#818cf8;cursor:pointer;">NEXT: Memory History &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: memory-history -->
+<div class="page" id="page-memory-history">
+        <div class="breadcrumb">API Reference / Memory Management / Memory History</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/{memory_id}/history</span>
+        </div>
+        <h1 class="page-title">Memory History &amp; Version Lineage</h1>
+        <p class="page-lead">Inspect the chronological revision diffs and Bayesian confidence shifts of a memory over time.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="history-mem-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('history-mem-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('history-mem-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('history-mem-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+history = client.memories.history(memory_id="mem_01J8K9P2X")
+for version in history.versions:
+    print(f"v{version.version} at {version.tx_time}: {version.content}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const history = await client.memories.history({ memoryId: "mem_01J8K9P2X" });
+history.versions.forEach(v => console.log(`v${v.version}: ${v.content}`));</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/memories/mem_01J8K9P2X/history" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('get-memory')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Get Memory</span>
+          <span class="footer-next" onclick="showPage('feedback')" style="color:#818cf8;cursor:pointer;">NEXT: Feedback &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: feedback -->
+<div class="page" id="page-feedback">
+        <div class="breadcrumb">API Reference / Memory Management / Feedback</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/feedback</span>
+        </div>
+        <h1 class="page-title">Submit Memory Feedback</h1>
+        <p class="page-lead">Train adaptive decay and reinforce high-utility memory edges with user approval signals.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="feedback-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('feedback-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('feedback-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('feedback-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+client.memories.feedback(
+    memory_id="mem_01J8K9P2X",
+    rating=1.0,  # +1.0 for helpful, -1.0 for harmful/stale
+    comment="Accurately guided migration script without errors."
+)
+print("Feedback submitted to adaptive decay engine.")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.feedback({
+  memoryId: "mem_01J8K9P2X",
+  rating: 1.0,
+  comment: "Accurately guided migration script."
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/feedback" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"memory_id":"mem_01J8K9P2X","rating":1.0,"comment":"Helpful"}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('memory-history')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Memory History</span>
+          <span class="footer-next" onclick="showPage('submit-update')" style="color:#818cf8;cursor:pointer;">NEXT: Submit Update &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: submit-update -->
+<div class="page" id="page-submit-update">
+        <div class="breadcrumb">API Reference / Memory Management / Submit Update</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/submit-update</span>
+        </div>
+        <h1 class="page-title">Submit Update Memories</h1>
+        <p class="page-lead">Atomic bulk update of multiple memory nodes with conflict-free transaction guarantees.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="submit-update-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('submit-update-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('submit-update-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('submit-update-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+res = client.memories.submit_update(
+    updates=[
+        {"memory_id": "mem_01", "content": "Updated policy A"},
+        {"memory_id": "mem_02", "content": "Updated policy B"}
+    ]
+)
+print("Updated memories count:", len(res.updated))</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.submitUpdate({
+  updates: [
+    { memoryId: "mem_01", content: "Updated policy A" }
+  ]
+});</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/submit-update" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"updates":[{"memory_id":"mem_01","content":"Updated policy A"}]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('feedback')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Feedback</span>
+          <span class="footer-next" onclick="showPage('batch-delete')" style="color:#818cf8;cursor:pointer;">NEXT: Batch Delete &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: batch-delete -->
+<div class="page" id="page-batch-delete">
+        <div class="breadcrumb">API Reference / Memory Management / Batch Delete</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories/batch-delete</span>
+        </div>
+        <h1 class="page-title">Batch Delete Memories</h1>
+        <p class="page-lead">Delete multiple memories in a single atomic request, returning a cryptographic shredding manifest.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="batch-del-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('batch-del-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('batch-del-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('batch-del-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+res = client.memories.batch_delete(memory_ids=["mem_01", "mem_02", "mem_03"])
+print("Shredded memories count:", res.deleted_count)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.batchDelete({ memoryIds: ["mem_01", "mem_02"] });</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/memories/batch-delete" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"memory_ids":["mem_01","mem_02"]}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('submit-update')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Submit Update</span>
+          <span class="footer-next" onclick="showPage('delete-memories')" style="color:#818cf8;cursor:pointer;">NEXT: Delete Memories &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: delete-memories -->
+<div class="page" id="page-delete-memories">
+        <div class="breadcrumb">API Reference / Memory Management / Delete Memories (Bulk)</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#ef444420;color:#f87171;border:1px solid #ef444440;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">DELETE</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/memories</span>
+        </div>
+        <h1 class="page-title">Delete Memories by Filter</h1>
+        <p class="page-lead">Wipe all memories for a user, session, or workspace matching specified metadata filters.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="del-all-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('del-all-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('del-all-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('del-all-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+client.memories.delete_all(user_id="usr_01J8K9", scope="session")
+print("Cleared session memories.")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+await client.memories.deleteAll({ userId: "usr_01J8K9", scope: "session" });</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X DELETE "https://api.piyapi.cloud/v1/memories?user_id=usr_01J8K9&scope=session" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('batch-delete')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Batch Delete</span>
+          <span class="footer-next" onclick="showPage('organizations')" style="color:#818cf8;cursor:pointer;">NEXT: Organizations &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: organizations -->
+<div class="page" id="page-organizations">
+        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Organizations</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/organizations</span>
+        </div>
+        <h1 class="page-title">Organizations API</h1>
+        <p class="page-lead">Inspect organization metadata, subscription tiers, seat licenses, and enterprise security policies.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="orgs-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('orgs-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('orgs-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('orgs-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+org = client.organizations.get_current()
+print(f"Organization: {org.name}, Plan: {org.plan}, Max Workspaces: {org.max_workspaces}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const org = await client.organizations.getCurrent();
+console.log(`Organization: ${org.name}, Plan: ${org.plan}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/organizations/current" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('delete-memories')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Delete Memories</span>
+          <span class="footer-next" onclick="showPage('projects')" style="color:#818cf8;cursor:pointer;">NEXT: Projects &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: projects -->
+<div class="page" id="page-projects">
+        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Projects</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/projects</span>
+        </div>
+        <h1 class="page-title">Projects API</h1>
+        <p class="page-lead">List, provision, and configure isolated project memory environments and API key scopes.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="projects-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('projects-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('projects-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('projects-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+projects = client.projects.list()
+for p in projects.items:
+    print(f"Project: {p.id} ({p.name})")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const res = await client.projects.list();
+res.items.forEach(p => console.log(p.name));</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/projects" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('organizations')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Organizations</span>
+          <span class="footer-next" onclick="showPage('create-export')" style="color:#818cf8;cursor:pointer;">NEXT: Create Export &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: create-export -->
+<div class="page" id="page-create-export">
+        <div class="breadcrumb">API Reference / Memory Management / Create Export</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#10b98120;color:#34d399;border:1px solid #10b98140;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">POST</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/exports</span>
+        </div>
+        <h1 class="page-title">Create Memory Export</h1>
+        <p class="page-lead">Generate an encrypted GDPR/HIPAA compliance data archive containing all user memories, edges, and audit logs.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="create-exp-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('create-exp-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('create-exp-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('create-exp-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+export_job = client.exports.create(
+    user_id="usr_01J8K9",
+    format="jsonl",
+    include_audit_trail=True
+)
+print(f"Export Job Created: {export_job.id}, Status: {export_job.status}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const job = await client.exports.create({
+  userId: "usr_01J8K9",
+  format: "jsonl"
+});
+console.log(`Job ID: ${job.id}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X POST "https://api.piyapi.cloud/v1/exports" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"usr_01J8K9","format":"jsonl"}'</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('projects')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Projects</span>
+          <span class="footer-next" onclick="showPage('get-export')" style="color:#818cf8;cursor:pointer;">NEXT: Get Export &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: get-export -->
+<div class="page" id="page-get-export">
+        <div class="breadcrumb">API Reference / Memory Management / Get Export</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/exports/{export_id}</span>
+        </div>
+        <h1 class="page-title">Get Memory Export Status</h1>
+        <p class="page-lead">Poll the completion status and download URL of a generated compliance export archive.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="get-exp-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('get-exp-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('get-exp-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('get-exp-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+status = client.exports.get(export_id="exp_01J8K9_77")
+if status.status == "completed":
+    print("Download URL:", status.download_url)</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const res = await client.exports.get({ exportId: "exp_01J8K9_77" });
+console.log(`Status: ${res.status}`);</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/exports/exp_01J8K9_77" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('create-export')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Create Export</span>
+          <span class="footer-next" onclick="showPage('get-events')" style="color:#818cf8;cursor:pointer;">NEXT: Get Events &rarr;</span>
+        </div>
+      </div>
+
+      <!-- PAGE: get-events -->
+<div class="page" id="page-get-events">
+        <div class="breadcrumb">API Reference / Events / Get Events</div>
+        <div class="subpage-badge-row" style="display:flex;gap:8px;margin:0.8rem 0;align-items:center;">
+          <span style="background:#3b82f620;color:#60a5fa;border:1px solid #3b82f640;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;font-family:monospace;">GET</span>
+          <span style="font-family:monospace;font-size:0.9rem;color:#f8fafc;">/v1/events</span>
+        </div>
+        <h1 class="page-title">Get Events API</h1>
+        <p class="page-lead">Retrieve chronological audit events for memory creations, updates, connector syncs, and webhook executions.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:600;margin-top:2rem;">Code Examples</h2>
+        
+<div class="code-tabs" id="get-events-code">
+  <div class="tab-bar">
+    <div class="mac-dots" style="display:flex;align-items:center;gap:6px;padding:0 8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+      <span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+    </div>
+    <button class="tab-btn active" onclick="switchTab('get-events-code', 'py')">Python</button>
+    <button class="tab-btn" onclick="switchTab('get-events-code', 'ts')">TypeScript</button>
+    <button class="tab-btn" onclick="switchTab('get-events-code', 'curl')">cURL / REST</button>
+  </div>
+  <div class="tab-panel active" data-tab="py">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.py</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-python">from piyapi import PiyMemoryClient
+
+client = PiyMemoryClient()
+events = client.events.list(limit=50)
+for ev in events.items:
+    print(f"[{ev.created_at}] {ev.type} on memory {ev.target_id}")</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="ts">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>integration.ts</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-typescript">import { PiyMemoryClient } from "@piyapi/sdk";
+
+const client = new PiyMemoryClient();
+const events = await client.events.list({ limit: 50 });
+events.items.forEach(e => console.log(`${e.type}: ${e.targetId}`));</code></pre>
+  </div>
+  <div class="tab-panel" data-tab="curl">
+    <div class="code-header" style="display:flex;justify-content:space-between;padding:0.4rem 1rem;background:rgba(0,0,0,0.2);font-size:0.75rem;color:#94a3b8;font-family:monospace;">
+      <span>terminal.sh</span>
+      <button onclick="copySnippet(this)" style="background:none;border:none;color:#94a3b8;cursor:pointer;">Copy</button>
+    </div>
+    <pre style="margin:0;padding:1rem;overflow-x:auto;"><code class="language-bash">curl -X GET "https://api.piyapi.cloud/v1/events?limit=50" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"</code></pre>
+  </div>
+</div>
+
+
+        <div class="page-footer-nav" style="display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #334155;">
+          <span class="footer-prev" onclick="showPage('get-export')" style="color:#818cf8;cursor:pointer;">&larr; PREVIOUS: Get Export</span>
+          <span class="footer-next" onclick="showPage('overview')" style="color:#818cf8;cursor:pointer;">NEXT: API Overview &rarr;</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <footer class="global-footer">
   <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
@@ -1890,7 +2653,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <div class="global-footer-links">
     <a href="https://github.com/piyapi" target="_blank">GitHub</a>
@@ -1900,10 +2663,28 @@
     <a href="opensource.html">Open Source</a>
     <a href="api_reference.html">API Reference</a>
   </div>
-  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+  <div class="global-footer-copy">&copy; 2024 PiyAPI. All rights reserved.</div>
 </footer>
 
 <script>
+
+function switchTab(containerId, tabName) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const buttons = container.querySelectorAll('.tab-btn');
+  const panels = container.querySelectorAll('.tab-panel');
+  buttons.forEach(btn => {
+    const text = btn.innerText.toLowerCase();
+    const match = (tabName === 'py' && text.includes('python')) ||
+                  (tabName === 'ts' && text.includes('typescript')) ||
+                  (tabName === 'curl' && (text.includes('curl') || text.includes('rest')));
+    btn.classList.toggle('active', match);
+  });
+  panels.forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-tab') === tabName);
+  });
+}
+
 let currentPageId = 'overview';
 
 function showPage(pageId) {
