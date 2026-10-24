@@ -471,7 +471,6 @@
       .beam .tablet-suspension { display: block; }
       .beam .desktop-anchor { display: none; }
       .beam .tablet-anchor { display: block; }
-      .topbar-nav { display: none; }
       .search-box { display: none; }
     }
 
@@ -491,13 +490,13 @@
 </head>
 <body>
   <header id="topbar">
-    <a class="topbar-brand" href="platform.html">
+    <a class="topbar-brand" href="index.html">
       <span class="brand-mark">◈</span>
       <span>Negentro</span>
     </a>
 
     <nav class="topbar-nav" aria-label="Main navigation">
-      <a class="nav-link active" href="get_started.html">Get Started</a>
+      <a class="nav-link active" href="index.html">Get Started</a>
       <a class="nav-link" href="platform.html">Platform</a>
       <a class="nav-link" href="opensource.html">Open Source</a>
       <a class="nav-link" href="integrations.html">Integrations</a>
@@ -550,7 +549,7 @@
             <span class="leaf-badge">01</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Store your first memory</h2>
+          <h2 class="leaf-title"><a href="platform.html#memory" style="color:inherit; text-decoration:none;">Store your first memory</a></h2>
           <div class="leaf-body">
             <div class="code-window">
               <pre><span class="token-key">piyapi</span>.<span class="token-func">memory</span>.<span class="token-func">add</span>({
@@ -560,6 +559,7 @@
 })</pre>
             </div>
             <p class="card-copy">Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency.</p>
+            <a href="platform.html#memory" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">Explore Memory Guide &rarr;</a>
           </div>
         </article>
 
@@ -576,7 +576,7 @@
             <span class="leaf-badge">02</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Add memory to your AI agent</h2>
+          <h2 class="leaf-title"><a href="agent_plugins.html" style="color:inherit; text-decoration:none;">Add memory to your AI agent</a></h2>
           <div class="leaf-body">
             <div class="code-window">
               <div class="mini-flow">
@@ -590,6 +590,7 @@
               </div>
             </div>
             <p class="card-copy">Give your agents persistent context across conversations, sessions, and workflows.</p>
+            <a href="agent_plugins.html" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">Explore Agent Plugins &rarr;</a>
           </div>
         </article>
 
@@ -606,7 +607,7 @@
             <span class="leaf-badge">03</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Build context workflow</h2>
+          <h2 class="leaf-title"><a href="platform.html#context" style="color:inherit; text-decoration:none;">Build context workflow</a></h2>
           <div class="leaf-body">
             <div class="code-window">
               <pre>1. <span class="token-key">const</span> p = <span class="token-key">await</span> <span class="token-func">retrieve</span>();
@@ -614,6 +615,7 @@
 3. <span class="token-func">generateResponse</span>();</pre>
             </div>
             <p class="card-copy">Connect memory and context into a workflow your application can use immediately.</p>
+            <a href="platform.html#context" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">Build Context Workflows &rarr;</a>
           </div>
         </article>
       </div>
@@ -657,16 +659,17 @@
             <span class="leaf-badge">04</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Framework Connectors</h2>
+          <h2 class="leaf-title"><a href="integrations.html" style="color:inherit; text-decoration:none;">Framework Connectors</a></h2>
           <div class="leaf-body">
             <div class="chips">
-              <span class="chip">LangChain</span>
-              <span class="chip">LlamaIndex</span>
-              <span class="chip">CrewAI</span>
-              <span class="chip">AutoGen</span>
-              <span class="chip">Mastra</span>
+              <a href="integrations.html#langchain" class="chip" style="color:inherit; text-decoration:none;">LangChain</a>
+              <a href="integrations.html#llamaindex" class="chip" style="color:inherit; text-decoration:none;">LlamaIndex</a>
+              <a href="integrations.html#crewai" class="chip" style="color:inherit; text-decoration:none;">CrewAI</a>
+              <a href="integrations.html#autogen" class="chip" style="color:inherit; text-decoration:none;">AutoGen</a>
+              <a href="integrations.html#mastra" class="chip" style="color:inherit; text-decoration:none;">Mastra</a>
             </div>
             <p class="card-copy" style="margin-top:0.6rem;">Use native client libraries and adapters for popular LLM frameworks.</p>
+            <a href="integrations.html" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">View Integrations &rarr;</a>
           </div>
         </article>
 
@@ -683,13 +686,14 @@
             <span class="leaf-badge">05</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Copy working example</h2>
+          <h2 class="leaf-title"><a href="cookbooks.html" style="color:inherit; text-decoration:none;">Copy working example</a></h2>
           <div class="leaf-body">
             <div class="code-window">
               <pre><span class="token-key">const</span> client = <span class="token-key">new</span> PiyApi(KEY);
 client.agent.deploy(edTech_Config);</pre>
             </div>
             <p class="card-copy">Start from production-ready examples of coding agents, customer triage bots, and tutors.</p>
+            <a href="cookbooks.html" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">Browse Cookbooks &rarr;</a>
           </div>
         </article>
 
@@ -706,7 +710,7 @@ client.agent.deploy(edTech_Config);</pre>
             <span class="leaf-badge">06</span>
             <span class="leaf-toggle-icon">▼</span>
           </div>
-          <h2 class="leaf-title">Self-host in your VPC</h2>
+          <h2 class="leaf-title"><a href="opensource.html#self-hosted" style="color:inherit; text-decoration:none;">Self-host in your VPC</a></h2>
           <div class="leaf-body">
             <div class="code-window">
               <div class="mini-flow">
@@ -720,6 +724,7 @@ client.agent.deploy(edTech_Config);</pre>
               </div>
             </div>
             <p class="card-copy">Understand deployment options and run Negentro securely in your private infrastructure.</p>
+            <a href="opensource.html#self-hosted" style="display:inline-flex; align-items:center; gap:0.35rem; font-size:0.85rem; font-weight:600; color:var(--accent); margin-top:0.6rem;">Self-Hosting Docs &rarr;</a>
           </div>
         </article>
       </div>

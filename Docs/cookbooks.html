@@ -1003,8 +1003,11 @@
       #toc { display: none; }
       #content { max-width: 100%; padding: 2rem 2rem 5rem; }
     }
+    .mobile-menu-btn { display: none; }
     @media (max-width: 860px) {
-      #sidebar { display: none; }
+      .mobile-menu-btn { display: inline-flex !important; margin-right: 0.5rem; }
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; z-index: 250; display: block !important; }
+      #sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
       #main { margin-left: 0; max-width: 100vw; }
       .start-grid, .two-col-grid { grid-template-columns: 1fr; }
       .split-nav { grid-template-columns: 1fr; }
@@ -1018,7 +1021,10 @@
 
   <!-- Topbar -->
   <header id="topbar">
-    <a href="platform.html" class="topbar-logo">
+    <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle sidebar menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="topbar-logo">
       <div class="logo-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
@@ -1030,7 +1036,7 @@
     </a>
 
     <nav class="topbar-nav">
-      <a href="get_started.html">Get Started</a>
+      <a href="index.html">Get Started</a>
       <a href="platform.html">Platform</a>
       <a href="opensource.html">Open Source</a>
       <a href="integrations.html">Integrations</a>
@@ -2855,12 +2861,14 @@ def store_visual_memory(image_url: str, scene_description: str, tags: list):
 
     // View Switcher (Single-Page App navigation)
     function showView(viewId) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const target = document.getElementById(viewId);
-      if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!viewId.startsWith('view-') && document.getElementById('view-' + viewId)) {
+        viewId = 'view-' + viewId;
       }
+      const target = document.getElementById(viewId);
+      if (!target) return;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Update sidebar active link
       document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -2872,6 +2880,14 @@ def store_visual_memory(image_url: str, scene_description: str, tags: list):
       if (toc) {
         toc.style.display = (viewId === 'view-overview') ? 'block' : 'none';
       }
+      if (history.replaceState) {
+        history.replaceState(null, '', '#' + viewId.replace('view-', ''));
+      }
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('sidebar');
+      if (sb) sb.classList.toggle('open');
     }
 
     // Compatibility Filter
@@ -2929,6 +2945,31 @@ def store_visual_memory(image_url: str, scene_description: str, tags: list):
         item.style.display = (title.includes(q) || cat.includes(q)) ? 'flex' : 'none';
       });
     }
+
+    // Initialize on hash or overview
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        showView(hash);
+      }
+
+      // Auto-close sidebar on mobile after clicking a link
+      document.querySelectorAll('#sidebar .sidebar-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 860) {
+            const sb = document.getElementById('sidebar');
+            if (sb) sb.classList.remove('open');
+          }
+        });
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        showView(hash);
+      }
+    });
   </script>
 </body>
 </html>

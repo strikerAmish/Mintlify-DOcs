@@ -1,11 +1,11 @@
 {
   "source_file": "cookbooks.html",
-  "document_title": "Negentro Cookbooks & Tutorials — Practical AI Memory Workflows",
+  "document_title": "Negentro Cookbooks & Tutorials \u2014 Practical AI Memory Workflows",
   "meta_description": "Build practical AI applications with ready-to-use examples, workflows, and integrations powered by Negentro and PiyAPI.",
   "topbar_navigation": [
     {
       "label": "Get Started",
-      "href": "get_started.html",
+      "href": "index.html",
       "is_active": false
     },
     {
@@ -586,7 +586,7 @@
         }
       ],
       "definition_lists": [],
-      "raw_text": "Cookbooks / Overview Cookbooks & Tutorials Build practical AI applications with ready-to-use examples, workflows, and integrations powered by Negentro. From first memory workflows to production-ready agent systems. Cookbooks provide practical implementation examples for building with Negentro. Each guide walks through a reusable application pattern — from simple memory workflows to full agent systems — with working code, architecture notes, and integration steps you can adapt directly into your own stack. Whether you're wiring up agent workflows, designing memory strategies, connecting third-party integrations, or running a fully self-hosted deployment, these examples are structured to be copied, modified, and shipped — not just read. More personalized AI applications More reliable context retrieval Reduced unnecessary model interactions Reusable memory workflows Practical implementation patterns Pick by compatibility Every cookbook is tagged with the environment or Negentro setup it uses. Filter the library to find examples that match your stack. Self-hosted Platform All COOKBOOK CATEGORY WORKS WITH Personalized AI Tutor Companion Platform + Self-hosted Build a Coding Companion Companion Self-hosted Memory-Powered Support Agent Operations Platform + Self-hosted Content Creation Workflow Operations Platform Multi-Session Research Agent Operations Self-hosted Visual Memory Retrieval Multimodal Platform + Self-hosted Start here The fastest way to build something useful with Negentro. Build an AI companion Create a memory-powered assistant with a complete end-to-end lifecycle. Read guide → Self-host with Ollama Run a local AI workflow with Ollama and persistent context. Read guide → Partition memory by entity Scope memories by user, agent, session, or application. Read guide → Essentials Build a Companion with Negentro Learn the complete memory lifecycle for persistent AI companions. COMPANION → Partition Memory by Entity Balance personalization with scoped context across users, agents, and applications. ARCHITECTURE → Tag and Organize Memories Use categories and tags to make retrieval, filtering, and auditing easier. ORGANIZATION → Export Memories Back up, migrate, and audit stored memory data. DATA OPS → Companion Playbooks Build assistants that remember users, preferences, goals, and previous interactions. Interactive Memory Demo See persistent memory working inside a real application. DEMO → Research Assistant for YouTube Use personalized context for video research and retrieval. RESEARCH → Voice-First AI Companion Build a voice-first experience with persistent context. VOICE → Personalized AI Tutor Maintain student progress and context across sessions. EDUCATION → Smart Travel Assistant Remember traveler preferences and planning context. TRAVEL → Build a Node.js Companion Create a JavaScript-first companion that remembers user context. SDK → Self-Hosted AI Companion Run a complete memory-powered assistant on your own infrastructure. SELF-HOSTED → Ops & Automations Use persistent context to automate recurring workflows and multi-step AI tasks. Automated Email Intelligence Capture and recall relevant information from email workflows. AUTOMATION → Content Creation Workflow Store tone, style, and content guidelines as reusable context. CONTENT → Multi-Session Research Agent Run research workflows across multiple sessions without repeating context. RESEARCH → Memory-Powered Support Agent Give support agents persistent customer context. SUPPORT → Collaborative Task Assistant Coordinate multi-user workflows while maintaining relevant context. COLLABORATION → Integrations & Platforms Use Negentro memory inside the platforms and tools that power your AI workflows. Memory-Powered Agent SDK Callable memory tools for agent workflows. SDK → Memory as an API Tool Use persistent memory inside function-calling workflows. API → Persistent Mastra Agents Build persistent agents with a Mastra-based workflow. FRAMEWORK → Healthcare Context with ADK Maintain relevant context across agent sessions. HEALTHCARE → Search with Personal Context Build real-time search experiences with persistent user context. SEARCH → Bedrock with Persistent Memory Combine cloud AI infrastructure with Negentro memory. CLOUD → Frameworks & Multimodal Explore cookbooks that combine Negentro with agent frameworks and multimodal applications. AI Agents with Memory Build agents with persistent memory storage. AGENTS → Multi-Agent Collaboration Share relevant context across collaborating agents. MULTI-AGENT → Visual Memory Retrieval Combine visual context with text-based conversations. MULTIMODAL → Persistent Persona Maintain persistent personality and preferences for agents. PERSONA → Contribute a Cookbook Have a useful Negentro workflow or integration? Share it with the community. Cookbook Template Follow the standard structure for narrative, implementation steps, and end-to-end workflows. View template → Contribution Guide Learn how to submit your cookbook and prepare it for the repository. Read guide → Build something useful with Negentro? Share your cookbook and help other developers discover practical memory workflows. Contribute → Suggest edits Raise issue Previous ← Agent Plugins Next API Reference →"
+      "raw_text": "Cookbooks / Overview Cookbooks & Tutorials Build practical AI applications with ready-to-use examples, workflows, and integrations powered by Negentro. From first memory workflows to production-ready agent systems. Cookbooks provide practical implementation examples for building with Negentro. Each guide walks through a reusable application pattern \u2014 from simple memory workflows to full agent systems \u2014 with working code, architecture notes, and integration steps you can adapt directly into your own stack. Whether you're wiring up agent workflows, designing memory strategies, connecting third-party integrations, or running a fully self-hosted deployment, these examples are structured to be copied, modified, and shipped \u2014 not just read. More personalized AI applications More reliable context retrieval Reduced unnecessary model interactions Reusable memory workflows Practical implementation patterns Pick by compatibility Every cookbook is tagged with the environment or Negentro setup it uses. Filter the library to find examples that match your stack. Self-hosted Platform All COOKBOOK CATEGORY WORKS WITH Personalized AI Tutor Companion Platform + Self-hosted Build a Coding Companion Companion Self-hosted Memory-Powered Support Agent Operations Platform + Self-hosted Content Creation Workflow Operations Platform Multi-Session Research Agent Operations Self-hosted Visual Memory Retrieval Multimodal Platform + Self-hosted Start here The fastest way to build something useful with Negentro. Build an AI companion Create a memory-powered assistant with a complete end-to-end lifecycle. Read guide \u2192 Self-host with Ollama Run a local AI workflow with Ollama and persistent context. Read guide \u2192 Partition memory by entity Scope memories by user, agent, session, or application. Read guide \u2192 Essentials Build a Companion with Negentro Learn the complete memory lifecycle for persistent AI companions. COMPANION \u2192 Partition Memory by Entity Balance personalization with scoped context across users, agents, and applications. ARCHITECTURE \u2192 Tag and Organize Memories Use categories and tags to make retrieval, filtering, and auditing easier. ORGANIZATION \u2192 Export Memories Back up, migrate, and audit stored memory data. DATA OPS \u2192 Companion Playbooks Build assistants that remember users, preferences, goals, and previous interactions. Interactive Memory Demo See persistent memory working inside a real application. DEMO \u2192 Research Assistant for YouTube Use personalized context for video research and retrieval. RESEARCH \u2192 Voice-First AI Companion Build a voice-first experience with persistent context. VOICE \u2192 Personalized AI Tutor Maintain student progress and context across sessions. EDUCATION \u2192 Smart Travel Assistant Remember traveler preferences and planning context. TRAVEL \u2192 Build a Node.js Companion Create a JavaScript-first companion that remembers user context. SDK \u2192 Self-Hosted AI Companion Run a complete memory-powered assistant on your own infrastructure. SELF-HOSTED \u2192 Ops & Automations Use persistent context to automate recurring workflows and multi-step AI tasks. Automated Email Intelligence Capture and recall relevant information from email workflows. AUTOMATION \u2192 Content Creation Workflow Store tone, style, and content guidelines as reusable context. CONTENT \u2192 Multi-Session Research Agent Run research workflows across multiple sessions without repeating context. RESEARCH \u2192 Memory-Powered Support Agent Give support agents persistent customer context. SUPPORT \u2192 Collaborative Task Assistant Coordinate multi-user workflows while maintaining relevant context. COLLABORATION \u2192 Integrations & Platforms Use Negentro memory inside the platforms and tools that power your AI workflows. Memory-Powered Agent SDK Callable memory tools for agent workflows. SDK \u2192 Memory as an API Tool Use persistent memory inside function-calling workflows. API \u2192 Persistent Mastra Agents Build persistent agents with a Mastra-based workflow. FRAMEWORK \u2192 Healthcare Context with ADK Maintain relevant context across agent sessions. HEALTHCARE \u2192 Search with Personal Context Build real-time search experiences with persistent user context. SEARCH \u2192 Bedrock with Persistent Memory Combine cloud AI infrastructure with Negentro memory. CLOUD \u2192 Frameworks & Multimodal Explore cookbooks that combine Negentro with agent frameworks and multimodal applications. AI Agents with Memory Build agents with persistent memory storage. AGENTS \u2192 Multi-Agent Collaboration Share relevant context across collaborating agents. MULTI-AGENT \u2192 Visual Memory Retrieval Combine visual context with text-based conversations. MULTIMODAL \u2192 Persistent Persona Maintain persistent personality and preferences for agents. PERSONA \u2192 Contribute a Cookbook Have a useful Negentro workflow or integration? Share it with the community. Cookbook Template Follow the standard structure for narrative, implementation steps, and end-to-end workflows. View template \u2192 Contribution Guide Learn how to submit your cookbook and prepare it for the repository. Read guide \u2192 Build something useful with Negentro? Share your cookbook and help other developers discover practical memory workflows. Contribute \u2192 Suggest edits Raise issue Previous \u2190 Agent Plugins Next API Reference \u2192"
     },
     {
       "id": "view-start-here",
@@ -624,12 +624,12 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "TypeScript / Node.js — Minimal Companion Loop",
+          "title": "TypeScript / Node.js \u2014 Minimal Companion Loop",
           "language": "python",
           "code": "import { PiyAPIClient } from '@piyapi/sdk';\n\nconst client = new PiyAPIClient({\n  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_prod_key_here',\n});\n\n// 1. Ingest user interaction fact\nconst memory = await client.memories.create({\n  content: 'User prefers dark mode UI and works primarily with React and TypeScript.',\n  tags: ['preferences', 'tech-stack'],\n  metadata: { source: 'onboarding_chat', user_id: 'usr_9918' }\n});\n\n// 2. Perform hybrid search during subsequent chat turns\nconst relevant = await client.search.query({\n  query: 'What frontend framework does the user prefer?',\n  limit: 5,\n  include_metadata: true\n});\n\nconsole.log('Recalled memory:', relevant.results[0].content);"
         },
         {
-          "title": "cURL — Namespace Scoping",
+          "title": "cURL \u2014 Namespace Scoping",
           "language": "bash",
           "code": "curl -X POST https://api.piyapi.cloud/api/v1/memories \\\n  -H \"Authorization: Bearer YOUR API KEY\" \\\n  -H \"X-Namespace-Prefix: tenant_acme_corp\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"content\": \"Enterprise security policy mandates 90-day key rotations.\",\n    \"tags\": [\"security\", \"policy\"]\n  }'"
         }
@@ -637,7 +637,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Getting Started / Start Here Getting Started Verified Production API Start Here: 3 Fast-Track Paths to Production Memory Deploying persistent memory takes under five minutes with PiyAPI REST endpoints or language SDKs. Path 1: Store & Recall Memory in 2 Steps Initialize your client with your live API key, store unstructured conversation facts, and perform multi-signal hybrid recall (dense vector + BM25 trigram fused with RRF_K=30). TypeScript / Node.js — Minimal Companion Loop Copy import { PiyAPIClient } from '@piyapi/sdk'; const client = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY || 'sk_live_prod_key_here', }); // 1. Ingest user interaction fact const memory = await client.memories.create({ content: 'User prefers dark mode UI and works primarily with React and TypeScript.', tags: ['preferences', 'tech-stack'], metadata: { source: 'onboarding_chat', user_id: 'usr_9918' } }); // 2. Perform hybrid search during subsequent chat turns const relevant = await client.search.query({ query: 'What frontend framework does the user prefer?', limit: 5, include_metadata: true }); console.log('Recalled memory:', relevant.results[0].content); Path 2: Strict Multi-Tenant Namespace Isolation For SaaS applications with multi-tenant architectures, pass the X-Namespace-Prefix header on every request to guarantee zero scope leakage across client organizations. cURL — Namespace Scoping Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer YOUR API KEY\" \\ -H \"X-Namespace-Prefix: tenant_acme_corp\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Enterprise security policy mandates 90-day key rotations.\", \"tags\": [\"security\", \"policy\"] }' Path 3: Local Ollama & Air-Gapped Fallback When running in privacy-sensitive or edge environments, use the BYOK routing engine or run local containers with pgvector and Ollama embeddings."
+      "raw_text": "\u2190 Back to Overview Cookbooks / Getting Started / Start Here Getting Started Verified Production API Start Here: 3 Fast-Track Paths to Production Memory Deploying persistent memory takes under five minutes with PiyAPI REST endpoints or language SDKs. Path 1: Store & Recall Memory in 2 Steps Initialize your client with your live API key, store unstructured conversation facts, and perform multi-signal hybrid recall (dense vector + BM25 trigram fused with RRF_K=30). TypeScript / Node.js \u2014 Minimal Companion Loop Copy import { PiyAPIClient } from '@piyapi/sdk'; const client = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY || 'sk_live_prod_key_here', }); // 1. Ingest user interaction fact const memory = await client.memories.create({ content: 'User prefers dark mode UI and works primarily with React and TypeScript.', tags: ['preferences', 'tech-stack'], metadata: { source: 'onboarding_chat', user_id: 'usr_9918' } }); // 2. Perform hybrid search during subsequent chat turns const relevant = await client.search.query({ query: 'What frontend framework does the user prefer?', limit: 5, include_metadata: true }); console.log('Recalled memory:', relevant.results[0].content); Path 2: Strict Multi-Tenant Namespace Isolation For SaaS applications with multi-tenant architectures, pass the X-Namespace-Prefix header on every request to guarantee zero scope leakage across client organizations. cURL \u2014 Namespace Scoping Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer YOUR API KEY\" \\ -H \"X-Namespace-Prefix: tenant_acme_corp\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Enterprise security policy mandates 90-day key rotations.\", \"tags\": [\"security\", \"policy\"] }' Path 3: Local Ollama & Air-Gapped Fallback When running in privacy-sensitive or edge environments, use the BYOK routing engine or run local containers with pgvector and Ollama embeddings."
     },
     {
       "id": "view-essentials",
@@ -691,7 +691,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Getting Started / Essentials Core Architecture Grounding: userguide.pdf §4.3, §4.26 Memory Essentials: 4 Foundational Pillars Architectural principles for managing persistent agent state across weeks of interaction. 1. Entity Partitioning Strategy Separate memory into distinct layers using metadata scoping: user_id (personalization), agent_id (agent persona and guidelines), and session_id (short-term thread context). 2. Bulk Memory Operations Manage memory datasets efficiently at scale using bulk tagging and bulk deprecation endpoints. POST /api/v1/bulk/memories/tag Copy curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"memory_ids\": [\"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d\", \"9b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e\"], \"add_tags\": [\"verified\", \"q3-review\"] }' 3. GDPR & Compliance Memory Exports Export entire tenant or user datasets atomically for audit compliance or data migration: GET /api/v1/compliance/export Copy curl -s https://api.piyapi.cloud/api/v1/compliance/export?user_id=usr_9918 \\ -H \"Authorization: Bearer sk_live_prod_key_here\""
+      "raw_text": "\u2190 Back to Overview Cookbooks / Getting Started / Essentials Core Architecture Grounding: userguide.pdf \u00a74.3, \u00a74.26 Memory Essentials: 4 Foundational Pillars Architectural principles for managing persistent agent state across weeks of interaction. 1. Entity Partitioning Strategy Separate memory into distinct layers using metadata scoping: user_id (personalization), agent_id (agent persona and guidelines), and session_id (short-term thread context). 2. Bulk Memory Operations Manage memory datasets efficiently at scale using bulk tagging and bulk deprecation endpoints. POST /api/v1/bulk/memories/tag Copy curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"memory_ids\": [\"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d\", \"9b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e\"], \"add_tags\": [\"verified\", \"q3-review\"] }' 3. GDPR & Compliance Memory Exports Export entire tenant or user datasets atomically for audit compliance or data migration: GET /api/v1/compliance/export Copy curl -s https://api.piyapi.cloud/api/v1/compliance/export?user_id=usr_9918 \\ -H \"Authorization: Bearer sk_live_prod_key_here\""
     },
     {
       "id": "view-companion-negentro",
@@ -713,7 +713,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — End-to-End Companion Loop",
+          "title": "Python \u2014 End-to-End Companion Loop",
           "language": "python",
           "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"YOUR API KEY\")\n\ndef chat_turn(user_id: str, prompt: str) -> str:\n    # Step 1: Recall relevant facts using hybrid RRF scoring\n    context_records = client.search.query(\n        query=prompt,\n        filter={\"metadata.user_id\": user_id},\n        limit=4\n    )\n    \n    # Step 2: Format context injection\n    memory_context = \"\\n\".join([f\"- {r['content']}\" for r in context_records['results']])\n    \n    # Step 3: Run LLM inference with augmented context\n    system_prompt = f\"\"\"You are a helpful personal companion.\nUser Background & Memories:\n{memory_context}\"\"\"\n    \n    # Step 4: After replying, mine new facts for persistence\n    client.memories.create(\n        content=prompt,\n        tags=[\"conversation\"],\n        metadata={\"user_id\": user_id}\n    )\n    return \"Response generated with active context.\""
         }
@@ -721,7 +721,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Build a Companion Companion Fully Documented Build a Companion with Negentro & PiyAPI Step-by-step guide to giving an AI assistant persistent long-term memory across sessions. System Architecture A persistent AI companion requires three synchronized subsystems: (1) Fact Extraction from user conversations, (2) Hybrid Vector + BM25 Storage with bitemporal timestamps, and (3) Context Window Injection during generation. Python — End-to-End Companion Loop Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"YOUR API KEY\") def chat_turn(user_id: str, prompt: str) -> str: # Step 1: Recall relevant facts using hybrid RRF scoring context_records = client.search.query( query=prompt, filter={\"metadata.user_id\": user_id}, limit=4 ) # Step 2: Format context injection memory_context = \"\\n\".join([f\"- {r['content']}\" for r in context_records['results']]) # Step 3: Run LLM inference with augmented context system_prompt = f\"\"\"You are a helpful personal companion. User Background & Memories: {memory_context}\"\"\" # Step 4: After replying, mine new facts for persistence client.memories.create( content=prompt, tags=[\"conversation\"], metadata={\"user_id\": user_id} ) return \"Response generated with active context.\""
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Build a Companion Companion Fully Documented Build a Companion with Negentro & PiyAPI Step-by-step guide to giving an AI assistant persistent long-term memory across sessions. System Architecture A persistent AI companion requires three synchronized subsystems: (1) Fact Extraction from user conversations, (2) Hybrid Vector + BM25 Storage with bitemporal timestamps, and (3) Context Window Injection during generation. Python \u2014 End-to-End Companion Loop Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"YOUR API KEY\") def chat_turn(user_id: str, prompt: str) -> str: # Step 1: Recall relevant facts using hybrid RRF scoring context_records = client.search.query( query=prompt, filter={\"metadata.user_id\": user_id}, limit=4 ) # Step 2: Format context injection memory_context = \"\\n\".join([f\"- {r['content']}\" for r in context_records['results']]) # Step 3: Run LLM inference with augmented context system_prompt = f\"\"\"You are a helpful personal companion. User Background & Memories: {memory_context}\"\"\" # Step 4: After replying, mine new facts for persistence client.memories.create( content=prompt, tags=[\"conversation\"], metadata={\"user_id\": user_id} ) return \"Response generated with active context.\""
     },
     {
       "id": "view-ai-tutor",
@@ -762,7 +762,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Personalized AI Tutor Education Grounding: userguide.pdf §4.5, §4.15 Personalized AI Tutor with Adaptive Feedback Maintain student progress state, track mastery curves, and adjust curriculum pacing dynamically. 1. Tracking Student Mastery Facts Store discrete facts about student performance, strengths, and areas requiring remediation: POST /api/v1/memories Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Student mastered quadratic factoring with real roots, but struggles with imaginary numbers.\", \"tags\": [\"math\", \"algebra\", \"mastery\"], \"metadata\": { \"student_id\": \"stu_4021\", \"level\": \"grade-10\" } }' 2. Reinforcement via Adaptive Feedback API When the student confirms an explanation was helpful, submit positive feedback to boost that concept's retrieval weight via POST /api/v1/feedback/positive ."
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Personalized AI Tutor Education Grounding: userguide.pdf \u00a74.5, \u00a74.15 Personalized AI Tutor with Adaptive Feedback Maintain student progress state, track mastery curves, and adjust curriculum pacing dynamically. 1. Tracking Student Mastery Facts Store discrete facts about student performance, strengths, and areas requiring remediation: POST /api/v1/memories Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Student mastered quadratic factoring with real roots, but struggles with imaginary numbers.\", \"tags\": [\"math\", \"algebra\", \"mastery\"], \"metadata\": { \"student_id\": \"stu_4021\", \"level\": \"grade-10\" } }' 2. Reinforcement via Adaptive Feedback API When the student confirms an explanation was helpful, submit positive feedback to boost that concept's retrieval weight via POST /api/v1/feedback/positive ."
     },
     {
       "id": "view-coding-companion",
@@ -792,7 +792,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Coding Companion Developer Tools Grounding: userguide.pdf §6.1, §6.2 Build a Coding Companion with MCP & TypeScript Integrate persistent repository memory directly into Cursor, Windsurf, Claude Desktop, and VS Code. IDE MCP Configuration Configure your IDE to connect to the @piyapi/mcp-server with standard stdio transport: mcpServers Configuration (claude_desktop_config.json / Cursor) Copy { \"mcpServers\": { \"piyapi\": { \"command\": \"npx\", \"args\": [\"-y\", \"@piyapi/mcp-server\"], \"env\": { \"PIYAPI_API_KEY\": \"YOUR API KEY\" } } } }"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Coding Companion Developer Tools Grounding: userguide.pdf \u00a76.1, \u00a76.2 Build a Coding Companion with MCP & TypeScript Integrate persistent repository memory directly into Cursor, Windsurf, Claude Desktop, and VS Code. IDE MCP Configuration Configure your IDE to connect to the @piyapi/mcp-server with standard stdio transport: mcpServers Configuration (claude_desktop_config.json / Cursor) Copy { \"mcpServers\": { \"piyapi\": { \"command\": \"npx\", \"args\": [\"-y\", \"@piyapi/mcp-server\"], \"env\": { \"PIYAPI_API_KEY\": \"YOUR API KEY\" } } } }"
     },
     {
       "id": "view-self-hosted",
@@ -820,7 +820,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Self-Hosted Companion Deployment Grounding: userguide.pdf §4.1, §4.25 Self-Hosted AI Companion with Ollama & pgvector Run an air-gapped cognitive memory engine entirely on local hardware. Docker Compose Setup docker-compose.yml Copy version: '3.8' services: piyapi-engine: image: piyapi/cognitive-engine:latest ports: - \"8000:8000\" environment: - DATABASE_URL=postgresql://piyapi:secret@postgres:5432/piyapi_db - REDIS_URL=redis://redis:6379 - EMBEDDING_PROVIDER=ollama - OLLAMA_HOST=http://host.docker.internal:11434 depends_on: - postgres - redis postgres: image: pgvector/pgvector:pg16 environment: - POSTGRES_DB=piyapi_db - POSTGRES_USER=piyapi - POSTGRES_PASSWORD=secret"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Self-Hosted Companion Deployment Grounding: userguide.pdf \u00a74.1, \u00a74.25 Self-Hosted AI Companion with Ollama & pgvector Run an air-gapped cognitive memory engine entirely on local hardware. Docker Compose Setup docker-compose.yml Copy version: '3.8' services: piyapi-engine: image: piyapi/cognitive-engine:latest ports: - \"8000:8000\" environment: - DATABASE_URL=postgresql://piyapi:secret@postgres:5432/piyapi_db - REDIS_URL=redis://redis:6379 - EMBEDDING_PROVIDER=ollama - OLLAMA_HOST=http://host.docker.internal:11434 depends_on: - postgres - redis postgres: image: pgvector/pgvector:pg16 environment: - POSTGRES_DB=piyapi_db - POSTGRES_USER=piyapi - POSTGRES_PASSWORD=secret"
     },
     {
       "id": "view-multi-session",
@@ -851,7 +851,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Ops & Automations / Multi-Session Agent Operations Grounding: userguide.pdf §4.10, §4.14 Multi-Session Research Agent Execute asynchronous, long-horizon research workflows without context degradation using the Session Mining Engine. Extracting Unstructured Session Insights POST /api/v1/sessions/mine Copy curl -X POST https://api.piyapi.cloud/api/v1/sessions/mine \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"messages\": [ { \"role\": \"user\", \"content\": \"I am analyzing quantum error correction benchmarks on neutral atom hardware.\" }, { \"role\": \"assistant\", \"content\": \"Neutral atom systems typically leverage Rydberg blockade gates.\" } ] }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Ops & Automations / Multi-Session Agent Operations Grounding: userguide.pdf \u00a74.10, \u00a74.14 Multi-Session Research Agent Execute asynchronous, long-horizon research workflows without context degradation using the Session Mining Engine. Extracting Unstructured Session Insights POST /api/v1/sessions/mine Copy curl -X POST https://api.piyapi.cloud/api/v1/sessions/mine \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"messages\": [ { \"role\": \"user\", \"content\": \"I am analyzing quantum error correction benchmarks on neutral atom hardware.\" }, { \"role\": \"assistant\", \"content\": \"Neutral atom systems typically leverage Rydberg blockade gates.\" } ] }'"
     },
     {
       "id": "view-support-agent",
@@ -882,7 +882,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Ops & Automations / Support Agent Customer Support Grounding: userguide.pdf §4.17, §4.20 Memory-Powered Customer Support Agent Ingest customer ticket streams and empower support agents with continuous historical context. Continuous Sliding-Window Conversation Ingestion POST /api/v1/conversations/ingest Copy curl -X POST https://api.piyapi.cloud/api/v1/conversations/ingest \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"conversation_id\": \"conv_support_8910\", \"customer_id\": \"cust_3312\", \"channel\": \"zendesk\", \"turns\": [ { \"speaker\": \"customer\", \"text\": \"Our SSO setup fails with error ADFS_INVALID_ASSERTION.\" }, { \"speaker\": \"agent\", \"text\": \"Checking certificate thumbprint validity in your tenant config.\" } ] }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Ops & Automations / Support Agent Customer Support Grounding: userguide.pdf \u00a74.17, \u00a74.20 Memory-Powered Customer Support Agent Ingest customer ticket streams and empower support agents with continuous historical context. Continuous Sliding-Window Conversation Ingestion POST /api/v1/conversations/ingest Copy curl -X POST https://api.piyapi.cloud/api/v1/conversations/ingest \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"conversation_id\": \"conv_support_8910\", \"customer_id\": \"cust_3312\", \"channel\": \"zendesk\", \"turns\": [ { \"speaker\": \"customer\", \"text\": \"Our SSO setup fails with error ADFS_INVALID_ASSERTION.\" }, { \"speaker\": \"agent\", \"text\": \"Checking certificate thumbprint validity in your tenant config.\" } ] }'"
     },
     {
       "id": "view-agent-sdk",
@@ -902,7 +902,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — LangChain Adapter",
+          "title": "Python \u2014 LangChain Adapter",
           "language": "python",
           "code": "from piyapi_langchain import PiyAPIMemoryRetriever\n\nretriever = PiyAPIMemoryRetriever(\n    api_key=\"YOUR API KEY\",\n    top_k=5\n)\n\n# Retrieve relevant documents as LangChain Document objects\ndocs = retriever.get_relevant_documents(\"user database preferences\")\nfor doc in docs:\n    print(doc.page_content, doc.metadata)"
         }
@@ -910,7 +910,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / Agent SDK SDK Grounding: userguide.pdf §5.1, §5.2, §5.3 Memory-Powered Agent SDK (TypeScript, Python, LangChain) Standardized SDK integrations for autonomous agent frameworks. LangChain Adapter Integration Python — LangChain Adapter Copy from piyapi_langchain import PiyAPIMemoryRetriever retriever = PiyAPIMemoryRetriever( api_key=\"YOUR API KEY\", top_k=5 ) # Retrieve relevant documents as LangChain Document objects docs = retriever.get_relevant_documents(\"user database preferences\") for doc in docs: print(doc.page_content, doc.metadata)"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / Agent SDK SDK Grounding: userguide.pdf \u00a75.1, \u00a75.2, \u00a75.3 Memory-Powered Agent SDK (TypeScript, Python, LangChain) Standardized SDK integrations for autonomous agent frameworks. LangChain Adapter Integration Python \u2014 LangChain Adapter Copy from piyapi_langchain import PiyAPIMemoryRetriever retriever = PiyAPIMemoryRetriever( api_key=\"YOUR API KEY\", top_k=5 ) # Retrieve relevant documents as LangChain Document objects docs = retriever.get_relevant_documents(\"user database preferences\") for doc in docs: print(doc.page_content, doc.metadata)"
     },
     {
       "id": "view-api-tool",
@@ -930,7 +930,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "JSON — Tool Definition",
+          "title": "JSON \u2014 Tool Definition",
           "language": "json",
           "code": "{\n  \"tools\": [\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"store_memory\",\n        \"description\": \"Store a user fact or preference into long-term bitemporal memory.\",\n        \"parameters\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"content\": { \"type\": \"string\", \"description\": \"The atomic fact to store.\" },\n            \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n          },\n          \"required\": [\"content\"]\n        }\n      }\n    }\n  ]\n}"
         }
@@ -938,7 +938,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / API Tool Tool Calling Grounding: userguide.pdf §6.2 Memory as an API Tool (Function Calling) Expose atomic memory storage and recall tools to OpenAI, Anthropic, and Gemini function calling. OpenAI Tools Definition Schema JSON — Tool Definition Copy { \"tools\": [ { \"type\": \"function\", \"function\": { \"name\": \"store_memory\", \"description\": \"Store a user fact or preference into long-term bitemporal memory.\", \"parameters\": { \"type\": \"object\", \"properties\": { \"content\": { \"type\": \"string\", \"description\": \"The atomic fact to store.\" }, \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } } }, \"required\": [\"content\"] } } } ] }"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / API Tool Tool Calling Grounding: userguide.pdf \u00a76.2 Memory as an API Tool (Function Calling) Expose atomic memory storage and recall tools to OpenAI, Anthropic, and Gemini function calling. OpenAI Tools Definition Schema JSON \u2014 Tool Definition Copy { \"tools\": [ { \"type\": \"function\", \"function\": { \"name\": \"store_memory\", \"description\": \"Store a user fact or preference into long-term bitemporal memory.\", \"parameters\": { \"type\": \"object\", \"properties\": { \"content\": { \"type\": \"string\", \"description\": \"The atomic fact to store.\" }, \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } } }, \"required\": [\"content\"] } } } ] }"
     },
     {
       "id": "view-healthcare-adk",
@@ -969,7 +969,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / Healthcare Context Healthcare Grounding: userguide.pdf §4.11, §7.6 Healthcare Context & PHI/PII Redaction HIPAA-compliant patient memory storage with cryptographic tokenization and zero-knowledge redaction. 1. Checking PHI Risk Before Ingestion POST /api/v1/tokenization/check Copy curl -X POST https://api.piyapi.cloud/api/v1/tokenization/check \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"text\": \"Patient John Doe (DOB 1982-04-12) reports hypertension and takes Lisinopril 20mg.\" }' # Response: # { # \"has_phi\": true, # \"entities\": [ # {\"type\": \"NAME\", \"text\": \"John Doe\", \"token\": \"[NAME_1]\"}, # {\"type\": \"DOB\", \"text\": \"1982-04-12\", \"token\": \"[DATE_1]\"} # ] # }"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / Healthcare Context Healthcare Grounding: userguide.pdf \u00a74.11, \u00a77.6 Healthcare Context & PHI/PII Redaction HIPAA-compliant patient memory storage with cryptographic tokenization and zero-knowledge redaction. 1. Checking PHI Risk Before Ingestion POST /api/v1/tokenization/check Copy curl -X POST https://api.piyapi.cloud/api/v1/tokenization/check \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"text\": \"Patient John Doe (DOB 1982-04-12) reports hypertension and takes Lisinopril 20mg.\" }' # Response: # { # \"has_phi\": true, # \"entities\": [ # {\"type\": \"NAME\", \"text\": \"John Doe\", \"token\": \"[NAME_1]\"}, # {\"type\": \"DOB\", \"text\": \"1982-04-12\", \"token\": \"[DATE_1]\"} # ] # }"
     },
     {
       "id": "view-personal-search",
@@ -1000,7 +1000,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / Personal Context Search Search Grounding: userguide.pdf §4.4, §4.6 Personal Context Search & RAG Summaries High-throughput hybrid search fused with Reciprocal Rank Fusion (RRF_K=30) and token-budget context assembly. Executing Hybrid Search POST /api/v1/search Copy curl -X POST https://api.piyapi.cloud/api/v1/search \\ -H \"Authorization: Bearer YOUR API KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"query\": \"user preferred deployment region and cloud provider\", \"limit\": 5, \"min_score\": 0.65, \"include_metadata\": true }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / Personal Context Search Search Grounding: userguide.pdf \u00a74.4, \u00a74.6 Personal Context Search & RAG Summaries High-throughput hybrid search fused with Reciprocal Rank Fusion (RRF_K=30) and token-budget context assembly. Executing Hybrid Search POST /api/v1/search Copy curl -X POST https://api.piyapi.cloud/api/v1/search \\ -H \"Authorization: Bearer YOUR API KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"query\": \"user preferred deployment region and cloud provider\", \"limit\": 5, \"min_score\": 0.65, \"include_metadata\": true }'"
     },
     {
       "id": "view-ai-agents",
@@ -1031,7 +1031,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Frameworks / AI Agents Agents Grounding: userguide.pdf §4.3, §5.2 AI Agents with Unified 8-Operator Memory Surface Standardized lifecycle operators: store, retrieve, update, delete, merge, summarize, pin, verify. Direct 8-Operator Dispatch POST /api/v1/memory/op Copy curl -X POST https://api.piyapi.cloud/api/v1/memory/op \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"operator\": \"summarize\", \"filter\": { \"tags\": [\"project_alpha\"] }, \"max_tokens\": 500 }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Frameworks / AI Agents Agents Grounding: userguide.pdf \u00a74.3, \u00a75.2 AI Agents with Unified 8-Operator Memory Surface Standardized lifecycle operators: store, retrieve, update, delete, merge, summarize, pin, verify. Direct 8-Operator Dispatch POST /api/v1/memory/op Copy curl -X POST https://api.piyapi.cloud/api/v1/memory/op \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"operator\": \"summarize\", \"filter\": { \"tags\": [\"project_alpha\"] }, \"max_tokens\": 500 }'"
     },
     {
       "id": "view-multi-agent",
@@ -1062,7 +1062,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Frameworks / Multi-Agent Swarm Architecture Grounding: userguide.pdf §4.10, §7.5 Multi-Agent Collaboration with Speculative Branching Isolate agent reasoning trials into ephemeral branches and merge verified discoveries with 3-way conflict resolution. Branch Creation & Diffing POST /api/v1/branches Copy # 1. Create trial branch curl -X POST https://api.piyapi.cloud/api/v1/branches \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"name\": \"research_agent_hypothesis_4\", \"purpose\": \"Testing drug interaction\" }' # 2. Inspect diff before merging to production memory curl -s https://api.piyapi.cloud/api/v1/branches/branch_123/diff \\ -H \"Authorization: Bearer sk_live_prod_key_here\""
+      "raw_text": "\u2190 Back to Overview Cookbooks / Frameworks / Multi-Agent Swarm Architecture Grounding: userguide.pdf \u00a74.10, \u00a77.5 Multi-Agent Collaboration with Speculative Branching Isolate agent reasoning trials into ephemeral branches and merge verified discoveries with 3-way conflict resolution. Branch Creation & Diffing POST /api/v1/branches Copy # 1. Create trial branch curl -X POST https://api.piyapi.cloud/api/v1/branches \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"name\": \"research_agent_hypothesis_4\", \"purpose\": \"Testing drug interaction\" }' # 2. Inspect diff before merging to production memory curl -s https://api.piyapi.cloud/api/v1/branches/branch_123/diff \\ -H \"Authorization: Bearer sk_live_prod_key_here\""
     },
     {
       "id": "view-persistent-persona",
@@ -1093,7 +1093,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Frameworks / Persistent Persona Persona Grounding: userguide.pdf §4.3, §6.2 Persistent Persona & Pinned Memory Weighting Maintain deterministic agent tone, core principles, and identity using memory pinning and assistant boost. Pinning Persona Facts into Context POST /api/v1/memories/:id/pin Copy curl -X POST https://api.piyapi.cloud/api/v1/memories/mem_persona_01/pin \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"is_pinned\": true, \"priority_weight\": 2.5 }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Frameworks / Persistent Persona Persona Grounding: userguide.pdf \u00a74.3, \u00a76.2 Persistent Persona & Pinned Memory Weighting Maintain deterministic agent tone, core principles, and identity using memory pinning and assistant boost. Pinning Persona Facts into Context POST /api/v1/memories/:id/pin Copy curl -X POST https://api.piyapi.cloud/api/v1/memories/mem_persona_01/pin \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"is_pinned\": true, \"priority_weight\": 2.5 }'"
     },
     {
       "id": "view-email-intelligence",
@@ -1107,7 +1107,7 @@
       },
       "sections": [
         {
-          "heading": "1. Gmail CDC Connector Setup (User Guide §7.2)",
+          "heading": "1. Gmail CDC Connector Setup (User Guide \u00a77.2)",
           "level": 2,
           "paragraphs": [
             "Register a Change Data Capture connector to continuously ingest email threads into your tenant's bitemporal memory pool:"
@@ -1131,7 +1131,7 @@
           "code": "curl -X POST https://api.piyapi.cloud/api/v1/connectors \\\n  -H \"Authorization: Bearer sk_live_prod_key_here\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"provider\": \"gmail\",\n    \"name\": \"Corporate Support Inbox\",\n    \"credentials\": {\n      \"access_token\": \"ya29.a0AfH6SM...\",\n      \"refresh_token\": \"1//04...\"\n    },\n    \"sync_frequency_sec\": 300\n  }'"
         },
         {
-          "title": "Python — Email Pipeline Worker",
+          "title": "Python \u2014 Email Pipeline Worker",
           "language": "python",
           "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_prod_key_here\")\n\ndef ingest_email_thread(sender: str, subject: str, body: str):\n    # Mine facts and preserve sender identity\n    result = client.memories.create(\n        content=f\"Email from {sender}: Subject '{subject}'. Content: {body}\",\n        tags=[\"email\", \"customer-inquiry\", \"ops\"],\n        metadata={\"sender\": sender, \"subject\": subject}\n    )\n    print(f\"Created persistent memory ID: {result['id']}\")"
         }
@@ -1139,7 +1139,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Ops & Automations / Automated Email Intelligence Automation CDC Connector Active Automated Email Intelligence Parse, vectorize, and extract persistent knowledge from high-volume email threads and attachments. 1. Gmail CDC Connector Setup (User Guide §7.2) Register a Change Data Capture connector to continuously ingest email threads into your tenant's bitemporal memory pool: POST /api/v1/connectors Copy curl -X POST https://api.piyapi.cloud/api/v1/connectors \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"provider\": \"gmail\", \"name\": \"Corporate Support Inbox\", \"credentials\": { \"access_token\": \"ya29.a0AfH6SM...\", \"refresh_token\": \"1//04...\" }, \"sync_frequency_sec\": 300 }' 2. Thread Deduplication and Fact Mining Process inbound emails with automatic fact extraction and action item tagging: Python — Email Pipeline Worker Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def ingest_email_thread(sender: str, subject: str, body: str): # Mine facts and preserve sender identity result = client.memories.create( content=f\"Email from {sender}: Subject '{subject}'. Content: {body}\", tags=[\"email\", \"customer-inquiry\", \"ops\"], metadata={\"sender\": sender, \"subject\": subject} ) print(f\"Created persistent memory ID: {result['id']}\")"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Ops & Automations / Automated Email Intelligence Automation CDC Connector Active Automated Email Intelligence Parse, vectorize, and extract persistent knowledge from high-volume email threads and attachments. 1. Gmail CDC Connector Setup (User Guide \u00a77.2) Register a Change Data Capture connector to continuously ingest email threads into your tenant's bitemporal memory pool: POST /api/v1/connectors Copy curl -X POST https://api.piyapi.cloud/api/v1/connectors \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"provider\": \"gmail\", \"name\": \"Corporate Support Inbox\", \"credentials\": { \"access_token\": \"ya29.a0AfH6SM...\", \"refresh_token\": \"1//04...\" }, \"sync_frequency_sec\": 300 }' 2. Thread Deduplication and Fact Mining Process inbound emails with automatic fact extraction and action item tagging: Python \u2014 Email Pipeline Worker Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def ingest_email_thread(sender: str, subject: str, body: str): # Mine facts and preserve sender identity result = client.memories.create( content=f\"Email from {sender}: Subject '{subject}'. Content: {body}\", tags=[\"email\", \"customer-inquiry\", \"ops\"], metadata={\"sender\": sender, \"subject\": subject} ) print(f\"Created persistent memory ID: {result['id']}\")"
     },
     {
       "id": "view-interactive-demo",
@@ -1161,7 +1161,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Bash — Quickstart Sandbox",
+          "title": "Bash \u2014 Quickstart Sandbox",
           "language": "bash",
           "code": "# 1. Store preference memory\ncurl -X POST https://api.piyapi.cloud/api/v1/memories \\\n  -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"content\": \"User prefers concise Python code examples using asyncio.\", \"user_id\": \"demo_user\"}'\n\n# 2. Query with hybrid semantic + BM25 search\ncurl -X POST https://api.piyapi.cloud/api/v1/search \\\n  -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"query\": \"coding style preferences\", \"user_id\": \"demo_user\"}'"
         }
@@ -1169,7 +1169,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Interactive Demo Interactive Sandbox User Guide §2 Grounded Interactive Memory Demo Live sandbox demonstrating continuous memory extraction and hybrid scoring in action. 5-Minute Verification Sequence Follow the end-to-end sandbox walkthrough to see facts stored, indexed with 11-signal UnifiedScorer, and recalled on demand: Bash — Quickstart Sandbox Copy # 1. Store preference memory curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{\"content\": \"User prefers concise Python code examples using asyncio.\", \"user_id\": \"demo_user\"}' # 2. Query with hybrid semantic + BM25 search curl -X POST https://api.piyapi.cloud/api/v1/search \\ -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{\"query\": \"coding style preferences\", \"user_id\": \"demo_user\"}'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Interactive Demo Interactive Sandbox User Guide \u00a72 Grounded Interactive Memory Demo Live sandbox demonstrating continuous memory extraction and hybrid scoring in action. 5-Minute Verification Sequence Follow the end-to-end sandbox walkthrough to see facts stored, indexed with 11-signal UnifiedScorer, and recalled on demand: Bash \u2014 Quickstart Sandbox Copy # 1. Store preference memory curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{\"content\": \"User prefers concise Python code examples using asyncio.\", \"user_id\": \"demo_user\"}' # 2. Query with hybrid semantic + BM25 search curl -X POST https://api.piyapi.cloud/api/v1/search \\ -H \"Authorization: Bearer $PIYAPI_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{\"query\": \"coding style preferences\", \"user_id\": \"demo_user\"}'"
     },
     {
       "id": "view-research-yt",
@@ -1191,7 +1191,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — YouTube Ingestion",
+          "title": "Python \u2014 YouTube Ingestion",
           "language": "python",
           "code": "from youtube_transcript_api import YouTubeTranscriptApi\nfrom piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_prod_key_here\")\n\ndef index_youtube_video(video_id: str, title: str):\n    transcript = YouTubeTranscriptApi.get_transcript(video_id)\n    full_text = \" \".join([t['text'] for t in transcript[:20]])\n    \n    client.memories.create(\n        content=f\"Video '{title}': {full_text}\",\n        tags=[\"youtube\", \"research-transcript\"],\n        metadata={\"video_id\": video_id, \"title\": title}\n    )\n    print(\"Video indexed successfully.\")"
         }
@@ -1199,7 +1199,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / YouTube Research Research Video Intelligence Research Assistant for YouTube Ingest YouTube video transcripts, timestamps, and chapters into hybrid search. Transcript Ingestion Pipeline Extract transcripts from YouTube and index each chapter with timestamp metadata: Python — YouTube Ingestion Copy from youtube_transcript_api import YouTubeTranscriptApi from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def index_youtube_video(video_id: str, title: str): transcript = YouTubeTranscriptApi.get_transcript(video_id) full_text = \" \".join([t['text'] for t in transcript[:20]]) client.memories.create( content=f\"Video '{title}': {full_text}\", tags=[\"youtube\", \"research-transcript\"], metadata={\"video_id\": video_id, \"title\": title} ) print(\"Video indexed successfully.\")"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / YouTube Research Research Video Intelligence Research Assistant for YouTube Ingest YouTube video transcripts, timestamps, and chapters into hybrid search. Transcript Ingestion Pipeline Extract transcripts from YouTube and index each chapter with timestamp metadata: Python \u2014 YouTube Ingestion Copy from youtube_transcript_api import YouTubeTranscriptApi from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def index_youtube_video(video_id: str, title: str): transcript = YouTubeTranscriptApi.get_transcript(video_id) full_text = \" \".join([t['text'] for t in transcript[:20]]) client.memories.create( content=f\"Video '{title}': {full_text}\", tags=[\"youtube\", \"research-transcript\"], metadata={\"video_id\": video_id, \"title\": title} ) print(\"Video indexed successfully.\")"
     },
     {
       "id": "view-travel-assistant",
@@ -1232,7 +1232,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Companion Playbooks / Smart Travel Assistant Travel Bitemporal Knowledge Graph Smart Travel Assistant Remember traveler preferences, loyalty accounts, and trip planning context across seasons. Bitemporal Preference Management Record traveler preferences with seasonal validity dates ( valid_at ) to ensure winter ski preferences don't override summer beach bookings: POST /api/v1/memories Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Traveler loyalty: Delta SkyMiles #20918239, aisle seat preferred, vegetarian meal.\", \"tags\": [\"travel\", \"loyalty\", \"preferences\"], \"metadata\": {\"traveler_id\": \"usr_travel_88\"} }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Companion Playbooks / Smart Travel Assistant Travel Bitemporal Knowledge Graph Smart Travel Assistant Remember traveler preferences, loyalty accounts, and trip planning context across seasons. Bitemporal Preference Management Record traveler preferences with seasonal validity dates ( valid_at ) to ensure winter ski preferences don't override summer beach bookings: POST /api/v1/memories Copy curl -X POST https://api.piyapi.cloud/api/v1/memories \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"content\": \"Traveler loyalty: Delta SkyMiles #20918239, aisle seat preferred, vegetarian meal.\", \"tags\": [\"travel\", \"loyalty\", \"preferences\"], \"metadata\": {\"traveler_id\": \"usr_travel_88\"} }'"
     },
     {
       "id": "view-content-creation",
@@ -1246,7 +1246,7 @@
       },
       "sections": [
         {
-          "heading": "Branch-Based Editorial Variations (User Guide §7.5)",
+          "heading": "Branch-Based Editorial Variations (User Guide \u00a77.5)",
           "level": 2,
           "paragraphs": [
             "Create an isolated speculative branch to test new marketing messaging without modifying core corporate guidelines:"
@@ -1265,7 +1265,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Ops & Automations / Content Creation Content Speculative Branching Content Creation Workflow Store brand guidelines, voice definitions, and experiment with speculative copy branches. Branch-Based Editorial Variations (User Guide §7.5) Create an isolated speculative branch to test new marketing messaging without modifying core corporate guidelines: POST /api/v1/branches Copy curl -X POST https://api.piyapi.cloud/api/v1/branches \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"name\": \"q4_campaign_copy\", \"purpose\": \"A/B testing playful vs technical tone for developer marketing\", \"base_branch\": \"main\" }'"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Ops & Automations / Content Creation Content Speculative Branching Content Creation Workflow Store brand guidelines, voice definitions, and experiment with speculative copy branches. Branch-Based Editorial Variations (User Guide \u00a77.5) Create an isolated speculative branch to test new marketing messaging without modifying core corporate guidelines: POST /api/v1/branches Copy curl -X POST https://api.piyapi.cloud/api/v1/branches \\ -H \"Authorization: Bearer sk_live_prod_key_here\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"name\": \"q4_campaign_copy\", \"purpose\": \"A/B testing playful vs technical tone for developer marketing\", \"base_branch\": \"main\" }'"
     },
     {
       "id": "view-collaborative-task",
@@ -1287,7 +1287,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — Scoped Collaboration",
+          "title": "Python \u2014 Scoped Collaboration",
           "language": "python",
           "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_prod_key_here\")\n\n# Store to shared project graph\nclient.memories.create(\n    content=\"Sprint milestone: Database migration to Aurora PostgreSQL scheduled for Friday 22:00 UTC.\",\n    tags=[\"sprint-milestone\", \"shared-task\"],\n    metadata={\"scope\": \"project\", \"project_id\": \"proj_infra_01\"}\n)"
         }
@@ -1295,7 +1295,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Ops & Automations / Collaborative Task Assistant Collaboration Multi-User Memory Collaborative Task Assistant Multi-user task synchronization and collaborative thread memory with strict boundary enforcement. Multi-User Shared Context Partition task state so team members share project-wide architectural goals while keeping personal draft notes private: Python — Scoped Collaboration Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") # Store to shared project graph client.memories.create( content=\"Sprint milestone: Database migration to Aurora PostgreSQL scheduled for Friday 22:00 UTC.\", tags=[\"sprint-milestone\", \"shared-task\"], metadata={\"scope\": \"project\", \"project_id\": \"proj_infra_01\"} )"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Ops & Automations / Collaborative Task Assistant Collaboration Multi-User Memory Collaborative Task Assistant Multi-user task synchronization and collaborative thread memory with strict boundary enforcement. Multi-User Shared Context Partition task state so team members share project-wide architectural goals while keeping personal draft notes private: Python \u2014 Scoped Collaboration Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") # Store to shared project graph client.memories.create( content=\"Sprint milestone: Database migration to Aurora PostgreSQL scheduled for Friday 22:00 UTC.\", tags=[\"sprint-milestone\", \"shared-task\"], metadata={\"scope\": \"project\", \"project_id\": \"proj_infra_01\"} )"
     },
     {
       "id": "view-mastra-agents",
@@ -1315,7 +1315,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "TypeScript — Mastra Agent Integration",
+          "title": "TypeScript \u2014 Mastra Agent Integration",
           "language": "python",
           "code": "import { Agent } from '@mastra/core';\nimport { PiyAPIClient } from '@piyapi/sdk';\n\nconst piyapi = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY });\n\nexport const supportAgent = new Agent({\n  name: 'SupportCompanion',\n  instructions: 'Resolve customer tickets while recalling past user interactions and preferences.',\n  model: { provider: 'OPEN_AI', name: 'gpt-4o' },\n  tools: {\n    queryMemory: {\n      description: 'Search customer past context',\n      execute: async ({ userId, query }) => {\n        return await piyapi.memories.search({ query, userId, limit: 3 });\n      }\n    }\n  }\n});"
         }
@@ -1323,7 +1323,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / Mastra Agents Framework TypeScript Agent Persistent Mastra Agents Connecting PiyAPI cognitive memory directly into the Mastra TypeScript agent framework. Mastra Memory Provider Setup TypeScript — Mastra Agent Integration Copy import { Agent } from '@mastra/core'; import { PiyAPIClient } from '@piyapi/sdk'; const piyapi = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY }); export const supportAgent = new Agent({ name: 'SupportCompanion', instructions: 'Resolve customer tickets while recalling past user interactions and preferences.', model: { provider: 'OPEN_AI', name: 'gpt-4o' }, tools: { queryMemory: { description: 'Search customer past context', execute: async ({ userId, query }) => { return await piyapi.memories.search({ query, userId, limit: 3 }); } } } });"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / Mastra Agents Framework TypeScript Agent Persistent Mastra Agents Connecting PiyAPI cognitive memory directly into the Mastra TypeScript agent framework. Mastra Memory Provider Setup TypeScript \u2014 Mastra Agent Integration Copy import { Agent } from '@mastra/core'; import { PiyAPIClient } from '@piyapi/sdk'; const piyapi = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY }); export const supportAgent = new Agent({ name: 'SupportCompanion', instructions: 'Resolve customer tickets while recalling past user interactions and preferences.', model: { provider: 'OPEN_AI', name: 'gpt-4o' }, tools: { queryMemory: { description: 'Search customer past context', execute: async ({ userId, query }) => { return await piyapi.memories.search({ query, userId, limit: 3 }); } } } });"
     },
     {
       "id": "view-bedrock-memory",
@@ -1343,7 +1343,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — Bedrock Converse Loop",
+          "title": "Python \u2014 Bedrock Converse Loop",
           "language": "python",
           "code": "import boto3\nfrom piyapi_memory import PiyAPIClient\n\nbedrock = boto3.client('bedrock-runtime', region_name='us-east-1')\npiyapi = PiyAPIClient(api_key=\"sk_live_prod_key_here\")\n\ndef generate_with_bedrock(user_id: str, prompt: str):\n    # 1. Retrieve user memory\n    mems = piyapi.memories.search(query=prompt, user_id=user_id, limit=3)\n    context = \"\\n\".join([m['content'] for m in mems])\n    \n    # 2. Invoke Bedrock Converse API\n    response = bedrock.converse(\n        modelId=\"anthropic.claude-3-5-sonnet-20240620-v1:0\",\n        messages=[{\"role\": \"user\", \"content\": [{\"text\": f\"Context:\\n{context}\\n\\nQuestion: {prompt}\"}]}]\n    )\n    return response['output']['message']['content'][0]['text']"
         }
@@ -1351,7 +1351,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Integrations / AWS Bedrock Cloud AI AWS Bedrock Active AWS Bedrock with Persistent Memory Combine AWS Bedrock foundation models with PiyAPI hybrid search and pgvector memory stores. Converse API & Context Retrieval Python — Bedrock Converse Loop Copy import boto3 from piyapi_memory import PiyAPIClient bedrock = boto3.client('bedrock-runtime', region_name='us-east-1') piyapi = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def generate_with_bedrock(user_id: str, prompt: str): # 1. Retrieve user memory mems = piyapi.memories.search(query=prompt, user_id=user_id, limit=3) context = \"\\n\".join([m['content'] for m in mems]) # 2. Invoke Bedrock Converse API response = bedrock.converse( modelId=\"anthropic.claude-3-5-sonnet-20240620-v1:0\", messages=[{\"role\": \"user\", \"content\": [{\"text\": f\"Context:\\n{context}\\n\\nQuestion: {prompt}\"}]}] ) return response['output']['message']['content'][0]['text']"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Integrations / AWS Bedrock Cloud AI AWS Bedrock Active AWS Bedrock with Persistent Memory Combine AWS Bedrock foundation models with PiyAPI hybrid search and pgvector memory stores. Converse API & Context Retrieval Python \u2014 Bedrock Converse Loop Copy import boto3 from piyapi_memory import PiyAPIClient bedrock = boto3.client('bedrock-runtime', region_name='us-east-1') piyapi = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def generate_with_bedrock(user_id: str, prompt: str): # 1. Retrieve user memory mems = piyapi.memories.search(query=prompt, user_id=user_id, limit=3) context = \"\\n\".join([m['content'] for m in mems]) # 2. Invoke Bedrock Converse API response = bedrock.converse( modelId=\"anthropic.claude-3-5-sonnet-20240620-v1:0\", messages=[{\"role\": \"user\", \"content\": [{\"text\": f\"Context:\\n{context}\\n\\nQuestion: {prompt}\"}]}] ) return response['output']['message']['content'][0]['text']"
     },
     {
       "id": "view-visual-memory",
@@ -1371,7 +1371,7 @@
       "steps": [],
       "code_blocks": [
         {
-          "title": "Python — Multimodal Vector Store",
+          "title": "Python \u2014 Multimodal Vector Store",
           "language": "python",
           "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_prod_key_here\")\n\ndef store_visual_memory(image_url: str, scene_description: str, tags: list):\n    return client.memories.create(\n        content=f\"Visual asset ({image_url}): {scene_description}\",\n        tags=[\"multimodal\", \"visual-memory\"] + tags,\n        metadata={\"image_url\": image_url, \"type\": \"image_descriptor\"}\n    )"
         }
@@ -1379,7 +1379,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "← Back to Overview Cookbooks / Frameworks / Visual Memory Multimodal CLIP Embeddings Visual Memory Retrieval Store parsed image descriptions, UI wireframes, and multimodal embeddings for cross-modal search. Multimodal Ingestion Pipeline Python — Multimodal Vector Store Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def store_visual_memory(image_url: str, scene_description: str, tags: list): return client.memories.create( content=f\"Visual asset ({image_url}): {scene_description}\", tags=[\"multimodal\", \"visual-memory\"] + tags, metadata={\"image_url\": image_url, \"type\": \"image_descriptor\"} )"
+      "raw_text": "\u2190 Back to Overview Cookbooks / Frameworks / Visual Memory Multimodal CLIP Embeddings Visual Memory Retrieval Store parsed image descriptions, UI wireframes, and multimodal embeddings for cross-modal search. Multimodal Ingestion Pipeline Python \u2014 Multimodal Vector Store Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_prod_key_here\") def store_visual_memory(image_url: str, scene_description: str, tags: list): return client.memories.create( content=f\"Visual asset ({image_url}): {scene_description}\", tags=[\"multimodal\", \"visual-memory\"] + tags, metadata={\"image_url\": image_url, \"type\": \"image_descriptor\"} )"
     }
   ]
 }

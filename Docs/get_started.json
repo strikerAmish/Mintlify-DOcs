@@ -1,11 +1,11 @@
 {
-  "source_file": "get_started.html",
+  "source_file": "index.html",
   "document_title": "Get Started | Negentro",
   "meta_description": "",
   "topbar_navigation": [
     {
       "label": "Get Started",
-      "href": "get_started.html",
+      "href": "index.html",
       "is_active": true
     },
     {
@@ -125,7 +125,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "◈ Negentro Get Started Platform Open Source Integrations Agent Plugins Cookbooks API Reference Release Notes Search... ⌘K ◐ Dashboard Build with PiyAPI Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure. Get Started API Reference ▼ Expand All 01 ▼ Store your first memory piyapi . memory . add ({ fact: \"User prefers Dark Mode\" , valid_at: \"2026-10-04\" , user_id: \"u_1029\" }) Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency. 02 ▼ Add memory to your AI agent AI Agent → PiyGraph → UnifiedScorer → Payload Give your agents persistent context across conversations, sessions, and workflows. 03 ▼ Build context workflow 1. const p = await retrieve (); 2. resolveConflicts (p); 3. generateResponse (); Connect memory and context into a workflow your application can use immediately. 04 ▼ Framework Connectors LangChain LlamaIndex CrewAI AutoGen Mastra Use native client libraries and adapters for popular LLM frameworks. 05 ▼ Copy working example const client = new PiyApi(KEY); client.agent.deploy(edTech_Config); Start from production-ready examples of coding agents, customer triage bots, and tutors. 06 ▼ Self-host in your VPC App → VPC Peering → Negentro Core → PostgreSQL Understand deployment options and run Negentro securely in your private infrastructure."
+      "raw_text": "\u25c8 Negentro Get Started Platform Open Source Integrations Agent Plugins Cookbooks API Reference Release Notes Search... \u2318K \u25d0 Dashboard Build with PiyAPI Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure. Get Started API Reference \u25bc Expand All 01 \u25bc Store your first memory piyapi . memory . add ({ fact: \"User prefers Dark Mode\" , valid_at: \"2026-10-04\" , user_id: \"u_1029\" }) Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency. 02 \u25bc Add memory to your AI agent AI Agent \u2192 PiyGraph \u2192 UnifiedScorer \u2192 Payload Give your agents persistent context across conversations, sessions, and workflows. 03 \u25bc Build context workflow 1. const p = await retrieve (); 2. resolveConflicts (p); 3. generateResponse (); Connect memory and context into a workflow your application can use immediately. 04 \u25bc Framework Connectors LangChain LlamaIndex CrewAI AutoGen Mastra Use native client libraries and adapters for popular LLM frameworks. 05 \u25bc Copy working example const client = new PiyApi(KEY); client.agent.deploy(edTech_Config); Start from production-ready examples of coding agents, customer triage bots, and tutors. 06 \u25bc Self-host in your VPC App \u2192 VPC Peering \u2192 Negentro Core \u2192 PostgreSQL Understand deployment options and run Negentro securely in your private infrastructure."
     }
   ]
 }

@@ -810,9 +810,11 @@
     }
 
     @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
+    .mobile-menu-btn { display: none; }
     @media (max-width: 768px) {
-      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
-      #sidebar.open { transform: translateX(0); }
+      .mobile-menu-btn { display: grid !important; margin-right: 0.5rem; }
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; z-index: 250; }
+      #sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
       #main { margin-left: 0; max-width: 100%; }
       #content { padding: 1.75rem 1.25rem 4rem; }
       .topbar-nav { display: none; }
@@ -824,7 +826,10 @@
 <body>
 
 <header id="topbar">
-  <a href="platform.html" class="topbar-logo">
+  <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle sidebar menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <a href="index.html" class="topbar-logo">
     <div class="logo-icon">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -833,7 +838,7 @@
     Negentro
   </a>
   <nav class="topbar-nav">
-    <a href="get_started.html">Get Started</a>
+    <a href="index.html">Get Started</a>
     <a href="platform.html">Platform</a>
     <a href="opensource.html">Open Source</a>
     <a href="integrations.html">Integrations</a>
@@ -870,8 +875,8 @@
     <div class="sidebar-group">
       <div class="sidebar-group-title">Release Notes</div>
       <div class="sidebar-link active" id="nav-highlights" onclick="showView('highlights')">Highlights</div>
-            <div class="sidebar-link" id="nav-sdk-tools" onclick="showView(\'sdk-tools\')">SDKs &amp; Tools</div>
-      <div class="sidebar-link" id="nav-platform" onclick="showView(\'platform\')">Platform</div>
+      <div class="sidebar-link" id="nav-sdk-tools" onclick="showView('sdk-tools')">SDKs &amp; Tools</div>
+      <div class="sidebar-link" id="nav-platform" onclick="showView('platform')">Platform</div>
     </div>
 
     <div class="sidebar-group" style="margin-top: 1.5rem;">
@@ -1336,7 +1341,7 @@
 </div><!-- /#layout -->
 
 <footer class="global-footer">
-  <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
+  <a href="index.html" class="topbar-logo" style="font-size: 0.95rem;">
     <div class="logo-icon" style="width: 24px; height: 24px;">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -1348,9 +1353,9 @@
     <a href="https://github.com/piyapi" target="_blank">GitHub</a>
     <a href="#">X</a>
     <a href="#">LinkedIn</a>
-    <a href="platform.html">Documentation</a>
+    <a href="index.html">Documentation</a>
     <a href="opensource.html">Open Source</a>
-    <a href="#">API Reference</a>
+    <a href="api_reference.html">API Reference</a>
   </div>
   <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
 </footer>
@@ -1359,16 +1364,29 @@
 let currentActiveFilter = 'all';
 
 function showView(viewId) {
+  if (!viewId.startsWith('view-') && document.getElementById('view-' + viewId)) {
+    viewId = 'view-' + viewId;
+  }
+  const cleanId = viewId.replace('view-', '');
+  const target = document.getElementById(viewId) || document.getElementById('view-' + cleanId);
+  if (!target) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('view-' + viewId);
-  if (target) target.classList.add('active');
+  target.classList.add('active');
 
   // Sidebar navigation active state
   document.querySelectorAll('#sidebar .sidebar-link').forEach(l => l.classList.remove('active'));
-  const navEl = document.getElementById('nav-' + viewId);
+  const navEl = document.getElementById('nav-' + cleanId);
   if (navEl) navEl.classList.add('active');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (history.replaceState) {
+    history.replaceState(null, '', '#' + cleanId);
+  }
+}
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  if (sb) sb.classList.toggle('open');
 }
 
 function applyFilter(filterVal, el) {
@@ -1487,8 +1505,31 @@ window.addEventListener('scroll', () => {
   if (sb) sb.style.width = pct + '%';
 });
 
-// Run initial filter count
-runFilter();
+// Run initial filter count and hash routing
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    showView(hash);
+  }
+  runFilter();
+
+  // Auto-close sidebar on mobile after clicking a link
+  document.querySelectorAll('#sidebar .sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        const sb = document.getElementById('sidebar');
+        if (sb) sb.classList.remove('open');
+      }
+    });
+  });
+});
+
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    showView(hash);
+  }
+});
 </script>
 </body>
 </html>

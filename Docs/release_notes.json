@@ -1,11 +1,11 @@
 {
   "source_file": "release_notes.html",
-  "document_title": "Release Notes — Negentro Platform Updates",
+  "document_title": "Release Notes \u2014 Negentro Platform Updates",
   "meta_description": "Major product launches, features, improvements, and milestones across Negentro and PiAPI cognitive memory platform.",
   "topbar_navigation": [
     {
       "label": "Get Started",
-      "href": "get_started.html",
+      "href": "index.html",
       "is_active": false
     },
     {
@@ -97,7 +97,7 @@
           "bullets": []
         },
         {
-          "heading": "Python SDK v4.2 — batched writes and async memory client",
+          "heading": "Python SDK v4.2 \u2014 batched writes and async memory client",
           "level": 3,
           "paragraphs": [
             "Faster ingestion for high-volume workloads and a fully async client for latency-sensitive apps."
@@ -113,7 +113,7 @@
           "bullets": []
         },
         {
-          "heading": "REST API v1.3 — richer filtering on /v1/memories",
+          "heading": "REST API v1.3 \u2014 richer filtering on /v1/memories",
           "level": 3,
           "paragraphs": [
             "Query memories with compound filters and date range constraints in a single request."
@@ -135,7 +135,7 @@
           "bullets": []
         },
         {
-          "heading": "TypeScript SDK v3.0 — full type-safe memory client",
+          "heading": "TypeScript SDK v3.0 \u2014 full type-safe memory client",
           "level": 3,
           "paragraphs": [
             "Rewritten from the ground up with strict typings, tree-shakeable exports, and Edge runtime support."
@@ -154,7 +154,7 @@
           "heading": "UX Pilot AI and Google Gemini embedding support",
           "level": 3,
           "paragraphs": [
-            "Choose your embedding provider per project — Negentro now supports UX Pilot AI and Gemini alongside OpenAI."
+            "Choose your embedding provider per project \u2014 Negentro now supports UX Pilot AI and Gemini alongside OpenAI."
           ],
           "bullets": []
         },
@@ -173,7 +173,7 @@
           "bullets": []
         },
         {
-          "heading": "Negentro Memory Platform — general availability",
+          "heading": "Negentro Memory Platform \u2014 general availability",
           "level": 3,
           "paragraphs": [
             "The core persistent memory infrastructure is now generally available with SLA-backed uptime and per-project isolation."
@@ -218,7 +218,7 @@
       "cards": [],
       "tables": [],
       "definition_lists": [],
-      "raw_text": "RELEASE NOTES Highlights Major product launches, features, improvements, and milestones across Negentro. Sample content — illustrative release notes for demonstration purposes. All updates 2026 2026 All Product SDK Integration Plugin Infrastructure August 2026 2026-08-24 Agent Plugin HIGHLIGHT Negentro Coding Agent Plugin launches for VS Code Bring persistent project memory directly into your editor. The plugin recalls prior decisions, conventions, and context across every coding session. Automatic memory Captures relevant context from supported sessions without manual tagging. Scoped recall Queries memory.search filtered by project_id to avoid cross-rep leakage. Inline suggestions Surfaces relevant past fixes directly in the diff view. Developer preview. Available to design partners; general availability targeted for Q4. View documentation → 2026-08-19 SDK Python SDK v4.2 — batched writes and async memory client Faster ingestion for high-volume workloads and a fully async client for latency-sensitive apps. Batch API Write up to 500 memories per call, reducing round trips by 90%. AsyncClient New AsyncMemoryClient mirrors the sync client for asyncio apps. Migration guide → 2026-08-14 Memory Project vs. personal memory scoping Memories can now be explicitly scoped so shared project knowledge never mixes with a user's private context. Scope param Pass scope=project or scope=user on every write and query. Isolation guarantee Enforced at the storage layer, keyed by user_id and project_id . Migration note. Existing memories default to scope=user — update calls that expect shared project context. 2026-08-07 API REST API v1.3 — richer filtering on /v1/memories Query memories with compound filters and date range constraints in a single request. Filter operators Support for AND/OR groups on /v1/memories . Session filter Restrict results to a given session_id for conversation-level recall. July 2026 2026-07-29 Platform HIGHLIGHT Native MCP support across the platform Negentro now speaks Model Context Protocol natively, letting any MCP-compatible client read and write memory directly. MCP server One-line install exposes memory tools to any MCP host. Tool discovery Hosts auto-detect search , add , and update tools. View documentation → 2026-07-22 SDK TypeScript SDK v3.0 — full type-safe memory client Rewritten from the ground up with strict typings, tree-shakeable exports, and Edge runtime support. Edge-ready Works in Vercel Edge and Cloudflare Workers with zero polyfills. Breaking change client.memories.add() now returns a typed Memory object instead of raw JSON. Migration guide → 2026-07-16 Open Source LangChain and LlamaIndex memory adapters Drop-in memory backends for the two most popular open-source agent frameworks. LangChain Implements BaseMemory with persistent cross-session recall. LlamaIndex Ships as a ChatMemoryBuffer replacement with zero config. 2026-07-09 Provider UX Pilot AI and Google Gemini embedding support Choose your embedding provider per project — Negentro now supports UX Pilot AI and Gemini alongside OpenAI. Provider config Set embedding_provider in project settings or per API call. 2026-07-02 Infrastructure Vector retrieval latency reduced by 40% Re-architected the retrieval index to shrink p95 query latency across all regions. HNSW tuning Adaptive index parameters based on collection size. Result caching Repeated memory.search calls with the same filters are served from cache. June 2026 2026-06-26 Product HIGHLIGHT Negentro Memory Platform — general availability The core persistent memory infrastructure is now generally available with SLA-backed uptime and per-project isolation. GA SLA 99.9% uptime commitment for all production tiers. Isolation model Every memory is namespaced by project_id and user_id . View documentation → 2026-06-19 Developer Tools Negentro CLI 1.0 Inspect, seed, and debug memory stores from the terminal without leaving your workflow. negentro tail Streams live memory writes for a given project_id . negentro seed Bulk import memories from a JSONL file for local testing. 2026-06-12 Platform Dashboard: memory graph visualizer Explore relationships between memories visually, with filters by recency, category, and user. Graph view Renders semantic clusters directly from your production dataset. Developer preview. Enable via feature flag in project settings. 2026-06-05 Integration Slack and Zendesk connectors Pipe support conversations and team messages into memory automatically, scoped per customer. Zendesk sync Tickets are converted to memories keyed by user_id on resolution. Slack app Install via the Slack marketplace, authorize channels to index. 2026-06-01 API REST API rate limits raised for Pro tier Pro workspaces now get 5x the previous request ceiling on all memory endpoints. New limit 5,000 requests/min per project on REST API . Suggest edits Raise issue Next Next → SDK & Tools"
+      "raw_text": "RELEASE NOTES Highlights Major product launches, features, improvements, and milestones across Negentro. Sample content \u2014 illustrative release notes for demonstration purposes. All updates 2026 2026 All Product SDK Integration Plugin Infrastructure August 2026 2026-08-24 Agent Plugin HIGHLIGHT Negentro Coding Agent Plugin launches for VS Code Bring persistent project memory directly into your editor. The plugin recalls prior decisions, conventions, and context across every coding session. Automatic memory Captures relevant context from supported sessions without manual tagging. Scoped recall Queries memory.search filtered by project_id to avoid cross-rep leakage. Inline suggestions Surfaces relevant past fixes directly in the diff view. Developer preview. Available to design partners; general availability targeted for Q4. View documentation \u2192 2026-08-19 SDK Python SDK v4.2 \u2014 batched writes and async memory client Faster ingestion for high-volume workloads and a fully async client for latency-sensitive apps. Batch API Write up to 500 memories per call, reducing round trips by 90%. AsyncClient New AsyncMemoryClient mirrors the sync client for asyncio apps. Migration guide \u2192 2026-08-14 Memory Project vs. personal memory scoping Memories can now be explicitly scoped so shared project knowledge never mixes with a user's private context. Scope param Pass scope=project or scope=user on every write and query. Isolation guarantee Enforced at the storage layer, keyed by user_id and project_id . Migration note. Existing memories default to scope=user \u2014 update calls that expect shared project context. 2026-08-07 API REST API v1.3 \u2014 richer filtering on /v1/memories Query memories with compound filters and date range constraints in a single request. Filter operators Support for AND/OR groups on /v1/memories . Session filter Restrict results to a given session_id for conversation-level recall. July 2026 2026-07-29 Platform HIGHLIGHT Native MCP support across the platform Negentro now speaks Model Context Protocol natively, letting any MCP-compatible client read and write memory directly. MCP server One-line install exposes memory tools to any MCP host. Tool discovery Hosts auto-detect search , add , and update tools. View documentation \u2192 2026-07-22 SDK TypeScript SDK v3.0 \u2014 full type-safe memory client Rewritten from the ground up with strict typings, tree-shakeable exports, and Edge runtime support. Edge-ready Works in Vercel Edge and Cloudflare Workers with zero polyfills. Breaking change client.memories.add() now returns a typed Memory object instead of raw JSON. Migration guide \u2192 2026-07-16 Open Source LangChain and LlamaIndex memory adapters Drop-in memory backends for the two most popular open-source agent frameworks. LangChain Implements BaseMemory with persistent cross-session recall. LlamaIndex Ships as a ChatMemoryBuffer replacement with zero config. 2026-07-09 Provider UX Pilot AI and Google Gemini embedding support Choose your embedding provider per project \u2014 Negentro now supports UX Pilot AI and Gemini alongside OpenAI. Provider config Set embedding_provider in project settings or per API call. 2026-07-02 Infrastructure Vector retrieval latency reduced by 40% Re-architected the retrieval index to shrink p95 query latency across all regions. HNSW tuning Adaptive index parameters based on collection size. Result caching Repeated memory.search calls with the same filters are served from cache. June 2026 2026-06-26 Product HIGHLIGHT Negentro Memory Platform \u2014 general availability The core persistent memory infrastructure is now generally available with SLA-backed uptime and per-project isolation. GA SLA 99.9% uptime commitment for all production tiers. Isolation model Every memory is namespaced by project_id and user_id . View documentation \u2192 2026-06-19 Developer Tools Negentro CLI 1.0 Inspect, seed, and debug memory stores from the terminal without leaving your workflow. negentro tail Streams live memory writes for a given project_id . negentro seed Bulk import memories from a JSONL file for local testing. 2026-06-12 Platform Dashboard: memory graph visualizer Explore relationships between memories visually, with filters by recency, category, and user. Graph view Renders semantic clusters directly from your production dataset. Developer preview. Enable via feature flag in project settings. 2026-06-05 Integration Slack and Zendesk connectors Pipe support conversations and team messages into memory automatically, scoped per customer. Zendesk sync Tickets are converted to memories keyed by user_id on resolution. Slack app Install via the Slack marketplace, authorize channels to index. 2026-06-01 API REST API rate limits raised for Pro tier Pro workspaces now get 5x the previous request ceiling on all memory endpoints. New limit 5,000 requests/min per project on REST API . Suggest edits Raise issue Next Next \u2192 SDK & Tools"
     },
     {
       "id": "view-sdk-tools",
