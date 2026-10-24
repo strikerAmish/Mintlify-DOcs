@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open Source Documentation - Negentro</title>
-  <meta name="description" content="Run Negentro on your own infrastructure with full control over your data, configuration, and deployment environment. Open Source documentation.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Source Documentation - PiyAPI</title>
+  <meta name="description" content="Deploy PiyAPI on your own infrastructure with complete control over your data, configuration, models, and bitemporal memory storage." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
+
     :root {
       --bg:               #ffffff;
       --bg-sidebar:       #ffffff;
@@ -111,7 +113,7 @@
     .topbar-nav a:hover { color: var(--text-heading); }
     .topbar-nav a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
     .topbar-right { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
-    
+
     .search-box {
       display: flex; align-items: center; gap: 0.5rem;
       background: var(--bg-hover); border: 1px solid var(--border-card);
@@ -218,6 +220,7 @@
       border: 1px solid var(--border-card); color: var(--text-muted); background: var(--bg-hover);
     }
     .tag.accent { background: var(--accent-dim); border-color: rgba(99, 102, 241, 0.25); color: var(--accent); font-weight: 600; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
 
     /* Typography */
     .doc-h2 { font-size: 1.45rem; font-weight: 700; color: var(--text-heading); margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); letter-spacing: -0.02em; }
@@ -235,19 +238,20 @@
 
     /* Cards */
     .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .cards-grid-1 { grid-template-columns: 1fr; }
     .cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
     .card {
       background: var(--bg-card); border: 1px solid var(--border-card);
       border-radius: var(--radius-lg); padding: 1.25rem; transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
     }
     .card:hover { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08); transform: translateY(-1px); }
-    .card-icon-wrap {
-      width: 36px; height: 36px; border-radius: 10px; background: var(--accent-dim);
-      display: flex; align-items: center; justify-content: center; color: var(--accent);
-      margin-bottom: 0.85rem;
-    }
     .card-title { font-size: 0.95rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.35rem; }
     .card-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .card-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 4px; padding: 0.1rem 0.45rem; color: var(--accent); font-weight: 500; }
+    .card-full { grid-column: 1 / -1; }
+    .card-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; font-size: 1rem; color: var(--accent); }
+    .card-icon-wrap { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 0.85rem; }
     .card-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-top: 0.75rem; }
     .card-link:hover { color: var(--accent-hover); text-decoration: underline; }
 
@@ -280,6 +284,7 @@
     }
     pre::-webkit-scrollbar { height: 5px; }
     pre::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+    .simple-code { background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.5rem 0; }
 
     /* Syntax Tokens */
     .tok-kw   { color: #c084fc; font-weight: 500; }
@@ -300,50 +305,93 @@
     .doc-table tr:last-child td { border-bottom: none; }
     .doc-table tr:hover td { background: var(--bg-hover); }
     .doc-table td code { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; background: var(--bg-hover); border: 1px solid var(--border-card); border-radius: 4px; padding: 0.1em 0.35em; color: var(--accent); }
+    .table-num { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-faint); font-weight: 500; }
 
     /* Callouts */
     .callout { display: flex; gap: 0.85rem; padding: 1.1rem 1.3rem; border-radius: var(--radius-md); margin: 1.5rem 0; font-size: 0.88rem; line-height: 1.7; }
     .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
     .callout-tip  { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
     .callout-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .callout-danger { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
     [data-theme="dark"] .callout-info { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.25); color: #93c5fd; }
     [data-theme="dark"] .callout-tip  { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.25); color: #6ee7b7; }
     [data-theme="dark"] .callout-warn { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.25); color: #fcd34d; }
+    [data-theme="dark"] .callout-danger { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.25); color: #fca5a5; }
     .callout-icon { font-size: 1.1rem; flex-shrink: 0; line-height: 1.6; }
     .callout strong { font-weight: 600; color: inherit; }
 
-    /* Pipeline / Flow */
-    .pipeline { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); overflow: hidden; margin: 1.5rem 0; }
-    .pipeline-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); transition: background 0.12s; }
+    /* Steps */
+    .steps { display: flex; flex-direction: column; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1rem; position: relative; padding-bottom: 2rem; }
+    .step:last-child { padding-bottom: 0; }
+    .step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.35); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--accent); flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+    .step-line { width: 1px; flex: 1; background: var(--border-card); margin-top: 6px; }
+    .step:last-child .step-line { display: none; }
+    .step-content { flex: 1; min-width: 0; padding-top: 0.2rem; }
+    .step-title { font-size: 0.95rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.4rem; }
+    .step-body { font-size: 0.86rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* Pipeline Alternating Theme */
+    .pipeline { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); overflow: hidden; margin: 1.5rem 0; box-shadow: 0 4px 16px rgba(0,0,0,0.02); }
+    .pipeline-item { display: flex; align-items: center; gap: 1rem; padding: 1.15rem 1.35rem; border-bottom: 1px solid var(--border); transition: all 0.15s ease; }
     .pipeline-item:last-child { border-bottom: none; }
-    .pipeline-item:hover { background: var(--bg-hover); }
-    .pipeline-label { width: 140px; flex-shrink: 0; font-size: 0.82rem; font-weight: 700; color: var(--text-heading); }
-    .pipeline-arrow { font-size: 0.9rem; color: var(--accent); flex-shrink: 0; }
-    .pipeline-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.55; }
+    .pipeline-item:nth-child(odd) { background: var(--bg); }
+    .pipeline-item:nth-child(even) { background: var(--bg-active); border-left: 4px solid var(--accent); }
+    [data-theme="dark"] .pipeline-item:nth-child(odd) { background: var(--bg-panel); }
+    [data-theme="dark"] .pipeline-item:nth-child(even) { background: rgba(99, 102, 241, 0.08); border-left: 4px solid var(--accent-light); }
+    .pipeline-item:hover { filter: brightness(0.98); transform: translateX(2px); }
+    .pipeline-label { width: 140px; flex-shrink: 0; font-size: 0.84rem; font-weight: 700; color: var(--text-heading); letter-spacing: -0.01em; }
+    .pipeline-arrow { font-size: 0.95rem; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+    .pipeline-desc { font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; }
 
-    /* Next Cards / Footer Nav */
-    .page-footer-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-actions { display: flex; gap: 1.25rem; font-size: 0.82rem; color: var(--text-muted); }
-    .footer-action-btn { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; transition: color 0.12s; }
-    .footer-action-btn:hover { color: var(--text-heading); }
-    .footer-prev-next { display: flex; gap: 1.5rem; font-size: 0.85rem; font-weight: 500; }
-    .footer-prev { color: var(--text-muted); cursor: pointer; transition: color 0.12s; }
-    .footer-prev:hover { color: var(--text-heading); }
-    .footer-next { color: var(--accent); cursor: pointer; font-weight: 600; transition: color 0.12s; }
-    .footer-next:hover { color: var(--accent-hover); }
+    /* Principles */
+    .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+    .principle { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.1rem 1.25rem; }
+    .principle-name { font-size: 0.85rem; font-weight: 650; color: var(--accent); margin-bottom: 0.35rem; }
+    .principle-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
 
-    /* Global Footer */
+    /* CTAs */
+    .cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 2rem 0; }
+    .btn-primary { background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; padding: 0.55rem 1.3rem; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: background 0.15s, transform 0.1s, box-shadow 0.15s; }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 16px var(--accent-glow); transform: translateY(-1px); }
+    .btn-secondary { background: var(--bg); color: var(--text-heading); font-size: 0.85rem; font-weight: 500; padding: 0.55rem 1.3rem; border-radius: var(--radius-sm); border: 1px solid var(--border-card); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+    .btn-secondary:hover { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+
+    /* Build list */
+    .build-list { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.5rem 0; }
+    .build-list-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text-main); transition: background 0.12s; }
+    .build-list-item:last-child { border-bottom: none; }
+    .build-list-item:hover { background: var(--bg-hover); }
+    .build-check { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.35); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15em; font-size: 0.65rem; color: var(--accent); font-weight: 700; }
+
+    /* JSON */
+    .json-block { background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7; color: var(--text-code); margin: 1.25rem 0; overflow-x: auto; }
+    .json-key { color: #38bdf8; }
+    .json-str { color: #4ade80; }
+
+    /* Next cards */
+    .next-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .next-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.1rem 1.25rem; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s; }
+    .next-card:hover { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08); transform: translateY(-1px); }
+    .next-card-arrow { font-size: 0.75rem; color: var(--accent); margin-bottom: 0.4rem; font-weight: 700; }
+    .next-card-title { font-size: 0.9rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.35rem; }
+    .next-card-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Checklist */
+    .checklist { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.25rem 0; }
+    .check-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.86rem; color: var(--text-main); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(99, 102, 241, 0.35); background: var(--accent-dim); flex-shrink: 0; margin-top: 0.15em; }
+
+    /* Footer */
     #footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3rem 2rem 2.5rem; margin-left: var(--sidebar-w); }
     .footer-inner { max-width: 820px; margin: 0 auto; }
     .footer-headline { font-size: 1.35rem; font-weight: 700; color: var(--text-heading); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
     .footer-sub { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.75rem; max-width: 520px; }
-    .footer-links-grid { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1.75rem; }
-    .footer-nav-link { font-size: 0.82rem; color: var(--text-muted); cursor: pointer; transition: color 0.12s; }
-    .footer-nav-link:hover { color: var(--accent); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1.75rem; }
+    .footer-link { font-size: 0.82rem; color: var(--text-muted); cursor: pointer; transition: color 0.12s; }
+    .footer-link:hover { color: var(--accent); }
     .footer-note { font-size: 0.76rem; color: var(--text-faint); padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.65; }
 
     @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
@@ -355,10 +403,489 @@
       #main { margin-left: 0; }
       #footer { margin-left: 0; }
       #content { padding: 2rem 1.25rem 4rem; }
-      .cards-grid, .cards-grid-3 { grid-template-columns: 1fr; }
+      .cards-grid, .next-cards, .principles, .cards-grid-3 { grid-template-columns: 1fr; }
       .page-title { font-size: 1.85rem; }
       .topbar-nav { display: none; }
     }
+  
+    /* ========================================================= */
+    /* NEW: OVERVIEW META BAR (CLEAN UNIFIED BADGE)               */
+    /* ========================================================= */
+    .overview-meta-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.35rem 0.95rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 99px;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .meta-pill-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .meta-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+    .meta-sep-dot {
+      color: var(--border-muted);
+    }
+    .meta-time-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-faint);
+    }
+
+                /* ========================================================= */
+    /* 2-1-2 SQUARE PYRAMIDAL FORMATION (4 CORNERS + 1 CENTER SQUARE) */
+    /* (PERFECT CENTER: RETRIEVAL STARTS MID-LEFT & ENDS MID-RIGHT)  */
+    /* ========================================================= */
+    .pyramid-stage {
+      margin: 2.5rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .pyramid-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 1.25rem !important;
+      max-width: 820px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      align-items: stretch;
+    }
+    .pyramid-cell {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1.35rem 1.45rem;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      box-sizing: border-box;
+      aspect-ratio: 1 / 1;
+    }
+    .pyramid-cell:hover {
+      border-color: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+    }
+
+    /* 4 Corners & Centered Square Piece */
+    .cell-top-left {
+      grid-column: 1 / 3 !important;
+      grid-row: 1 !important;
+    }
+    .cell-top-right {
+      grid-column: 3 / 5 !important;
+      grid-row: 1 !important;
+    }
+    .cell-center-square {
+      grid-column: 2 / 4 !important;
+      grid-row: 2 !important;
+      border: 1.5px solid #c4b5fd !important;
+      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.14) !important;
+      padding: 1.35rem 1.45rem !important;
+      z-index: 2;
+    }
+    .cell-bottom-left {
+      grid-column: 1 / 3 !important;
+      grid-row: 3 !important;
+    }
+    .cell-bottom-right {
+      grid-column: 3 / 5 !important;
+      grid-row: 3 !important;
+    }
+
+    /* Highlight on Click: Soft Lavender Shadow & Accent */
+    .pyramid-cell.is-highlighted {
+      background: #fbf9ff !important;
+      border-color: #7c3aed !important;
+      box-shadow: 0 12px 36px rgba(124, 58, 237, 0.24), 0 0 0 2px #7c3aed !important;
+      transform: translateY(-3px);
+    }
+    [data-theme="dark"] .pyramid-cell.is-highlighted {
+      background: rgba(167, 139, 250, 0.12) !important;
+      border-color: #a78bfa !important;
+      box-shadow: 0 12px 36px rgba(167, 139, 250, 0.3), 0 0 0 2px #a78bfa !important;
+    }
+
+    .cell-icon-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .pyramid-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pyramid-cell {
+        aspect-ratio: auto !important;
+        min-height: auto !important;
+      }
+      .cell-top-left, .cell-top-right, .cell-center-square, .cell-bottom-left, .cell-bottom-right {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+    }
+
+    /* ========================================================= */
+    /* NEW: ALTERNATING LAVENDER & WHITE 'HOW PIYAPI WORKS'      */
+    /* ========================================================= */
+    .how-pipeline-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .how-step-card {
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .how-step-card:hover {
+      transform: translateX(3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+    /* Alternating: Odd = Crisp White, Even = Soft Lavender */
+    .how-step-card:nth-child(odd) {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-left: 5px solid #6366f1;
+    }
+    .how-step-card:nth-child(even) {
+      background: #f5f3ff;
+      border: 1.5px solid #ddd6fe;
+      border-left: 5px solid #7c3aed;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(odd) {
+      background: #131318;
+      border: 1.5px solid #272733;
+      border-left: 5px solid #818cf8;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(even) {
+      background: rgba(167, 139, 250, 0.1);
+      border: 1.5px solid rgba(167, 139, 250, 0.3);
+      border-left: 5px solid #a78bfa;
+    }
+
+    .how-num-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+    }
+    .how-step-card:nth-child(odd) .how-num-badge {
+      background: rgba(99, 102, 241, 0.12);
+      color: #4f46e5;
+    }
+    .how-step-card:nth-child(even) .how-num-badge {
+      background: rgba(124, 58, 237, 0.16);
+      color: #7c3aed;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(odd) .how-num-badge {
+      background: rgba(129, 140, 248, 0.2);
+      color: #c7d2fe;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(even) .how-num-badge {
+      background: rgba(167, 139, 250, 0.25);
+      color: #ddd6fe;
+    }
+
+    .how-step-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .how-step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .how-step-desc {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    .how-step-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.12rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Alternating Zebra Table */
+    .doc-table.how-table tbody tr:nth-child(odd) {
+      background: #ffffff;
+    }
+    .doc-table.how-table tbody tr:nth-child(even) {
+      background: #f5f3ff;
+    }
+    [data-theme="dark"] .doc-table.how-table tbody tr:nth-child(odd) {
+      background: #131318;
+    }
+    [data-theme="dark"] .doc-table.how-table tbody tr:nth-child(even) {
+      background: rgba(167, 139, 250, 0.08);
+    }
+
+    /* ========================================================= */
+    /* NEW: INTERACTIVE MERMAID DIAGRAM CONTROLS & INSPECTOR      */
+    /* ========================================================= */
+    .arch-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .zoom-btn {
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .zoom-btn:hover {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .mermaid-interactive-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.76rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .mermaid-node-inspector {
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+  
+    /* ========================================================= */
+    /* MACBOOK 3-BUTTON TRAFFIC LIGHT DOTS                       */
+    /* ========================================================= */
+    .mac-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      vertical-align: middle;
+    }
+    .mac-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+    .mac-dot:hover {
+      transform: scale(1.15);
+    }
+    .mac-dot.red { background: #ff5f56; box-shadow: 0 0 4px rgba(255, 95, 86, 0.4); }
+    .mac-dot.yellow { background: #ffbd2e; box-shadow: 0 0 4px rgba(255, 189, 46, 0.4); }
+    .mac-dot.green { background: #27c93f; box-shadow: 0 0 4px rgba(39, 201, 63, 0.4); }
+
+    .mac-terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      background: var(--bg-hover);
+      border-bottom: 1px solid var(--border-card);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .mac-terminal-title {
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========================================================= */
+    /* BROADER PYRAMIDAL CENTERPIECE                             */
+    /* (4 CORNERS + 1 CENTERPIECE WITHOUT ENCLOSING BORDER)      */
+    /* ========================================================= */
+    .pyramid-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto auto auto !important;
+      gap: 1.25rem !important;
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+    }
+    .cell-top-left {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+    }
+    .cell-top-right {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+    }
+    .cell-center {
+      grid-column: 1 / 3 !important;
+      grid-row: 2 !important;
+      max-width: 820px !important;
+      width: 100% !important;
+      justify-self: center !important;
+      padding: 1.15rem 1.6rem !important;
+      border: 1.5px solid #c4b5fd !important;
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08) !important;
+    }
+    .cell-bottom-left {
+      grid-column: 1 !important;
+      grid-row: 3 !important;
+    }
+    .cell-bottom-right {
+      grid-column: 2 !important;
+      grid-row: 3 !important;
+    }
+
+    /* Interactive 8-Operator Surface Grid */
+    .operators-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin: 1.5rem 0;
+    }
+    .operator-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+    .operator-card:hover {
+      border-color: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12);
+    }
+    .operator-card.is-active {
+      background: #fbf9ff !important;
+      border-color: #7c3aed !important;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.22), 0 0 0 2px #7c3aed !important;
+    }
+    [data-theme="dark"] .operator-card.is-active {
+      background: rgba(167, 139, 250, 0.12) !important;
+      border-color: #a78bfa !important;
+      box-shadow: 0 10px 30px rgba(167, 139, 250, 0.28), 0 0 0 2px #a78bfa !important;
+    }
+    .operator-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .operator-summary {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* KPI Metrics Banner */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.1);
+      border-color: #c4b5fd;
+    }
+    .kpi-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .kpi-val {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .kpi-sub {
+      font-size: 0.72rem;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .operators-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .pyramid-grid { grid-template-columns: 1fr !important; }
+      .cell-center { grid-column: 1 !important; }
+    }
+
+  
   </style>
 </head>
 <body>
@@ -374,7 +901,7 @@
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>
     </div>
-    Negentro
+    PiyAPI
   </a>
   <nav class="topbar-nav">
     <a href="index.html">Get Started</a>
@@ -390,7 +917,7 @@
     <div class="search-box" onclick="focusSearch()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       Search
-      <span class="search-kbd">⌘K</span>
+      <span class="search-kbd">&#8984;K</span>
     </div>
     <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
       <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -433,169 +960,368 @@
     <div id="content">
 
       <!-- =============================================================== -->
-      <!-- 1. PLATFORM OVERVIEW (From docs_opensource.md)                 -->
+      <!-- 1. OPEN SOURCE OVERVIEW                                         -->
       <!-- =============================================================== -->
       <div class="page active" id="page-overview">
         <div class="breadcrumb">Open Source / Overview</div>
         <div class="page-header-row">
           <h1 class="page-title">Open Source Overview</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Run Negentro on your own infrastructure with full control over your data, configuration, and deployment environment.</p>
+        <p class="page-lead">Run PiyAPI on your own infrastructure with full control over your data, configuration, and deployment environment.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Production-Grade Self-Hosted Engine</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>v1.4.2 &bull; Updated recently</span>
+          </div>
+        </div>
+
         <div class="page-tags">
-          <span class="tag">Open Source</span>
+          <span class="tag accent">Open Source</span>
           <span class="tag">Self-hosted</span>
           <span class="tag">Developer Infrastructure</span>
         </div>
-        <p class="doc-p">Negentro Open Source gives you the flexibility to run the intelligence infrastructure on your own environment while keeping control over your data and configuration.</p>
-        <p class="doc-p">Developers can install the SDK directly into an application, or run a self-hosted server as an independent service. Both approaches let you configure storage, embeddings, and model providers to match your existing infrastructure.</p>
-        <p class="doc-p">The stack is designed to be extended through APIs and integrations, allowing you to connect existing databases, plug in custom model providers, and build workflows that fit your deployment requirements.</p>
 
-        <h2 class="doc-h2" id="ov-ways">Run Negentro your way</h2>
+        <p class="doc-p">PiyAPI Open Source provides the flexibility to deploy our cognitive memory engine entirely within your VPC. Maintain strict data privacy, enterprise compliance, and total configuration control without sacrificing the power of bitemporal reasoning.</p>
+        <p class="doc-p">Developers can install the SDK directly into an application as a lightweight library, or run the full PiyAPI server as an independent, scalable microservice. Both approaches allow you to configure storage, embeddings, and BYOK (Bring Your Own Key) model routing to match your existing infrastructure.</p>
+        <p class="doc-p">The stack is designed to be fully extensible—connect your existing PostgreSQL databases, plug in custom LLMs, and build active inference workflows tailored to your exact deployment constraints.</p>
+
+        <!-- KPI METRICS ROW -->
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <span class="kpi-label">Data Sovereignty</span>
+            <span class="kpi-val">100%</span>
+            <span class="kpi-sub">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              On-Premises / Private VPC
+            </span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">p95 Latency</span>
+            <span class="kpi-val">&lt; 15ms</span>
+            <span class="kpi-sub">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Dense Vector + BM25 Recall
+            </span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Search Signals</span>
+            <span class="kpi-val">11</span>
+            <span class="kpi-sub">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              UnifiedScorer &bull; RRF_K=30
+            </span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Model Routing</span>
+            <span class="kpi-val">BYOK</span>
+            <span class="kpi-sub">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              OpenAI &bull; Anthropic &bull; Ollama
+            </span>
+          </div>
+        </div>
+
+        <!-- RUN PIYAPI YOUR WAY -->
+        <h2 class="doc-h2" id="ov-ways">Run PiyAPI your way</h2>
         <div class="cards-grid">
           <div class="card" onclick="showPage('python-sdk')" style="cursor:pointer;">
             <div class="card-icon-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
             </div>
             <div class="card-title">As a library</div>
-            <div class="card-body">Install the SDK directly into your application for embedded memory without external dependencies.</div>
+            <div class="card-body">Install the lightweight SDK directly into your TypeScript or Python application for immediate, embedded bitemporal memory without running external daemons.</div>
+            <div class="card-tags">
+              <span class="card-tag">piyapi-memory</span>
+              <span class="card-tag">@piyapi/sdk</span>
+              <span class="card-tag">Embedded</span>
+            </div>
+            <div class="card-link" style="margin-top:0.75rem;">View Library Quickstart &rarr;</div>
           </div>
           <div class="card" onclick="showPage('self-hosted')" style="cursor:pointer;">
             <div class="card-icon-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
             </div>
             <div class="card-title">As a self-hosted server</div>
-            <div class="card-body">Run Negentro as an independent service with control over infrastructure, storage, models, and configuration.</div>
+            <div class="card-body">Run the full PiyAPI Gateway and Memory Engine as an independent Docker service with complete control over Redis caching, pgvector indexing, and LLM routing.</div>
+            <div class="card-tags">
+              <span class="card-tag">Docker Compose</span>
+              <span class="card-tag">Kubernetes</span>
+              <span class="card-tag">REST API</span>
+            </div>
+            <div class="card-link" style="margin-top:0.75rem;">Deploy Server Container &rarr;</div>
           </div>
         </div>
 
+        <!-- GET STARTED -->
         <h2 class="doc-h2" id="ov-getstarted">Get started</h2>
         <div class="cards-grid">
           <div class="card" onclick="showPage('python-sdk')" style="cursor:pointer;">
             <div class="card-title">Python Quickstart</div>
-            <div class="card-body">Install the <code>negentro-memory</code> package and verify that hybrid memory storage and retrieval work in a few lines of code.</div>
+            <div class="card-body">Install the <code>piyapi-memory</code> package and verify that hybrid memory storage and retrieval work in a few lines of code.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
           <div class="card" onclick="showPage('nodejs-quickstart')" style="cursor:pointer;">
             <div class="card-title">Node.js Quickstart</div>
-            <div class="card-body">Install the <code>@negentro/sdk</code> package and connect your first stateful agent workflow.</div>
+            <div class="card-body">Install the <code>@piyapi/sdk</code> package and connect your first stateful agent workflow with native TypeScript support.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
           <div class="card" onclick="showPage('self-hosted')" style="cursor:pointer;">
             <div class="card-title">Self-hosted server</div>
-            <div class="card-body">Deploy the Negentro Docker container locally or on your Kubernetes cluster and configure your bitemporal infrastructure.</div>
+            <div class="card-body">Deploy the PiyAPI Docker container locally or on your Kubernetes cluster and configure your bitemporal infrastructure.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
           <div class="card" onclick="showPage('web-studio')" style="cursor:pointer;">
             <div class="card-title">Web Studio</div>
-            <div class="card-body">Launch the visual administrative dashboard to inspect live memories, debug scoring, and browse entities.</div>
+            <div class="card-body">Launch the visual administrative dashboard to inspect live memories, debug scoring, and browse entities in real time.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
         </div>
 
+        <!-- GO FURTHER -->
         <h2 class="doc-h2" id="ov-gofurther">Go further</h2>
         <div class="cards-grid cards-grid-3">
           <div class="card" onclick="showPage('configuration')" style="cursor:pointer;">
             <div class="card-title">Configure components</div>
-            <div class="card-body">Configure BYOK routing, embedding providers, pgvector storage, and tune the UnifiedScorer.</div>
+            <div class="card-body">Configure BYOK routing, embedding providers, <code>pgvector</code> storage, and tune the UnifiedScorer for your deployment.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
           <div class="card" onclick="showPage('self-hosted')" style="cursor:pointer;">
             <div class="card-title">Self-hosting features</div>
-            <div class="card-body">Explore enterprise namespace isolation, semantic cache purging, and redaction tools.</div>
+            <div class="card-body">Explore enterprise namespace isolation, semantic cache purging, multimodal CDC connectors, and redaction tools.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
           <div class="card" onclick="window.location.href='cookbooks.html'" style="cursor:pointer;">
             <div class="card-title">Build with cookbooks</div>
-            <div class="card-body">Use practical examples for LangChain agents, CrewAI, MCP server integrations, and compliance.</div>
+            <div class="card-body">Use practical recipes for LangChain agents, CrewAI, MCP server integrations, and real-world compliance workflows.</div>
             <div class="card-link">Learn more &rarr;</div>
           </div>
         </div>
 
+        <!-- MANAGED ALTERNATIVE CALLOUT -->
         <div class="callout callout-info">
-          <div class="callout-icon">ℹ</div>
-          <div><strong>Need a managed alternative?</strong> Compare the self-hosted open-source deployment with the fully managed Negentro Cloud Platform, or switch to the <a href="platform.html" style="font-weight:600; text-decoration:underline;">Platform documentation</a>.</div>
+          <div class="callout-icon">&#9432;</div>
+          <div><strong>Need a managed alternative?</strong> Compare the self-hosted open-source deployment with the fully managed PiyAPI Cloud Platform, or switch to the <a href="platform.html" style="font-weight:600; text-decoration:underline;">Platform documentation</a>.</div>
         </div>
 
+        <!-- DEFAULT COMPONENTS -->
         <h2 class="doc-h2" id="ov-defaults">Default components</h2>
-        <p class="doc-p">Negentro ships with sane, production-ready defaults for each part of the pipeline. Every component can be replaced or explicitly configured to match your existing VPC infrastructure and provider preferences.</p>
+        <p class="doc-p">PiyAPI ships with sane, production-ready defaults for each part of the pipeline. Every component can be replaced or explicitly configured to match your existing VPC infrastructure and provider preferences.</p>
 
         <div class="doc-h3">Library defaults</div>
         <div class="doc-table-wrap">
-          <table class="doc-table">
+          <table class="doc-table how-table">
             <thead><tr><th>Component</th><th>Default</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td><strong>LLM</strong></td><td>OpenAI (via BYOK)</td><td>Used for fact extraction and entity summarization.</td></tr>
-              <tr><td><strong>Embeddings</strong></td><td>OpenAI <code>text-embedding-3-small</code></td><td>1536-dimensional dense vector embeddings.</td></tr>
-              <tr><td><strong>Vector store</strong></td><td><code>pgvector</code></td><td>PostgreSQL vector extension with HNSW index.</td></tr>
-              <tr><td><strong>History store</strong></td><td>PostgreSQL</td><td>Transactional relational store for memory records.</td></tr>
+              <tr><td><strong>Embeddings</strong></td><td>OpenAI <code>text-embedding-3-small</code></td><td>1536-dimensional dense vector embeddings with cosine distance.</td></tr>
+              <tr><td><strong>Vector store</strong></td><td><code>pgvector</code></td><td>PostgreSQL vector extension with HNSW index for sub-12ms queries.</td></tr>
+              <tr><td><strong>History store</strong></td><td>PostgreSQL</td><td>Transactional relational store for immutable memory records.</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="doc-h3">Self-hosted defaults</div>
         <div class="doc-table-wrap">
-          <table class="doc-table">
+          <table class="doc-table how-table">
             <thead><tr><th>Component</th><th>Default</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td><strong>Reranker</strong></td><td>UnifiedScorer (BM25 + RRF)</td><td>Evaluates 11 signals including vector and trigram text match.</td></tr>
-              <tr><td><strong>Storage</strong></td><td>PostgreSQL (Bitemporal KG)</td><td>Tracks <code>valid_at</code> real-world validity alongside system time.</td></tr>
-              <tr><td><strong>Metadata cache</strong></td><td>Redis</td><td>Low-latency session caching and rate limit coordination.</td></tr>
-              <tr><td><strong>Providers</strong></td><td>Multi-Provider BYOK Routing</td><td>Natively handles OpenAI, Anthropic, Gemini, DeepSeek, and Ollama.</td></tr>
+              <tr><td><strong>Reranker</strong></td><td>UnifiedScorer (BM25 + RRF)</td><td>Evaluates 11 signals fusing dense vector distance and sparse trigram matches.</td></tr>
+              <tr><td><strong>Storage</strong></td><td>PostgreSQL (Bitemporal KG)</td><td>Tracks <code>valid_at</code> real-world validity alongside system recording time.</td></tr>
+              <tr><td><strong>Metadata cache</strong></td><td>Redis</td><td>Low-latency session caching, semantic purge, and rate limit coordination.</td></tr>
+              <tr><td><strong>Providers</strong></td><td>Multi-Provider BYOK Routing</td><td>Natively handles OpenAI, Anthropic, Gemini, DeepSeek, and local Ollama.</td></tr>
             </tbody>
           </table>
         </div>
 
+        <!-- CONFIGURE YOUR STACK -->
         <h2 class="doc-h2" id="ov-configure">Configure your stack</h2>
+        <p class="doc-p">Explicitly declare infrastructure backends in a single declarative configuration file:</p>
         <div class="code-tabs">
           <div class="code-header">
-            <span class="code-filename">negentro.config.ts</span>
+            <span class="code-filename">piyapi.config.ts</span>
             <button class="code-copy" onclick="copySnippet(this)">Copy</button>
           </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-fn">createNegentro</span> } <span class="tok-kw">from</span> <span class="tok-str">'@negentro/sdk'</span>;
+          <pre><span class="tok-kw">import</span> { <span class="tok-fn">createPiyAPI</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
 
-<span class="tok-kw">const</span> <span class="tok-prop">negentro</span> = <span class="tok-fn">createNegentro</span>({
+<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-fn">createPiyAPI</span>({
   <span class="tok-prop">llm</span>: <span class="tok-str">"openai:gpt-4o"</span>,
   <span class="tok-prop">embeddings</span>: <span class="tok-str">"openai:text-embedding-3-small"</span>,
   <span class="tok-cmt">// Connect directly to your existing infrastructure</span>
-  <span class="tok-prop">vectorStore</span>: <span class="tok-str">"pgvector://localhost:5432/negentro"</span>,
-  <span class="tok-prop">storage</span>: <span class="tok-str">"postgres://localhost:5432/negentro_graph"</span>,
+  <span class="tok-prop">vectorStore</span>: <span class="tok-str">"pgvector://localhost:5432/piyapi"</span>,
+  <span class="tok-prop">storage</span>: <span class="tok-str">"postgres://localhost:5432/piyapi_graph"</span>,
   <span class="tok-prop">cache</span>: <span class="tok-str">"redis://localhost:6379"</span>
 });</pre>
         </div>
 
+        <!-- SELF-HOSTED ARCHITECTURE -->
         <h2 class="doc-h2" id="ov-arch">Self-hosted architecture</h2>
-        <div class="pipeline">
-          <div class="pipeline-item">
-            <div class="pipeline-label">[1] Your Application</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Client agent code, web applications, or chat services sending requests via REST or SDK.</div>
+        <p class="doc-p">The open-source deployment separates user applications, cognitive engines, and enterprise data storage into decoupled layers:</p>
+
+        <div class="arch-diagram-card" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.55rem; font-size: 0.88rem; font-weight: 700; color: var(--text-heading);">
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);"></span>
+                Interactive Open Source Architecture
+              </div>
+              <div class="mermaid-interactive-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-6-6a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Click any component node in the diagram (e.g. PiyAPI Server) to inspect its role
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="arch-controls">
+                <button class="zoom-btn" onclick="zoomMermaid(0.1)" title="Zoom in">+</button>
+                <button class="zoom-btn" onclick="zoomMermaid(-0.1)" title="Zoom out">&minus;</button>
+                <button class="zoom-btn" onclick="resetZoomMermaid()" title="Reset zoom">&#8635;</button>
+              </div>
+              <div style="display: flex; gap: 0.35rem; background: var(--bg-hover); padding: 0.2rem; border-radius: 8px; border: 1px solid var(--border-card);">
+                <button class="tab-btn active" onclick="switchArchView('diagram')" id="btn-arch-diag" style="padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Diagram</button>
+                <button class="tab-btn" onclick="switchArchView('txt')" id="btn-arch-txt" style="padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 500;">Raw Spec</button>
+              </div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">[2] Negentro Server</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Dispatches across <strong>Memory Engine</strong>, <strong>Retrieval Engine</strong>, <strong>Embedder</strong>, and <strong>LLM Routing</strong>.</div>
+
+          <!-- Mermaid Visual Graph -->
+          <div id="arch-view-diagram" style="display: flex; flex-direction: column; align-items: center; width: 100%; min-height: auto; overflow-x: auto; position: relative;">
+            <div id="mermaid-zoom-container" style="width: 100%; display: flex; justify-content: center; transform-origin: top center; transition: transform 0.2s ease;">
+              <pre class="mermaid" id="main-mermaid-chart" style="background: transparent; border: none; padding: 0; width: 100%; display: flex; justify-content: center; margin: 0;">
+graph TD
+    classDef client fill:#ffffff,stroke:#6366f1,stroke-width:2px,color:#0f172a,rx:8px,ry:8px;
+    classDef perimeter fill:#f5f3ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b,font-weight:700,rx:10px,ry:10px;
+    classDef core fill:#ffffff,stroke:#7c3aed,stroke-width:2.5px,color:#1e1b4b,font-weight:600,rx:8px,ry:8px;
+    classDef substrate fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#0f172a,font-weight:600,rx:8px,ry:8px;
+
+    subgraph APP ["1. YOUR APPLICATION"]
+        direction LR
+        A1["Python Agents<br/><code>piyapi-memory</code>"]:::client
+        A2["Node.js / Next.js<br/><code>@piyapi/sdk</code>"]:::client
+        A3["Direct HTTP Client<br/>cURL / REST"]:::client
+    end
+
+    APP --> SERVER["2. PIYAPI SERVER (DOCKER / VPC MICROSERVICE)<br/>Port 8080 &bull; REST API &bull; Web Studio (/studio) &bull; Auth &amp; Namespace Isolation"]:::perimeter
+
+    subgraph ENGINES ["COGNITIVE SUBSYSTEMS"]
+        direction LR
+        E1["Memory Engine<br/>8-Operator CRUD"]:::core
+        E2["Retrieval Engine<br/>BM25 + Dense RRF"]:::core
+        E3["Embeddings Router<br/>OpenAI &bull; FastEmbed"]:::core
+        E4["BYOK LLM Manager<br/>OpenAI &bull; Claude &bull; Ollama"]:::core
+    end
+
+    SERVER --> ENGINES
+
+    subgraph INFRA ["3. YOUR INFRASTRUCTURE (VPC SUBSTRATE)"]
+        direction LR
+        I1["PostgreSQL 16 + pgvector<br/>HNSW Vector Indexes"]:::substrate
+        I2["Bitemporal Graph<br/>valid_at vs system_at"]:::substrate
+        I3["Redis 7 Cluster<br/>Semantic Cache &amp; Rate Limits"]:::substrate
+    end
+
+    ENGINES --> INFRA
+              </pre>
+            </div>
+
+            <!-- Dynamic Node Inspector -->
+            <div class="mermaid-node-inspector" id="mermaid-node-inspector">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <div style="font-weight:700; color:var(--text-heading); font-size:0.96rem;" id="inspector-node-title">Selected Component</div>
+                <span class="card-tag" id="inspector-node-layer">Open Source Subsystem</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-main); line-height:1.6;" id="inspector-node-desc">
+                Click on any node in the architecture diagram above to inspect its real-time capabilities and underlying configuration parameters.
+              </div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">[3] Your Infrastructure</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Your private PostgreSQL database with <code>pgvector</code>, Redis cluster, and VPC model endpoints.</div>
+
+          <!-- Raw ASCII Fallback -->
+          <div id="arch-view-txt" style="display: none; background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden;">
+            <div class="code-header" style="background: var(--bg-code-header); padding: 0.55rem 1rem;">
+              <span class="code-filename">self-hosted-architecture.txt</span>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre style="color:var(--accent-light); font-size:0.75rem; line-height:1.45; overflow-x:auto; margin:0; padding:1.25rem;">┌────────────────────────────────────────────────────────────┐
+│                  [1] YOUR APPLICATION                       │
+│    Python SDK     │    TypeScript SDK    │    REST Client   │
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+                                ▼
+┌────────────────────────────────────────────────────────────┐
+│           [2] PIYAPI SELF-HOSTED SERVER (Port 8080)        │
+│   Auth &amp; Rate Limits │ Namespace Scoping │ Web Studio /studio│
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+               ┌────────────────┼────────────────┐
+               ▼                ▼                ▼
+     ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐
+     │  MEMORY ENGINE  │ │ RETRIEVAL ENG │ │ BYOK ROUTER   │
+     │ • Fact Extract  │ │ • Hybrid RAG  │ │ • OpenAI / Olla│
+     │ • Bitemporal KG │ │ • BM25 + HNSW │ │ • FastEmbed   │
+     └─────────────────┘ └───────────────┘ └───────────────┘
+                                │
+                                ▼
+┌────────────────────────────────────────────────────────────┐
+│                  [3] YOUR INFRASTRUCTURE                    │
+│    PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache  │
+└────────────────────────────────────────────────────────────┘</pre>
           </div>
         </div>
 
+        <!-- BUILD ON OPEN SOURCE STACK -->
         <h2 class="doc-h2" id="ov-build">Build on the open-source stack</h2>
-        <ul class="doc-ul">
-          <li>Replace infrastructure components (e.g., swap Redis for an alternative caching layer or SQLite for embedded use).</li>
-          <li>Configure multi-provider routing and failover logic to prevent LLM downtime.</li>
-          <li>Integrate directly with your existing enterprise PostgreSQL databases without migrating schemas.</li>
-          <li>Build custom Active Inference workflows and agent MCP tools with private model access.</li>
-        </ul>
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Replace infrastructure components
+                <span class="how-step-tag">Extensible</span>
+              </div>
+              <div class="how-step-desc">Swap Redis for Memcached or KeyDB, replace pgvector with Qdrant, or deploy on AWS Aurora PostgreSQL with zero code changes.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Multi-provider routing &amp; failover
+                <span class="how-step-tag">High Availability</span>
+              </div>
+              <div class="how-step-desc">Configure automated fallback pipelines across OpenAI, Anthropic, and local Ollama to ensure high availability during cloud provider outages.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Direct enterprise PostgreSQL integration
+                <span class="how-step-tag">Data Sovereignty</span>
+              </div>
+              <div class="how-step-desc">Store memory tables directly inside your existing VPC relational database, maintaining existing backup, replication, and HIPAA compliance policies.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Active inference workflows &amp; MCP tools
+                <span class="how-step-tag">Agentic AI</span>
+              </div>
+              <div class="how-step-desc">Expose memory and contextual retrieval as Model Context Protocol (MCP) tools for Claude Desktop, Cursor, and autonomous agent loops.</div>
+            </div>
+          </div>
+        </div>
 
         <div class="callout callout-tip">
-          <div class="callout-icon">💡</div>
-          <div><strong>Open-source note:</strong> Keep your deployment configuration explicit so model, storage, and retrieval dependencies remain easy to understand, version control, and operate across your team.</div>
+          <div class="callout-icon">&#128161;</div>
+          <div><strong>Open-source deployment tip:</strong> Keep your deployment configuration explicit in <code>piyapi.config.ts</code> so model, storage, and retrieval dependencies remain easy to understand, version control, and operate across your team.</div>
         </div>
 
+        <!-- FOOTER ACTIONS & NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -615,37 +1341,73 @@
         <div class="breadcrumb">Open Source / Python SDK Quickstart</div>
         <div class="page-header-row">
           <h1 class="page-title">Python SDK Quickstart</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Install and integrate Negentro embedded memory into your Python agents, LLM pipelines, and backend services.</p>
+        <p class="page-lead">Install and integrate PiyAPI embedded memory into your Python agents, LLM pipelines, and backend services.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Python 3.9+ Compatible</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Embedded Engine &bull; PyPI v1.4.2</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Python</span>
           <span class="tag">SDK</span>
           <span class="tag">Embedded Library</span>
+          <span class="tag">PyPI</span>
         </div>
 
-        <h2 class="doc-h2" id="py-install">Installation</h2>
-        <p class="doc-p">Install the core Python package via pip. You can also specify optional vector backend dependencies:</p>
-        <div class="code-tabs">
-          <div class="code-header">
-            <span class="code-filename">Terminal</span>
-            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-cmt"># Core embedded package</span>
-pip install negentro-memory
+        <!-- NUMBERED STEPS -->
+        <div class="steps">
+          <!-- Step 1: Install -->
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">1</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <h2 class="doc-h2" id="py-install" style="margin-top:0;">Installation</h2>
+              <p class="doc-p">Install the core Python package via pip. You can also specify optional vector backend dependencies for PostgreSQL or Redis:</p>
+              
+              <div class="code-tabs">
+                <div class="mac-terminal-bar">
+                  <div class="mac-dots">
+                    <span class="mac-dot red"></span>
+                    <span class="mac-dot yellow"></span>
+                    <span class="mac-dot green"></span>
+                  </div>
+                  <div class="mac-terminal-title">bash &mdash; pip install</div>
+                  <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+                </div>
+                <pre><span class="tok-cmt"># Core embedded package</span>
+pip install piyapi-memory
 
 <span class="tok-cmt"># Or install with optional database drivers (pgvector, redis, qdrant)</span>
-pip install "negentro-memory[pgvector,redis]"</pre>
-        </div>
-
-        <h2 class="doc-h2" id="py-quickstart">Quickstart Code</h2>
-        <p class="doc-p">Initialize the memory engine and start storing conversational context in under five lines of code:</p>
-        <div class="code-tabs">
-          <div class="code-header">
-            <span class="code-filename">quickstart.py</span>
-            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+pip install <span class="tok-str">"piyapi-memory[pgvector,redis]"</span></pre>
+              </div>
+            </div>
           </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">negentro</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
+
+          <!-- Step 2: Quickstart Code -->
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">2</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <h2 class="doc-h2" id="py-quickstart" style="margin-top:0;">Quickstart Code</h2>
+              <p class="doc-p">Initialize the memory engine and start storing conversational context in under five lines of code:</p>
+              
+              <div class="code-tabs">
+                <div class="code-header">
+                  <span class="code-filename">quickstart.py</span>
+                  <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+                </div>
+                <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
 
 <span class="tok-cmt"># 1. Initialize embedded memory</span>
 <span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>()
@@ -666,15 +1428,19 @@ pip install "negentro-memory[pgvector,redis]"</pre>
 
 <span class="tok-kw">for</span> <span class="tok-prop">mem</span> <span class="tok-kw">in</span> <span class="tok-prop">results</span>[<span class="tok-str">"results"</span>]:
     <span class="tok-fn">print</span>(<span class="tok-str">f"Score: {mem['score']} | Content: {mem['memory']}"</span>)</pre>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- CORE OPERATIONS TABLE -->
         <h2 class="doc-h2" id="py-operations">Core Memory Operations</h2>
         <p class="doc-p">The Python SDK provides complete CRUD operations with support for temporal audits and user boundaries:</p>
         <div class="doc-table-wrap">
-          <table class="doc-table">
+          <table class="doc-table how-table">
             <thead><tr><th>Method</th><th>Parameters</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td><code>m.add(data, user_id=...)</code></td><td><code>content, user_id, metadata, agent_id</code></td><td>Extracts facts from natural language text and persists them.</td></tr>
+              <tr><td><code>m.add(data, user_id=...)</code></td><td><code>content, user_id, metadata, agent_id</code></td><td>Extracts atomic facts from natural language text and persists them.</td></tr>
               <tr><td><code>m.search(query, user_id=...)</code></td><td><code>query, user_id, limit, threshold</code></td><td>Runs hybrid vector + keyword retrieval with Reciprocal Rank Fusion.</td></tr>
               <tr><td><code>m.get_all(user_id=...)</code></td><td><code>user_id, agent_id, limit</code></td><td>Returns all active memories for the scoped identity.</td></tr>
               <tr><td><code>m.update(memory_id, data)</code></td><td><code>memory_id, new_content</code></td><td>Explicitly updates a memory and records a new bitemporal revision.</td></tr>
@@ -684,24 +1450,70 @@ pip install "negentro-memory[pgvector,redis]"</pre>
           </table>
         </div>
 
+        <!-- LANGCHAIN & CREWAI -->
         <h2 class="doc-h2" id="py-langchain">LangChain &amp; CrewAI Integration</h2>
-        <p class="doc-p">Use Negentro as the persistent memory provider for popular agent orchestration frameworks:</p>
+        <p class="doc-p">Use PiyAPI as the persistent memory provider for popular agent orchestration frameworks:</p>
+        
         <div class="code-tabs">
-          <div class="code-header">
-            <span class="code-filename">agent_integration.py</span>
-            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(this, 'py-agent', 'langchain')">LangChain</button>
+            <button class="tab-btn" onclick="switchTab(this, 'py-agent', 'crewai')">CrewAI</button>
           </div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">langchain_openai</span> <span class="tok-kw">import</span> <span class="tok-cls">ChatOpenAI</span>
-<span class="tok-kw">from</span> <span class="tok-prop">negentro.integrations.langchain</span> <span class="tok-kw">import</span> <span class="tok-cls">NegentroMemory</span>
+          <div class="tab-panel active" id="py-agent-langchain">
+            <div class="code-header">
+              <span class="code-filename">langchain_agent.py</span>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><span class="tok-kw">from</span> <span class="tok-prop">langchain_openai</span> <span class="tok-kw">import</span> <span class="tok-cls">ChatOpenAI</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi.integrations.langchain</span> <span class="tok-kw">import</span> <span class="tok-cls">PiyAPIMemory</span>
 
-<span class="tok-cmt"># Plug Negentro directly into LangChain agents</span>
-<span class="tok-prop">memory</span> = <span class="tok-cls">NegentroMemory</span>(<span class="tok-prop">user_id</span>=<span class="tok-str">"alex_204"</span>)
+<span class="tok-cmt"># Plug PiyAPI directly into LangChain agents</span>
+<span class="tok-prop">memory</span> = <span class="tok-cls">PiyAPIMemory</span>(<span class="tok-prop">user_id</span>=<span class="tok-str">"alex_204"</span>)
 <span class="tok-prop">llm</span> = <span class="tok-cls">ChatOpenAI</span>(<span class="tok-prop">model</span>=<span class="tok-str">"gpt-4o"</span>)
 
-<span class="tok-cmt"># Memory automatically syncs after each turn</span>
+<span class="tok-cmt"># Memory automatically syncs after each conversational turn</span>
 <span class="tok-prop">context</span> = <span class="tok-prop">memory</span>.<span class="tok-fn">load_memory_variables</span>({<span class="tok-str">"prompt"</span>: <span class="tok-str">"What did we discuss earlier?"</span>})</pre>
+          </div>
+          <div class="tab-panel" id="py-agent-crewai">
+            <div class="code-header">
+              <span class="code-filename">crewai_agent.py</span>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><span class="tok-kw">from</span> <span class="tok-prop">crewai</span> <span class="tok-kw">import</span> <span class="tok-cls">Agent</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi.integrations.crewai</span> <span class="tok-kw">import</span> <span class="tok-cls">PiyAPICrewMemory</span>
+
+<span class="tok-cmt"># Persistent memory across multiple CrewAI agents</span>
+<span class="tok-prop">crew_memory</span> = <span class="tok-cls">PiyAPICrewMemory</span>(<span class="tok-prop">namespace</span>=<span class="tok-str">"crew_research_team"</span>)
+
+<span class="tok-prop">researcher</span> = <span class="tok-cls">Agent</span>(
+    <span class="tok-prop">role</span>=<span class="tok-str">"Senior Analyst"</span>,
+    <span class="tok-prop">goal</span>=<span class="tok-str">"Synthesize company filings with user-defined constraints"</span>,
+    <span class="tok-prop">memory</span>=<span class="tok-prop">crew_memory</span>,
+    <span class="tok-prop">verbose</span>=<span class="tok-kw">True</span>
+)</pre>
+          </div>
         </div>
 
+        <div class="callout callout-tip">
+          <div class="callout-icon">&#128161;</div>
+          <div><strong>Automatic sync:</strong> When using the LangChain or CrewAI integrations, memory extractions occur asynchronously in background worker threads, preventing latency spikes on user-facing response streams.</div>
+        </div>
+
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('nodejs-quickstart')">
+            <div class="next-card-title">Node.js Quickstart</div>
+            <div class="next-card-desc">Integrate persistent memory into TypeScript and Node.js backend applications.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('self-hosted')">
+            <div class="next-card-title">Self-hosted Deployment</div>
+            <div class="next-card-desc">Deploy the full PiyAPI Docker microservice with pgvector and Redis.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -721,47 +1533,89 @@ pip install "negentro-memory[pgvector,redis]"</pre>
         <div class="breadcrumb">Open Source / Node.js Quickstart</div>
         <div class="page-header-row">
           <h1 class="page-title">Node.js Quickstart</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Integrate stateful memory and context management into TypeScript and Node.js applications with native ESM and CommonJS support.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Node.js 18+ &bull; ESM &amp; CJS</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>TypeScript Native &bull; @piyapi/sdk</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">TypeScript</span>
           <span class="tag">Node.js</span>
           <span class="tag">JavaScript SDK</span>
+          <span class="tag">npm</span>
         </div>
 
-        <h2 class="doc-h2" id="node-install">Installation</h2>
-        <div class="code-tabs">
-          <div class="code-header">
-            <span class="code-filename">Terminal</span>
-            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+        <!-- NUMBERED STEPS -->
+        <div class="steps">
+          <!-- Step 1: Install -->
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">1</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <h2 class="doc-h2" id="node-install" style="margin-top:0;">Installation</h2>
+              <p class="doc-p">Add <code>@piyapi/sdk</code> using your preferred package manager:</p>
+              
+              <div class="code-tabs">
+                <div class="tab-bar">
+                  <button class="tab-btn active" onclick="switchTab(this, 'node-pm', 'npm')">npm</button>
+                  <button class="tab-btn" onclick="switchTab(this, 'node-pm', 'pnpm')">pnpm</button>
+                  <button class="tab-btn" onclick="switchTab(this, 'node-pm', 'yarn')">yarn</button>
+                  <button class="tab-btn" onclick="switchTab(this, 'node-pm', 'bun')">bun</button>
+                </div>
+                <div class="tab-panel active" id="node-pm-npm">
+                  <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+                  <pre>npm install @piyapi/sdk</pre>
+                </div>
+                <div class="tab-panel" id="node-pm-pnpm">
+                  <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+                  <pre>pnpm add @piyapi/sdk</pre>
+                </div>
+                <div class="tab-panel" id="node-pm-yarn">
+                  <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+                  <pre>yarn add @piyapi/sdk</pre>
+                </div>
+                <div class="tab-panel" id="node-pm-bun">
+                  <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+                  <pre>bun add @piyapi/sdk</pre>
+                </div>
+              </div>
+            </div>
           </div>
-          <pre><span class="tok-cmt"># npm</span>
-npm install @negentro/sdk
 
-<span class="tok-cmt"># pnpm</span>
-pnpm add @negentro/sdk
+          <!-- Step 2: Usage -->
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">2</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <h2 class="doc-h2" id="node-usage" style="margin-top:0;">TypeScript Setup &amp; Usage</h2>
+              <p class="doc-p">Initialize the PiyAPI client to connect to your self-hosted server or local instance:</p>
+              
+              <div class="code-tabs">
+                <div class="code-header">
+                  <span class="code-filename">index.ts</span>
+                  <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+                </div>
+                <pre><span class="tok-kw">import</span> { <span class="tok-cls">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
 
-<span class="tok-cmt"># yarn</span>
-yarn add @negentro/sdk</pre>
-        </div>
-
-        <h2 class="doc-h2" id="node-usage">TypeScript Setup &amp; Usage</h2>
-        <p class="doc-p">Initialize the Negentro client to connect to your self-hosted server or local instance:</p>
-        <div class="code-tabs">
-          <div class="code-header">
-            <span class="code-filename">index.ts</span>
-            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
-          </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-cls">NegentroClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@negentro/sdk'</span>;
-
-<span class="tok-kw">const</span> <span class="tok-prop">client</span> = <span class="tok-kw">new</span> <span class="tok-cls">NegentroClient</span>({
-  <span class="tok-prop">baseUrl</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">NEGENTRO_HOST</span> || <span class="tok-str">'http://localhost:8080'</span>,
-  <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">NEGENTRO_API_KEY</span>
+<span class="tok-kw">const</span> <span class="tok-prop">client</span> = <span class="tok-kw">new</span> <span class="tok-cls">PiyAPIClient</span>({
+  <span class="tok-prop">baseUrl</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_HOST</span> || <span class="tok-str">'http://localhost:8080'</span>,
+  <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span>
 });
 
 <span class="tok-kw">async function</span> <span class="tok-fn">main</span>() {
-  <span class="tok-cmt">// Store user preference</span>
+  <span class="tok-cmt">// 1. Store user preference</span>
   <span class="tok-kw">const</span> <span class="tok-prop">mem</span> = <span class="tok-kw">await</span> <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-fn">create</span>({
     <span class="tok-prop">content</span>: <span class="tok-str">"User prefers Node.js with Fastify over Express."</span>,
     <span class="tok-prop">userId</span>: <span class="tok-str">"user_42"</span>,
@@ -769,7 +1623,7 @@ yarn add @negentro/sdk</pre>
   });
   <span class="tok-fn">console</span>.<span class="tok-fn">log</span>(<span class="tok-str">"Created memory ID:"</span>, <span class="tok-prop">mem</span>.<span class="tok-prop">id</span>);
 
-  <span class="tok-cmt">// Hybrid search across memories</span>
+  <span class="tok-cmt">// 2. Hybrid search across memories</span>
   <span class="tok-kw">const</span> <span class="tok-prop">results</span> = <span class="tok-kw">await</span> <span class="tok-prop">client</span>.<span class="tok-fn">search</span>({
     <span class="tok-prop">query</span>: <span class="tok-str">"What web framework does the user prefer?"</span>,
     <span class="tok-prop">userId</span>: <span class="tok-str">"user_42"</span>,
@@ -779,41 +1633,66 @@ yarn add @negentro/sdk</pre>
 }
 
 <span class="tok-fn">main</span>();</pre>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- NEXTJS & VERCEL AI SDK -->
         <h2 class="doc-h2" id="node-nextjs">Next.js &amp; Vercel AI SDK Integration</h2>
-        <p class="doc-p">Assemble token-budgeted prompt context inside a Next.js App Router route handler:</p>
+        <p class="doc-p">Assemble token-budgeted prompt context inside a Next.js App Router route handler with streaming response support:</p>
+        
         <div class="code-tabs">
           <div class="code-header">
             <span class="code-filename">app/api/chat/route.ts</span>
             <button class="code-copy" onclick="copySnippet(this)">Copy</button>
           </div>
-          <pre><span class="tok-kw">import</span> { <span class="tok-cls">NegentroClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@negentro/sdk'</span>;
+          <pre><span class="tok-kw">import</span> { <span class="tok-cls">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
 <span class="tok-kw">import</span> { <span class="tok-fn">openai</span> } <span class="tok-kw">from</span> <span class="tok-str">'@ai-sdk/openai'</span>;
 <span class="tok-kw">import</span> { <span class="tok-fn">streamText</span> } <span class="tok-kw">from</span> <span class="tok-str">'ai'</span>;
 
-<span class="tok-kw">const</span> <span class="tok-prop">negentro</span> = <span class="tok-kw">new</span> <span class="tok-cls">NegentroClient</span>();
+<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cls">PiyAPIClient</span>();
 
 <span class="tok-kw">export async function</span> <span class="tok-fn">POST</span>(<span class="tok-prop">req</span>: <span class="tok-cls">Request</span>) {
-  <span class="tok-kw">const</span> { <span class="tok-prop">messages</span>, <span class="tok-prop">userId</span> } = <span class="tok-kw">await</span> <span class="tok-prop">req</span>.<span class="tok-fn">json</span>();
-  <span class="tok-kw">const</span> <span class="tok-prop">lastMessage</span> = <span class="tok-prop">messages</span>[<span class="tok-prop">messages</span>.<span class="tok-prop">length</span> - <span class="tok-num">1</span>].<span class="tok-prop">content</span>;
+  <span class="tok-kw">const</span> { messages, userId } = <span class="tok-kw">await</span> <span class="tok-prop">req</span>.<span class="tok-fn">json</span>();
+  <span class="tok-kw">const</span> lastMessage = messages[messages.length - 1].content;
 
-  <span class="tok-cmt">// 1. Retrieve targeted memory context</span>
-  <span class="tok-kw">const</span> <span class="tok-prop">context</span> = <span class="tok-kw">await</span> <span class="tok-prop">negentro</span>.<span class="tok-prop">context</span>.<span class="tok-fn">retrieve</span>({
-    <span class="tok-prop">query</span>: <span class="tok-prop">lastMessage</span>,
-    <span class="tok-prop">userId</span>: <span class="tok-prop">userId</span>,
+  <span class="tok-cmt">// 1. Retrieve targeted memory context respecting strict token limits</span>
+  <span class="tok-kw">const</span> context = <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">context</span>.<span class="tok-fn">retrieve</span>({
+    <span class="tok-prop">query</span>: lastMessage,
+    <span class="tok-prop">userId</span>: userId,
     <span class="tok-prop">tokenBudget</span>: <span class="tok-num">800</span>
   });
 
-  <span class="tok-cmt">// 2. Stream completion with grounded memory</span>
+  <span class="tok-cmt">// 2. Stream completion with grounded memory injection</span>
   <span class="tok-kw">return</span> <span class="tok-fn">streamText</span>({
     <span class="tok-prop">model</span>: <span class="tok-fn">openai</span>(<span class="tok-str">'gpt-4o'</span>),
-    <span class="tok-prop">system</span>: <span class="tok-str">`You are a helpful assistant. Context: ${context.assembledPrompt}`</span>,
-    <span class="tok-prop">messages</span>
+    <span class="tok-prop">system</span>: `You are a helpful assistant. Context: ${context.assembledPrompt}`,
+    messages
   }).<span class="tok-fn">toDataStreamResponse</span>();
 }</pre>
         </div>
 
+        <div class="callout callout-info">
+          <div class="callout-icon">&#9432;</div>
+          <div><strong>Token Budget Precision:</strong> The <code>context.retrieve()</code> method evaluates token counts using exact tiktoken encodings to prevent model context window overflow while prioritizing high-signal memories.</div>
+        </div>
+
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('self-hosted')">
+            <div class="next-card-title">Self-hosted Server</div>
+            <div class="next-card-desc">Deploy your private container cluster with PostgreSQL and Redis.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('web-studio')">
+            <div class="next-card-title">Web Studio GUI</div>
+            <div class="next-card-desc">Launch the visual memory debugger and search playground.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -833,9 +1712,19 @@ yarn add @negentro/sdk</pre>
         <div class="breadcrumb">Open Source / Self-hosted Server</div>
         <div class="page-header-row">
           <h1 class="page-title">Self-hosted Server Deployment</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Deploy Negentro as a high-performance, containerized microservice within your own private cloud or on-premise infrastructure.</p>
+        <p class="page-lead">Deploy PiyAPI as a high-performance, containerized microservice within your own private cloud or on-premise infrastructure.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Docker &amp; Kubernetes Ready</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Enterprise Microservice &bull; Multi-Arch amd64/arm64</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Docker</span>
           <span class="tag">Kubernetes</span>
@@ -843,8 +1732,10 @@ yarn add @negentro/sdk</pre>
           <span class="tag">Microservice</span>
         </div>
 
+        <!-- DOCKER COMPOSE DEPLOYMENT -->
         <h2 class="doc-h2" id="sh-docker">Docker Compose Deployment</h2>
-        <p class="doc-p">Spin up a complete Negentro instance with PostgreSQL (pgvector) and Redis in seconds:</p>
+        <p class="doc-p">Spin up a complete PiyAPI instance with PostgreSQL (pgvector) and Redis in seconds:</p>
+        
         <div class="code-tabs">
           <div class="code-header">
             <span class="code-filename">docker-compose.yml</span>
@@ -853,15 +1744,15 @@ yarn add @negentro/sdk</pre>
           <pre><span class="tok-prop">version</span>: <span class="tok-str">'3.8'</span>
 
 <span class="tok-prop">services</span>:
-  <span class="tok-prop">negentro-server</span>:
-    <span class="tok-prop">image</span>: <span class="tok-str">negentro/server:latest</span>
+  <span class="tok-prop">piyapi-server</span>:
+    <span class="tok-prop">image</span>: <span class="tok-str">piyapi/server:latest</span>
     <span class="tok-prop">ports</span>:
       - <span class="tok-str">"8080:8080"</span>
     <span class="tok-prop">environment</span>:
       - <span class="tok-prop">PORT</span>=<span class="tok-str">8080</span>
-      - <span class="tok-prop">DATABASE_URL</span>=<span class="tok-str">postgresql://negentro:secret@postgres:5432/negentro</span>
+      - <span class="tok-prop">DATABASE_URL</span>=<span class="tok-str">postgresql://piyapi:secret@postgres:5432/piyapi</span>
       - <span class="tok-prop">REDIS_URL</span>=<span class="tok-str">redis://redis:6379</span>
-      - <span class="tok-prop">OPENAI_API_KEY</span>=${<span class="tok-prop">OPENAI_API_KEY</span>}
+      - <span class="tok-prop">OPENAI_API_KEY</span>=${OPENAI_API_KEY}
       - <span class="tok-prop">ENABLE_STUDIO</span>=<span class="tok-str">true</span>
     <span class="tok-prop">depends_on</span>:
       - <span class="tok-prop">postgres</span>
@@ -870,9 +1761,9 @@ yarn add @negentro/sdk</pre>
   <span class="tok-prop">postgres</span>:
     <span class="tok-prop">image</span>: <span class="tok-str">pgvector/pgvector:pg16</span>
     <span class="tok-prop">environment</span>:
-      - <span class="tok-prop">POSTGRES_USER</span>=<span class="tok-str">negentro</span>
+      - <span class="tok-prop">POSTGRES_USER</span>=<span class="tok-str">piyapi</span>
       - <span class="tok-prop">POSTGRES_PASSWORD</span>=<span class="tok-str">secret</span>
-      - <span class="tok-prop">POSTGRES_DB</span>=<span class="tok-str">negentro</span>
+      - <span class="tok-prop">POSTGRES_DB</span>=<span class="tok-str">piyapi</span>
     <span class="tok-prop">volumes</span>:
       - <span class="tok-prop">pgdata:/var/lib/postgresql/data</span>
 
@@ -885,36 +1776,78 @@ yarn add @negentro/sdk</pre>
   <span class="tok-prop">pgdata</span>:
   <span class="tok-prop">redisdata</span>:</pre>
         </div>
-        <p class="doc-p">Run the stack with:</p>
+
+        <p class="doc-p">Run the stack in detached mode:</p>
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+          <div class="mac-terminal-bar">
+            <div class="mac-dots">
+              <span class="mac-dot red"></span>
+              <span class="mac-dot yellow"></span>
+              <span class="mac-dot green"></span>
+            </div>
+            <div class="mac-terminal-title">bash &mdash; docker compose</div>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
           <pre>docker compose up -d
-<span class="tok-cmt"># Negentro API ready at http://localhost:8080</span>
-<span class="tok-cmt"># Web Studio ready at http://localhost:8080/studio</span></pre>
+
+<span class="tok-cmt"># Outputs:</span>
+<span class="tok-cmt"># [+] Running 3/3</span>
+<span class="tok-cmt">#  Network piyapi_default        Created</span>
+<span class="tok-cmt">#  Container postgres            Started</span>
+<span class="tok-cmt">#  Container redis               Started</span>
+<span class="tok-cmt">#  Container piyapi-server       Started</span>
+<span class="tok-cmt"># PiyAPI REST API ready at: http://localhost:8080/api/v1</span>
+<span class="tok-cmt"># Web Studio dashboard at: http://localhost:8080/studio</span></pre>
         </div>
 
+        <!-- ENVIRONMENT VARIABLES -->
         <h2 class="doc-h2" id="sh-env">Environment Variables</h2>
         <div class="doc-table-wrap">
-          <table class="doc-table">
+          <table class="doc-table how-table">
             <thead><tr><th>Variable</th><th>Default</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td><code>PORT</code></td><td><code>8080</code></td><td>HTTP port for REST API and Studio.</td></tr>
-              <tr><td><code>DATABASE_URL</code></td><td>Required</td><td>PostgreSQL connection URI with pgvector extension enabled.</td></tr>
-              <tr><td><code>REDIS_URL</code></td><td><code>redis://localhost:6379</code></td><td>Redis connection for caching and distributed locks.</td></tr>
-              <tr><td><code>JWT_SECRET</code></td><td>Auto-generated</td><td>Secret key used for signing internal and user tokens.</td></tr>
-              <tr><td><code>DEFAULT_LLM_PROVIDER</code></td><td><code>openai</code></td><td>Default provider for memory extraction.</td></tr>
-              <tr><td><code>ENABLE_STUDIO</code></td><td><code>true</code></td><td>Exposes Web Studio UI at <code>/studio</code>.</td></tr>
+              <tr><td><code>PORT</code></td><td><code>8080</code></td><td>HTTP port for REST API and Web Studio.</td></tr>
+              <tr><td><code>DATABASE_URL</code></td><td><span class="card-tag" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">Required</span></td><td>PostgreSQL connection URI with <code>pgvector</code> extension enabled.</td></tr>
+              <tr><td><code>REDIS_URL</code></td><td><code>redis://localhost:6379</code></td><td>Redis connection for distributed locks and semantic cache buffers.</td></tr>
+              <tr><td><code>JWT_SECRET</code></td><td>Auto-generated</td><td>Secret key used for signing internal and user authentication tokens.</td></tr>
+              <tr><td><code>DEFAULT_LLM_PROVIDER</code></td><td><code>openai</code></td><td>Default inference provider for entity and fact extraction.</td></tr>
+              <tr><td><code>ENABLE_STUDIO</code></td><td><code>true</code></td><td>Exposes Web Studio visual UI at <code>/studio</code>.</td></tr>
             </tbody>
           </table>
         </div>
 
+        <!-- HEALTH & OBSERVABILITY -->
         <h2 class="doc-h2" id="sh-health">Health &amp; Observability</h2>
-        <ul class="doc-ul">
-          <li><code>GET /healthz</code> — Liveness probe returning <code>{"status":"ok"}</code>.</li>
-          <li><code>GET /readyz</code> — Readiness probe validating PostgreSQL and Redis connectivity.</li>
-          <li><code>GET /metrics</code> — Prometheus endpoint tracking query latency, cache hit rates, and embedding throughput.</li>
-        </ul>
+        <div class="cards-grid cards-grid-3">
+          <div class="card">
+            <div class="card-title"><code>GET /healthz</code></div>
+            <div class="card-body">Liveness probe returning <code>{"status":"ok"}</code>. Used by Kubernetes kubelet to verify the HTTP process is responsive.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><code>GET /readyz</code></div>
+            <div class="card-body">Readiness probe actively pinging PostgreSQL connection pool and Redis socket before accepting client traffic.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><code>GET /metrics</code></div>
+            <div class="card-body">Prometheus-compatible metrics endpoint reporting p50/p95 query latencies, cache hit ratios, and embedding throughput.</div>
+          </div>
+        </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('web-studio')">
+            <div class="next-card-title">Web Studio UI</div>
+            <div class="next-card-desc">Access the visual debugging dashboard bundled in port 8080.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('rest-api')">
+            <div class="next-card-title">Self-hosted REST API</div>
+            <div class="next-card-desc">Review the complete HTTP endpoint specification and cURL examples.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -934,46 +1867,109 @@ yarn add @negentro/sdk</pre>
         <div class="breadcrumb">Open Source / Web Studio</div>
         <div class="page-header-row">
           <h1 class="page-title">Web Studio</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">A visual administrative interface and debugger for inspecting memories, tuning retrieval parameters, and managing users.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Built-in Admin GUI</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Port 8080/studio &bull; Zero Configuration</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Web Studio</span>
           <span class="tag">Admin UI</span>
           <span class="tag">Visual Debugger</span>
+          <span class="tag">Interactive</span>
         </div>
 
         <h2 class="doc-h2" id="ws-what">What is Web Studio?</h2>
-        <p class="doc-p">Web Studio is a lightweight, responsive admin dashboard bundled directly into Negentro. It allows engineering teams to visualize what their AI agents are remembering in real-time, test semantic queries, and inspect raw embedding vectors without opening database shells.</p>
+        <p class="doc-p">Web Studio is a lightweight, responsive admin dashboard bundled directly into PiyAPI. It allows engineering teams to visualize what their AI agents are remembering in real-time, test semantic queries, and inspect raw embedding vectors without opening database shells.</p>
 
         <h2 class="doc-h2" id="ws-features">Key Capabilities</h2>
         <div class="cards-grid">
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
             <div class="card-title">Memory Explorer</div>
-            <div class="card-body">Filter memories by user ID, agent ID, session, or tags. Inspect bitemporal timestamps (<code>valid_at</code> vs <code>system_at</code>) and edit facts directly.</div>
+            <div class="card-body">Filter memories by user ID, agent ID, session, or arbitrary tags. Inspect bitemporal timestamps (<code>valid_at</code> vs <code>system_at</code>) and edit facts directly.</div>
+            <div class="card-tags">
+              <span class="card-tag">Bitemporal</span>
+              <span class="card-tag">Fact Inspector</span>
+            </div>
           </div>
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
             <div class="card-title">Retrieval Playground</div>
-            <div class="card-body">Test live queries with side-by-side comparisons of Dense Vector vs BM25 keyword search. Adjust the alpha slider and observe Reciprocal Rank Fusion scores.</div>
+            <div class="card-body">Test live queries with side-by-side comparisons of Dense Vector vs BM25 keyword search. Adjust the alpha slider and observe Reciprocal Rank Fusion scores in real time.</div>
+            <div class="card-tags">
+              <span class="card-tag">RRF_K=30</span>
+              <span class="card-tag">11 Signals</span>
+            </div>
           </div>
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
             <div class="card-title">Knowledge Graph Viewer</div>
-            <div class="card-body">Interactive 2D/3D visualization of entity nodes and relationships extracted from conversation histories.</div>
+            <div class="card-body">Interactive 2D/3D force-directed visualization of entity nodes and relationships extracted automatically from conversational interaction histories.</div>
+            <div class="card-tags">
+              <span class="card-tag">PiyGraph</span>
+              <span class="card-tag">Entity Graph</span>
+            </div>
           </div>
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
             <div class="card-title">Audit &amp; Privacy Redaction</div>
-            <div class="card-body">Verify automated PII and PHI redaction rules. Inspect revision histories to understand how conflicting facts were resolved.</div>
+            <div class="card-body">Verify automated PII and PHI redaction rules. Inspect revision histories to understand exactly how contradictory facts were resolved across time.</div>
+            <div class="card-tags">
+              <span class="card-tag">HIPAA Compliant</span>
+              <span class="card-tag">Audit Trail</span>
+            </div>
           </div>
         </div>
 
         <h2 class="doc-h2" id="ws-launch">Launching Web Studio</h2>
-        <p class="doc-p">If you are running the self-hosted Docker container, navigate directly to <code>http://localhost:8080/studio</code>. Alternatively, run the standalone studio CLI:</p>
+        <p class="doc-p">If you are running the self-hosted Docker container, navigate directly in your browser to <code>http://localhost:8080/studio</code>. Alternatively, launch the standalone Studio CLI connecting to any remote or VPC instance:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-cmt"># Run standalone Web Studio pointing to any Negentro instance</span>
-npx @negentro/studio --server http://localhost:8080</pre>
+          <div class="mac-terminal-bar">
+            <div class="mac-dots">
+              <span class="mac-dot red"></span>
+              <span class="mac-dot yellow"></span>
+              <span class="mac-dot green"></span>
+            </div>
+            <div class="mac-terminal-title">bash &mdash; npx @piyapi/studio</div>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmt"># Run standalone Web Studio pointing to any running PiyAPI instance</span>
+npx @piyapi/studio --server http://localhost:8080</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('rest-api')">
+            <div class="next-card-title">REST API Reference</div>
+            <div class="next-card-desc">Execute programmatic memory operations via HTTP requests.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('configuration')">
+            <div class="next-card-title">Configuration Guide</div>
+            <div class="next-card-desc">Tune storage, LLM providers, and vector parameters.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -993,58 +1989,142 @@ npx @negentro/studio --server http://localhost:8080</pre>
         <div class="breadcrumb">Open Source / REST API</div>
         <div class="page-header-row">
           <h1 class="page-title">Self-hosted REST API</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Complete HTTP interface for interacting with the Negentro memory engine from any programming language or framework.</p>
+        <p class="page-lead">Complete HTTP interface for interacting with the PiyAPI memory engine from any programming language or framework.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>OpenAPI 3.1 Specification</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>JSON Endpoints &bull; Bearer Token Auth</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">REST API</span>
           <span class="tag">OpenAPI</span>
           <span class="tag">HTTP Endpoints</span>
+          <span class="tag">cURL</span>
         </div>
 
         <h2 class="doc-h2" id="api-endpoints">Endpoints Reference</h2>
         <div class="doc-table-wrap">
-          <table class="doc-table">
+          <table class="doc-table how-table">
             <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td><code>POST</code></td><td><code>/api/v1/memories</code></td><td>Store new memory and extract atomic entities.</td></tr>
-              <tr><td><code>GET</code></td><td><code>/api/v1/memories</code></td><td>List memories with user, agent, and pagination filters.</td></tr>
-              <tr><td><code>GET</code></td><td><code>/api/v1/memories/:id</code></td><td>Retrieve memory details, vector metadata, and timestamps.</td></tr>
-              <tr><td><code>PATCH</code></td><td><code>/api/v1/memories/:id</code></td><td>Update memory content and recalculate embeddings.</td></tr>
-              <tr><td><code>DELETE</code></td><td><code>/api/v1/memories/:id</code></td><td>Delete a memory and purge vector store records.</td></tr>
-              <tr><td><code>POST</code></td><td><code>/api/v1/memories/search</code></td><td>Hybrid vector + BM25 search across memories.</td></tr>
-              <tr><td><code>POST</code></td><td><code>/api/v1/context/retrieve</code></td><td>Token-budget-aware prompt assembly for LLM system context.</td></tr>
-              <tr><td><code>GET</code></td><td><code>/api/v1/memories/:id/history</code></td><td>Retrieve audit trail of changes made to a memory.</td></tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(16,185,129,0.12); color:#10b981; font-weight:700;">POST</span></td>
+                <td><code>/api/v1/memories</code></td>
+                <td>Store new memory text, extract atomic facts, and calculate dense embeddings.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(59,130,246,0.12); color:#3b82f6; font-weight:700;">GET</span></td>
+                <td><code>/api/v1/memories</code></td>
+                <td>List memories with user, agent, session, and cursor-based pagination filters.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(59,130,246,0.12); color:#3b82f6; font-weight:700;">GET</span></td>
+                <td><code>/api/v1/memories/:id</code></td>
+                <td>Retrieve individual memory details, vector metadata, and bitemporal intervals.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(245,158,11,0.12); color:#f59e0b; font-weight:700;">PATCH</span></td>
+                <td><code>/api/v1/memories/:id</code></td>
+                <td>Update memory content and recalculate vector index embeddings.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(239,68,68,0.12); color:#ef4444; font-weight:700;">DELETE</span></td>
+                <td><code>/api/v1/memories/:id</code></td>
+                <td>Delete a memory record and purge corresponding vector database records.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(16,185,129,0.12); color:#10b981; font-weight:700;">POST</span></td>
+                <td><code>/api/v1/memories/search</code></td>
+                <td>Execute hybrid vector + BM25 search scored via Reciprocal Rank Fusion.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(16,185,129,0.12); color:#10b981; font-weight:700;">POST</span></td>
+                <td><code>/api/v1/context/retrieve</code></td>
+                <td>Token-budget-aware prompt assembly for LLM system context prompt injection.</td>
+              </tr>
+              <tr>
+                <td><span class="card-tag" style="background:rgba(59,130,246,0.12); color:#3b82f6; font-weight:700;">GET</span></td>
+                <td><code>/api/v1/memories/:id/history</code></td>
+                <td>Retrieve complete immutable audit trail of bitemporal revisions for a memory.</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
         <h2 class="doc-h2" id="api-curl">cURL Examples</h2>
-        <div class="doc-h3">1. Add a Memory</div>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">Bash</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-fn">curl</span> -X POST http://localhost:8080/api/v1/memories \
-  -H <span class="tok-str">"Content-Type: application/json"</span> \
-  -H <span class="tok-str">"Authorization: Bearer sk_live_..."</span> \
-  -d <span class="tok-str">'{
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(this, 'curl-demo', 'add')">1. Add Memory</button>
+            <button class="tab-btn" onclick="switchTab(this, 'curl-demo', 'search')">2. Search Memories</button>
+            <button class="tab-btn" onclick="switchTab(this, 'curl-demo', 'context')">3. Assemble Context</button>
+          </div>
+          <div class="tab-panel active" id="curl-demo-add">
+            <div class="mac-terminal-bar">
+              <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <div class="mac-terminal-title">cURL &mdash; POST /api/v1/memories</div>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><span class="tok-fn">curl</span> -X POST http://localhost:8080/api/v1/memories   -H <span class="tok-str">"Content-Type: application/json"</span>   -H <span class="tok-str">"Authorization: Bearer sk_live_your_api_key"</span>   -H <span class="tok-str">"X-Namespace-Prefix: enterprise_tenant"</span>   -d '{
     "content": "User prefers concise answers and TypeScript code snippets.",
     "user_id": "usr_771",
-    "metadata": { "platform": "web" }
-  }'</span></pre>
-        </div>
-
-        <div class="doc-h3">2. Search Memories</div>
-        <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">Bash</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-fn">curl</span> -X POST http://localhost:8080/api/v1/memories/search \
-  -H <span class="tok-str">"Content-Type: application/json"</span> \
-  -d <span class="tok-str">'{
+    "metadata": { "platform": "web", "tier": "premium" }
+  }'</pre>
+          </div>
+          <div class="tab-panel" id="curl-demo-search">
+            <div class="mac-terminal-bar">
+              <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <div class="mac-terminal-title">cURL &mdash; POST /api/v1/memories/search</div>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><span class="tok-fn">curl</span> -X POST http://localhost:8080/api/v1/memories/search   -H <span class="tok-str">"Content-Type: application/json"</span>   -H <span class="tok-str">"Authorization: Bearer sk_live_your_api_key"</span>   -d '{
     "query": "What language does the user prefer?",
     "user_id": "usr_771",
-    "limit": 3
-  }'</span></pre>
+    "limit": 3,
+    "threshold": 0.75
+  }'</pre>
+          </div>
+          <div class="tab-panel" id="curl-demo-context">
+            <div class="mac-terminal-bar">
+              <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <div class="mac-terminal-title">cURL &mdash; POST /api/v1/context/retrieve</div>
+              <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <pre><span class="tok-fn">curl</span> -X POST http://localhost:8080/api/v1/context/retrieve   -H <span class="tok-str">"Content-Type: application/json"</span>   -H <span class="tok-str">"Authorization: Bearer sk_live_your_api_key"</span>   -d '{
+    "query": "Help me write a database connection pool in Node.",
+    "user_id": "usr_771",
+    "token_budget": 800
+  }'</pre>
+          </div>
         </div>
 
+        <div class="callout callout-info">
+          <div class="callout-icon">&#9432;</div>
+          <div><strong>Multi-Tenant Namespace Scoping:</strong> Pass the <code>X-Namespace-Prefix</code> header in any request to strictly isolate tenant memory pools and vector indices at the PostgreSQL schema layer.</div>
+        </div>
+
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('configuration')">
+            <div class="next-card-title">Configuration</div>
+            <div class="next-card-desc">Review complete configuration schemas and precedence rules.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('llms')">
+            <div class="next-card-title">LLMs &amp; Model Routing</div>
+            <div class="next-card-desc">Connect OpenAI, Anthropic, Gemini, and local Ollama inference.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1064,19 +2144,34 @@ npx @negentro/studio --server http://localhost:8080</pre>
         <div class="breadcrumb">Open Source / Configuration</div>
         <div class="page-header-row">
           <h1 class="page-title">Configuration</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Fine-tune every layer of the memory stack — from vector dimensions and chunking strategies to LLM inference pipelines.</p>
+        <p class="page-lead">Fine-tune every layer of the memory stack &mdash; from vector dimensions and chunking strategies to LLM inference pipelines.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Unified Config Engine</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>JSON &bull; TypeScript &bull; Environment Variables</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Configuration</span>
           <span class="tag">Config Schema</span>
           <span class="tag">Environment Variables</span>
+          <span class="tag">Resolution</span>
         </div>
 
         <h2 class="doc-h2" id="cfg-schema">Complete Configuration Schema</h2>
-        <p class="doc-p">Negentro reads configuration from <code>negentro.config.json</code>, a JavaScript/TypeScript config file, or environment variables:</p>
+        <p class="doc-p">PiyAPI reads configuration from <code>piyapi.config.json</code>, a JavaScript/TypeScript config file, or system environment variables:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">negentro.config.json</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+          <div class="code-header">
+            <span class="code-filename">piyapi.config.json</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
           <pre>{
   <span class="tok-prop">"llm"</span>: {
     <span class="tok-prop">"provider"</span>: <span class="tok-str">"openai"</span>,
@@ -1090,8 +2185,8 @@ npx @negentro/studio --server http://localhost:8080</pre>
   },
   <span class="tok-prop">"vector_store"</span>: {
     <span class="tok-prop">"provider"</span>: <span class="tok-str">"pgvector"</span>,
-    <span class="tok-prop">"connection_uri"</span>: <span class="tok-str">"postgresql://negentro:secret@localhost:5432/negentro"</span>,
-    <span class="tok-prop">"collection_name"</span>: <span class="tok-str">"negentro_memories"</span>
+    <span class="tok-prop">"connection_uri"</span>: <span class="tok-str">"postgresql://piyapi:secret@localhost:5432/piyapi"</span>,
+    <span class="tok-prop">"collection_name"</span>: <span class="tok-str">"piyapi_memories"</span>
   },
   <span class="tok-prop">"storage"</span>: {
     <span class="tok-prop">"bitemporal_enabled"</span>: <span class="tok-kw">true</span>,
@@ -1106,14 +2201,66 @@ npx @negentro/studio --server http://localhost:8080</pre>
         </div>
 
         <h2 class="doc-h2" id="cfg-precedence">Resolution Precedence</h2>
-        <p class="doc-p">Configuration values are resolved in the following priority order:</p>
-        <ol class="doc-ul" style="list-style:decimal; padding-left:1.5rem;">
-          <li>Direct arguments passed to SDK methods (e.g. <code>user_id</code>, <code>limit</code>).</li>
-          <li>System environment variables (e.g. <code>OPENAI_API_KEY</code>, <code>DATABASE_URL</code>).</li>
-          <li>Configuration file (<code>negentro.config.json</code>).</li>
-          <li>Default production settings.</li>
-        </ol>
+        <p class="doc-p">Configuration values are resolved dynamically in descending priority order:</p>
+        
+        <div class="steps">
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">1</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Direct Method Arguments (Highest Priority)</div>
+              <div class="step-body">Values passed directly during function calls (e.g. <code>user_id="usr_99"</code>, <code>limit=10</code>, <code>threshold=0.85</code>).</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">2</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <div class="step-title">System Environment Variables</div>
+              <div class="step-body">Standard system env vars (e.g. <code>OPENAI_API_KEY</code>, <code>DATABASE_URL</code>, <code>REDIS_URL</code>).</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">3</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Configuration File</div>
+              <div class="step-body">Declared static configurations from <code>piyapi.config.json</code> or <code>piyapi.config.ts</code> in the root directory.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-left">
+              <div class="step-num">4</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Production Sane Defaults (Fallback)</div>
+              <div class="step-body">Default enterprise settings: pgvector store, HNSW indexing, <code>text-embedding-3-small</code>, and <code>gpt-4o</code>.</div>
+            </div>
+          </div>
+        </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('llms')">
+            <div class="next-card-title">LLMs &amp; Model Routing</div>
+            <div class="next-card-desc">Configure multi-provider routing and local Ollama models.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('vector-databases')">
+            <div class="next-card-title">Vector Databases</div>
+            <div class="next-card-desc">Select and tune vector storage engines.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1127,55 +2274,94 @@ npx @negentro/studio --server http://localhost:8080</pre>
       </div>
 
       <!-- =============================================================== -->
-      <!-- 8. LLMS                                                        -->
+      <!-- 8. LLMS & MODEL ROUTING                                        -->
       <!-- =============================================================== -->
       <div class="page" id="page-llms">
         <div class="breadcrumb">Open Source / LLMs</div>
         <div class="page-header-row">
           <h1 class="page-title">LLMs &amp; Model Routing</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Configure inference engines for fact extraction, summarization, entity resolution, and context generation.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>BYOK Model Router</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Cloud &bull; Local &bull; Air-Gapped Inference</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">LLMs</span>
-          <span class="tag">Model Providers</span>
           <span class="tag">BYOK</span>
-          <span class="tag">Local Models</span>
+          <span class="tag">Model Routing</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">Local Inference</span>
         </div>
 
         <h2 class="doc-h2" id="llm-providers">Supported Providers</h2>
+        <p class="doc-p">Route fact extraction and synthesis through any provider using our unified BYOK manager. Support for major cloud LLMs and private local instances is handled natively:</p>
+
         <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Provider</th><th>Supported Models</th><th>Recommended For</th></tr></thead>
+          <table class="doc-table how-table">
+            <thead><tr><th>Provider</th><th>Models Supported</th><th>Latency</th><th>Recommended Use</th></tr></thead>
             <tbody>
-              <tr><td><strong>OpenAI</strong></td><td><code>gpt-4o</code>, <code>gpt-4o-mini</code>, <code>o3-mini</code></td><td>Fast, accurate atomic fact extraction.</td></tr>
-              <tr><td><strong>Anthropic</strong></td><td><code>claude-3-7-sonnet</code>, <code>claude-3-5-haiku</code></td><td>High-fidelity reasoning and complex entity resolution.</td></tr>
-              <tr><td><strong>Google Gemini</strong></td><td><code>gemini-2.0-flash</code>, <code>gemini-1.5-pro</code></td><td>High-speed inference and multimodal context analysis.</td></tr>
-              <tr><td><strong>DeepSeek</strong></td><td><code>deepseek-v3</code>, <code>deepseek-r1</code></td><td>Cost-effective open-weights inference.</td></tr>
-              <tr><td><strong>Ollama (Local)</strong></td><td><code>llama3.3</code>, <code>mistral-small</code>, <code>qwen2.5</code></td><td>Air-gapped, zero-cost private deployments.</td></tr>
+              <tr><td><strong>OpenAI</strong></td><td><code>gpt-4o</code>, <code>gpt-4o-mini</code></td><td>&lt; 450ms</td><td>Default &bull; High precision fact extraction</td></tr>
+              <tr><td><strong>Anthropic</strong></td><td><code>claude-3-5-sonnet</code>, <code>claude-3-haiku</code></td><td>&lt; 500ms</td><td>Complex entity resolution &amp; temporal graph extraction</td></tr>
+              <tr><td><strong>Google Gemini</strong></td><td><code>gemini-1.5-pro</code>, <code>gemini-1.5-flash</code></td><td>&lt; 350ms</td><td>High-throughput batch memory indexing</td></tr>
+              <tr><td><strong>DeepSeek</strong></td><td><code>deepseek-chat</code>, <code>deepseek-reasoner</code></td><td>&lt; 400ms</td><td>Cost-effective cognitive reasoning</td></tr>
+              <tr><td><strong>Groq / Cerebras</strong></td><td><code>llama-3.3-70b-versatile</code></td><td>&lt; 120ms</td><td>Ultra-low-latency realtime conversational agents</td></tr>
+              <tr><td><strong>Ollama (Local)</strong></td><td><code>llama3:8b</code>, <code>mistral:7b</code>, <code>qwen2.5:7b</code></td><td>Local CPU/GPU</td><td>Air-gapped, zero-cost private VPC deployments</td></tr>
             </tbody>
           </table>
         </div>
 
         <h2 class="doc-h2" id="llm-local">Local Ollama Configuration</h2>
-        <p class="doc-p">Run 100% private, on-premise memory pipelines without sending tokens to third-party APIs:</p>
+        <p class="doc-p">Deploy completely offline with local Ollama inference without sending a single token over the public internet:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">python_ollama.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">negentro</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
+          <div class="code-header">
+            <span class="code-filename">ollama_config.py</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
 
-<span class="tok-prop">config</span> = {
+<span class="tok-cmt"># Run 100% locally with Ollama</span>
+<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>({
     <span class="tok-str">"llm"</span>: {
         <span class="tok-str">"provider"</span>: <span class="tok-str">"ollama"</span>,
         <span class="tok-str">"config"</span>: {
-            <span class="tok-str">"model"</span>: <span class="tok-str">"llama3.3:latest"</span>,
+            <span class="tok-str">"model"</span>: <span class="tok-str">"llama3:8b"</span>,
+            <span class="tok-str">"base_url"</span>: <span class="tok-str">"http://localhost:11434"</span>
+        }
+    },
+    <span class="tok-str">"embedder"</span>: {
+        <span class="tok-str">"provider"</span>: <span class="tok-str">"ollama"</span>,
+        <span class="tok-str">"config"</span>: {
+            <span class="tok-str">"model"</span>: <span class="tok-str">"nomic-embed-text"</span>,
             <span class="tok-str">"base_url"</span>: <span class="tok-str">"http://localhost:11434"</span>
         }
     }
-}
-
-<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>.<span class="tok-fn">from_config</span>(<span class="tok-prop">config</span>)</pre>
+})</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('vector-databases')">
+            <div class="next-card-title">Vector Databases</div>
+            <div class="next-card-desc">Compare pgvector, Qdrant, Milvus, and Redis storage.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('embeddings')">
+            <div class="next-card-title">Embeddings</div>
+            <div class="next-card-desc">Tune vector dimensions and FastEmbed local embeddings.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1195,48 +2381,74 @@ npx @negentro/studio --server http://localhost:8080</pre>
         <div class="breadcrumb">Open Source / Vector Databases</div>
         <div class="page-header-row">
           <h1 class="page-title">Vector Databases</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Select and configure the high-dimensional vector substrate powering semantic memory recall.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>HNSW &amp; IVFFlat Substrates</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>pgvector Native &bull; Sub-12ms Recall</span>
+          </div>
+        </div>
+
         <div class="page-tags">
-          <span class="tag accent">pgvector</span>
-          <span class="tag">Qdrant</span>
-          <span class="tag">Milvus</span>
-          <span class="tag">Chroma</span>
+          <span class="tag accent">Vector Databases</span>
+          <span class="tag">pgvector</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">HNSW</span>
+          <span class="tag">Embeddings</span>
         </div>
 
         <h2 class="doc-h2" id="vdb-selection">Vector Store Matrix</h2>
         <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Vector Store</th><th>Index Type</th><th>Best For</th><th>Connection Config</th></tr></thead>
+          <table class="doc-table how-table">
+            <thead><tr><th>Vector Store</th><th>Index Type</th><th>Deployment</th><th>Suitability</th></tr></thead>
             <tbody>
-              <tr><td><strong>pgvector</strong> (Default)</td><td>HNSW / IVFFlat</td><td>Production apps using PostgreSQL; transactional safety.</td><td><code>pgvector://user:pass@host:5432/db</code></td></tr>
-              <tr><td><strong>Qdrant</strong></td><td>HNSW with payload filters</td><td>Ultra-fast Rust vector engine with complex metadata filtering.</td><td><code>http://localhost:6333</code></td></tr>
-              <tr><td><strong>Chroma</strong></td><td>HNSW (DuckDB/ClickHouse)</td><td>Local prototyping, embedded apps, zero external services.</td><td><code>path/to/chroma_db</code></td></tr>
-              <tr><td><strong>Milvus</strong></td><td>IVF / HNSW / SCaNN</td><td>Enterprise scale across 100M+ vector records.</td><td><code>localhost:19530</code></td></tr>
+              <tr><td><strong>PostgreSQL + pgvector</strong></td><td>HNSW, IVFFlat</td><td>Self-hosted / RDS</td><td>Default &bull; ACID transactions + metadata co-location</td></tr>
+              <tr><td><strong>Qdrant</strong></td><td>HNSW + Quantization</td><td>Docker / Managed</td><td>Large-scale clusters (&gt; 10M memories) with payload filters</td></tr>
+              <tr><td><strong>Milvus</strong></td><td>HNSW, ScaNN</td><td>Distributed Kubernetes</td><td>Enterprise high-concurrency write pipelines</td></tr>
+              <tr><td><strong>Redis</strong></td><td>HNSW / Flat</td><td>In-Memory Cluster</td><td>Sub-5ms ultra-low latency session buffers</td></tr>
+              <tr><td><strong>Chroma</strong></td><td>HNSW (DuckDB)</td><td>Embedded Local</td><td>Local prototypes and unit testing environments</td></tr>
             </tbody>
           </table>
         </div>
 
         <h2 class="doc-h2" id="vdb-pgvector">Configuring pgvector</h2>
+        <p class="doc-p">PostgreSQL with <code>pgvector</code> is the recommended open-source vector store because memories, embeddings, and temporal revision graphs share a single atomic database pass:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">pgvector_setup.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">negentro</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
+          <div class="code-header">
+            <span class="code-filename">pgvector_init.sql</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmt">-- Enable the vector extension</span>
+<span class="tok-kw">CREATE EXTENSION IF NOT EXISTS</span> vector;
 
-<span class="tok-prop">config</span> = {
-    <span class="tok-str">"vector_store"</span>: {
-        <span class="tok-str">"provider"</span>: <span class="tok-str">"pgvector"</span>,
-        <span class="tok-str">"config"</span>: {
-            <span class="tok-str">"connection_string"</span>: <span class="tok-str">"postgresql://postgres:secret@localhost:5432/negentro"</span>,
-            <span class="tok-str">"table_name"</span>: <span class="tok-str">"agent_memories"</span>,
-            <span class="tok-str">"distance_metric"</span>: <span class="tok-str">"cosine"</span>
-        }
-    }
-}
-
-<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>.<span class="tok-fn">from_config</span>(<span class="tok-prop">config</span>)</pre>
+<span class="tok-cmt">-- Optimized HNSW vector index for cosine distance</span>
+<span class="tok-kw">CREATE INDEX</span> idx_memories_embedding_hnsw 
+<span class="tok-kw">ON</span> memories 
+<span class="tok-kw">USING</span> hnsw (embedding vector_cosine_ops)
+<span class="tok-kw">WITH</span> (m = 16, ef_construction = 64);</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('embeddings')">
+            <div class="next-card-title">Embeddings</div>
+            <div class="next-card-desc">Configure dense vector dimensions and local FastEmbed ONNX models.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('storage')">
+            <div class="next-card-title">Storage &amp; Graphs</div>
+            <div class="next-card-desc">Review the three-tier storage architecture and bitemporal tables.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1256,45 +2468,78 @@ npx @negentro/studio --server http://localhost:8080</pre>
         <div class="breadcrumb">Open Source / Embeddings</div>
         <div class="page-header-row">
           <h1 class="page-title">Embeddings</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
-        <p class="page-lead">Configure dense vector representations for text, code, and multimodal entities across local and cloud models.</p>
+        <p class="page-lead">Configure dense vector representations for text, code, and multimodal entities across local and cloud providers.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Dense Semantic Representations</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>384 to 3072 Dimensions &bull; ONNX Local</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Embeddings</span>
-          <span class="tag">Dense Vectors</span>
           <span class="tag">FastEmbed</span>
           <span class="tag">OpenAI</span>
+          <span class="tag">ONNX</span>
+          <span class="tag">Zero-Cost Local</span>
         </div>
 
         <h2 class="doc-h2" id="emb-models">Supported Embedding Models</h2>
         <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Provider</th><th>Model</th><th>Dimensions</th><th>Cost / Deployment</th></tr></thead>
+          <table class="doc-table how-table">
+            <thead><tr><th>Model</th><th>Provider</th><th>Dimensions</th><th>Performance</th></tr></thead>
             <tbody>
-              <tr><td><strong>OpenAI</strong></td><td><code>text-embedding-3-small</code></td><td>1536</td><td>Cloud API (Fast &amp; cost-efficient)</td></tr>
-              <tr><td><strong>OpenAI</strong></td><td><code>text-embedding-3-large</code></td><td>3072</td><td>Cloud API (Maximum accuracy)</td></tr>
-              <tr><td><strong>FastEmbed</strong></td><td><code>BAAI/bge-small-en-v1.5</code></td><td>384</td><td>Local ONNX runtime (Zero API cost)</td></tr>
-              <tr><td><strong>Cohere</strong></td><td><code>embed-english-v3.0</code></td><td>1024</td><td>Cloud API (High quality search)</td></tr>
-              <tr><td><strong>Ollama</strong></td><td><code>nomic-embed-text</code></td><td>768</td><td>Local Ollama instance</td></tr>
+              <tr><td><code>text-embedding-3-small</code></td><td>OpenAI</td><td>1536</td><td>Default &bull; Optimal balance of quality and latency</td></tr>
+              <tr><td><code>text-embedding-3-large</code></td><td>OpenAI</td><td>3072</td><td>Highest precision semantic clustering</td></tr>
+              <tr><td><code>BAAI/bge-small-en-v1.5</code></td><td>FastEmbed (Local)</td><td>384</td><td>Zero API cost &bull; Runs on local CPU via ONNX</td></tr>
+              <tr><td><code>voyage-3</code></td><td>Voyage AI</td><td>1024</td><td>Industry-leading code and domain retrieval</td></tr>
+              <tr><td><code>embed-english-v3.0</code></td><td>Cohere</td><td>1024</td><td>Engineered for cross-encoder rerank pairing</td></tr>
             </tbody>
           </table>
         </div>
 
         <h2 class="doc-h2" id="emb-fastembed">Zero-Cost Local FastEmbed</h2>
+        <p class="doc-p">Eliminate third-party embedding API costs by embedding memories locally with quantized ONNX models:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">fastembed_config.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-kw">from</span> <span class="tok-prop">negentro</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
+          <div class="code-header">
+            <span class="code-filename">fastembed_config.py</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
 
-<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>.<span class="tok-fn">from_config</span>({
+<span class="tok-cmt"># Embedded memory running local FastEmbed ONNX vectors</span>
+<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>({
     <span class="tok-str">"embedder"</span>: {
         <span class="tok-str">"provider"</span>: <span class="tok-str">"fastembed"</span>,
         <span class="tok-str">"config"</span>: {
-            <span class="tok-str">"model"</span>: <span class="tok-str">"BAAI/bge-small-en-v1.5"</span>
+            <span class="tok-str">"model"</span>: <span class="tok-str">"BAAI/bge-small-en-v1.5"</span>,
+            <span class="tok-str">"threads"</span>: <span class="tok-num">4</span>
         }
     }
 })</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('storage')">
+            <div class="next-card-title">Storage &amp; Knowledge Graphs</div>
+            <div class="next-card-desc">Durable transactional storage for relational and bitemporal data.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('metadata-filtering')">
+            <div class="next-card-title">Metadata Filtering</div>
+            <div class="next-card-desc">Constrain search queries with boolean operators and namespaces.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1308,52 +2553,100 @@ npx @negentro/studio --server http://localhost:8080</pre>
       </div>
 
       <!-- =============================================================== -->
-      <!-- 11. STORAGE                                                    -->
+      <!-- 11. STORAGE & KNOWLEDGE GRAPHS                                 -->
       <!-- =============================================================== -->
       <div class="page" id="page-storage">
         <div class="breadcrumb">Open Source / Storage</div>
         <div class="page-header-row">
           <h1 class="page-title">Storage &amp; Knowledge Graphs</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Durable transactional storage for relational memories, bitemporal graphs, session logs, and cache layers.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Three-Tier Enterprise Substrate</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>PostgreSQL &bull; PiyGraph &bull; Redis Cache</span>
+          </div>
+        </div>
+
         <div class="page-tags">
-          <span class="tag accent">PostgreSQL</span>
-          <span class="tag">SQLite</span>
+          <span class="tag accent">Storage</span>
+          <span class="tag">PostgreSQL</span>
           <span class="tag">Redis</span>
-          <span class="tag">Bitemporal KG</span>
+          <span class="tag">Bitemporal</span>
+          <span class="tag">PiyGraph</span>
         </div>
 
         <h2 class="doc-h2" id="stg-arch">Three-Tier Storage Architecture</h2>
-        <div class="pipeline">
-          <div class="pipeline-item">
-            <div class="pipeline-label">1. Relational Tier</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">PostgreSQL or SQLite storing memory revisions, user identifiers, raw conversational inputs, and audit records.</div>
+        <p class="doc-p">PiyAPI isolates state across three dedicated tiers to balance sub-10ms latency with transactional integrity:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                1. Relational Tier (PostgreSQL)
+                <span class="how-step-tag">ACID Storage</span>
+              </div>
+              <div class="how-step-desc">Stores raw memory records, tenant metadata, foreign key constraints, and user identity mappings. Transactional consistency guarantees zero state corruption.</div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">2. Graph Tier</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">PiyGraph tracking real-world facts with separate <code>valid_at</code> and <code>system_at</code> timestamps.</div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                2. Temporal Graph Tier (PiyGraph)
+                <span class="how-step-tag">Bitemporal</span>
+              </div>
+              <div class="how-step-desc">PiyGraph tracks real-world validity (<code>valid_at</code>) separately from system audit timestamps (<code>system_at</code>). Answers time-travel queries like <em>"What did our agent know on March 12?"</em></div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">3. Cache Tier</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Redis storing hot memory buffers, sliding-window rate limit counters, and semantic query caches.</div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                3. Cache Tier (Redis Cluster)
+                <span class="how-step-tag">In-Memory</span>
+              </div>
+              <div class="how-step-desc">Redis stores hot memory query buffers, sliding-window rate limit counters, distributed locks, and semantic query caches for instant p95 retrieval.</div>
+            </div>
           </div>
         </div>
 
         <h2 class="doc-h2" id="stg-migrations">Database Migrations</h2>
-        <p class="doc-p">Execute database schema updates directly from the CLI:</p>
+        <p class="doc-p">Execute database schema updates directly from the CLI or verify database connectivity:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">Terminal</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-cmt"># Run database migrations</span>
-negentro db upgrade
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <div class="mac-terminal-title">bash &mdash; piyapi migrate</div>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmt"># Apply pending PostgreSQL schema migrations</span>
+npx @piyapi/cli db migrate
 
-<span class="tok-cmt"># Check migration status</span>
-negentro db status</pre>
+<span class="tok-cmt"># Validate bitemporal table integrity and pgvector HNSW indexes</span>
+npx @piyapi/cli db doctor</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('metadata-filtering')">
+            <div class="next-card-title">Metadata Filtering</div>
+            <div class="next-card-desc">Constrain search results with boolean logic and namespace scoping.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('reranking')">
+            <div class="next-card-title">UnifiedScorer &amp; Reranking</div>
+            <div class="next-card-desc">Tune the 11-signal hybrid retrieval scoring pipeline.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1373,9 +2666,19 @@ negentro db status</pre>
         <div class="breadcrumb">Open Source / Metadata Filtering</div>
         <div class="page-header-row">
           <h1 class="page-title">Metadata Filtering</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Constrain search results with boolean logic, multi-tenant namespace boundaries, and arbitrary tag queries.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Multi-Tenant Isolation</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>SQL Filter Pushdown &bull; JSONB Operators</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Metadata</span>
           <span class="tag">Namespace Scoping</span>
@@ -1385,32 +2688,55 @@ negentro db status</pre>
 
         <h2 class="doc-h2" id="mf-operators">Filter Operators</h2>
         <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead>
+          <table class="doc-table how-table">
+            <thead><tr><th>Operator</th><th>Meaning</th><th>Example Syntax</th></tr></thead>
             <tbody>
-              <tr><td><code>$eq</code></td><td>Equals</td><td><code>{"category": {"$eq": "billing"}}</code></td></tr>
+              <tr><td><code>$eq</code></td><td>Strict equality</td><td><code>{"category": {"$eq": "billing"}}</code></td></tr>
+              <tr><td><code>$ne</code></td><td>Not equal</td><td><code>{"archived": {"$ne": true}}</code></td></tr>
               <tr><td><code>$in</code></td><td>Contained in array</td><td><code>{"status": {"$in": ["active", "pinned"]}}</code></td></tr>
-              <tr><td><code>$gte</code> / <code>$lte</code></td><td>Numeric / Date ranges</td><td><code>{"created_at": {"$gte": 1704067200}}</code></td></tr>
+              <tr><td><code>$gte</code> / <code>$lte</code></td><td>Numeric &amp; date range comparisons</td><td><code>{"created_at": {"$gte": 1704067200}}</code></td></tr>
               <tr><td><code>$and</code> / <code>$or</code></td><td>Compound logical grouping</td><td><code>{"$and": [{"role": "admin"}, {"dept": "eng"}]}</code></td></tr>
             </tbody>
           </table>
         </div>
 
         <h2 class="doc-h2" id="mf-code">Filtered Search Example</h2>
+        <p class="doc-p">Combine semantic natural language queries with deterministic JSON metadata filters:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">search_filtered.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
+          <div class="code-header">
+            <span class="code-filename">search_filtered.py</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
           <pre><span class="tok-prop">results</span> = <span class="tok-prop">m</span>.<span class="tok-fn">search</span>(
     <span class="tok-prop">query</span>=<span class="tok-str">"What are our database credentials?"</span>,
     <span class="tok-prop">user_id</span>=<span class="tok-str">"dev_lead"</span>,
     <span class="tok-prop">filters</span>={
         <span class="tok-str">"$and"</span>: [
-            {<span class="tok-str">"environment"</span>: {<span class="tok-str">"$eq"</span>: <span class="tok-str">"staging"</span>}},
-            {<span class="tok-str">"access_level"</span>: {<span class="tok-str">"$in"</span>: [<span class="tok-str">"eng"</span>, <span class="tok-str">"admin"</span>]}}
+            {<span class="tok-str">"environment"</span>: {<span class="tok-str">"$eq"</span>: <span class="tok-str">"production"</span>}},
+            {<span class="tok-str">"service"</span>: {<span class="tok-str">"$in"</span>: [<span class="tok-str">"postgres"</span>, <span class="tok-str">"redis"</span>]}},
+            {<span class="tok-str">"archived"</span>: {<span class="tok-str">"$ne"</span>: <span class="tok-kw">True</span>}}
         ]
-    }
+    },
+    <span class="tok-prop">limit</span>=<span class="tok-num">5</span>
 )</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('reranking')">
+            <div class="next-card-title">UnifiedScorer &amp; Reranking</div>
+            <div class="next-card-desc">Review the 11-signal hybrid retrieval scoring pipeline.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('multimodal')">
+            <div class="next-card-title">Multimodal Support</div>
+            <div class="next-card-desc">Ingest images, PDFs, audio transcripts, and structured tables.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1424,15 +2750,25 @@ negentro db status</pre>
       </div>
 
       <!-- =============================================================== -->
-      <!-- 13. RERANKING                                                  -->
+      <!-- 13. RERANKING & UNIFIEDSCORER                                  -->
       <!-- =============================================================== -->
       <div class="page" id="page-reranking">
         <div class="breadcrumb">Open Source / Reranking</div>
         <div class="page-header-row">
           <h1 class="page-title">UnifiedScorer &amp; Reranking</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Combine dense semantic similarity, sparse BM25 text match, recency decay, and cross-encoders for precision retrieval.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>UnifiedScorer Engine</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>11 Signals &bull; Reciprocal Rank Fusion RRF_K=30</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Reranking</span>
           <span class="tag">UnifiedScorer</span>
@@ -1441,36 +2777,72 @@ negentro db status</pre>
         </div>
 
         <h2 class="doc-h2" id="rr-pipeline">The 3-Stage Reranking Pipeline</h2>
-        <div class="pipeline">
-          <div class="pipeline-item">
-            <div class="pipeline-label">Stage 1: Candidates</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Retrieve Top 50 vectors (HNSW) alongside Top 50 BM25 trigram full-text matches.</div>
+        
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Stage 1: Multi-Index Candidate Generation
+                <span class="how-step-tag">Dual Retrieval</span>
+              </div>
+              <div class="how-step-desc">Retrieve the Top 50 vectors via PostgreSQL <code>pgvector</code> HNSW alongside the Top 50 BM25 trigram full-text keyword matches in a single parallelized query.</div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">Stage 2: Fusion</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">Merge candidates using Reciprocal Rank Fusion (<code>RRF_K=30</code>) to prevent keyword or dense bias.</div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Stage 2: Reciprocal Rank Fusion (RRF)
+                <span class="how-step-tag">RRF_K=30</span>
+              </div>
+              <div class="how-step-desc">Fuse and normalize candidate rank scores using <code>score = &Sigma; 1 / (30 + rank_i)</code> to prevent bias toward dense vectors or sparse keyword matches.</div>
+            </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-label">Stage 3: Scoring</div>
-            <div class="pipeline-arrow">&rarr;</div>
-            <div class="pipeline-desc">UnifiedScorer evaluates 11 weighted signals (similarity, text match, recency decay, contradiction penalty, and pinned weight).</div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                Stage 3: UnifiedScorer 11-Signal Pass
+                <span class="how-step-tag">Precision Filter</span>
+              </div>
+              <div class="how-step-desc">UnifiedScorer applies 11 weighted signals: semantic similarity, exact phrase matches, exponential recency decay, contradiction penalties, and pinned boosts.</div>
+            </div>
           </div>
         </div>
 
         <h2 class="doc-h2" id="rr-tuning">Tuning Retrieval Parameters</h2>
+        <p class="doc-p">Fine-tune weights and decay constants to fit conversational or factual agent tasks:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">rerank_config.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-prop">results</span> = <span class="tok-prop">m</span>.<span class="tok-fn">search</span>(
-    <span class="tok-prop">query</span>=<span class="tok-str">"User preferences for deployment target"</span>,
-    <span class="tok-prop">user_id</span>=<span class="tok-str">"usr_9918"</span>,
-    <span class="tok-prop">alpha</span>=<span class="tok-num">0.7</span>,             <span class="tok-cmt"># 0.7 Vector weight / 0.3 BM25 text weight</span>
-    <span class="tok-prop">min_score</span>=<span class="tok-num">0.25</span>,         <span class="tok-cmt"># Rejects low-confidence matches</span>
-    <span class="tok-prop">recency_decay_days</span>=<span class="tok-num">30</span>  <span class="tok-cmt"># Half-life for temporal fading</span>
-)</pre>
+          <div class="code-header">
+            <span class="code-filename">tuning_config.ts</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">const</span> <span class="tok-prop">searchConfig</span> = {
+  <span class="tok-prop">rrf_k</span>: <span class="tok-num">30</span>,                <span class="tok-cmt">// Lower k boosts top ranks (default: 30)</span>
+  <span class="tok-prop">dense_weight</span>: <span class="tok-num">0.65</span>,        <span class="tok-cmt">// Weight for semantic cosine similarity</span>
+  <span class="tok-prop">sparse_weight</span>: <span class="tok-num">0.35</span>,       <span class="tok-cmt">// Weight for BM25 keyword matching</span>
+  <span class="tok-prop">decay_half_life_days</span>: <span class="tok-num">14</span>,  <span class="tok-cmt">// Recency decay half-life in days</span>
+  <span class="tok-prop">pinned_boost</span>: <span class="tok-num">1.5</span>          <span class="tok-cmt">// Multiplier for explicitly pinned memories</span>
+};</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('multimodal')">
+            <div class="next-card-title">Multimodal Support</div>
+            <div class="next-card-desc">Index images, PDFs, voice transcripts, and structured tables.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="showPage('overview')">
+            <div class="next-card-title">Open Source Overview</div>
+            <div class="next-card-desc">Review top-level architecture and quickstart guides.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1490,53 +2862,101 @@ negentro db status</pre>
         <div class="breadcrumb">Open Source / Multimodal Support</div>
         <div class="page-header-row">
           <h1 class="page-title">Multimodal Memory Support</h1>
-          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+          <button class="copy-btn" onclick="copyCurrentPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
         </div>
         <p class="page-lead">Store, index, and retrieve memories across images, documents, audio transcripts, and structured tables.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Multimodal Memory Engine</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Vision &bull; PDFs &bull; Audio &bull; Unified Embeddings</span>
+          </div>
+        </div>
+
         <div class="page-tags">
           <span class="tag accent">Multimodal</span>
           <span class="tag">Vision</span>
           <span class="tag">PDFs &amp; Docs</span>
           <span class="tag">Audio</span>
+          <span class="tag">CLIP</span>
         </div>
 
         <h2 class="doc-h2" id="mm-capabilities">Supported Modalities</h2>
         <div class="cards-grid">
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
             <div class="card-title">Images &amp; Diagrams</div>
-            <div class="card-body">Ingest system diagrams, error screenshots, and UI mockups. Extracted into structured visual descriptions and CLIP vector representations.</div>
+            <div class="card-body">Ingest system diagrams, architecture sketches, error screenshots, and UI mockups. Extracted into structured visual descriptions and CLIP vector representations.</div>
           </div>
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
             <div class="card-title">PDFs &amp; Documents</div>
-            <div class="card-body">Extract tabular data and contextual paragraphs while preserving source page coordinates for grounded citations.</div>
+            <div class="card-body">Extract tabular data and contextual paragraphs while preserving source page coordinates and bounding boxes for grounded citations.</div>
           </div>
           <div class="card">
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
             <div class="card-title">Audio &amp; Voice</div>
-            <div class="card-body">Ingest multi-speaker audio transcripts with speaker diarization tags and temporal boundaries.</div>
+            <div class="card-body">Ingest multi-speaker audio transcripts with speaker diarization tags, sentiment indicators, and temporal timestamps.</div>
           </div>
           <div class="card">
-            <div class="card-title">Structured Data</div>
-            <div class="card-body">Seamlessly index JSON payloads, database rows, and spreadsheets alongside conversational context.</div>
+            <div class="card-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="card-title">Structured Tables</div>
+            <div class="card-body">Index tabular CSVs, JSON data feeds, and database rows with cell-level embedding and schema-aware filtering.</div>
           </div>
         </div>
 
         <h2 class="doc-h2" id="mm-image-code">Ingesting Image Memories</h2>
+        <p class="doc-p">Pass raw images via base64 or remote URL &mdash; the engine extracts visual OCR text and generates dense visual representations:</p>
+        
         <div class="code-tabs">
-          <div class="code-header"><span class="code-filename">multimodal_example.py</span><button class="code-copy" onclick="copySnippet(this)">Copy</button></div>
-          <pre><span class="tok-cmt"># Store an image with automatic vision fact extraction</span>
+          <div class="code-header">
+            <span class="code-filename">multimodal_ingest.py</span>
+            <button class="code-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cls">Memory</span>
+
+<span class="tok-prop">m</span> = <span class="tok-cls">Memory</span>()
+
+<span class="tok-cmt"># Ingest an architecture diagram</span>
 <span class="tok-prop">m</span>.<span class="tok-fn">add</span>(
-    <span class="tok-str">"Architecture diagram showing Kubernetes cluster with 3 worker nodes and Istio service mesh."</span>,
-    <span class="tok-prop">user_id</span>=<span class="tok-str">"usr_9918"</span>,
-    <span class="tok-prop">metadata</span>={
-        <span class="tok-str">"type"</span>: <span class="tok-str">"image"</span>,
-        <span class="tok-str">"image_url"</span>: <span class="tok-str">"https://storage.internal/diagrams/k8s_mesh.png"</span>
-    }
+    <span class="tok-str">"https://example.com/system-architecture.png"</span>,
+    <span class="tok-prop">user_id</span>=<span class="tok-str">"lead_architect"</span>,
+    <span class="tok-prop">modality</span>=<span class="tok-str">"image"</span>,
+    <span class="tok-prop">metadata</span>={<span class="tok-str">"project"</span>: <span class="tok-str">"v2_migration"</span>}
 )
 
-<span class="tok-cmt"># Natural language query retrieves image memory</span>
-<span class="tok-prop">results</span> = <span class="tok-prop">m</span>.<span class="tok-fn">search</span>(<span class="tok-str">"How many worker nodes are in our Kubernetes cluster?"</span>, <span class="tok-prop">user_id</span>=<span class="tok-str">"usr_9918"</span>)</pre>
+<span class="tok-cmt"># Retrieve by semantic description</span>
+<span class="tok-prop">results</span> = <span class="tok-prop">m</span>.<span class="tok-fn">search</span>(
+    <span class="tok-prop">query</span>=<span class="tok-str">"Where is the Redis cache located in the architecture diagram?"</span>,
+    <span class="tok-prop">user_id</span>=<span class="tok-str">"lead_architect"</span>
+)</pre>
         </div>
 
+        <!-- NEXT STEPS CARDS -->
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('overview')">
+            <div class="next-card-title">Platform Overview</div>
+            <div class="next-card-desc">Review top-level open source features and quickstarts.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+          <div class="next-card" onclick="window.location.href='platform.html'">
+            <div class="next-card-title">Managed Cloud Platform</div>
+            <div class="next-card-desc">Compare self-hosted open source with fully managed PiyAPI Cloud.</div>
+            <div class="next-card-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
         <div class="page-footer-nav">
           <div class="footer-actions">
             <span class="footer-action-btn" onclick="alert('Suggest edits feature')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits</span>
@@ -1544,50 +2964,29 @@ negentro db status</pre>
           </div>
           <div class="footer-prev-next">
             <span class="footer-prev" onclick="showPage('reranking')">&larr; PREVIOUS: Reranking</span>
-            <span class="footer-next" onclick="showPage('overview')">BACK TO OVERVIEW &rarr;</span>
+            <span class="footer-next" onclick="showPage('overview')">NEXT: Open Source Overview &rarr;</span>
           </div>
         </div>
       </div>
 
     </div><!-- /#content -->
-
-    <!-- RIGHT TOC -->
-    <div id="toc">
-      <div class="toc-label">ON THIS PAGE</div>
-      <div id="toc-links"></div>
-    </div>
   </div><!-- /#main -->
+
+  <!-- RIGHT SIDEBAR (TOC) -->
+  <aside id="toc">
+    <div class="toc-title">ON THIS PAGE</div>
+    <div id="toc-links"></div>
+  </aside>
 </div><!-- /#layout -->
 
-<!-- GLOBAL FOOTER -->
-<footer id="footer">
-  <div class="footer-inner">
-    <div class="footer-headline">Build with persistent intelligence.</div>
-    <div class="footer-sub">Explore the open-source stack, run memory inside your VPC, and deploy AI applications with durable context.</div>
-    <div class="footer-links-grid">
-      <span class="footer-nav-link" onclick="showPage('overview')">Platform Overview</span>
-      <span class="footer-nav-link" onclick="showPage('python-sdk')">Python SDK</span>
-      <span class="footer-nav-link" onclick="showPage('nodejs-quickstart')">Node.js Quickstart</span>
-      <span class="footer-nav-link" onclick="showPage('self-hosted')">Self-hosted Server</span>
-      <span class="footer-nav-link" onclick="showPage('web-studio')">Web Studio</span>
-      <span class="footer-nav-link" onclick="showPage('rest-api')">REST API</span>
-      <span class="footer-nav-link" onclick="showPage('configuration')">Configuration</span>
-      <span class="footer-nav-link" onclick="showPage('llms')">LLMs</span>
-      <span class="footer-nav-link" onclick="showPage('vector-databases')">Vector Databases</span>
-      <span class="footer-nav-link" onclick="showPage('embeddings')">Embeddings</span>
-      <span class="footer-nav-link" onclick="showPage('storage')">Storage</span>
-      <span class="footer-nav-link" onclick="showPage('metadata-filtering')">Metadata Filtering</span>
-      <span class="footer-nav-link" onclick="showPage('reranking')">Reranking</span>
-      <span class="footer-nav-link" onclick="showPage('multimodal')">Multimodal Support</span>
-    </div>
-    <div class="footer-note">Product capabilities, API behavior, and integration availability depend on the deployed version and configuration. Refer to the current API reference and release notes for verified implementation details.</div>
-  </div>
-</footer>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+</script>
 
 <script>
 const TOC_MAP = {
   'overview': [
-    {id:'ov-ways', label:'Run Negentro your way'},
+    {id:'ov-ways', label:'Run PiyAPI your way'},
     {id:'ov-getstarted', label:'Get started'},
     {id:'ov-gofurther', label:'Go further'},
     {id:'ov-defaults', label:'Default components'},
@@ -1681,6 +3080,7 @@ function toggleSidebar() {
 
 function buildToc(pageId) {
   const container = document.getElementById('toc-links');
+  if (!container) return;
   container.innerHTML = '';
   const items = TOC_MAP[pageId] || [];
   items.forEach((item, i) => {
@@ -1697,15 +3097,45 @@ function buildToc(pageId) {
   });
 }
 
-function copySnippet(btn) {
-  const pre = btn.closest('.code-header').nextElementSibling;
-  const text = pre ? pre.innerText : '';
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = orig, 1500);
-  });
+function switchTab(btn, groupId, tabId) {
+  const tabs = btn.closest('.code-tabs');
+  if (!tabs) return;
+  tabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  tabs.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(groupId + '-' + tabId);
+  if (panel) panel.classList.add('active');
 }
+
+function copySnippet(btn) {
+  const wrap = btn.closest('.code-tabs') || (btn.closest('.code-header') ? btn.closest('.code-header').parentElement : null);
+  let pre = null;
+  const panel = btn.closest('.tab-panel');
+  if (panel) {
+    pre = panel.querySelector('pre');
+  } else if (btn.closest('.code-header')) {
+    pre = btn.closest('.code-header').nextElementSibling;
+    if (!pre || pre.tagName !== 'PRE') {
+      const activePanel = wrap ? wrap.querySelector('.tab-panel.active') : null;
+      if (activePanel) pre = activePanel.querySelector('pre');
+    }
+  } else if (btn.closest('.mac-terminal-bar')) {
+    pre = btn.closest('.mac-terminal-bar').nextElementSibling;
+  }
+  if (!pre && wrap) {
+    pre = wrap.querySelector('pre');
+  }
+  const text = pre ? pre.innerText : '';
+  if (text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = orig, 1500);
+    }).catch(() => {});
+  }
+}
+
+const copyCode = copySnippet;
 
 function copyCurrentPage() {
   const activePage = document.querySelector('.page.active');
@@ -1735,6 +3165,79 @@ function focusSearch() {
     if (matches.length > 0) showPage(matches[0]);
     else alert('No matching section found for "' + q + '"');
   }
+}
+
+/* Interactive Mermaid Diagram Controls */
+let currentMermaidZoom = 1.0;
+function zoomMermaid(delta) {
+  currentMermaidZoom = Math.min(Math.max(0.6, currentMermaidZoom + delta), 1.6);
+  const container = document.getElementById('mermaid-zoom-container');
+  if (container) {
+    container.style.transform = `scale(${currentMermaidZoom})`;
+  }
+}
+
+function resetZoomMermaid() {
+  currentMermaidZoom = 1.0;
+  const container = document.getElementById('mermaid-zoom-container');
+  if (container) {
+    container.style.transform = 'scale(1)';
+  }
+}
+
+function switchArchView(view) {
+  const diag = document.getElementById('arch-view-diagram');
+  const txt = document.getElementById('arch-view-txt');
+  const btnDiag = document.getElementById('btn-arch-diag');
+  const btnTxt = document.getElementById('btn-arch-txt');
+  if (view === 'diagram') {
+    if (diag) diag.style.display = 'flex';
+    if (txt) txt.style.display = 'none';
+    if (btnDiag) { btnDiag.classList.add('active'); }
+    if (btnTxt) { btnTxt.classList.remove('active'); }
+  } else {
+    if (diag) diag.style.display = 'none';
+    if (txt) txt.style.display = 'block';
+    if (btnDiag) { btnDiag.classList.remove('active'); }
+    if (btnTxt) { btnTxt.classList.add('active'); }
+  }
+}
+
+const NODE_DETAILS = {
+  'A1': { title: 'Python Cognitive SDK (piyapi-memory)', layer: 'Application Layer', desc: 'Direct lightweight embedded library for Python agents. Operates in-memory or connects to private VPC databases without running external daemons.' },
+  'A2': { title: 'Node.js & TypeScript SDK (@piyapi/sdk)', layer: 'Application Layer', desc: 'Full TypeScript client supporting ESM and CommonJS with built-in token-budget-aware prompt assembly for Next.js and Vercel AI SDK.' },
+  'A3': { title: 'HTTP REST Client', layer: 'Application Layer', desc: 'Standard HTTPS endpoints compatible with any programming language via cURL, Python requests, Go, or Rust.' },
+  'SERVER': { title: 'PiyAPI Container Microservice', layer: 'Server Core (Port 8080)', desc: 'Enterprise microservice handling authentication, multi-tenant namespace scoping, Web Studio GUI (/studio), and request routing.' },
+  'E1': { title: 'Memory Engine', layer: 'Cognitive Subsystem', desc: 'Atomic fact extraction and synthesis. Evaluates incoming text, isolates claims, and stores revision trees.' },
+  'E2': { title: 'Retrieval Engine', layer: 'Cognitive Subsystem', desc: 'Hybrid RAG combining dense vector similarity with sparse BM25 trigram full-text search fused via Reciprocal Rank Fusion (RRF_K=30).' },
+  'E3': { title: 'Embeddings Router', layer: 'Cognitive Subsystem', desc: 'Pluggable vector representations supporting cloud providers (OpenAI, Voyage AI) and local zero-cost ONNX FastEmbed.' },
+  'E4': { title: 'BYOK LLM Manager', layer: 'Cognitive Subsystem', desc: 'Multi-provider inference routing with automated fallback across OpenAI, Anthropic, Gemini, DeepSeek, and local Ollama.' },
+  'I1': { title: 'PostgreSQL 16 + pgvector', layer: 'Infrastructure Substrate', desc: 'Transactional relational store and HNSW vector index (1536-dim) delivering sub-12ms p95 recall with ACID safety.' },
+  'I2': { title: 'Bitemporal Knowledge Graph (PiyGraph)', layer: 'Infrastructure Substrate', desc: 'Bitemporal fact tracking separating valid_at real-world validity from system_at transaction audit timestamps.' },
+  'I3': { title: 'Redis 7 Cache Cluster', layer: 'Infrastructure Substrate', desc: 'In-memory buffer for sub-5ms semantic query caching, sliding-window rate limit counters, and distributed locks.' }
+};
+
+function initInteractiveMermaid() {
+  setTimeout(() => {
+    const chart = document.getElementById('main-mermaid-chart');
+    if (!chart) return;
+    const nodes = chart.querySelectorAll('.node');
+    nodes.forEach(node => {
+      node.style.cursor = 'pointer';
+      node.addEventListener('click', () => {
+        const id = node.id.split('-')[1] || node.id;
+        const info = NODE_DETAILS[id] || { title: node.innerText, layer: 'Architecture Node', desc: 'Production open-source architecture component running within your VPC infrastructure.' };
+        const inspector = document.getElementById('mermaid-node-inspector');
+        if (inspector) {
+          inspector.style.display = 'block';
+          document.getElementById('inspector-node-title').textContent = info.title;
+          document.getElementById('inspector-node-layer').textContent = info.layer;
+          document.getElementById('inspector-node-desc').textContent = info.desc;
+          inspector.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }});
+  }, 1000);
 }
 
 window.addEventListener('keydown', (e) => {
@@ -1768,6 +3271,8 @@ window.addEventListener('DOMContentLoaded', () => {
   } else {
     showPage('overview');
   }
+
+  initInteractiveMermaid();
 
   // Auto-close sidebar on mobile after clicking a link
   document.querySelectorAll('#sidebar .sidebar-link').forEach(link => {
