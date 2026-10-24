@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Negentro API Reference — REST APIs for Persistent Memory &amp; Context</title>
+  <meta name="description" content="Programmatic REST API reference for Negentro and PiAPI cognitive memory operations, search, entity management, and context assembly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-sidebar:       #ffffff;
+      --bg-panel:         #ffffff;
+      --bg-card:          #ffffff;
+      --bg-code:          #0f172a;
+      --bg-code-header:   #1e293b;
+      --bg-hover:         #f8fafc;
+      --bg-active:        rgba(124, 58, 237, 0.08);
+      --border:           #f1f5f9;
+      --border-card:      #e2e8f0;
+      --border-muted:     #cbd5e1;
+      --accent:           #7c3aed;
+      --accent-hover:     #6d28d9;
+      --accent-light:     #8b5cf6;
+      --accent-dim:       rgba(124, 58, 237, 0.08);
+      --accent-glow:      rgba(124, 58, 237, 0.2);
+      --text-heading:     #0f172a;
+      --text-main:        #334155;
+      --text-muted:       #64748b;
+      --text-faint:       #94a3b8;
+      --text-code:        #e2e8f0;
+      --green:            #10b981;
+      --yellow:           #f59e0b;
+      --red:              #ef4444;
+      --blue:             #3b82f6;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --sidebar-w:        260px;
+      --toc-w:            220px;
+      --topbar-h:         64px;
+    }
+
+    [data-theme="dark"] {
+      --bg:               #0c0c0f;
+      --bg-sidebar:       #0e0e12;
+      --bg-panel:         #131318;
+      --bg-card:          #131318;
+      --bg-code:          #0a0a0f;
+      --bg-code-header:   #121218;
+      --bg-hover:         #1a1a24;
+      --bg-active:        rgba(167, 139, 250, 0.15);
+      --border:           #1e1e2a;
+      --border-card:      #272733;
+      --border-muted:     #323242;
+      --accent:           #a78bfa;
+      --accent-hover:     #c4b5fd;
+      --accent-light:     #c4b5fd;
+      --accent-dim:       rgba(167, 139, 250, 0.15);
+      --accent-glow:      rgba(167, 139, 250, 0.25);
+      --text-heading:     #f8fafc;
+      --text-main:        #cbd5e1;
+      --text-muted:       #94a3b8;
+      --text-faint:       #64748b;
+      --text-code:        #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* Top Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: transparent;
+      z-index: 1000;
+    }
+    #scroll-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Topbar */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 900;
+      gap: 1.5rem;
+    }
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: relative;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    .topbar-nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .topbar-nav a:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .topbar-nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .topbar-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -13px;
+      left: 10%;
+      right: 10%;
+      height: 2.5px;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-box:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+    .search-kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 3px;
+      padding: 0.1rem 0.35rem;
+      color: var(--text-muted);
+    }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      background: var(--bg);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+    .btn-dashboard {
+      background: #5850ec;
+      color: #ffffff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.48rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn-dashboard:hover {
+      background: #4f46e5;
+      box-shadow: 0 3px 12px rgba(88, 80, 236, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    #layout {
+      display: flex;
+      margin-top: var(--topbar-h);
+      min-height: calc(100vh - var(--topbar-h));
+    }
+
+    /* Left Sidebar */
+    #sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--topbar-h);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 0.85rem 3rem;
+      scrollbar-width: thin;
+      z-index: 100;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border-card); border-radius: 4px; }
+
+    .sidebar-group { margin-bottom: 1.35rem; }
+    .sidebar-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.35rem 0.75rem 0.5rem;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.86rem;
+      font-weight: 450;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s;
+      margin-bottom: 2px;
+      position: relative;
+      text-decoration: none;
+    }
+    [data-theme="dark"] .sidebar-link { color: #94a3b8; }
+    .sidebar-link:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .sidebar-link.active {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.12);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .sidebar-link.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.18);
+    }
+    .sidebar-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .sidebar-link.needs-docs {
+      color: #ef4444 !important;
+      font-weight: 500;
+    }
+    .sidebar-link.needs-docs:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: #dc2626 !important;
+    }
+    .sidebar-link.needs-docs.active {
+      background: rgba(239, 68, 68, 0.12) !important;
+      color: #dc2626 !important;
+    }
+    .sidebar-badge-red {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      letter-spacing: 0.02em;
+    }
+
+    /* HTTP Method Badges in Sidebar */
+    .method-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+    .method-post { color: #10b981; }
+    .method-get { color: #6366f1; }
+    .method-patch { color: #f59e0b; }
+    .method-del { color: #ef4444; }
+
+    /* Main Content Area */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      max-width: calc(100vw - var(--sidebar-w));
+    }
+    #content {
+      flex: 1;
+      max-width: 860px;
+      padding: 2.5rem 3rem 6rem;
+      min-width: 0;
+    }
+
+    /* Right TOC */
+    #toc {
+      width: var(--toc-w);
+      flex-shrink: 0;
+      padding: 2.5rem 1.5rem 4rem 1rem;
+      position: sticky;
+      top: var(--topbar-h);
+      height: calc(100vh - var(--topbar-h));
+      overflow-y: auto;
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+    }
+    .toc-link {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0 0.35rem 0.75rem;
+      border-left: 2px solid transparent;
+      transition: all 0.12s;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .toc-link:hover { color: var(--text-heading); }
+    .toc-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Page View Containers */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Breadcrumb & Titles */
+    .breadcrumb {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+    .page-title {
+      font-size: 2.35rem;
+      font-weight: 750;
+      color: var(--text-heading);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+    .page-lead {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 0.65rem;
+    }
+    .page-sublead {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    /* API Info Two-Column Bar */
+    .api-meta-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .api-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .api-meta-key {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+    }
+    .api-meta-val {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Quick Start Callout Card */
+    .quickstart-card {
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.65rem;
+      margin-bottom: 2.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.15rem;
+    }
+    [data-theme="dark"] .quickstart-card {
+      background: #171524;
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+    .quickstart-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.12);
+    }
+    [data-theme="dark"] .quickstart-icon-wrap {
+      background: #252238;
+      color: #c4b5fd;
+    }
+    .quickstart-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.25rem;
+    }
+    .quickstart-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+    .quickstart-link {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .quickstart-link:hover { text-decoration: underline; }
+
+    /* Headings */
+    .doc-h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      margin: 2.75rem 0 1.25rem;
+    }
+    .doc-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: -0.75rem 0 1.5rem;
+    }
+
+    /* Quick Start Guide Steps */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding-top: 1px;
+    }
+    .step-content { flex: 1; }
+    .step-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.2rem;
+    }
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .step-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .step-link:hover { text-decoration: underline; }
+
+    /* Terminal Code Cards */
+    .terminal-card {
+      background: var(--bg-code);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: var(--bg-code-header);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+    .terminal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .terminal-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .terminal-copy {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #94a3b8;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      padding: 0.25rem 0.65rem;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .terminal-copy:hover { color: #ffffff; border-color: rgba(255,255,255,0.3); }
+    .terminal-card pre {
+      padding: 1.15rem 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--text-code);
+      overflow-x: auto;
+    }
+    .tok-kw { color: #c4b5fd; font-weight: 600; }
+    .tok-str { color: #86efac; }
+    .tok-cmd { color: #f8fafc; font-weight: 500; }
+    .tok-prop { color: #93c5fd; }
+    .tok-cmt { color: #64748b; font-style: italic; }
+
+    /* Core Operations 2x2 Grid */
+    .ops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2.75rem;
+    }
+    .ops-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .ops-card:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    .ops-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+    .ops-icon-wrap {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+    .ops-icon-green { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+    .ops-icon-orange { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+    .ops-icon-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .ops-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .badge-post { color: #10b981; background: rgba(16, 185, 129, 0.1); }
+    .badge-patch { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+    .badge-delete { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+    .ops-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+    .ops-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .ops-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ops-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+    }
+    .ops-arrow {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    /* API Categories Cards Grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cat-card-full {
+      grid-column: 1 / -1;
+    }
+    .cat-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .cat-icon-wrap {
+      color: var(--accent);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .cat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+    .cat-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Multi-Tenant Callout Banner */
+    .tenant-banner {
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.65rem;
+      margin: 1.5rem 0 2.75rem;
+    }
+    [data-theme="dark"] .tenant-banner {
+      background: #171524;
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+    .tenant-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+    .tenant-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .tenant-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .tenant-link:hover { text-decoration: underline; }
+
+    /* Bullet list */
+    .auth-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    .auth-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+    }
+    .auth-bullets li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Architecture Flow Diagram */
+    .flow-diagram-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .flow-node-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+    }
+    .flow-node-icon.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    }
+    .flow-node-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+    .flow-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      flex: 1;
+      min-width: 70px;
+    }
+    .flow-connector-label {
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .flow-connector-line {
+      width: 100%;
+      height: 1px;
+      background: var(--border-muted);
+      position: relative;
+    }
+
+    /* Security Warning Callout */
+    .security-callout {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin: 1.5rem 0 2.75rem;
+      font-size: 0.86rem;
+      color: #92400e;
+      line-height: 1.55;
+    }
+    [data-theme="dark"] .security-callout {
+      background: #231c0e;
+      border-color: #3b2f15;
+      color: #fde68a;
+    }
+    .security-icon {
+      color: #d97706;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Next Steps 3-Column Grid */
+    .next-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.75rem;
+    }
+    .next-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .next-card:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    .next-icon-wrap {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    [data-theme="dark"] .next-icon-wrap {
+      background: rgba(167, 139, 250, 0.15);
+      color: #c4b5fd;
+    }
+    .next-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+    .next-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.85rem;
+      flex: 1;
+    }
+    .next-arrow {
+      color: var(--accent);
+      font-size: 1rem;
+      align-self: flex-start;
+    }
+
+    /* Document Status */
+    .red-notice {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .red-notice-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ef4444;
+      margin-bottom: 0.4rem;
+    }
+    .red-notice-desc {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Action Buttons */
+    .doc-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 3.5rem 0 2rem;
+    }
+    .doc-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.42rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+    }
+    .doc-action-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+
+    /* Split Prev/Next Navigation Card */
+    .prev-next-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      background: var(--bg-card);
+    }
+    .prev-card {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid var(--border-card);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .prev-card:hover, .next-card-split:hover { background: var(--bg-hover); }
+    .next-card-split {
+      padding: 1.25rem 1.5rem;
+      text-align: right;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .split-label {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .split-title {
+      font-size: 0.92rem;
+      font-weight: 650;
+      color: var(--text-heading);
+    }
+
+    /* Global Footer */
+    .global-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2.5rem;
+      margin-left: var(--sidebar-w);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .global-footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .global-footer-links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .global-footer-links a:hover { color: var(--accent); }
+    .global-footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
+      #sidebar.open { transform: translateX(0); }
+      #main { margin-left: 0; max-width: 100%; }
+      #content { padding: 1.75rem 1.25rem 4rem; }
+      .topbar-nav { display: none; }
+      .ops-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .next-grid { grid-template-columns: 1fr; }
+      .prev-next-split { grid-template-columns: 1fr; }
+      .prev-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .global-footer { margin-left: 0; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="topbar">
+  <a href="platform.html" class="topbar-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <nav class="topbar-nav">
+    <a href="get_started.html">Get Started</a>
+    <a href="platform.html">Platform</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="agent_plugins.html">Agent Plugins</a>
+    <a href="cookbooks.html">Cookbooks</a>
+    <a href="api_reference.html" class="active">API Reference</a>
+    <a href="release_notes.html">Release Notes</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="search-box" onclick="focusSearch()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+      <span class="search-kbd">⌘K</span>
+    </div>
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <a class="icon-btn" href="https://github.com/piyapi" target="_blank" title="GitHub Repository">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+    <button class="btn-dashboard" onclick="window.open('https://api.piyapi.cloud/dashboard','_blank')">Dashboard</button>
+  </div>
+</header>
+
+<div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+<div id="layout">
+  <!-- LEFT SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">API REFERENCE</div>
+      <div class="sidebar-link active" id="nav-overview" onclick="showPage('overview')">Overview</div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">ORGANIZATIONS &amp; PROJECTS</div>
+      <div class="sidebar-link" id="nav-organizations" onclick="showPage(\'organizations\')">Organizations</div>
+      <div class="sidebar-link" id="nav-projects" onclick="showPage(\'projects\')">Projects</div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">CORE MEMORY OPERATIONS</div>
+      <div class="sidebar-link" id="nav-add-memories" onclick="showPage('add-memories')">
+        <span>Add Memories</span>
+        <span class="method-tag method-post">POST</span>
+      </div>
+      <div class="sidebar-link" id="nav-get-memories" onclick="showPage('get-memories')">
+        <span>Get Memories</span>
+        <span class="method-tag method-get">GET</span>
+      </div>
+      <div class="sidebar-link" id="nav-search-memories" onclick="showPage('search-memories')">
+        <span>Search Memories</span>
+        <span class="method-tag method-post">POST</span>
+      </div>
+      <div class="sidebar-link" id="nav-update-memory" onclick="showPage('update-memory')">
+        <span>Update Memory</span>
+        <span class="method-tag method-patch">PATCH</span>
+      </div>
+      <div class="sidebar-link" id="nav-delete-memory" onclick="showPage('delete-memory')">
+        <span>Delete Memory</span>
+        <span class="method-tag method-del">DEL</span>
+      </div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">MEMORY MANAGEMENT</div>
+      <div class="sidebar-link" id="nav-create-export" onclick="showPage(\'create-export\')"><span>Create Memory Export</span><span class="method-tag method-post">POST</span></div>
+      <div class="sidebar-link" id="nav-feedback" onclick="showPage('feedback')">Feedback</div>
+      <div class="sidebar-link" id="nav-get-memory" onclick="showPage('get-memory')">Get Memory</div>
+      <div class="sidebar-link" id="nav-memory-history" onclick="showPage('memory-history')">Memory History</div>
+      <div class="sidebar-link" id="nav-get-export" onclick="showPage(\'get-export\')"><span>Get Memory Export</span><span class="method-tag method-get">GET</span></div>
+      <div class="sidebar-link" id="nav-submit-update" onclick="showPage('submit-update')">Submit Update Memories</div>
+      <div class="sidebar-link" id="nav-batch-delete" onclick="showPage('batch-delete')">Batch Delete Memories</div>
+      <div class="sidebar-link" id="nav-delete-memories" onclick="showPage('delete-memories')">Delete Memories</div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">EVENTS</div>
+      <!-- User explicitly instructed Get Events to be turned RED if data is insufficient -->
+      <div class="sidebar-link" id="nav-get-events" onclick="showPage(\'get-events\')"><span>Get Events</span><span class="method-tag method-get">GET</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEW -->
+  <div id="main">
+    <div id="content">
+
+      <!-- =============================================================== -->
+      <!-- OVERVIEW PAGE (EXACT FIGMA MATCH)                               -->
+      <!-- =============================================================== -->
+      <div class="page active" id="page-overview">
+        <div class="breadcrumb">API Reference / Overview</div>
+        <h1 class="page-title">API Reference Overview</h1>
+        <p class="page-lead">REST APIs for memory management, search, entity operations, and persistent context.</p>
+        <p class="page-sublead">The Negentro REST API provides programmatic access to persistent memory and context operations, allowing applications and agents to create, retrieve, search, update, and manage memory through standard HTTP requests.</p>
+
+        <!-- API Version & Base URL Meta Box -->
+        <div class="api-meta-grid">
+          <div class="api-meta-item">
+            <span class="api-meta-key">API VERSION</span>
+            <span class="api-meta-val">v1</span>
+          </div>
+          <div class="api-meta-item">
+            <span class="api-meta-key">BASE URL</span>
+            <span class="api-meta-val">Configure in your deployment</span>
+          </div>
+        </div>
+
+        <!-- Quick Start Callout Card -->
+        <div class="quickstart-card">
+          <div class="quickstart-icon-wrap">&rarr;</div>
+          <div>
+            <div class="quickstart-title">Quick start</div>
+            <div class="quickstart-text">Get your API key and make your first memory request in a few minutes.</div>
+            <a class="quickstart-link" href="#" onclick="alert('API Key provisioning: https://api.piyapi.cloud/login'); return false;">Get API key &rarr;</a>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- QUICK START GUIDE SECTION                                     -->
+        <!-- ============================================================= -->
+        <h2 class="doc-h2" id="quick-start-guide">Quick Start Guide</h2>
+        <div class="steps-list">
+          <div class="step-item">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <div class="step-name">Add Memories</div>
+              <div class="step-desc">Store information and context from your application's conversations or events. <a class="step-link" href="#" onclick="showPage('add-memories'); return false;">See Add Memories &rarr;</a></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <div class="step-name">Search Memories</div>
+              <div class="step-desc">Retrieve relevant memories using semantic or contextual search. <a class="step-link" href="#" onclick="showPage('search-memories'); return false;">See Search Memories &rarr;</a></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <div class="step-name">Get Memories</div>
+              <div class="step-desc">Retrieve a specific stored memory when you already know its identifier. <a class="step-link" href="#" onclick="showPage('get-memories'); return false;">See Get Memories &rarr;</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Card: Create a memory -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>Bash</span>
+              <span class="terminal-badge">POST</span>
+              <span>Create a memory</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST "https://&lt;your-negentro-api&gt;/v1/memories" \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $NEGENTRO_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{"user_id": "user_123", "content": "User prefers concise explanations"}'</span></pre>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- CORE OPERATIONS SECTION                                       -->
+        <!-- ============================================================= -->
+        <h2 class="doc-h2" id="core-operations">Core Operations</h2>
+        <div class="ops-grid">
+          <!-- 1. Add Memories -->
+          <div class="ops-card" onclick="showPage('add-memories')">
+            <div class="ops-card-top">
+              <div class="ops-icon-wrap ops-icon-green">+</div>
+              <span class="ops-badge badge-post">POST</span>
+            </div>
+            <div class="ops-title">Add Memories</div>
+            <div class="ops-desc">Store new memories from conversations and interactions.</div>
+            <div class="ops-bottom">
+              <span class="ops-path">/v1/memories</span>
+              <span class="ops-arrow">&rarr;</span>
+            </div>
+          </div>
+
+          <!-- 2. Search Memories -->
+          <div class="ops-card" onclick="showPage('search-memories')">
+            <div class="ops-card-top">
+              <div class="ops-icon-wrap ops-icon-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+              <span class="ops-badge badge-post">POST</span>
+            </div>
+            <div class="ops-title">Search Memories</div>
+            <div class="ops-desc">Find relevant memories using semantic search and filters.</div>
+            <div class="ops-bottom">
+              <span class="ops-path">/v1/memories/search</span>
+              <span class="ops-arrow">&rarr;</span>
+            </div>
+          </div>
+
+          <!-- 3. Update Memory -->
+          <div class="ops-card" onclick="showPage('update-memory')">
+            <div class="ops-card-top">
+              <div class="ops-icon-wrap ops-icon-orange"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+              <span class="ops-badge badge-patch">PATCH</span>
+            </div>
+            <div class="ops-title">Update Memory</div>
+            <div class="ops-desc">Modify existing memory content or metadata.</div>
+            <div class="ops-bottom">
+              <span class="ops-path">/v1/memories/:id</span>
+              <span class="ops-arrow">&rarr;</span>
+            </div>
+          </div>
+
+          <!-- 4. Delete Memory -->
+          <div class="ops-card" onclick="showPage('delete-memory')">
+            <div class="ops-card-top">
+              <div class="ops-icon-wrap ops-icon-red"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+              <span class="ops-badge badge-delete">DELETE</span>
+            </div>
+            <div class="ops-title">Delete Memory</div>
+            <div class="ops-desc">Remove a specific memory or perform supported deletion operations.</div>
+            <div class="ops-bottom">
+              <span class="ops-path">/v1/memories/:id</span>
+              <span class="ops-arrow">&rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- API CATEGORIES SECTION                                        -->
+        <!-- ============================================================= -->
+        <h2 class="doc-h2" id="api-categories">API Categories</h2>
+        <p class="doc-subtitle">Explore the API by functionality.</p>
+        <div class="cat-grid">
+          <!-- 1. Memory APIs -->
+          <div class="cat-card">
+            <div class="cat-card-header">
+              <div class="cat-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+              <div class="cat-title">Memory APIs</div>
+            </div>
+            <div class="cat-desc">Core memory operations including create, search, update, delete, history, and export workflows.</div>
+          </div>
+
+          <!-- 2. Events APIs -->
+          <div class="cat-card">
+            <div class="cat-card-header">
+              <div class="cat-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div class="cat-title">Events APIs</div>
+            </div>
+            <div class="cat-desc">Track and inspect asynchronous memory-related events.</div>
+          </div>
+
+          <!-- 3. Entities APIs -->
+          <div class="cat-card">
+            <div class="cat-card-header">
+              <div class="cat-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="cat-title">Entities APIs</div>
+            </div>
+            <div class="cat-desc">Manage users, agents, applications, and associated memory data.</div>
+          </div>
+
+          <!-- 4. Organizations & Projects -->
+          <div class="cat-card">
+            <div class="cat-card-header">
+              <div class="cat-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/><line x1="9" y1="18" x2="9" y2="18.01"/><line x1="15" y1="18" x2="15" y2="18.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/></svg></div>
+              <div class="cat-title">Organizations &amp; Projects</div>
+            </div>
+            <div class="cat-desc">Manage organization-level access, projects, and collaboration boundaries.</div>
+          </div>
+
+          <!-- 5. Webhooks -->
+          <div class="cat-card cat-card-full">
+            <div class="cat-card-header">
+              <div class="cat-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></div>
+              <div class="cat-title">Webhooks</div>
+            </div>
+            <div class="cat-desc">Receive real-time notifications for supported memory and system events.</div>
+          </div>
+        </div>
+
+        <!-- Multi-tenant callout banner -->
+        <div class="tenant-banner">
+          <div class="tenant-title">Building a multi-tenant application?</div>
+          <div class="tenant-desc">
+            Learn how Organizations &amp; Projects can be used to separate access, resources, and collaboration boundaries.
+            <a class="tenant-link" href="#" onclick="showPage('organizations'); return false;">Organizations &amp; Projects &rarr;</a>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- AUTHENTICATION SECTION                                        -->
+        <!-- ============================================================= -->
+        <h2 class="doc-h2" id="authentication">Authentication</h2>
+        <p class="doc-subtitle">All requests to the Negentro API must include a valid API key passed via the Authorization header using the Bearer scheme. Requests without a valid key will be rejected.</p>
+
+        <!-- Header code card -->
+        <div class="terminal-card" style="margin-bottom: 1.5rem;">
+          <div class="terminal-header">
+            <span>Header</span>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">Authorization: Bearer &lt;NEGENTRO_API_KEY&gt;</span></pre>
+        </div>
+
+        <ul class="auth-bullets">
+          <li>API keys should be stored server-side</li>
+          <li>Requests should be made through secure server-side environments</li>
+          <li>Do not expose secrets in client-side code</li>
+        </ul>
+
+        <!-- JavaScript fetch code card -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>JavaScript</span>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">const</span> <span class="tok-prop">response</span> = <span class="tok-kw">await</span> <span class="tok-cmd">fetch</span>(
+  <span class="tok-str">"https://&lt;your-negentro-api&gt;/v1/memories"</span>,
+  { <span class="tok-prop">headers</span>: { <span class="tok-prop">Authorization</span>: <span class="tok-str">`Bearer ${process.env.NEGENTRO_API_KEY}`</span> } }
+)</pre>
+        </div>
+
+        <!-- Flow diagram card -->
+        <div class="flow-diagram-card">
+          <div class="flow-node">
+            <div class="flow-node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <span class="flow-node-label">Your Application</span>
+          </div>
+
+          <div class="flow-connector">
+            <span class="flow-connector-label">HTTP Request</span>
+            <div class="flow-connector-line"></div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node-icon accent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <span class="flow-node-label" style="color: var(--accent);">Negentro API</span>
+          </div>
+
+          <div class="flow-connector">
+            <span class="flow-connector-label">Memory / Context Layer</span>
+            <div class="flow-connector-line"></div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <span class="flow-node-label">Response</span>
+          </div>
+        </div>
+
+        <!-- Security Warning Box -->
+        <div class="security-callout">
+          <svg class="security-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>Keep your API key secure. Never expose API credentials in client-side code or public repositories. Use environment variables and server-side requests.</div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NEXT STEPS SECTION                                            -->
+        <!-- ============================================================= -->
+        <h2 class="doc-h2" id="next-steps">Next Steps</h2>
+        <div class="next-grid">
+          <!-- 1. Add your first memory -->
+          <div class="next-card" onclick="showPage('add-memories')">
+            <div class="next-icon-wrap">+</div>
+            <div class="next-title">Add your first memory</div>
+            <div class="next-desc">Start storing persistent context through the API.</div>
+            <div class="next-arrow">&rarr;</div>
+          </div>
+
+          <!-- 2. Search with filters -->
+          <div class="next-card" onclick="showPage('search-memories')">
+            <div class="next-icon-wrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+            <div class="next-title">Search with filters</div>
+            <div class="next-desc">Learn advanced search and filtering techniques.</div>
+            <div class="next-arrow">&rarr;</div>
+          </div>
+
+          <!-- 3. Build with cookbooks -->
+          <div class="next-card" onclick="window.location.href='cookbooks.html'">
+            <div class="next-icon-wrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="next-title">Build with cookbooks</div>
+            <div class="next-desc">See complete API workflows inside practical projects.</div>
+            <div class="next-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="doc-actions-row">
+          <button class="doc-action-btn" onclick="alert('Suggest edits feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Suggest edits
+          </button>
+          <button class="doc-action-btn" onclick="alert('Raise issue feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Raise issue
+          </button>
+        </div>
+
+        <!-- Split Prev/Next -->
+        <div class="prev-next-split">
+          <div class="prev-card" onclick="window.location.href='cookbooks.html'">
+            <div class="split-label">&larr; Previous</div>
+            <div class="split-title">Cookbooks</div>
+          </div>
+          <div class="next-card-split" onclick="showPage('organizations')">
+            <div class="split-label">Next &rarr;</div>
+            <div class="split-title">Organizations &amp; Projects &rarr;</div>
+          </div>
+        </div>
+      </div><!-- /#page-overview -->
+
+      <!-- =============================================================== -->
+      <!-- CORE MEMORY OPERATIONS SUBPAGES (GROUNDED IN USERGUIDE.PDF)     -->
+      <!-- =============================================================== -->
+      <div class="page" id="page-add-memories">
+        <div class="breadcrumb">API Reference / Core Memory Operations / Add Memories</div>
+        <h1 class="page-title">Add Memories</h1>
+        <p class="page-lead">Store new information, agent interactions, and bitemporal facts into persistent memory.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>POST /api/v1/memories</span>
+              <span class="terminal-badge">LIVE VERIFIED</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/memories \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "content": "Client requested SOC2 Type II compliance audit report for Q3 2026.",
+    "tags": ["compliance", "soc2", "audit"],
+    "metadata": { "client_id": "cli_8812", "urgency": "high" },
+    "valid_at": "2026-08-01T00:00:00.000Z"
+  }'</span></pre>
+        </div>
+        <p class="doc-subtitle">Response Schema (201 Created):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"memory"</span>: {
+    <span class="tok-prop">"id"</span>: <span class="tok-str">"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d"</span>,
+    <span class="tok-prop">"content"</span>: <span class="tok-str">"Client requested SOC2 Type II compliance audit report for Q3 2026."</span>,
+    <span class="tok-prop">"namespace"</span>: <span class="tok-str">"default"</span>,
+    <span class="tok-prop">"tags"</span>: [<span class="tok-str">"compliance"</span>, <span class="tok-str">"soc2"</span>, <span class="tok-str">"audit"</span>],
+    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-03T15:10:00.000Z"</span>
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-get-memories">
+        <div class="breadcrumb">API Reference / Core Memory Operations / Get Memories</div>
+        <h1 class="page-title">Get Memories</h1>
+        <p class="page-lead">List stored memories scoped to your user or project with tag and date range filtering.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>GET /api/v1/memories</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X GET "https://api.piyapi.cloud/api/v1/memories?limit=10&amp;tags=compliance" \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-search-memories">
+        <div class="breadcrumb">API Reference / Core Memory Operations / Search Memories</div>
+        <h1 class="page-title">Search Memories</h1>
+        <p class="page-lead">Execute multi-signal hybrid search fusing pgvector HNSW dense vectors and BM25 trigram full-text scores.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>POST /api/v1/search</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/search \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "query": "SOC2 audit report requests",
+    "limit": 5,
+    "alpha": 0.7,
+    "tags": ["compliance"],
+    "min_score": 0.25
+  }'</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-update-memory">
+        <div class="breadcrumb">API Reference / Core Memory Operations / Update Memory</div>
+        <h1 class="page-title">Update Memory</h1>
+        <p class="page-lead">Modify content, tags, or bitemporal validity of an existing memory record, generating a new revision version.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>PATCH /api/v1/memories/:id</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X PATCH https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "content": "Updated compliance audit report status: Approved.",
+    "tags": ["compliance", "soc2", "approved"]
+  }'</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-delete-memory">
+        <div class="breadcrumb">API Reference / Core Memory Operations / Delete Memory</div>
+        <h1 class="page-title">Delete Memory</h1>
+        <p class="page-lead">Soft-delete a memory record or remove it from the active context assembly graph.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>DELETE /api/v1/memories/:id</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X DELETE https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-feedback">
+        <div class="breadcrumb">API Reference / Memory Management / Feedback</div>
+        <h1 class="page-title">Adaptive Feedback API</h1>
+        <p class="page-lead">Train the UnifiedScorer ranking engine with positive and negative retrieval feedback.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>POST /api/v1/feedback/positive</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/feedback/positive \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{ "memory_id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d", "query": "database preferences" }'</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-get-memory">
+        <div class="breadcrumb">API Reference / Memory Management / Get Memory</div>
+        <h1 class="page-title">Get Memory by ID</h1>
+        <p class="page-lead">Retrieve a single memory object by its unique UUID identifier.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>GET /api/v1/memories/:id</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-memory-history">
+        <div class="breadcrumb">API Reference / Memory Management / Memory History</div>
+        <h1 class="page-title">Memory Version History</h1>
+        <p class="page-lead">Inspect complete revision logs, timestamp diffs, and bitemporal valid_at history for a given memory.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>GET /api/v1/memories/:id/history</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d/history \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-submit-update">
+        <div class="breadcrumb">API Reference / Memory Management / Submit Update Memories</div>
+        <h1 class="page-title">Bulk Update Memories</h1>
+        <p class="page-lead">Bulk append or replace tags and metadata across multiple memory records in a single transactional operation.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>POST /api/v1/bulk/memories/tag</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{ "memory_ids": ["uuid-1...", "uuid-2..."], "add_tags": ["reviewed", "soc2"] }'</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-batch-delete">
+        <div class="breadcrumb">API Reference / Memory Management / Batch Delete Memories</div>
+        <h1 class="page-title">Batch Delete Memories</h1>
+        <p class="page-lead">Bulk delete memories matching specific tag criteria, category filters, or time boundaries.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>POST /api/v1/bulk/memories/delete</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/delete \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span> \
+  <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span> \
+  <span class="tok-prop">-d</span> <span class="tok-str">'{ "tags": ["deprecated", "temporary"] }'</span></pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-delete-memories">
+        <div class="breadcrumb">API Reference / Memory Management / Delete Memories</div>
+        <h1 class="page-title">Delete Memories</h1>
+        <p class="page-lead">Targeted multi-record soft deletion and namespace purge operations.</p>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span>DELETE /api/v1/memories</span>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X DELETE "https://api.piyapi.cloud/api/v1/memories?scope=temporary" \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- COMPLIANCE & EVENTS SPECIFICATIONS -->
+      <!-- =============================================================== -->
+      <!-- =============================================================== -->
+      <!-- ORGANIZATIONS, PROJECTS, COMPLIANCE & EVENTS                   -->
+      <!-- =============================================================== -->
+      <div class="page" id="page-organizations">
+        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Organizations</div>
+        <h1 class="page-title">Organizations API</h1>
+        <p class="page-lead">Manage multi-tenant organization boundaries, team access, and enterprise SSO SAML/OIDC configuration.</p>
+
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>POST /api/v1/admin/organizations</span>
+              <span class="terminal-badge">ENTERPRISE</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/admin/organizations \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_SUPER_ADMIN_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "name": "Acme Global Systems",
+    "slug": "acme-global",
+    "domain": "acme.com",
+    "tier": "enterprise"
+  }'</span></pre>
+        </div>
+
+        <p class="doc-subtitle">Response Schema (201 Created):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"organization"</span>: {
+    <span class="tok-prop">"id"</span>: <span class="tok-str">"org_9a8b7c6d5e4f"</span>,
+    <span class="tok-prop">"name"</span>: <span class="tok-str">"Acme Global Systems"</span>,
+    <span class="tok-prop">"slug"</span>: <span class="tok-str">"acme-global"</span>,
+    <span class="tok-prop">"tier"</span>: <span class="tok-str">"enterprise"</span>,
+    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-15T09:00:00.000Z"</span>
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-projects">
+        <div class="breadcrumb">API Reference / Organizations &amp; Projects / Projects</div>
+        <h1 class="page-title">Projects API</h1>
+        <p class="page-lead">Create and isolate memory graphs, API keys, and workspace resources across multiple projects.</p>
+
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>POST /api/v1/projects</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/projects \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "name": "Customer Support Copilot",
+    "description": "Production agent memory partition for enterprise support tickets"
+  }'</span></pre>
+        </div>
+
+        <p class="doc-subtitle">Response Schema (201 Created):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"project"</span>: {
+    <span class="tok-prop">"id"</span>: <span class="tok-str">"proj_1a2b3c4d5e"</span>,
+    <span class="tok-prop">"name"</span>: <span class="tok-str">"Customer Support Copilot"</span>,
+    <span class="tok-prop">"status"</span>: <span class="tok-str">"active"</span>,
+    <span class="tok-prop">"created_at"</span>: <span class="tok-str">"2026-08-15T09:30:00.000Z"</span>
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-create-export">
+        <div class="breadcrumb">API Reference / Memory Management / Create Memory Export</div>
+        <h1 class="page-title">Create Memory Export</h1>
+        <p class="page-lead">Initiate asynchronous GDPR Article 15 (Right of Access) compliance export archives for a user dataset.</p>
+
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>POST /api/v1/compliance/export</span>
+              <span class="terminal-badge">GDPR COMPLIANT</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X POST https://api.piyapi.cloud/api/v1/compliance/export \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span>   <span class="tok-prop">-H</span> <span class="tok-str">"Content-Type: application/json"</span>   <span class="tok-prop">-d</span> <span class="tok-str">'{
+    "user_id": "usr_9921",
+    "format": "json",
+    "include_metadata": true
+  }'</span></pre>
+        </div>
+
+        <p class="doc-subtitle">Response Schema (202 Accepted):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"export_id"</span>: <span class="tok-str">"exp_7f8a9b1c2d"</span>,
+  <span class="tok-prop">"user_id"</span>: <span class="tok-str">"usr_9921"</span>,
+  <span class="tok-prop">"status"</span>: <span class="tok-str">"pending"</span>,
+  <span class="tok-prop">"estimated_completion_sec"</span>: 15
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-get-export">
+        <div class="breadcrumb">API Reference / Memory Management / Get Memory Export</div>
+        <h1 class="page-title">Get Memory Export</h1>
+        <p class="page-lead">Poll the status of an ongoing export job and obtain secure download links for generated archives.</p>
+
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>GET /api/v1/compliance/export/:export_id</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X GET https://api.piyapi.cloud/api/v1/compliance/export/exp_7f8a9b1c2d \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+
+        <p class="doc-subtitle">Response Schema (200 OK):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"export_id"</span>: <span class="tok-str">"exp_7f8a9b1c2d"</span>,
+  <span class="tok-prop">"status"</span>: <span class="tok-str">"completed"</span>,
+  <span class="tok-prop">"download_url"</span>: <span class="tok-str">"https://exports.piyapi.cloud/archives/usr_9921_export_2026.zip?token=..."</span>,
+  <span class="tok-prop">"records_exported"</span>: 142,
+  <span class="tok-prop">"expires_at"</span>: <span class="tok-str">"2026-08-16T12:00:00.000Z"</span>
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-get-events">
+        <div class="breadcrumb">API Reference / Events / Get Events</div>
+        <h1 class="page-title">Get Events</h1>
+        <p class="page-lead">Retrieve chronological audit events for memory creations, updates, connector syncs, and webhook executions.</p>
+
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-header-left">
+              <span>GET /api/v1/events</span>
+            </div>
+            <button class="terminal-copy" onclick="copySnippet(this)">Copy</button>
+          </div>
+          <pre><span class="tok-cmd">curl -X GET "https://api.piyapi.cloud/api/v1/events?limit=5&amp;type=memory.created" \</span>
+  <span class="tok-prop">-H</span> <span class="tok-str">"Authorization: Bearer $PIYAPI_API_KEY"</span></pre>
+        </div>
+
+        <p class="doc-subtitle">Response Schema (200 OK):</p>
+        <div class="terminal-card">
+          <pre>{
+  <span class="tok-prop">"events"</span>: [
+    {
+      <span class="tok-prop">"id"</span>: <span class="tok-str">"evt_8192038"</span>,
+      <span class="tok-prop">"type"</span>: <span class="tok-str">"memory.created"</span>,
+      <span class="tok-prop">"timestamp"</span>: <span class="tok-str">"2026-08-15T10:14:22.100Z"</span>,
+      <span class="tok-prop">"actor_id"</span>: <span class="tok-str">"usr_9921"</span>,
+      <span class="tok-prop">"payload"</span>: {
+        <span class="tok-prop">"memory_id"</span>: <span class="tok-str">"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d"</span>,
+        <span class="tok-prop">"namespace"</span>: <span class="tok-str">"default"</span>
+      }
+    }
+  ]
+}</pre>
+        </div>
+      </div>
+
+    </div><!-- /#content -->
+
+    <!-- RIGHT TOC ("ON THIS PAGE") -->
+    <div id="toc">
+      <div class="toc-label">On this page</div>
+      <div id="toc-links">
+        <a class="toc-link active" onclick="showPage('overview'); scrollToSection('overview')">Negentro REST API</a>
+        <a class="toc-link" onclick="showPage('overview'); scrollToSection('quick-start-guide')">Quick Start Guide</a>
+        <a class="toc-link" onclick="showPage('overview'); scrollToSection('core-operations')">Core Operations</a>
+        <a class="toc-link" onclick="showPage('overview'); scrollToSection('api-categories')">API Categories</a>
+        <a class="toc-link" onclick="showPage('overview'); scrollToSection('authentication')">Authentication</a>
+        <a class="toc-link" onclick="showPage('overview'); scrollToSection('next-steps')">Next Steps</a>
+      </div>
+    </div>
+  </div><!-- /#main -->
+</div><!-- /#layout -->
+
+<footer class="global-footer">
+  <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
+    <div class="logo-icon" style="width: 24px; height: 24px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <div class="global-footer-links">
+    <a href="https://github.com/piyapi" target="_blank">GitHub</a>
+    <a href="#">X</a>
+    <a href="#">LinkedIn</a>
+    <a href="platform.html">Documentation</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="api_reference.html">API Reference</a>
+  </div>
+  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+</footer>
+
+<script>
+let currentPageId = 'overview';
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + pageId);
+  if (navEl) navEl.classList.add('active');
+
+  currentPageId = pageId;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToSection(id) {
+  if (id === 'overview') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copySnippet(btn) {
+  const card = btn.closest('.terminal-card');
+  const pre = card ? card.querySelector('pre') : null;
+  const text = pre ? pre.innerText : '';
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => btn.innerHTML = orig, 1500);
+  });
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    root.removeAttribute('data-theme');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function focusSearch() {
+  const q = prompt('Search API Reference endpoints and guides:');
+  if (q) {
+    const term = q.toLowerCase().trim();
+    if (term.includes('add') || term.includes('post') || term.includes('store')) {
+      showPage('add-memories');
+    } else if (term.includes('search')) {
+      showPage('search-memories');
+    } else if (term.includes('update') || term.includes('patch')) {
+      showPage('update-memory');
+    } else if (term.includes('del')) {
+      showPage('delete-memory');
+    } else if (term.includes('event')) {
+      showPage('get-events');
+    } else {
+      showPage('overview');
+    }
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    focusSearch();
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  const sb = document.getElementById('scroll-bar');
+  if (sb) sb.style.width = pct + '%';
+
+  if (currentPageId === 'overview') {
+    const sections = ['quick-start-guide', 'core-operations', 'api-categories', 'authentication', 'next-steps'];
+    const tocLinks = document.querySelectorAll('#toc-links .toc-link');
+    let activeIdx = 0;
+    sections.forEach((sId, i) => {
+      const el = document.getElementById(sId);
+      if (el && el.getBoundingClientRect().top < 140) {
+        activeIdx = i + 1;
+      }
+    });
+    tocLinks.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+  }
+});
+</script>
+</body>
+</html>

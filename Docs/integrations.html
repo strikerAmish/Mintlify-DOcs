@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Negentro Integrations Overview — Frameworks, SDKs &amp; Tools</title>
+  <meta name="description" content="Connect Negentro with agent frameworks, AI SDKs, voice platforms, developer tools, and infrastructure you already use.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-sidebar:       #ffffff;
+      --bg-panel:         #ffffff;
+      --bg-card:          #ffffff;
+      --bg-code:          #0f172a;
+      --bg-code-header:   #1e293b;
+      --bg-hover:         #f8fafc;
+      --bg-active:        rgba(124, 58, 237, 0.08);
+      --border:           #f1f5f9;
+      --border-card:      #e2e8f0;
+      --border-muted:     #cbd5e1;
+      --accent:           #7c3aed;
+      --accent-hover:     #6d28d9;
+      --accent-light:     #8b5cf6;
+      --accent-dim:       rgba(124, 58, 237, 0.08);
+      --accent-glow:      rgba(124, 58, 237, 0.2);
+      --text-heading:     #0f172a;
+      --text-main:        #334155;
+      --text-muted:       #64748b;
+      --text-faint:       #94a3b8;
+      --text-code:        #e2e8f0;
+      --green:            #10b981;
+      --yellow:           #f59e0b;
+      --red:              #ef4444;
+      --blue:             #3b82f6;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --sidebar-w:        260px;
+      --toc-w:            220px;
+      --topbar-h:         64px;
+    }
+
+    [data-theme="dark"] {
+      --bg:               #0c0c0f;
+      --bg-sidebar:       #0e0e12;
+      --bg-panel:         #131318;
+      --bg-card:          #131318;
+      --bg-code:          #0a0a0f;
+      --bg-code-header:   #121218;
+      --bg-hover:         #1a1a24;
+      --bg-active:        rgba(167, 139, 250, 0.15);
+      --border:           #1e1e2a;
+      --border-card:      #272733;
+      --border-muted:     #323242;
+      --accent:           #a78bfa;
+      --accent-hover:     #c4b5fd;
+      --accent-light:     #c4b5fd;
+      --accent-dim:       rgba(167, 139, 250, 0.15);
+      --accent-glow:      rgba(167, 139, 250, 0.25);
+      --text-heading:     #f8fafc;
+      --text-main:        #cbd5e1;
+      --text-muted:       #94a3b8;
+      --text-faint:       #64748b;
+      --text-code:        #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* Top Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: transparent;
+      z-index: 1000;
+    }
+    #scroll-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Topbar */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 900;
+      gap: 1.5rem;
+    }
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: relative;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    .topbar-nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .topbar-nav a:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .topbar-nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .topbar-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -13px;
+      left: 10%;
+      right: 10%;
+      height: 2.5px;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-box:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+    .search-kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 3px;
+      padding: 0.1rem 0.35rem;
+      color: var(--text-muted);
+    }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      background: var(--bg);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+    .btn-dashboard {
+      background: #5850ec;
+      color: #ffffff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.48rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn-dashboard:hover {
+      background: #4f46e5;
+      box-shadow: 0 3px 12px rgba(88, 80, 236, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    #layout {
+      display: flex;
+      margin-top: var(--topbar-h);
+      min-height: calc(100vh - var(--topbar-h));
+    }
+
+    /* Left Sidebar */
+    #sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--topbar-h);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem 3rem;
+      scrollbar-width: thin;
+      z-index: 800;
+    }
+    .sidebar-group {
+      margin-bottom: 1.75rem;
+    }
+    .sidebar-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.2rem 0.65rem 0.6rem;
+      text-transform: uppercase;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.48rem 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 450;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s, transform 0.08s;
+      margin-bottom: 2px;
+      position: relative;
+      text-decoration: none;
+    }
+    [data-theme="dark"] .sidebar-link { color: #94a3b8; }
+    .sidebar-link:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .sidebar-link.active {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.12);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .sidebar-link.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.18);
+    }
+    .sidebar-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .sidebar-link.needs-docs {
+      color: #ef4444 !important;
+      font-weight: 500;
+    }
+    .sidebar-link.needs-docs:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: #dc2626 !important;
+    }
+    .sidebar-link.needs-docs.active {
+      background: rgba(239, 68, 68, 0.12) !important;
+      color: #dc2626 !important;
+    }
+    .sidebar-badge-red {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      letter-spacing: 0.02em;
+    }
+
+    /* Main Content */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      max-width: calc(100vw - var(--sidebar-w));
+    }
+    #content {
+      flex: 1;
+      max-width: 840px;
+      padding: 2.5rem 3rem 6rem;
+      min-width: 0;
+    }
+
+    /* Right TOC */
+    #toc {
+      width: var(--toc-w);
+      flex-shrink: 0;
+      padding: 2.5rem 1.5rem 4rem 1rem;
+      position: sticky;
+      top: var(--topbar-h);
+      height: calc(100vh - var(--topbar-h));
+      overflow-y: auto;
+      border-left: 1px solid var(--border);
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .toc-link {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0.5rem;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      margin-bottom: 2px;
+      transition: color 0.12s, border-color 0.12s;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .toc-link:hover { color: var(--text-heading); }
+    .toc-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 550;
+      background: var(--accent-dim);
+    }
+
+    /* Page View States */
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.18s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography */
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+      font-weight: 450;
+    }
+    .page-title {
+      font-size: 2.35rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .page-lead {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .feature-list {
+      margin: 1.25rem 0 2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+    .doc-h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      margin: 2.75rem 0 1rem;
+      padding-top: 0.5rem;
+    }
+    .doc-h3 {
+      font-size: 1.05rem;
+      font-weight: 650;
+      color: var(--text-heading);
+      margin: 1.75rem 0 0.6rem;
+    }
+    .doc-p {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    /* Universal Integration Callout Card */
+    .universal-card {
+      background: #f5f3ff;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    [data-theme="dark"] .universal-card {
+      background: #171524;
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+    .universal-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .universal-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.25rem;
+    }
+    .universal-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Integrations Directory Controls */
+    .filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.25rem;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab {
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .filter-tab:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+    }
+    .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Search Integrations Bar */
+    .integration-search-wrap {
+      position: relative;
+      margin-bottom: 1.75rem;
+    }
+    .integration-search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-faint);
+    }
+    .integration-search-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 0.75rem 1rem 0.75rem 2.6rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--text-heading);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .integration-search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    /* Integration Cards Grid */
+    .cards-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .int-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+      text-decoration: none;
+      position: relative;
+    }
+    .int-card:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    .int-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .int-icon-wrap {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-theme="dark"] .int-icon-wrap {
+      background: rgba(167, 139, 250, 0.15);
+      color: #c4b5fd;
+    }
+    .int-badge {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      font-weight: 500;
+    }
+    .int-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.4rem;
+    }
+    .int-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.15rem;
+      flex: 1;
+    }
+    .int-arrow {
+      font-size: 1.05rem;
+      color: var(--text-faint);
+      align-self: flex-end;
+      transition: color 0.12s, transform 0.12s;
+    }
+    .int-card:hover .int-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* Dashed Callout Banner */
+    .dashed-banner {
+      border: 1px dashed var(--border-muted);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+      background: var(--bg);
+    }
+    .dashed-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+    }
+    .dashed-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .dashed-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.86rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dashed-link:hover { text-decoration: underline; }
+
+    /* Action Buttons */
+    .doc-actions-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .doc-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: 6px;
+      padding: 0.48rem 0.95rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .doc-action-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+
+    /* Split Prev/Next Card */
+    .prev-next-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      background: var(--bg-card);
+    }
+    .prev-card {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .prev-card:hover, .next-card-split:hover { background: var(--bg-hover); }
+    .next-card-split {
+      padding: 1.25rem 1.5rem;
+      text-align: right;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .split-label {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .split-title {
+      font-size: 0.92rem;
+      font-weight: 650;
+      color: var(--text-heading);
+    }
+
+    /* Red Notice Box for Missing Content */
+    .red-notice {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .red-notice-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ef4444;
+      margin-bottom: 0.4rem;
+    }
+    .red-notice-desc {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Terminal Code Cards */
+    .terminal-card {
+      background: var(--bg-code);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 1.25rem 0;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: var(--bg-code-header);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .terminal-dots { display: flex; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #475569; }
+    .terminal-copy {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #94a3b8;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      padding: 0.25rem 0.65rem;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .terminal-copy:hover { color: #ffffff; border-color: rgba(255,255,255,0.3); }
+    .terminal-card pre {
+      padding: 1.15rem 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--text-code);
+      overflow-x: auto;
+    }
+    .tok-kw { color: #c4b5fd; font-weight: 600; }
+    .tok-str { color: #86efac; }
+    .tok-cmd { color: #f8fafc; font-weight: 500; }
+    .tok-prop { color: #93c5fd; }
+    .tok-cmt { color: #64748b; font-style: italic; }
+
+    /* Global Footer */
+    .global-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2.5rem;
+      margin-left: var(--sidebar-w);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .global-footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .global-footer-links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .global-footer-links a:hover { color: var(--accent); }
+    .global-footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
+      #sidebar.open { transform: translateX(0); }
+      #main { margin-left: 0; max-width: 100%; }
+      #content { padding: 1.75rem 1.25rem 4rem; }
+      .topbar-nav { display: none; }
+      .cards-grid-2 { grid-template-columns: 1fr; }
+      .prev-next-split { grid-template-columns: 1fr; }
+      .prev-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .global-footer { margin-left: 0; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="topbar">
+  <a href="platform.html" class="topbar-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <nav class="topbar-nav">
+    <a href="get_started.html">Get Started</a>
+    <a href="platform.html">Platform</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="integrations.html" class="active">Integrations</a>
+    <a href="agent_plugins.html">Agent Plugins</a>
+    <a href="cookbooks.html">Cookbooks</a>
+    <a href="api_reference.html">API Reference</a>
+    <a href="release_notes.html">Release Notes</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="search-box" onclick="focusSearch()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+      <span class="search-kbd">⌘K</span>
+    </div>
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <a class="icon-btn" href="https://github.com/piyapi" target="_blank" title="GitHub Repository">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+    <button class="btn-dashboard" onclick="window.open('https://api.piyapi.cloud/dashboard','_blank')">Dashboard</button>
+  </div>
+</header>
+
+<div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+<div id="layout">
+  <!-- LEFT SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-link active" id="nav-overview" onclick="showPage('overview')">Overview</div>
+
+    <!-- AGENT FRAMEWORKS -->
+    <div class="sidebar-group" style="margin-top: 1.25rem;">
+      <div class="sidebar-group-label">AGENT FRAMEWORKS</div>
+      <div class="sidebar-link" id="nav-langchain" onclick="showPage('langchain')">LangChain</div>
+      <div class="sidebar-link" id="nav-langgraph" onclick="showPage(\'langgraph\')">LangGraph</div>
+      <div class="sidebar-link" id="nav-llamaindex" onclick="showPage(\'llamaindex\')">LlamaIndex</div>
+      <div class="sidebar-link" id="nav-crewai" onclick="showPage(\'crewai\')">CrewAI</div>
+      <div class="sidebar-link" id="nav-autogen" onclick="showPage(\'autogen\')">AutoGen</div>
+      <div class="sidebar-link" id="nav-mastra" onclick="showPage(\'mastra\')">Mastra</div>
+            <div class="sidebar-link" id="nav-uxpilot" onclick="showPage(\'uxpilot\')">UX Pilot AI Agents SDK</div>
+      <div class="sidebar-link" id="nav-google-adk" onclick="showPage(\'google-adk\')">Google ADK</div>
+      <div class="sidebar-link" id="nav-vercel-ai" onclick="showPage(\'vercel-ai\')">Vercel AI SDK</div>
+    </div>
+
+    <!-- VOICE & REAL-TIME -->
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">VOICE &amp; REAL-TIME</div>
+      <div class="sidebar-link" id="nav-livekit" onclick="showPage(\'livekit\')">LiveKit</div>
+      <div class="sidebar-link" id="nav-pipecat" onclick="showPage(\'pipecat\')">Pipecat</div>
+      <div class="sidebar-link" id="nav-elevenlabs" onclick="showPage(\'elevenlabs\')">ElevenLabs</div>
+    </div>
+
+    <!-- DEVELOPER TOOLS -->
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">DEVELOPER TOOLS</div>
+      <div class="sidebar-link" id="nav-mcp" onclick="showPage('mcp')">MCP</div>
+      <div class="sidebar-link" id="nav-rest-api" onclick="showPage('rest-api')">REST API</div>
+      <div class="sidebar-link" id="nav-sdks" onclick="showPage('sdks')">SDKs</div>
+      <div class="sidebar-link" id="nav-webhooks" onclick="showPage('webhooks')">Webhooks</div>
+    </div>
+
+    <!-- INFRASTRUCTURE -->
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">INFRASTRUCTURE</div>
+      <div class="sidebar-link" id="nav-postgresql" onclick="showPage('postgresql')">PostgreSQL</div>
+      <div class="sidebar-link" id="nav-redis" onclick="showPage('redis')">Redis</div>
+      <div class="sidebar-link" id="nav-vectordbs" onclick="showPage('vectordbs')">Vector Databases</div>
+      <div class="sidebar-link" id="nav-cloud-providers" onclick="showPage(\'cloud-providers\')">Cloud Providers</div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEW -->
+  <div id="main">
+    <div id="content">
+
+      <!-- =============================================================== -->
+      <!-- OVERVIEW PAGE (EXACT FIGMA MATCH)                               -->
+      <!-- =============================================================== -->
+      <div class="page active" id="page-overview">
+        <div class="breadcrumb">Integrations / Overview</div>
+        <h1 class="page-title">Integrations Overview</h1>
+        <div class="page-lead" style="font-weight: 500; color: var(--text-heading); font-size: 1.05rem; margin-bottom: 0.5rem;">
+          Connect Negentro with the frameworks, agent platforms, developer tools, and infrastructure you already use.
+        </div>
+        <p class="page-lead">
+          Negentro integrates with the tools used to build modern AI applications, allowing persistent memory and context to become part of existing workflows.
+        </p>
+
+        <ul class="feature-list">
+          <li>Persistent context across frameworks</li>
+          <li>Consistent memory across AI interactions</li>
+          <li>Context-aware agent workflows</li>
+          <li>Framework-specific development patterns</li>
+          <li>Simple integration through SDKs and APIs</li>
+        </ul>
+
+        <h2 class="doc-h2" id="benefits">Benefits</h2>
+        <ul class="feature-list">
+          <li><strong>Persistent memory</strong> across supported frameworks</li>
+          <li><strong>Context retrieval</strong> inside existing agent workflows</li>
+          <li>Consistent <strong>user and session context</strong></li>
+          <li><strong>Framework-agnostic</strong> memory infrastructure</li>
+          <li>Simple <strong>SDK and API-based</strong> integration</li>
+        </ul>
+
+        <!-- Universal Integration Banner -->
+        <div class="universal-card">
+          <svg class="universal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          <div>
+            <div class="universal-title">Universal integration</div>
+            <div class="universal-body">Use Negentro through a standardized API layer when your workflow does not require a framework-specific integration.</div>
+          </div>
+        </div>
+
+        <!-- Integrations Directory Section -->
+        <h2 class="doc-h2" id="integrations-directory">Integrations</h2>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="setFilter('all', this)">All</button>
+          <button class="filter-tab" onclick="setFilter('agent-framework', this)">Agent Frameworks</button>
+          <button class="filter-tab" onclick="setFilter('ai-sdk', this)">AI SDKs</button>
+          <button class="filter-tab" onclick="setFilter('voice', this)">Voice</button>
+          <button class="filter-tab" onclick="setFilter('dev-tool', this)">Developer Tools</button>
+          <button class="filter-tab" onclick="setFilter('infrastructure', this)">Infrastructure</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="integration-search-wrap">
+          <svg class="integration-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="integration-search-input" id="int-search" placeholder="Search integrations..." oninput="filterIntegrations()">
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid-2" id="int-cards-grid">
+          <!-- 1. AgentOps -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">AgentOps</div>
+            <div class="int-desc">Monitor agent workflows while retaining relevant memory and context across interactions.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 2. Camel AI -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">Camel AI</div>
+            <div class="int-desc">Connect persistent context to multi-agent workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 3. LangChain -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('langchain')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">LangChain</div>
+            <div class="int-desc">Add persistent memory and context to LangChain-based applications.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 4. LlamaIndex -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('llamaindex')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">LlamaIndex</div>
+            <div class="int-desc">Connect persistent memory with retrieval and data workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 5. AutoGen -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('autogen')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">AutoGen</div>
+            <div class="int-desc">Build agent workflows that can retain context across interactions.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 6. CrewAI -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('crewai')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">CrewAI</div>
+            <div class="int-desc">Give multi-agent workflows persistent context.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 7. LangGraph -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('langgraph')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">LangGraph</div>
+            <div class="int-desc">Connect persistent memory to LangGraph workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 8. Vercel AI SDK -->
+          <div class="int-card" data-category="ai-sdk" onclick="showPage('vercel-ai')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 19.78h20L12 2z"/></svg></div>
+              <span class="int-badge">AI SDK</span>
+            </div>
+            <div class="int-title">Vercel AI SDK</div>
+            <div class="int-desc">Use Negentro alongside the Vercel AI SDK.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 9. LangChain Tools -->
+          <div class="int-card" data-category="dev-tool" onclick="showPage('langchain')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <span class="int-badge">Developer Tools</span>
+            </div>
+            <div class="int-title">LangChain Tools</div>
+            <div class="int-desc">Connect memory to tool-driven agent workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 10. Dify -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">Dify</div>
+            <div class="int-desc">Add long-term context to applications built with Dify.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 11. LiveKit -->
+          <div class="int-card" data-category="voice" onclick="showPage('livekit')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+              <span class="int-badge">Voice</span>
+            </div>
+            <div class="int-title">LiveKit</div>
+            <div class="int-desc">Connect persistent context to real-time voice workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 12. ElevenLabs -->
+          <div class="int-card" data-category="voice" onclick="showPage('elevenlabs')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10v4"/><path d="M6 6v12"/><path d="M10 3v18"/><path d="M14 8v8"/><path d="M18 5v14"/><path d="M22 10v4"/></svg></div>
+              <span class="int-badge">Voice</span>
+            </div>
+            <div class="int-title">ElevenLabs</div>
+            <div class="int-desc">Use persistent memory in conversational voice applications.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 13. Pipecat -->
+          <div class="int-card" data-category="voice" onclick="showPage('pipecat')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+              <span class="int-badge">Voice</span>
+            </div>
+            <div class="int-title">Pipecat</div>
+            <div class="int-desc">Build real-time agent workflows with memory.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 14. Agno -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">Agno</div>
+            <div class="int-desc">Connect persistent context to Agno-based workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 15. UX Pilot AI Agents SDK -->
+          <div class="int-card" data-category="ai-sdk" onclick="showPage('uxpilot')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <span class="int-badge">AI SDK</span>
+            </div>
+            <div class="int-title">UX Pilot AI Agents SDK</div>
+            <div class="int-desc">Add memory and context to agent workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 16. Google ADK -->
+          <div class="int-card" data-category="ai-sdk" onclick="showPage('google-adk')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V13h-2v3.93a8 8 0 1 1 2 0z"/></svg></div>
+              <span class="int-badge">AI SDK</span>
+            </div>
+            <div class="int-title">Google ADK</div>
+            <div class="int-desc">Connect Negentro memory with Google agent development workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 17. AWS Bedrock -->
+          <div class="int-card" data-category="infrastructure" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+              <span class="int-badge">Infrastructure</span>
+            </div>
+            <div class="int-title">AWS Bedrock</div>
+            <div class="int-desc">Use Negentro alongside AWS model and agent infrastructure.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+
+          <!-- 18. ChatDev -->
+          <div class="int-card" data-category="agent-framework" onclick="showPage('overview')">
+            <div class="int-card-top">
+              <div class="int-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <span class="int-badge">Agent Framework</span>
+            </div>
+            <div class="int-title">ChatDev</div>
+            <div class="int-desc">Add persistent context to collaborative AI workflows.</div>
+            <div class="int-arrow">&rarr;</div>
+          </div>
+        </div>
+
+        <!-- Dashed Bottom Banner -->
+        <div class="dashed-banner">
+          <div class="dashed-title">Don't see your integration?</div>
+          <div class="dashed-desc">Connect Negentro through the API or build an integration for your workflow.</div>
+          <a class="dashed-link" href="#" onclick="showPage('rest-api'); return false;">Explore the API &rarr;</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="doc-actions-row">
+          <button class="doc-action-btn" onclick="alert('Suggest edits feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Suggest edits
+          </button>
+          <button class="doc-action-btn" onclick="alert('Raise issue feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Raise issue
+          </button>
+        </div>
+
+        <!-- Split Prev/Next -->
+        <div class="prev-next-split">
+          <div class="prev-card" onclick="window.location.href='opensource.html'">
+            <div class="split-label">&larr; Previous</div>
+            <div class="split-title">Open Source Overview</div>
+          </div>
+          <div class="next-card-split" onclick="showPage('langchain')">
+            <div class="split-label">Next &rarr;</div>
+            <div class="split-title">LangChain Integration &rarr;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- LANGCHAIN INTEGRATION PAGE                                      -->
+      <!-- =============================================================== -->
+      <!-- =============================================================== -->
+      <!-- LANGCHAIN INTEGRATION PAGE                                      -->
+      <!-- =============================================================== -->
+      <div class="page" id="page-langchain">
+        <div class="breadcrumb">Integrations / Agent Frameworks / LangChain</div>
+        <h1 class="page-title">LangChain Integration</h1>
+        <div class="page-lead">Official LangChain adapter (<code>packages/langchain-adapter</code>) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents.</div>
+
+        <h2 class="doc-h2" id="lc-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install packages/langchain-adapter</span>
+<span class="tok-cmt"># Or install client memory library</span>
+<span class="tok-cmd">pip install piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="lc-code">Code Example (from User Guide §5.3)</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi_langchain</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIMemoryRetriever</span>
+
+<span class="tok-cmt"># Initialize memory retriever with API key and namespace scope</span>
+<span class="tok-prop">retriever</span> = <span class="tok-cmd">PiyAPIMemoryRetriever</span>(
+    <span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>,
+    <span class="tok-prop">user_id</span>=<span class="tok-str">"dev_lead"</span>,
+    <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>
+)
+
+<span class="tok-cmt"># Retrieve relevant context documents directly for LangChain chains and agents</span>
+<span class="tok-prop">docs</span> = <span class="tok-prop">retriever</span>.<span class="tok-cmd">get_relevant_documents</span>(<span class="tok-str">"user database preferences"</span>)
+<span class="tok-kw">for</span> <span class="tok-prop">doc</span> <span class="tok-kw">in</span> <span class="tok-prop">docs</span>:
+    <span class="tok-cmd">print</span>(<span class="tok-prop">doc</span>.<span class="tok-prop">page_content</span>)</pre>
+        </div>
+
+        <div style="margin-top: 1.5rem; font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+          <strong>Supported Capabilities:</strong> Bitemporal validity filtering (<code>valid_at</code>), 11-signal UnifiedScorer reranking, and scoped namespace isolation across user sessions.
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- =============================================================== -->
+      <!-- FRAMEWORK & TOOL INTEGRATIONS (AUTHENTIC IMPLEMENTATIONS)       -->
+      <!-- =============================================================== -->
+      <div class="page" id="page-langgraph">
+        <div class="breadcrumb">Integrations / Agent Frameworks / LangGraph</div>
+        <h1 class="page-title">LangGraph Integration</h1>
+        <div class="page-lead">Connect cyclic state machines and multi-actor graphs with bitemporal memory and checkpoint persistence.</div>
+
+        <h2 class="doc-h2" id="lg-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install langgraph langchain-openai piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="lg-code">StateGraph Memory Node Example</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">typing</span> <span class="tok-kw">import</span> <span class="tok-prop">TypedDict</span>, <span class="tok-prop">List</span>
+<span class="tok-kw">from</span> <span class="tok-prop">langgraph.graph</span> <span class="tok-kw">import</span> <span class="tok-cmd">StateGraph</span>, <span class="tok-prop">END</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-cmt"># Initialize PiyAPI client</span>
+<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-kw">class</span> <span class="tok-cmd">AgentState</span>(<span class="tok-prop">TypedDict</span>):
+    <span class="tok-prop">messages</span>: <span class="tok-prop">List</span>[<span class="tok-prop">dict</span>]
+    <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>
+    <span class="tok-prop">retrieved_context</span>: <span class="tok-prop">str</span>
+
+<span class="tok-kw">def</span> <span class="tok-cmd">recall_memory_node</span>(<span class="tok-prop">state</span>: <span class="tok-cmd">AgentState</span>):
+    <span class="tok-cmt"># Query bitemporal memory using UnifiedScorer (11 signals)</span>
+    <span class="tok-prop">query</span> = <span class="tok-prop">state</span>[<span class="tok-str">"messages"</span>][-1][<span class="tok-str">"content"</span>]
+    <span class="tok-prop">results</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
+        <span class="tok-prop">query</span>=<span class="tok-prop">query</span>,
+        <span class="tok-prop">user_id</span>=<span class="tok-prop">state</span>[<span class="tok-str">"user_id"</span>],
+        <span class="tok-prop">limit</span>=5
+    )
+    <span class="tok-prop">context</span> = <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">r</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">r</span> <span class="tok-kw">in</span> <span class="tok-prop">results</span>])
+    <span class="tok-kw">return</span> {<span class="tok-str">"retrieved_context"</span>: <span class="tok-prop">context</span>}
+
+<span class="tok-cmt"># Construct LangGraph workflow</span>
+<span class="tok-prop">workflow</span> = <span class="tok-cmd">StateGraph</span>(<span class="tok-cmd">AgentState</span>)
+<span class="tok-prop">workflow</span>.<span class="tok-cmd">add_node</span>(<span class="tok-str">"recall"</span>, <span class="tok-prop">recall_memory_node</span>)
+<span class="tok-prop">workflow</span>.<span class="tok-cmd">set_entry_point</span>(<span class="tok-str">"recall"</span>)
+<span class="tok-prop">workflow</span>.<span class="tok-cmd">add_edge</span>(<span class="tok-str">"recall"</span>, <span class="tok-prop">END</span>)
+<span class="tok-prop">app</span> = <span class="tok-prop">workflow</span>.<span class="tok-cmd">compile</span>()</pre>
+        </div>
+        <div style="margin-top: 1.5rem; font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+          <strong>Key Advantages:</strong> Cyclic graphs retain user preferences, historical constraints, and decision logs across infinite conversational turns without bloating the active prompt window.
+        </div>
+      </div>
+
+      <div class="page" id="page-llamaindex">
+        <div class="breadcrumb">Integrations / Agent Frameworks / LlamaIndex</div>
+        <h1 class="page-title">LlamaIndex Integration</h1>
+        <div class="page-lead">Connect PiyAPI hybrid vector retrieval and knowledge graph indices directly into LlamaIndex query engines.</div>
+
+        <h2 class="doc-h2" id="llama-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install llama-index piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="llama-code">Hybrid Retriever Setup</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">llama_index.core.retrievers</span> <span class="tok-kw">import</span> <span class="tok-cmd">BaseRetriever</span>
+<span class="tok-kw">from</span> <span class="tok-prop">llama_index.core.schema</span> <span class="tok-kw">import</span> <span class="tok-cmd">NodeWithScore</span>, <span class="tok-cmd">TextNode</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-kw">class</span> <span class="tok-cmd">PiyAPILlamaRetriever</span>(<span class="tok-cmd">BaseRetriever</span>):
+    <span class="tok-kw">def</span> <span class="tok-cmd">__init__</span>(<span class="tok-prop">self</span>, <span class="tok-prop">api_key</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
+        <span class="tok-prop">self</span>.<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-prop">api_key</span>)
+        <span class="tok-prop">self</span>.<span class="tok-prop">user_id</span> = <span class="tok-prop">user_id</span>
+        <span class="tok-cmd">super</span>().<span class="tok-cmd">__init__</span>()
+
+    <span class="tok-kw">def</span> <span class="tok-cmd">_retrieve</span>(<span class="tok-prop">self</span>, <span class="tok-prop">query_bundle</span>):
+        <span class="tok-prop">memories</span> = <span class="tok-prop">self</span>.<span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
+            <span class="tok-prop">query</span>=<span class="tok-prop">query_bundle</span>.<span class="tok-prop">query_str</span>,
+            <span class="tok-prop">user_id</span>=<span class="tok-prop">self</span>.<span class="tok-prop">user_id</span>,
+            <span class="tok-prop">limit</span>=5
+        )
+        <span class="tok-kw">return</span> [
+            <span class="tok-cmd">NodeWithScore</span>(
+                <span class="tok-prop">node</span>=<span class="tok-cmd">TextNode</span>(<span class="tok-prop">text</span>=<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>]),
+                <span class="tok-prop">score</span>=<span class="tok-prop">m</span>.<span class="tok-cmd">get</span>(<span class="tok-str">"score"</span>, 1.0)
+            ) <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">memories</span>
+        ]</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-crewai">
+        <div class="breadcrumb">Integrations / Agent Frameworks / CrewAI</div>
+        <h1 class="page-title">CrewAI Integration</h1>
+        <div class="page-lead">Provide multi-agent crews with a unified shared context graph (PiyGraph) and tool-level memory synchronization.</div>
+
+        <h2 class="doc-h2" id="crew-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install crewai piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="crew-code">Shared Context Tool Example (User Guide §7.3)</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">crewai</span> <span class="tok-kw">import</span> <span class="tok-cmd">Agent</span>, <span class="tok-cmd">Crew</span>, <span class="tok-cmd">Task</span>
+<span class="tok-kw">from</span> <span class="tok-prop">crewai.tools</span> <span class="tok-kw">import</span> <span class="tok-cmd">tool</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-prop">@tool</span>(<span class="tok-str">"Query Shared Team Knowledge"</span>)
+<span class="tok-kw">def</span> <span class="tok-cmd">search_team_memory</span>(<span class="tok-prop">query</span>: <span class="tok-prop">str</span>) -> <span class="tok-prop">str</span>:
+    <span class="tok-cmt"># Searches the shared PiyGraph knowledge graph for historical architectural facts</span>
+    <span class="tok-prop">res</span> = <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-prop">query</span>, <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>, <span class="tok-prop">limit</span>=3)
+    <span class="tok-kw">return</span> <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">res</span>])
+
+<span class="tok-prop">researcher</span> = <span class="tok-cmd">Agent</span>(
+    <span class="tok-prop">role</span>=<span class="tok-str">'Senior Systems Architect'</span>,
+    <span class="tok-prop">goal</span>=<span class="tok-str">'Design resilient microservices adhering to recorded enterprise guidelines'</span>,
+    <span class="tok-prop">tools</span>=[<span class="tok-prop">search_team_memory</span>],
+    <span class="tok-prop">verbose</span>=<span class="tok-kw">True</span>
+)</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-autogen">
+        <div class="breadcrumb">Integrations / Agent Frameworks / AutoGen</div>
+        <h1 class="page-title">AutoGen Integration</h1>
+        <div class="page-lead">Retain cross-turn conversational state, mined facts, and user preferences in Microsoft AutoGen multi-agent swarms.</div>
+
+        <h2 class="doc-h2" id="ag-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install autogen-agentchat piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="ag-code">ConversableAgent Memory Hook</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">autogen</span> <span class="tok-kw">import</span> <span class="tok-cmd">ConversableAgent</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-kw">def</span> <span class="tok-cmd">sync_turn_to_memory</span>(<span class="tok-prop">recipient</span>, <span class="tok-prop">messages</span>, <span class="tok-prop">sender</span>, <span class="tok-prop">config</span>):
+    <span class="tok-cmt"># Automatically extract facts and persist to PiyAPI bitemporal storage</span>
+    <span class="tok-kw">if</span> <span class="tok-prop">messages</span>:
+        <span class="tok-prop">last_msg</span> = <span class="tok-prop">messages</span>[-1][<span class="tok-str">"content"</span>]
+        <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>(
+            <span class="tok-prop">content</span>=<span class="tok-prop">last_msg</span>,
+            <span class="tok-prop">user_id</span>=<span class="tok-str">"autogen_session_01"</span>,
+            <span class="tok-prop">tags</span>=[<span class="tok-str">"autogen"</span>, <span class="tok-str">"session-turn"</span>]
+        )
+    <span class="tok-kw">return</span> <span class="tok-kw">False</span>, <span class="tok-kw">None</span>
+
+<span class="tok-prop">agent</span> = <span class="tok-cmd">ConversableAgent</span>(
+    <span class="tok-prop">name</span>=<span class="tok-str">"AssistantWithMemory"</span>,
+    <span class="tok-prop">llm_config</span>={<span class="tok-str">"model"</span>: <span class="tok-str">"gpt-4o"</span>}
+)
+<span class="tok-prop">agent</span>.<span class="tok-cmd">register_hook</span>(<span class="tok-prop">hookable_method</span>=<span class="tok-str">"process_message_before_send"</span>, <span class="tok-prop">hook</span>=<span class="tok-prop">sync_turn_to_memory</span>)</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-mastra">
+        <div class="breadcrumb">Integrations / Agent Frameworks / Mastra</div>
+        <h1 class="page-title">Mastra Integration</h1>
+        <div class="page-lead">Deploy production TypeScript agents with native Mastra Agent workflows and @piyapi/sdk memory storage.</div>
+
+        <h2 class="doc-h2" id="mastra-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">npm install @mastra/core @piyapi/sdk</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="mastra-code">TypeScript Agent Setup</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">Agent</span> } <span class="tok-kw">from</span> <span class="tok-str">'@mastra/core'</span>;
+<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
+
+<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
+
+<span class="tok-kw">export const</span> <span class="tok-prop">supportAgent</span> = <span class="tok-kw">new</span> <span class="tok-cmd">Agent</span>({
+  <span class="tok-prop">name</span>: <span class="tok-str">'CustomerSuccessAgent'</span>,
+  <span class="tok-prop">instructions</span>: <span class="tok-str">'You assist enterprise customers by recalling past deployment tickets and SLAs.'</span>,
+  <span class="tok-prop">model</span>: { <span class="tok-prop">provider</span>: <span class="tok-str">'OPEN_AI'</span>, <span class="tok-prop">name</span>: <span class="tok-str">'gpt-4o'</span> },
+  <span class="tok-prop">tools</span>: {
+    <span class="tok-prop">fetchContext</span>: {
+      <span class="tok-prop">description</span>: <span class="tok-str">'Recall historical customer facts'</span>,
+      <span class="tok-prop">execute</span>: <span class="tok-kw">async</span> ({ <span class="tok-prop">userId</span>, <span class="tok-prop">query</span> }) => {
+        <span class="tok-kw">return await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>({ <span class="tok-prop">query</span>, <span class="tok-prop">userId</span> });
+      }
+    }
+  }
+});</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-uxpilot">
+        <div class="breadcrumb">Integrations / AI SDKs / UX Pilot AI Agents SDK</div>
+        <h1 class="page-title">UX Pilot AI Agents SDK</h1>
+        <div class="page-lead">Synchronize dynamic UI interactions, design decisions, and telemetry with persistent bitemporal user memory.</div>
+
+        <h2 class="doc-h2" id="ux-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">npm install @uxpilot/agent-sdk @piyapi/sdk</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="ux-code">UI Interaction Memory Hook</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">UXPilotAgent</span> } <span class="tok-kw">from</span> <span class="tok-str">'@uxpilot/agent-sdk'</span>;
+<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
+
+<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
+<span class="tok-kw">const</span> <span class="tok-prop">uxAgent</span> = <span class="tok-kw">new</span> <span class="tok-cmd">UXPilotAgent</span>({ <span class="tok-prop">appId</span>: <span class="tok-str">'dashboard_v2'</span> });
+
+<span class="tok-prop">uxAgent</span>.<span class="tok-cmd">onAction</span>(<span class="tok-kw">async</span> (<span class="tok-prop">action</span>) => {
+  <span class="tok-kw">if</span> (<span class="tok-prop">action</span>.<span class="tok-prop">type</span> === <span class="tok-str">'user_preference_changed'</span>) {
+    <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>({
+      <span class="tok-prop">userId</span>: <span class="tok-prop">action</span>.<span class="tok-prop">userId</span>,
+      <span class="tok-prop">content</span>: <span class="tok-str">`User selected layout: ${action.payload.theme} with compact sidebar.`</span>,
+      <span class="tok-prop">tags</span>: [<span class="tok-str">'ui-preference'</span>, <span class="tok-str">'uxpilot'</span>]
+    });
+  }
+});</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-google-adk">
+        <div class="breadcrumb">Integrations / AI SDKs / Google ADK</div>
+        <h1 class="page-title">Google ADK Integration</h1>
+        <div class="page-lead">Connect Google Agent Development Kit and Gemini models with long-term memory and knowledge graph synchronization.</div>
+
+        <h2 class="doc-h2" id="gadk-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install google-adk piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="gadk-code">Gemini Agent Memory Tool</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">google.genai</span> <span class="tok-kw">import</span> <span class="tok-cmd">types</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-kw">def</span> <span class="tok-cmd">recall_user_facts</span>(<span class="tok-prop">query</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>) -> <span class="tok-prop">str</span>:
+    <span class="tok-cmt"># Searches user memories for personal preferences, prior tickets, and project constraints</span>
+    <span class="tok-prop">hits</span> = <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-prop">query</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">user_id</span>, <span class="tok-prop">limit</span>=3)
+    <span class="tok-kw">return</span> <span class="tok-str">"\n"</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">h</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">h</span> <span class="tok-kw">in</span> <span class="tok-prop">hits</span>])</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-vercel-ai">
+        <div class="breadcrumb">Integrations / AI SDKs / Vercel AI SDK</div>
+        <h1 class="page-title">Vercel AI SDK Integration</h1>
+        <div class="page-lead">Stream generative responses while capturing and recalling user memory in real-time Next.js and Node.js applications.</div>
+
+        <h2 class="doc-h2" id="vai-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">npm install ai @ai-sdk/openai @piyapi/sdk</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="vai-code">Next.js Route Handler with Auto-Persistence</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">import</span> { <span class="tok-cmd">streamText</span> } <span class="tok-kw">from</span> <span class="tok-str">'ai'</span>;
+<span class="tok-kw">import</span> { <span class="tok-cmd">openai</span> } <span class="tok-kw">from</span> <span class="tok-str">'@ai-sdk/openai'</span>;
+<span class="tok-kw">import</span> { <span class="tok-cmd">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
+
+<span class="tok-kw">const</span> <span class="tok-prop">piyapi</span> = <span class="tok-kw">new</span> <span class="tok-cmd">PiyAPIClient</span>({ <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> });
+
+<span class="tok-kw">export async function</span> <span class="tok-cmd">POST</span>(<span class="tok-prop">req</span>: <span class="tok-cmd">Request</span>) {
+  <span class="tok-kw">const</span> { <span class="tok-prop">messages</span>, <span class="tok-prop">userId</span> } = <span class="tok-kw">await</span> <span class="tok-prop">req</span>.<span class="tok-cmd">json</span>();
+  <span class="tok-kw">const</span> <span class="tok-prop">lastMessage</span> = <span class="tok-prop">messages</span>[<span class="tok-prop">messages</span>.<span class="tok-prop">length</span> - 1].<span class="tok-prop">content</span>;
+
+  <span class="tok-cmt">// 1. Retrieve persistent user context</span>
+  <span class="tok-kw">const</span> <span class="tok-prop">memories</span> = <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>({ <span class="tok-prop">query</span>: <span class="tok-prop">lastMessage</span>, <span class="tok-prop">userId</span>, <span class="tok-prop">limit</span>: 3 });
+  <span class="tok-kw">const</span> <span class="tok-prop">systemContext</span> = <span class="tok-prop">memories</span>.<span class="tok-cmd">map</span>(<span class="tok-prop">m</span> => <span class="tok-prop">m</span>.<span class="tok-prop">content</span>).<span class="tok-cmd">join</span>(<span class="tok-str">'\n'</span>);
+
+  <span class="tok-cmt">// 2. Stream response with context</span>
+  <span class="tok-kw">return</span> <span class="tok-cmd">streamText</span>({
+    <span class="tok-prop">model</span>: <span class="tok-cmd">openai</span>(<span class="tok-str">'gpt-4o'</span>),
+    <span class="tok-prop">system</span>: <span class="tok-str">`User Profile Context:\n${systemContext}`</span>,
+    <span class="tok-prop">messages</span>,
+    <span class="tok-prop">onFinish</span>: <span class="tok-kw">async</span> ({ <span class="tok-prop">text</span> }) => {
+      <span class="tok-cmt">// Auto-extract and persist learnings</span>
+      <span class="tok-kw">await</span> <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>({ <span class="tok-prop">content</span>: <span class="tok-str">`Q: ${lastMessage} | A: ${text}`</span>, <span class="tok-prop">userId</span> });
+    }
+  }).<span class="tok-cmd">toDataStreamResponse</span>();
+}</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-livekit">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / LiveKit</div>
+        <h1 class="page-title">LiveKit Integration</h1>
+        <div class="page-lead">Real-time speech-to-speech agent memory synchronization with sub-100ms context injection for conversational voice.</div>
+
+        <h2 class="doc-h2" id="lk-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install livekit-agents livekit-plugins-openai piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="lk-code">Voice Agent Lifecycle Example</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">livekit.agents</span> <span class="tok-kw">import</span> <span class="tok-cmd">JobContext</span>, <span class="tok-cmd">WorkerOptions</span>, <span class="tok-cmd">cli</span>
+<span class="tok-kw">from</span> <span class="tok-prop">livekit.agents.voice_assistant</span> <span class="tok-kw">import</span> <span class="tok-cmd">VoiceAssistant</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-kw">async def</span> <span class="tok-cmd">entrypoint</span>(<span class="tok-prop">ctx</span>: <span class="tok-cmd">JobContext</span>):
+    <span class="tok-kw">await</span> <span class="tok-prop">ctx</span>.<span class="tok-cmd">connect</span>()
+    <span class="tok-prop">participant</span> = <span class="tok-kw">await</span> <span class="tok-prop">ctx</span>.<span class="tok-cmd">wait_for_participant</span>()
+
+    <span class="tok-cmt"># Pre-warm context by retrieving participant history</span>
+    <span class="tok-prop">mems</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-str">"preferences"</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">participant</span>.<span class="tok-prop">identity</span>)
+    <span class="tok-prop">summary</span> = <span class="tok-str">" "</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">m</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">m</span> <span class="tok-kw">in</span> <span class="tok-prop">mems</span>])
+
+    <span class="tok-prop">assistant</span> = <span class="tok-cmd">VoiceAssistant</span>(
+        <span class="tok-prop">instructions</span>=<span class="tok-str">f"You are a friendly voice assistant. User knowledge: {summary}"</span>
+    )
+    <span class="tok-prop">assistant</span>.<span class="tok-cmd">start</span>(<span class="tok-prop">ctx</span>.<span class="tok-prop">room</span>, <span class="tok-prop">participant</span>)</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-pipecat">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / Pipecat</div>
+        <h1 class="page-title">Pipecat Integration</h1>
+        <div class="page-lead">Add low-latency contextual recall into Pipecat multimodal voice, audio, and video pipelines.</div>
+
+        <h2 class="doc-h2" id="pipe-install">Installation</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-cmd">pip install pipecat-ai piyapi-memory</span></pre>
+        </div>
+
+        <h2 class="doc-h2" id="pipe-code">Pipeline Frame Processor</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">from</span> <span class="tok-prop">pipecat.processors.frame_processor</span> <span class="tok-kw">import</span> <span class="tok-cmd">FrameProcessor</span>
+<span class="tok-kw">from</span> <span class="tok-prop">pipecat.frames.frames</span> <span class="tok-kw">import</span> <span class="tok-cmd">TranscriptionFrame</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-kw">class</span> <span class="tok-cmd">PiyAPIMemorySync</span>(<span class="tok-cmd">FrameProcessor</span>):
+    <span class="tok-kw">def</span> <span class="tok-cmd">__init__</span>(<span class="tok-prop">self</span>, <span class="tok-prop">api_key</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
+        <span class="tok-cmd">super</span>().<span class="tok-cmd">__init__</span>()
+        <span class="tok-prop">self</span>.<span class="tok-prop">client</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-prop">api_key</span>)
+        <span class="tok-prop">self</span>.<span class="tok-prop">user_id</span> = <span class="tok-prop">user_id</span>
+
+    <span class="tok-kw">async def</span> <span class="tok-cmd">process_frame</span>(<span class="tok-prop">self</span>, <span class="tok-prop">frame</span>, <span class="tok-prop">direction</span>):
+        <span class="tok-kw">if</span> <span class="tok-cmd">isinstance</span>(<span class="tok-prop">frame</span>, <span class="tok-cmd">TranscriptionFrame</span>):
+            <span class="tok-cmt"># Flush finalized user transcripts into memory</span>
+            <span class="tok-prop">self</span>.<span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">create</span>(<span class="tok-prop">content</span>=<span class="tok-prop">frame</span>.<span class="tok-prop">text</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">self</span>.<span class="tok-prop">user_id</span>)
+        <span class="tok-kw">await</span> <span class="tok-prop">self</span>.<span class="tok-cmd">push_frame</span>(<span class="tok-prop">frame</span>, <span class="tok-prop">direction</span>)</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-elevenlabs">
+        <div class="breadcrumb">Integrations / Voice &amp; Real-Time / ElevenLabs</div>
+        <h1 class="page-title">ElevenLabs Integration</h1>
+        <div class="page-lead">Inject persistent bitemporal memories and customer personas directly into ElevenLabs Conversational AI voice agents.</div>
+
+        <h2 class="doc-h2" id="el-code">Dynamic Prompt Context Injection</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">import</span> <span class="tok-prop">requests</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-kw">def</span> <span class="tok-cmd">start_elevenlabs_conversation</span>(<span class="tok-prop">agent_id</span>: <span class="tok-prop">str</span>, <span class="tok-prop">user_id</span>: <span class="tok-prop">str</span>):
+    <span class="tok-cmt"># 1. Fetch relevant persistent memory</span>
+    <span class="tok-prop">user_facts</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(<span class="tok-prop">query</span>=<span class="tok-str">"caller preferences"</span>, <span class="tok-prop">user_id</span>=<span class="tok-prop">user_id</span>, <span class="tok-prop">limit</span>=3)
+    <span class="tok-prop">context_str</span> = <span class="tok-str">"; "</span>.<span class="tok-cmd">join</span>([<span class="tok-prop">f</span>[<span class="tok-str">"content"</span>] <span class="tok-kw">for</span> <span class="tok-prop">f</span> <span class="tok-kw">in</span> <span class="tok-prop">user_facts</span>])
+
+    <span class="tok-cmt"># 2. Get signed WebSocket URL with dynamic variables</span>
+    <span class="tok-prop">res</span> = <span class="tok-prop">requests</span>.<span class="tok-cmd">post</span>(
+        <span class="tok-str">f"https://api.elevenlabs.io/v1/convai/conversation/get_signed_url?agent_id={agent_id}"</span>,
+        <span class="tok-prop">headers</span>={<span class="tok-str">"xi-api-key"</span>: <span class="tok-str">"your_elevenlabs_key"</span>},
+        <span class="tok-prop">json</span>={<span class="tok-str">"dynamic_variables"</span>: {<span class="tok-str">"user_context"</span>: <span class="tok-prop">context_str</span>}}
+    )
+    <span class="tok-kw">return</span> <span class="tok-prop">res</span>.<span class="tok-cmd">json</span>()[<span class="tok-str">"signed_url"</span>]</pre>
+        </div>
+      </div>
+
+      <div class="page" id="page-cloud-providers">
+        <div class="breadcrumb">Integrations / Infrastructure / Cloud Providers</div>
+        <h1 class="page-title">Cloud AI Infrastructure (AWS Bedrock, Azure, GCP)</h1>
+        <div class="page-lead">Enterprise memory infrastructure with BYOK KMS envelope encryption, VPC peering, and managed cloud model runtimes.</div>
+
+        <h2 class="doc-h2" id="cloud-bedrock">AWS Bedrock Integration</h2>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <button class="terminal-copy" onclick="copySnippet(this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+          </div>
+          <pre><span class="tok-kw">import</span> <span class="tok-prop">boto3</span>
+<span class="tok-kw">from</span> <span class="tok-prop">piyapi</span> <span class="tok-kw">import</span> <span class="tok-cmd">PiyAPIClient</span>
+
+<span class="tok-prop">bedrock</span> = <span class="tok-prop">boto3</span>.<span class="tok-cmd">client</span>(<span class="tok-str">'bedrock-runtime'</span>, <span class="tok-prop">region_name</span>=<span class="tok-str">'us-east-1'</span>)
+<span class="tok-prop">piyapi</span> = <span class="tok-cmd">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)
+
+<span class="tok-cmt"># Retrieve memories fused with Bedrock Titan Embeddings & pgvector HNSW</span>
+<span class="tok-prop">memories</span> = <span class="tok-prop">piyapi</span>.<span class="tok-prop">memories</span>.<span class="tok-cmd">search</span>(
+    <span class="tok-prop">query</span>=<span class="tok-str">"PCI-DSS audit compliance history"</span>,
+    <span class="tok-prop">scope</span>=<span class="tok-str">"project"</span>
+)</pre>
+        </div>
+
+        <h2 class="doc-h2" id="cloud-byok">BYOK KMS Envelope Encryption (User Guide §4.12)</h2>
+        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-top:0.5rem;">
+          PiyAPI supports customer-managed encryption keys (CMEK) via AWS KMS, Azure Key Vault, and Google Cloud KMS. All AES-256-GCM data encryption keys (DEKs) are wrapped with your master Key Encryption Key (KEK) before writing to persistent PostgreSQL storage.
+        </p>
+      </div>
+
+    </div><!-- /#content -->
+
+    <!-- RIGHT TOC -->
+    <div id="toc">
+      <div class="toc-label">On this page</div>
+      <div id="toc-links"></div>
+    </div>
+  </div><!-- /#main -->
+</div><!-- /#layout -->
+
+<footer class="global-footer">
+  <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
+    <div class="logo-icon" style="width: 24px; height: 24px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <div class="global-footer-links">
+    <a href="https://github.com/piyapi" target="_blank">GitHub</a>
+    <a href="#">X</a>
+    <a href="#">LinkedIn</a>
+    <a href="platform.html">Documentation</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="#">API Reference</a>
+  </div>
+  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+</footer>
+
+<script>
+const TOC_MAP = {
+  'overview': [
+    {id:'integrations-directory', label:'Integrations', filter:'all'},
+    {id:'integrations-directory', label:'Agent Frameworks', filter:'agent-framework'},
+    {id:'integrations-directory', label:'AI SDKs', filter:'ai-sdk'},
+    {id:'integrations-directory', label:'Voice & Real-Time', filter:'voice'},
+    {id:'integrations-directory', label:'Developer Tools', filter:'dev-tool'},
+    {id:'integrations-directory', label:'Infrastructure', filter:'infrastructure'}
+  ],
+  'langchain': [{id:'lc-install', label:'Installation'}, {id:'lc-code', label:'Adapter Example'}],
+  'langgraph': [{id:'lg-install', label:'Installation'}, {id:'lg-code', label:'StateGraph Example'}],
+  'llamaindex': [{id:'llama-install', label:'Installation'}, {id:'llama-code', label:'Retriever Setup'}],
+  'crewai': [{id:'crew-install', label:'Installation'}, {id:'crew-code', label:'Shared Context Tool'}],
+  'autogen': [{id:'ag-install', label:'Installation'}, {id:'ag-code', label:'ConversableAgent Hook'}],
+  'mastra': [{id:'mastra-install', label:'Installation'}, {id:'mastra-code', label:'TypeScript Agent'}],
+  'uxpilot': [{id:'ux-install', label:'Installation'}, {id:'ux-code', label:'UI Interaction Hook'}],
+  'google-adk': [{id:'gadk-install', label:'Installation'}, {id:'gadk-code', label:'Gemini Agent Tool'}],
+  'vercel-ai': [{id:'vai-install', label:'Installation'}, {id:'vai-code', label:'Next.js Route Handler'}],
+  'livekit': [{id:'lk-install', label:'Installation'}, {id:'lk-code', label:'Voice Agent Lifecycle'}],
+  'pipecat': [{id:'pipe-install', label:'Installation'}, {id:'pipe-code', label:'Pipeline Frame Processor'}],
+  'elevenlabs': [{id:'el-code', label:'Dynamic Prompt Injection'}],
+  'mcp': [{id:'mcp-config', label:'IDE Configuration'}, {id:'mcp-tools', label:'Core Tools Catalog'}],
+  'rest-api': [{id:'rest-store', label:'Store Memory'}, {id:'rest-search', label:'Hybrid Vector Search'}],
+  'sdks': [{id:'sdk-ts', label:'TypeScript SDK'}, {id:'sdk-py', label:'Python SDK'}],
+  'webhooks': [{id:'wh-signature', label:'Signature Verification'}],
+  'postgresql': [],
+  'redis': [],
+  'vectordbs': [],
+  'cloud-providers': [{id:'cloud-bedrock', label:'AWS Bedrock'}, {id:'cloud-byok', label:'BYOK KMS Encryption'}]
+};
+
+let currentPage = 'overview';
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + pageId);
+  if (navEl) navEl.classList.add('active');
+
+  buildToc(pageId);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentPage = pageId;
+}
+
+function buildToc(pageId) {
+  const container = document.getElementById('toc-links');
+  container.innerHTML = '';
+  const items = TOC_MAP[pageId] || [];
+  if (items.length === 0) {
+    const emptyMsg = document.createElement('div');
+    emptyMsg.style.fontSize = '0.78rem';
+    emptyMsg.style.color = 'var(--text-faint)';
+    emptyMsg.textContent = 'No section links';
+    container.appendChild(emptyMsg);
+    return;
+  }
+  items.forEach((item, i) => {
+    const a = document.createElement('a');
+    a.className = 'toc-link' + (i === 0 ? ' active' : '');
+    a.textContent = item.label;
+    a.onclick = () => {
+      if (item.filter) {
+        const filterBtn = document.querySelector(`.filter-tab[onclick*="${item.filter}"]`);
+        if (filterBtn) setFilter(item.filter, filterBtn);
+      }
+      const el = document.getElementById(item.id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+      a.classList.add('active');
+    };
+    container.appendChild(a);
+  });
+}
+
+function copySnippet(btn) {
+  const card = btn.closest('.terminal-card');
+  const pre = card ? card.querySelector('pre') : null;
+  const text = pre ? pre.innerText : '';
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => btn.innerHTML = orig, 1500);
+  });
+}
+
+let activeFilter = 'all';
+
+function setFilter(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterIntegrations();
+}
+
+function filterIntegrations() {
+  const q = (document.getElementById('int-search').value || '').toLowerCase().trim();
+  const cards = document.querySelectorAll('#int-cards-grid .int-card');
+  cards.forEach(card => {
+    const cat = card.getAttribute('data-category');
+    const title = (card.querySelector('.int-title').textContent || '').toLowerCase();
+    const desc = (card.querySelector('.int-desc').textContent || '').toLowerCase();
+
+    const matchesCat = (activeFilter === 'all') || (cat === activeFilter);
+    const matchesQuery = !q || title.includes(q) || desc.includes(q);
+
+    if (matchesCat && matchesQuery) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    root.removeAttribute('data-theme');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function focusSearch() {
+  const q = prompt('Search Integrations documentation:');
+  if (q) {
+    const term = q.toLowerCase().trim();
+    const match = Object.keys(TOC_MAP).find(k => k.includes(term));
+    if (match) {
+      showPage(match);
+    } else {
+      alert('No matching section found for "' + q + '"');
+    }
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    focusSearch();
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  const sb = document.getElementById('scroll-bar');
+  if (sb) sb.style.width = pct + '%';
+  const tocLinks = document.querySelectorAll('.toc-link');
+  if (!tocLinks.length) return;
+  const items = TOC_MAP[currentPage] || [];
+  let activeIdx = 0;
+  items.forEach((item, i) => {
+    const el = document.getElementById(item.id);
+    if (el && el.getBoundingClientRect().top < 130) activeIdx = i;
+  });
+  tocLinks.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+});
+
+// Initialize on overview
+showPage('overview');
+</script>
+</body>
+</html>

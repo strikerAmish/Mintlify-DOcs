@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PiyAPI Platform Documentation</title>
+  <meta name="description" content="Build AI applications with persistent memory, context assembly, and intelligent retrieval. PiyAPI Platform documentation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });</script>
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-sidebar:       #ffffff;
+      --bg-panel:         #ffffff;
+      --bg-card:          #ffffff;
+      --bg-code:          #0f172a;
+      --bg-code-header:   #1e293b;
+      --bg-hover:         #f8fafc;
+      --bg-active:        #f5f3ff;
+      --border:           #f1f5f9;
+      --border-card:      #e2e8f0;
+      --border-muted:     #cbd5e1;
+      --accent:           #6366f1;
+      --accent-hover:     #4f46e5;
+      --accent-light:     #818cf8;
+      --accent-dim:       rgba(99, 102, 241, 0.08);
+      --accent-glow:      rgba(99, 102, 241, 0.2);
+      --text-heading:     #0f172a;
+      --text-main:        #334155;
+      --text-muted:       #475569;
+      --text-faint:       #94a3b8;
+      --text-code:        #e2e8f0;
+      --green:            #10b981;
+      --yellow:           #f59e0b;
+      --red:              #ef4444;
+      --blue:             #3b82f6;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --sidebar-w:        256px;
+      --toc-w:            216px;
+      --topbar-h:         60px;
+    }
+
+    [data-theme="dark"] {
+      --bg:               #0c0c0f;
+      --bg-sidebar:       #0e0e12;
+      --bg-panel:         #131318;
+      --bg-card:          #131318;
+      --bg-code:          #0a0a0f;
+      --bg-code-header:   #121218;
+      --bg-hover:         #1a1a24;
+      --bg-active:        rgba(124, 106, 247, 0.12);
+      --border:           #1e1e2a;
+      --border-card:      #272733;
+      --border-muted:     #323242;
+      --accent:           #7c6af7;
+      --accent-hover:     #9d8fff;
+      --accent-light:     #a78bfa;
+      --accent-dim:       rgba(124, 106, 247, 0.12);
+      --accent-glow:      rgba(124, 106, 247, 0.25);
+      --text-heading:     #f8fafc;
+      --text-main:        #cbd5e1;
+      --text-muted:       #94a3b8;
+      --text-faint:       #64748b;
+      --text-code:        #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 15px; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    /* Topbar */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      z-index: 100; padding: 0 1.5rem;
+    }
+    .topbar-logo {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-heading);
+      letter-spacing: -0.02em; width: var(--sidebar-w); flex-shrink: 0;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 30px; height: 30px;
+      background: linear-gradient(135deg, #4f46e5, #818cf8);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3); flex-shrink: 0;
+    }
+    .topbar-nav { display: flex; align-items: center; flex: 1; margin-left: 0.5rem; }
+    .topbar-nav a {
+      font-size: 0.84rem; font-weight: 500; color: var(--text-muted);
+      padding: 0 0.9rem; height: var(--topbar-h); display: flex; align-items: center;
+      border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
+    }
+    .topbar-nav a:hover { color: var(--text-heading); }
+    .topbar-nav a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .topbar-right { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
+
+    .search-box {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--bg-hover); border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm); padding: 0.35rem 0.75rem;
+      font-size: 0.8rem; color: var(--text-muted); cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s; min-width: 175px;
+    }
+    .search-box:hover { border-color: var(--accent); }
+    .search-kbd {
+      margin-left: auto; background: var(--bg); border: 1px solid var(--border-card);
+      border-radius: 4px; font-size: 0.68rem; padding: 0.05rem 0.35rem;
+      color: var(--text-faint); font-family: 'JetBrains Mono', monospace; font-weight: 500;
+    }
+    .btn-dashboard {
+      background: var(--accent); color: #fff; font-size: 0.82rem; font-weight: 600;
+      padding: 0.45rem 1.1rem; border-radius: 8px; border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn-dashboard:hover { background: var(--accent-hover); box-shadow: 0 4px 14px var(--accent-glow); transform: translateY(-1px); }
+    .icon-btn {
+      width: 32px; height: 32px; background: transparent; border: 1px solid var(--border-card);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-muted); transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover { color: var(--text-heading); border-color: var(--text-muted); background: var(--bg-hover); }
+
+    /* Scroll progress */
+    #scroll-progress { position: fixed; top: var(--topbar-h); left: 0; right: 0; height: 2px; background: var(--border); z-index: 200; }
+    #scroll-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0%; transition: width 0.08s linear; }
+
+    /* Layout */
+    #layout { display: flex; min-height: 100vh; padding-top: var(--topbar-h); }
+
+    /* Sidebar */
+    #sidebar {
+      position: fixed; top: var(--topbar-h); left: 0; bottom: 0;
+      width: var(--sidebar-w); background: var(--bg-sidebar);
+      border-right: 1px solid var(--border); overflow-y: auto;
+      padding: 1.5rem 0.75rem 3rem; z-index: 50;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border-card); border-radius: 99px; }
+    .sidebar-group-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-faint); padding: 0.5rem 0.85rem 0.6rem;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; font-weight: 450; color: var(--text-muted);
+      padding: 0.45rem 0.85rem; cursor: pointer; transition: color 0.12s, background 0.12s;
+      border-radius: 8px; margin-bottom: 2px; position: relative;
+    }
+    .sidebar-link:hover { color: var(--text-heading); background: var(--bg-hover); }
+    .sidebar-link.active {
+      color: var(--accent); background: var(--bg-active); font-weight: 600;
+    }
+    .sidebar-link.active::before {
+      content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
+      width: 3px; background: var(--accent); border-radius: 0 4px 4px 0;
+    }
+
+    /* Main Content */
+    #main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; display: flex; }
+    #content { flex: 1; min-width: 0; padding: 2.75rem 3.5rem 6rem; max-width: 820px; }
+
+    /* Right ToC */
+    #toc {
+      width: var(--toc-w); flex-shrink: 0; position: sticky;
+      top: calc(var(--topbar-h) + 2rem); align-self: flex-start;
+      padding: 0 1.25rem 3rem 0; margin-top: 2rem;
+    }
+    .toc-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-faint); margin-bottom: 0.85rem;
+    }
+    .toc-link {
+      display: block; font-size: 0.8rem; color: var(--text-muted);
+      padding: 0.32rem 0.75rem; border-left: 2px solid var(--border-card);
+      transition: color 0.12s, border-color 0.12s; cursor: pointer; line-height: 1.45;
+    }
+    .toc-link:hover { color: var(--text-heading); border-left-color: var(--text-muted); }
+    .toc-link.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+    /* Pages */
+    .page { display: none; animation: fadeIn 0.15s ease-in-out; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0.4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Page Header */
+    .breadcrumb { font-size: 0.8rem; color: var(--text-faint); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+    .page-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .page-title { font-size: 2.25rem; font-weight: 700; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.03em; }
+    .copy-btn {
+      display: flex; align-items: center; gap: 0.45rem; font-size: 0.78rem; font-weight: 500;
+      color: var(--text-muted); background: var(--bg); border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm); padding: 0.35rem 0.75rem; cursor: pointer;
+      transition: color 0.12s, border-color 0.12s, background 0.12s; white-space: nowrap; flex-shrink: 0;
+    }
+    .copy-btn:hover { color: var(--text-heading); border-color: var(--text-muted); background: var(--bg-hover); }
+    .page-lead { font-size: 1.05rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.5rem; }
+    .page-tags { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.73rem; font-weight: 500; padding: 0.2rem 0.65rem; border-radius: 99px;
+      border: 1px solid var(--border-card); color: var(--text-muted); background: var(--bg-hover);
+    }
+    .tag.accent { background: var(--accent-dim); border-color: rgba(99, 102, 241, 0.25); color: var(--accent); font-weight: 600; }
+    .page-eyebrow { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+
+    /* Typography */
+    .doc-h2 { font-size: 1.45rem; font-weight: 700; color: var(--text-heading); margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); letter-spacing: -0.02em; }
+    .doc-h3 { font-size: 1.05rem; font-weight: 650; color: var(--text-heading); margin: 2rem 0 0.65rem; }
+    .doc-p { color: var(--text-main); margin-bottom: 1.15rem; font-size: 0.92rem; line-height: 1.8; }
+    .doc-p strong { color: var(--text-heading); font-weight: 600; }
+    .doc-p code, .inline-code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82em;
+      background: var(--bg-hover); border: 1px solid var(--border-card);
+      border-radius: 4px; padding: 0.12em 0.4em; color: var(--accent); font-weight: 500;
+    }
+    .doc-ul { list-style: none; margin: 0.5rem 0 1.25rem 0; display: flex; flex-direction: column; gap: 0.45rem; }
+    .doc-ul li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.9rem; color: var(--text-main); line-height: 1.65; }
+    .doc-ul li::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.58em; }
+
+    /* Cards */
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .cards-grid-1 { grid-template-columns: 1fr; }
+    .cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg); padding: 1.25rem; transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    .card:hover { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08); transform: translateY(-1px); }
+    .card-title { font-size: 0.95rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.35rem; }
+    .card-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .card-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 4px; padding: 0.1rem 0.45rem; color: var(--accent); font-weight: 500; }
+    .card-full { grid-column: 1 / -1; }
+    .card-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; font-size: 1rem; color: var(--accent); }
+    .card-icon-wrap { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 0.85rem; }
+    .card-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-top: 0.75rem; }
+    .card-link:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    /* Code Blocks */
+    .code-tabs { background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-lg); overflow: hidden; margin: 1.5rem 0; }
+    .tab-bar { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); background: var(--bg-code-header); padding: 0 0.5rem; overflow-x: auto; }
+    .tab-btn {
+      font-size: 0.78rem; font-weight: 500; font-family: 'Inter', sans-serif; color: #94a3b8;
+      padding: 0.65rem 0.95rem; border: none; background: transparent; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: color 0.12s, border-color 0.12s; white-space: nowrap;
+    }
+    .tab-btn:hover { color: #f8fafc; }
+    .tab-btn.active { color: #818cf8; border-bottom-color: #818cf8; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .code-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.55rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.06); background: var(--bg-code-header);
+    }
+    .code-filename { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #94a3b8; }
+    .code-copy {
+      font-size: 0.72rem; color: #94a3b8; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer;
+      padding: 0.2rem 0.55rem; transition: all 0.12s;
+    }
+    .code-copy:hover { color: #f8fafc; background: rgba(255,255,255,0.12); }
+    pre {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7;
+      padding: 1.25rem; overflow-x: auto; background: var(--bg-code); color: var(--text-code); tab-size: 2;
+    }
+    pre::-webkit-scrollbar { height: 5px; }
+    pre::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+    .simple-code { background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.5rem 0; }
+
+    /* Syntax Tokens */
+    .tok-kw   { color: #c084fc; font-weight: 500; }
+    .tok-str  { color: #4ade80; }
+    .tok-cmt  { color: #64748b; font-style: italic; }
+    .tok-fn   { color: #60a5fa; }
+    .tok-num  { color: #fb923c; }
+    .tok-prop { color: #38bdf8; }
+    .tok-cls  { color: #facc15; }
+    .tok-op   { color: #94a3b8; }
+
+    /* Tables */
+    .doc-table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: var(--radius-md); border: 1px solid var(--border-card); }
+    .doc-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .doc-table thead { background: var(--bg-hover); }
+    .doc-table th { text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-card); }
+    .doc-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-main); vertical-align: top; line-height: 1.6; }
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table tr:hover td { background: var(--bg-hover); }
+    .doc-table td code { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; background: var(--bg-hover); border: 1px solid var(--border-card); border-radius: 4px; padding: 0.1em 0.35em; color: var(--accent); }
+    .table-num { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-faint); font-weight: 500; }
+
+    /* Callouts */
+    .callout { display: flex; gap: 0.85rem; padding: 1.1rem 1.3rem; border-radius: var(--radius-md); margin: 1.5rem 0; font-size: 0.88rem; line-height: 1.7; }
+    .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    .callout-tip  { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .callout-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .callout-danger { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    [data-theme="dark"] .callout-info { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.25); color: #93c5fd; }
+    [data-theme="dark"] .callout-tip  { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.25); color: #6ee7b7; }
+    [data-theme="dark"] .callout-warn { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.25); color: #fcd34d; }
+    [data-theme="dark"] .callout-danger { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.25); color: #fca5a5; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; line-height: 1.6; }
+    .callout strong { font-weight: 600; color: inherit; }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1rem; position: relative; padding-bottom: 2rem; }
+    .step:last-child { padding-bottom: 0; }
+    .step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.35); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--accent); flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+    .step-line { width: 1px; flex: 1; background: var(--border-card); margin-top: 6px; }
+    .step:last-child .step-line { display: none; }
+    .step-content { flex: 1; min-width: 0; padding-top: 0.2rem; }
+    .step-title { font-size: 0.95rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.4rem; }
+    .step-body { font-size: 0.86rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* Pipeline Alternating Theme */
+    .pipeline { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); overflow: hidden; margin: 1.5rem 0; box-shadow: 0 4px 16px rgba(0,0,0,0.02); }
+    .pipeline-item { display: flex; align-items: center; gap: 1rem; padding: 1.15rem 1.35rem; border-bottom: 1px solid var(--border); transition: all 0.15s ease; }
+    .pipeline-item:last-child { border-bottom: none; }
+    .pipeline-item:nth-child(odd) { background: var(--bg); }
+    .pipeline-item:nth-child(even) { background: var(--bg-active); border-left: 4px solid var(--accent); }
+    [data-theme="dark"] .pipeline-item:nth-child(odd) { background: var(--bg-panel); }
+    [data-theme="dark"] .pipeline-item:nth-child(even) { background: rgba(99, 102, 241, 0.08); border-left: 4px solid var(--accent-light); }
+    .pipeline-item:hover { filter: brightness(0.98); transform: translateX(2px); }
+    .pipeline-label { width: 140px; flex-shrink: 0; font-size: 0.84rem; font-weight: 700; color: var(--text-heading); letter-spacing: -0.01em; }
+    .pipeline-arrow { font-size: 0.95rem; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+    .pipeline-desc { font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Principles */
+    .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+    .principle { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.1rem 1.25rem; }
+    .principle-name { font-size: 0.85rem; font-weight: 650; color: var(--accent); margin-bottom: 0.35rem; }
+    .principle-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* CTAs */
+    .cta-group { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 2rem 0; }
+    .btn-primary { background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600; padding: 0.55rem 1.3rem; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: background 0.15s, transform 0.1s, box-shadow 0.15s; }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 16px var(--accent-glow); transform: translateY(-1px); }
+    .btn-secondary { background: var(--bg); color: var(--text-heading); font-size: 0.85rem; font-weight: 500; padding: 0.55rem 1.3rem; border-radius: var(--radius-sm); border: 1px solid var(--border-card); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+    .btn-secondary:hover { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+
+    /* Build list */
+    .build-list { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.5rem 0; }
+    .build-list-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text-main); transition: background 0.12s; }
+    .build-list-item:last-child { border-bottom: none; }
+    .build-list-item:hover { background: var(--bg-hover); }
+    .build-check { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(99, 102, 241, 0.35); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15em; font-size: 0.65rem; color: var(--accent); font-weight: 700; }
+
+    /* JSON */
+    .json-block { background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7; color: var(--text-code); margin: 1.25rem 0; overflow-x: auto; }
+    .json-key { color: #38bdf8; }
+    .json-str { color: #4ade80; }
+
+    /* Next cards */
+    .next-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .next-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1.1rem 1.25rem; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s; }
+    .next-card:hover { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08); transform: translateY(-1px); }
+    .next-card-arrow { font-size: 0.75rem; color: var(--accent); margin-bottom: 0.4rem; font-weight: 700; }
+    .next-card-title { font-size: 0.9rem; font-weight: 650; color: var(--text-heading); margin-bottom: 0.35rem; }
+    .next-card-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Checklist */
+    .checklist { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden; margin: 1.25rem 0; }
+    .check-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.86rem; color: var(--text-main); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(99, 102, 241, 0.35); background: var(--accent-dim); flex-shrink: 0; margin-top: 0.15em; }
+
+    /* Footer */
+    #footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3rem 2rem 2.5rem; margin-left: var(--sidebar-w); }
+    .footer-inner { max-width: 820px; margin: 0 auto; }
+    .footer-headline { font-size: 1.35rem; font-weight: 700; color: var(--text-heading); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+    .footer-sub { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.75rem; max-width: 520px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1.75rem; }
+    .footer-link { font-size: 0.82rem; color: var(--text-muted); cursor: pointer; transition: color 0.12s; }
+    .footer-link:hover { color: var(--accent); }
+    .footer-note { font-size: 0.76rem; color: var(--text-faint); padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.65; }
+
+    @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
+      #sidebar.open { transform: translateX(0); }
+      #main { margin-left: 0; }
+      #footer { margin-left: 0; }
+      #content { padding: 2rem 1.25rem 4rem; }
+      .cards-grid, .next-cards, .principles, .cards-grid-3 { grid-template-columns: 1fr; }
+      .page-title { font-size: 1.85rem; }
+      .topbar-nav { display: none; }
+    }
+  
+    /* ========================================================= */
+    /* NEW: OVERVIEW META BAR (CLEAN UNIFIED BADGE)               */
+    /* ========================================================= */
+    .overview-meta-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.35rem 0.95rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 99px;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .meta-pill-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .meta-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+    .meta-sep-dot {
+      color: var(--border-muted);
+    }
+    .meta-time-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-faint);
+    }
+
+                /* ========================================================= */
+    /* 2-1-2 SQUARE PYRAMIDAL FORMATION (4 CORNERS + 1 CENTER SQUARE) */
+    /* (PERFECT CENTER: RETRIEVAL STARTS MID-LEFT & ENDS MID-RIGHT)  */
+    /* ========================================================= */
+    .pyramid-stage {
+      margin: 2.5rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .pyramid-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 1.25rem !important;
+      max-width: 820px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      align-items: stretch;
+    }
+    .pyramid-cell {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1.35rem 1.45rem;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      box-sizing: border-box;
+      aspect-ratio: 1 / 1;
+    }
+    .pyramid-cell:hover {
+      border-color: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+    }
+
+    /* 4 Corners & Centered Square Piece */
+    .cell-top-left {
+      grid-column: 1 / 3 !important;
+      grid-row: 1 !important;
+    }
+    .cell-top-right {
+      grid-column: 3 / 5 !important;
+      grid-row: 1 !important;
+    }
+    .cell-center-square {
+      grid-column: 2 / 4 !important;
+      grid-row: 2 !important;
+      border: 1.5px solid #c4b5fd !important;
+      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.14) !important;
+      padding: 1.35rem 1.45rem !important;
+      z-index: 2;
+    }
+    .cell-bottom-left {
+      grid-column: 1 / 3 !important;
+      grid-row: 3 !important;
+    }
+    .cell-bottom-right {
+      grid-column: 3 / 5 !important;
+      grid-row: 3 !important;
+    }
+
+    /* Highlight on Click: Soft Lavender Shadow & Accent */
+    .pyramid-cell.is-highlighted {
+      background: #fbf9ff !important;
+      border-color: #7c3aed !important;
+      box-shadow: 0 12px 36px rgba(124, 58, 237, 0.24), 0 0 0 2px #7c3aed !important;
+      transform: translateY(-3px);
+    }
+    [data-theme="dark"] .pyramid-cell.is-highlighted {
+      background: rgba(167, 139, 250, 0.12) !important;
+      border-color: #a78bfa !important;
+      box-shadow: 0 12px 36px rgba(167, 139, 250, 0.3), 0 0 0 2px #a78bfa !important;
+    }
+
+    .cell-icon-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .pyramid-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pyramid-cell {
+        aspect-ratio: auto !important;
+        min-height: auto !important;
+      }
+      .cell-top-left, .cell-top-right, .cell-center-square, .cell-bottom-left, .cell-bottom-right {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+    }
+
+    /* ========================================================= */
+    /* NEW: ALTERNATING LAVENDER & WHITE 'HOW PIYAPI WORKS'      */
+    /* ========================================================= */
+    .how-pipeline-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .how-step-card {
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .how-step-card:hover {
+      transform: translateX(3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+    /* Alternating: Odd = Crisp White, Even = Soft Lavender */
+    .how-step-card:nth-child(odd) {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-left: 5px solid #6366f1;
+    }
+    .how-step-card:nth-child(even) {
+      background: #f5f3ff;
+      border: 1.5px solid #ddd6fe;
+      border-left: 5px solid #7c3aed;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(odd) {
+      background: #131318;
+      border: 1.5px solid #272733;
+      border-left: 5px solid #818cf8;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(even) {
+      background: rgba(167, 139, 250, 0.1);
+      border: 1.5px solid rgba(167, 139, 250, 0.3);
+      border-left: 5px solid #a78bfa;
+    }
+
+    .how-num-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+    }
+    .how-step-card:nth-child(odd) .how-num-badge {
+      background: rgba(99, 102, 241, 0.12);
+      color: #4f46e5;
+    }
+    .how-step-card:nth-child(even) .how-num-badge {
+      background: rgba(124, 58, 237, 0.16);
+      color: #7c3aed;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(odd) .how-num-badge {
+      background: rgba(129, 140, 248, 0.2);
+      color: #c7d2fe;
+    }
+    [data-theme="dark"] .how-step-card:nth-child(even) .how-num-badge {
+      background: rgba(167, 139, 250, 0.25);
+      color: #ddd6fe;
+    }
+
+    .how-step-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .how-step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .how-step-desc {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    .how-step-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.12rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Alternating Zebra Table */
+    .doc-table.how-table tbody tr:nth-child(odd) {
+      background: #ffffff;
+    }
+    .doc-table.how-table tbody tr:nth-child(even) {
+      background: #f5f3ff;
+    }
+    [data-theme="dark"] .doc-table.how-table tbody tr:nth-child(odd) {
+      background: #131318;
+    }
+    [data-theme="dark"] .doc-table.how-table tbody tr:nth-child(even) {
+      background: rgba(167, 139, 250, 0.08);
+    }
+
+    /* ========================================================= */
+    /* NEW: INTERACTIVE MERMAID DIAGRAM CONTROLS & INSPECTOR      */
+    /* ========================================================= */
+    .arch-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .zoom-btn {
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .zoom-btn:hover {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .mermaid-interactive-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.76rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .mermaid-node-inspector {
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+  
+    /* ========================================================= */
+    /* MACBOOK 3-BUTTON TRAFFIC LIGHT DOTS                       */
+    /* ========================================================= */
+    .mac-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      vertical-align: middle;
+    }
+    .mac-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+    .mac-dot:hover {
+      transform: scale(1.15);
+    }
+    .mac-dot.red { background: #ff5f56; box-shadow: 0 0 4px rgba(255, 95, 86, 0.4); }
+    .mac-dot.yellow { background: #ffbd2e; box-shadow: 0 0 4px rgba(255, 189, 46, 0.4); }
+    .mac-dot.green { background: #27c93f; box-shadow: 0 0 4px rgba(39, 201, 63, 0.4); }
+
+    .mac-terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      background: var(--bg-hover);
+      border-bottom: 1px solid var(--border-card);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .mac-terminal-title {
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========================================================= */
+    /* BROADER PYRAMIDAL CENTERPIECE                             */
+    /* (4 CORNERS + 1 CENTERPIECE WITHOUT ENCLOSING BORDER)      */
+    /* ========================================================= */
+    .pyramid-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto auto auto !important;
+      gap: 1.25rem !important;
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+    }
+    .cell-top-left {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+    }
+    .cell-top-right {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+    }
+    .cell-center {
+      grid-column: 1 / 3 !important;
+      grid-row: 2 !important;
+      max-width: 820px !important;
+      width: 100% !important;
+      justify-self: center !important;
+      padding: 1.15rem 1.6rem !important;
+      border: 1.5px solid #c4b5fd !important;
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08) !important;
+    }
+    .cell-bottom-left {
+      grid-column: 1 !important;
+      grid-row: 3 !important;
+    }
+    .cell-bottom-right {
+      grid-column: 2 !important;
+      grid-row: 3 !important;
+    }
+
+    /* Interactive 8-Operator Surface Grid */
+    .operators-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin: 1.5rem 0;
+    }
+    .operator-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+    .operator-card:hover {
+      border-color: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12);
+    }
+    .operator-card.is-active {
+      background: #fbf9ff !important;
+      border-color: #7c3aed !important;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.22), 0 0 0 2px #7c3aed !important;
+    }
+    [data-theme="dark"] .operator-card.is-active {
+      background: rgba(167, 139, 250, 0.12) !important;
+      border-color: #a78bfa !important;
+      box-shadow: 0 10px 30px rgba(167, 139, 250, 0.28), 0 0 0 2px #a78bfa !important;
+    }
+    .operator-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .operator-summary {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* KPI Metrics Banner */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.1);
+      border-color: #c4b5fd;
+    }
+    .kpi-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .kpi-val {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .kpi-sub {
+      font-size: 0.72rem;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .operators-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .pyramid-grid { grid-template-columns: 1fr !important; }
+      .cell-center { grid-column: 1 !important; }
+    }
+
+  </style>
+</head>
+<body>
+
+<header id="topbar">
+  <a href="platform.html" class="topbar-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    PiyAPI
+  </a>
+  <nav class="topbar-nav">
+    <a href="get_started.html">Get Started</a>
+    <a href="platform.html" class="active">Platform</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="agent_plugins.html">Agent Plugins</a>
+    <a href="cookbooks.html">Cookbooks</a>
+    <a href="api_reference.html">API Reference</a>
+    <a href="release_notes.html">Release Notes</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="search-box" onclick="focusSearch()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+      <span class="search-kbd">⌘K</span>
+    </div>
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <a class="icon-btn" href="https://github.com/piyapi" target="_blank" title="GitHub Repository">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+    <button class="btn-dashboard" onclick="window.open('https://api.piyapi.cloud/dashboard','_blank')">Dashboard</button>
+  </div>
+</header>
+
+<div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+<div id="layout">
+  <aside id="sidebar">
+    <div class="sidebar-group-label">PLATFORM</div>
+    <div class="sidebar-link active" id="nav-platform-overview" onclick="showPage('platform-overview')">Platform Overview</div>
+    <div class="sidebar-link" id="nav-quickstart" onclick="showPage('quickstart')">Quickstart</div>
+    <div class="sidebar-link" id="nav-architecture" onclick="showPage('architecture')">Architecture</div>
+    <div class="sidebar-link" id="nav-memory" onclick="showPage('memory')">Memory</div>
+    <div class="sidebar-link" id="nav-context" onclick="showPage('context')">Context</div>
+    <div class="sidebar-link" id="nav-retrieval" onclick="showPage('retrieval')">Retrieval</div>
+    <div class="sidebar-link" id="nav-users" onclick="showPage('users')">Users &amp; Sessions</div>
+    <div class="sidebar-link" id="nav-data" onclick="showPage('data')">Data Management</div>
+    <div class="sidebar-link" id="nav-integrations" onclick="showPage('integrations')">Integrations</div>
+    <div class="sidebar-link" id="nav-analytics" onclick="showPage('analytics')">Analytics</div>
+  </aside>
+
+  <div id="main">
+    <div id="content">
+
+      <!-- PLATFORM OVERVIEW -->
+      <div class="page" id="page-platform-overview">
+        <div class="breadcrumb">Platform / Platform Overview</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Platform Overview</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Everything you need to build, manage, and scale persistent intelligence with PiyAPI.</p>
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Production Architecture</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Updated recently</span>
+          </div>
+        </div>
+        <p class="doc-p">PiyAPI provides the infrastructure for persistent intelligence across AI applications.</p>
+        <p class="doc-p">The platform manages memory, context, and retrieval as distinct layers, allowing applications to store relevant information and recall it precisely when needed rather than relying on ephemeral session state.</p>
+        <p class="doc-p">This document introduces the core building blocks of PiyAPI and describes how they compose into a working system for AI agents and applications.</p>
+
+        <!-- CORE CONCEPTS (4-CORNER + 1-CENTER SQUARE PYRAMIDAL LAYOUT) -->
+        <h2 class="doc-h2" id="ov-core">Core Concepts</h2>
+        <p class="doc-p">Explore the five fundamental pillars of persistent intelligence. Click any concept frame to highlight it and inspect its active parameters:</p>
+
+                        <div class="pyramid-stage">
+          <div class="pyramid-grid">
+            <!-- 1. Top-Left Box: Persistent Memory -->
+            <div class="pyramid-cell cell-top-left is-highlighted" id="concept-memory" onclick="selectConcept('memory')">
+              <div>
+                <div class="cell-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                  </svg>
+                </div>
+                <div class="cell-title" style="font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; color:#7c3aed;">Persistent Memory</div>
+                <div class="cell-desc" style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+                  Long-term storage referenced via <code>memory_id</code>. Backed by the <strong>Unified 8-Operator Surface</strong>.
+                </div>
+                <div class="card-tags" style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.75rem;">
+                  <span class="card-tag">store()</span>
+                  <span class="card-tag">retrieve()</span>
+                  <span class="card-tag">update()</span>
+                  <span class="card-tag">delete()</span>
+                  <span class="card-tag">merge()</span>
+                  <span class="card-tag">summarize()</span>
+                  <span class="card-tag">pin()</span>
+                  <span class="card-tag">verify()</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Top-Right Box: Context -->
+            <div class="pyramid-cell cell-top-right" id="concept-context" onclick="selectConcept('context')">
+              <div>
+                <div class="cell-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <div class="cell-title" style="font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; color:var(--text-heading);">Context</div>
+                <div class="cell-desc" style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+                  Assembled data passed via context object. Token-budget-aware context assembly for LLM system prompts via <code>POST /api/v1/context/retrieve</code>.
+                </div>
+              </div>
+              <div class="cell-footer" style="margin-top:0.85rem; font-size:0.78rem; font-family:'JetBrains Mono',monospace; color:var(--accent);">
+                POST /api/v1/context/retrieve &rarr;
+              </div>
+            </div>
+
+            <!-- 3. Middle Box (Stretching from Left to Right): Retrieval -->
+            <div class="pyramid-cell cell-center-square" id="concept-retrieval" onclick="selectConcept('retrieval')">
+              <div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.4rem;">
+                  <div style="display:flex; align-items:center; gap:0.65rem;">
+                    <div class="cell-icon-wrap" style="margin-bottom:0;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <path d="m11 8 2 3-2 3"/>
+                      </svg>
+                    </div>
+                    <div class="cell-title" style="font-size:1.15rem; font-weight:700; color:var(--text-heading);">Retrieval</div>
+                  </div>
+                  <span class="cell-tag" style="background:#7c3aed; color:#ffffff; font-family:'JetBrains Mono',monospace; font-size:0.72rem; padding:0.15rem 0.55rem; border-radius:6px;">RRF_K=30 &bull; 11 Signals</span>
+                </div>
+                <div class="cell-desc" style="font-size:0.88rem; color:var(--text-muted); line-height:1.65; margin-top:0.4rem;">
+                  Query via <code>client.search()</code>. Hybrid search engine combining dense vector similarity (HNSW via <code>pgvector</code>) and BM25 trigram full-text search, fused using Reciprocal Rank Fusion (<code>RRF_K=30</code>).
+                </div>
+              </div>
+              <div class="cell-footer" style="margin-top:0.85rem; font-size:0.78rem; font-family:'JetBrains Mono',monospace; color:var(--accent);">
+                UnifiedScorer (11 Signals in 1 Database Pass) &rarr;
+              </div>
+            </div>
+
+            <!-- 4. Bottom-Left Box: Knowledge -->
+            <div class="pyramid-cell cell-bottom-left" id="concept-knowledge" onclick="selectConcept('knowledge')">
+              <div>
+                <div class="cell-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"/>
+                    <circle cx="6" cy="12" r="3"/>
+                    <circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                  </svg>
+                </div>
+                <div class="cell-title" style="font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; color:var(--text-heading);">Knowledge</div>
+                <div class="cell-desc" style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+                  Structured domain data accessible through <code>knowledge.query()</code>. PiyGraph Knowledge Graph tracking real-world validity (<code>valid_at</code>) separately from system recording time (<code>system_at</code>).
+                </div>
+              </div>
+              <div class="cell-footer" style="margin-top:0.85rem; font-size:0.78rem; font-family:'JetBrains Mono',monospace; color:var(--accent);">
+                PiyGraph Temporal KG &rarr;
+              </div>
+            </div>
+
+            <!-- 5. Bottom-Right Box: Users & Sessions -->
+            <div class="pyramid-cell cell-bottom-right" id="concept-users" onclick="selectConcept('users')">
+              <div>
+                <div class="cell-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <div class="cell-title" style="font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; color:var(--text-heading);">Users &amp; Sessions</div>
+                <div class="cell-desc" style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+                  Scoped via <code>user_id</code> identifiers. Enterprise multi-tenancy enforced via strict namespace isolation (<code>X-Namespace-Prefix</code> header) and automated PHI/PII privacy redaction.
+                </div>
+              </div>
+              <div class="cell-footer" style="margin-top:0.85rem; font-size:0.78rem; font-family:'JetBrains Mono',monospace; color:var(--accent);">
+                Namespace Scoping &amp; Privacy &rarr;
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Concept Inspector Panel -->
+          <div class="concept-detail-box" id="concept-detail-box">
+            <div class="concept-detail-title" id="concept-detail-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Persistent Memory</span>
+            </div>
+            <div class="concept-detail-body" id="concept-detail-body">
+              Persistent memory provides durable, bitemporal fact storage isolated by workspace and tenant. All state mutations run through the atomic 8-operator interface: <code>store()</code>, <code>retrieve()</code>, <code>update()</code>, <code>delete()</code>, <code>merge()</code>, <code>summarize()</code>, <code>pin()</code>, and <code>verify()</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">ℹ</div>
+          <div><strong>Platform Note:</strong> PiyAPI separates persistent memory from the application logic so your AI system can retrieve relevant context when it needs it.</div>
+        </div>
+
+        <div class="doc-h3">System Architecture</div>
+        <div class="arch-diagram-card" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.55rem; font-size: 0.88rem; font-weight: 700; color: var(--text-heading);">
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #7c3aed; box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);"></span>
+                Interactive Responsive Architecture
+              </div>
+              <div class="mermaid-interactive-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l6 6m-6-6a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Click any component node in the diagram (e.g. TypeScript SDK) to inspect it
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="arch-controls">
+                <button class="zoom-btn" onclick="zoomMermaid(0.1)" title="Zoom in">+</button>
+                <button class="zoom-btn" onclick="zoomMermaid(-0.1)" title="Zoom out">&minus;</button>
+                <button class="zoom-btn" onclick="resetZoomMermaid()" title="Reset zoom">&#8635;</button>
+              </div>
+              <div style="display: flex; gap: 0.35rem; background: var(--bg-hover); padding: 0.2rem; border-radius: 8px; border: 1px solid var(--border-card);">
+                <button class="tab-btn active" onclick="switchArchView('diagram')" id="btn-arch-diag" style="padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Diagram</button>
+                <button class="tab-btn" onclick="switchArchView('txt')" id="btn-arch-txt" style="padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 500;">Raw Spec</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mermaid Visual Graph Wrapper with zoom/pan responsiveness -->
+          <div id="arch-view-diagram" style="display: flex; flex-direction: column; align-items: center; width: 100%; min-height: auto; overflow-x: auto; position: relative;">
+            <div id="mermaid-zoom-container" style="width: 100%; display: flex; justify-content: center; transform-origin: top center; transition: transform 0.2s ease;">
+              <pre class="mermaid" id="main-mermaid-chart" style="background: transparent; border: none; padding: 0; width: 100%; display: flex; justify-content: center; margin: 0;">
+graph TD
+    classDef client fill:#ffffff,stroke:#6366f1,stroke-width:2px,color:#0f172a,rx:8px,ry:8px;
+    classDef perimeter fill:#f5f3ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b,font-weight:700,rx:10px,ry:10px;
+    classDef core fill:#ffffff,stroke:#7c3aed,stroke-width:2.5px,color:#1e1b4b,font-weight:600,rx:8px,ry:8px;
+    classDef substrate fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#0f172a,font-weight:600,rx:8px,ry:8px;
+
+    subgraph INGRESS ["INGRESS LAYER &bull; CLIENT DEVELOPER SURFACES"]
+        direction LR
+        C1["TypeScript SDK<br/><code>@piyapi/sdk</code>"]:::client
+        C2["Python Cognitive SDK<br/><code>piyapi-memory</code>"]:::client
+        C3["Model Context Protocol<br/><code>@piyapi/mcp-server</code>"]:::client
+        C4["Direct HTTPS REST API<br/><code>api.piyapi.cloud/api/v1</code>"]:::client
+    end
+
+    INGRESS --> GATEWAY["PIYAPI INTELLIGENT GATEWAY<br/>&bull; Auth &amp; Rate Limiter &bull; BYOK Multi-Model Router &bull; Namespace Scoping &bull; HIPAA PHI Redaction"]:::perimeter
+
+    subgraph ENGINES ["CORE COGNITIVE ENGINE (PROPRIETARY FABRIC)"]
+        direction LR
+        ME["MEMORY FABRIC<br/>Unified 8-Operator Surface<br/>Speculative Memory Branching"]:::core
+        CE["COGNITIVE SEARCH<br/>11-Signal UnifiedScorer (RRF_K=30)<br/>Dense HNSW + Sparse BM25"]:::core
+        KG["PIYGRAPH KNOWLEDGE GRAPH<br/>Bitemporal Entity Tracking<br/>valid_at vs system_at Intervals"]:::core
+        CDC["12 CDC CONNECTORS<br/>Google Drive &bull; Notion &bull; Slack<br/>GitHub &bull; Jira &bull; Gmail Sync"]:::core
+    end
+
+    GATEWAY --> ENGINES
+
+    subgraph SUBSTRATE ["ENTERPRISE VECTOR &amp; DATA SUBSTRATE"]
+        direction LR
+        PG["PostgreSQL 16 + pgvector<br/>HNSW Vector Indexes (1536-dim)<br/>AES-256-GCM Envelope Encryption"]:::substrate
+        REDIS["Distributed Redis Semantic Cache<br/>Sub-12ms p95 Retrieval Latency<br/>Multi-Region Read Replicas"]:::substrate
+    end
+
+    ENGINES --> SUBSTRATE
+              </pre>
+            </div>
+
+            <!-- Dynamic Node Inspector Output on Click -->
+            <div class="mermaid-node-inspector" id="mermaid-node-inspector">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <div style="font-weight:700; color:var(--text-heading); font-size:0.96rem;" id="inspector-node-title">Selected Component</div>
+                <span class="cell-tag" id="inspector-node-layer">Client Layer</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-main); line-height:1.6;" id="inspector-node-desc">
+                Click on any node in the architecture diagram above to inspect its real-time capabilities and underlying APIs.
+              </div>
+            </div>
+          </div>
+
+          <!-- Raw ASCII Fallback / Spec View -->
+          <div id="arch-view-txt" style="display: none; background: var(--bg-code); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow: hidden;">
+            <div class="code-header" style="background: var(--bg-code-header); padding: 0.55rem 1rem;">
+              <span class="code-filename">system-architecture.txt</span>
+              <button class="code-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre style="color:var(--accent-light); font-size:0.75rem; line-height:1.45; overflow-x:auto; margin:0; padding:1.25rem;">┌────────────────────────────────────────────────────────────┐
+│                      CLIENT LAYER                           │
+│  TypeScript SDK  │  Python SDK  │  MCP Server  │  cURL     │
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+                                ▼
+┌────────────────────────────────────────────────────────────┐
+│          PIYAPI REST GATEWAY (api.piyapi.cloud)             │
+│     Namespace Scoping  │  Rate Limiter  │  Auth &amp; BYOK Guard│
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              ▼                 ▼                  ▼
+    ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐
+    │  MEMORY ENGINE  │ │ COGNITIVE ENG.│ │ INTEGRATIONS  │
+    │ • 8-Operators   │ │ • Hybrid RAG  │ │ • BYOK Mgr    │
+    │ • Bitemporal    │ │ • PiyGraph KG │ │ • 12 CDC Conn │
+    │ • Branching     │ │ • UnifiedScrr │ │ • 30 MCP Tools│
+    └─────────────────┘ └───────────────┘ └───────────────┘
+                                │
+┌────────────────────────────────────────────────────────────┐
+│               DATA &amp; VECTOR SUBSTRATE                       │
+│    PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache  │
+└────────────────────────────────────────────────────────────┘</pre>
+          </div>
+        </div>
+
+        <!-- INITIALIZE THE CLIENT -->
+        <h2 class="doc-h2" id="ov-init">Initialize the Client</h2>
+        <p class="doc-p">Connect to PiyAPI through our official SDKs or raw REST requests. Supply your API key generated from the dashboard.</p>
+
+        <div class="code-tabs">
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(this,'ov-init','js')">JavaScript (@piyapi/sdk)</button>
+            <button class="tab-btn" onclick="switchTab(this,'ov-init','py')">Python (piyapi-memory)</button>
+            <button class="tab-btn" onclick="switchTab(this,'ov-init','curl')">cURL</button>
+          </div>
+          <div class="tab-panel active" id="ov-init-js">
+            <div class="code-header"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <span class="code-filename">client.js</span>
+              <button class="code-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="tok-kw">import</span> { <span class="tok-cls">PiyAPIClient</span> } <span class="tok-kw">from</span> <span class="tok-str">'@piyapi/sdk'</span>;
+
+<span class="tok-kw">const</span> <span class="tok-prop">client</span> = <span class="tok-kw">new</span> <span class="tok-cls">PiyAPIClient</span>({
+  <span class="tok-prop">apiKey</span>: <span class="tok-prop">process</span>.<span class="tok-prop">env</span>.<span class="tok-prop">PIYAPI_API_KEY</span> || <span class="tok-str">'sk_live_...'</span>
+});</pre>
+          </div>
+          <div class="tab-panel" id="ov-init-py">
+            <div class="code-header"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <span class="code-filename">client.py</span>
+              <button class="code-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="tok-kw">from</span> <span class="tok-prop">piyapi_memory</span> <span class="tok-kw">import</span> <span class="tok-cls">PiyAPIClient</span>
+
+<span class="tok-prop">client</span> = <span class="tok-cls">PiyAPIClient</span>(<span class="tok-prop">api_key</span>=<span class="tok-str">"sk_live_your_key_here"</span>)</pre>
+          </div>
+          <div class="tab-panel" id="ov-init-curl">
+            <div class="code-header"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+              <span class="code-filename">verify.sh</span>
+              <button class="code-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="tok-fn">curl</span> -s https://api.piyapi.cloud/api/v1/verify \
+  -H <span class="tok-str">"Authorization: Bearer sk_live_..."</span>
+
+<span class="tok-cmt"># Response: {"status":"valid","key_id":"...","scopes":["memory:read","memory:write"]}</span></pre>
+          </div>
+        </div>
+
+        <!-- STORE AND RETRIEVE CONTEXT -->
+        <h2 class="doc-h2" id="ov-store">Store and Retrieve Context</h2>
+        <p class="doc-p">A typical lifecycle integrates continuous memory persistence with targeted contextual recall before each model completion:</p>
+
+        <div class="build-list">
+          <div class="build-list-item"><div class="build-check">1</div>Create or initialize the client</div>
+          <div class="build-list-item"><div class="build-check">2</div>Send conversational information</div>
+          <div class="build-list-item"><div class="build-check">3</div>Store relevant memory</div>
+          <div class="build-list-item"><div class="build-check">4</div>Retrieve context when needed</div>
+          <div class="build-list-item"><div class="build-check">5</div>Pass retrieved context to the model</div>
+        </div>
+
+        <div class="doc-h3">Store a memory</div>
+        <div class="simple-code">
+          <div class="code-header"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="code-filename">example.js</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">const</span> <span class="tok-prop">memory</span> = <span class="tok-kw">await</span> <span class="tok-prop">client</span>.<span class="tok-prop">memories</span>.<span class="tok-fn">create</span>({
+  <span class="tok-prop">content</span>: <span class="tok-str">'User prefers dark mode UI and works primarily with React and TypeScript.'</span>,
+  <span class="tok-prop">tags</span>: [<span class="tok-str">'preferences'</span>, <span class="tok-str">'tech-stack'</span>],
+  <span class="tok-prop">metadata</span>: { <span class="tok-prop">source</span>: <span class="tok-str">'onboarding_chat'</span>, <span class="tok-prop">user_id</span>: <span class="tok-str">'usr_9918'</span> }
+});</pre>
+        </div>
+
+        <div class="doc-h3">Retrieve via Hybrid Search</div>
+        <div class="simple-code">
+          <div class="code-header"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="code-filename">example.js</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="tok-kw">const</span> <span class="tok-prop">results</span> = <span class="tok-kw">await</span> <span class="tok-prop">client</span>.<span class="tok-fn">search</span>({
+  <span class="tok-prop">query</span>: <span class="tok-str">'What frontend framework does the user prefer?'</span>,
+  <span class="tok-prop">limit</span>: <span class="tok-num">5</span>,
+  <span class="tok-prop">min_score</span>: <span class="tok-num">0.25</span>
+});</pre>
+        </div>
+
+        <div class="doc-h3">Response payload</div>
+        <div class="json-block">{
+  <span class="json-key">"query"</span>: <span class="json-str">"What frontend framework does the user prefer?"</span>,
+  <span class="json-key">"total"</span>: <span class="tok-num">1</span>,
+  <span class="json-key">"results"</span>: [
+    {
+      <span class="json-key">"id"</span>: <span class="json-str">"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d"</span>,
+      <span class="json-key">"content"</span>: <span class="json-str">"User prefers dark mode UI and works primarily with React and TypeScript."</span>,
+      <span class="json-key">"score"</span>: <span class="tok-num">0.892</span>,
+      <span class="json-key">"vector_score"</span>: <span class="tok-num">0.854</span>,
+      <span class="json-key">"bm25_score"</span>: <span class="tok-num">0.931</span>
+    }
+  ]
+}</div>
+
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div><strong>Tip:</strong> Use retrieval selectively so your application only sends relevant context to the model. Configure <code>min_score</code> (default <code>0.25</code>) and <code>alpha</code> (vector vs BM25 blend, default <code>0.7</code>) for precise control over retrieval quality.</div>
+        </div>
+
+        <!-- HOW PIYAPI WORKS (ALTERNATING LAVENDER & WHITE PIPELINE) -->
+        <h2 class="doc-h2" id="ov-how">How PiyAPI Works</h2>
+        <p class="doc-p">The five-stage pipeline transforms raw multi-turn dialogue into high-signal context vectors with bitemporal validity. Styled in an alternating lavender and white architecture:</p>
+
+        <div class="how-pipeline-grid">
+          <!-- Step 1: Crisp White Card -->
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span>Capture &amp; Ingest</span>
+                <span class="how-step-tag">CDC CONNECTORS</span>
+              </div>
+              <div class="how-step-desc">
+                Conversational or event data enters the system via API, SDK, or one of 12 native CDC connectors (Google Drive, Notion, GitHub, Slack, Jira, Gmail, and more). Automatic chunking and tokenization preserve private identifiers.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Soft Lavender Card -->
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Store &amp; Bitemporal Index</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">PGVECTOR HNSW</span>
+              </div>
+              <div class="how-step-desc">
+                Relevant facts are persisted in PostgreSQL with <code>pgvector</code> HNSW indexing. Every record is stamped with valid-time (<code>valid_at</code>) and transaction recording time (<code>system_at</code>) for zero-loss auditability.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Crisp White Card -->
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span>Multi-Signal Retrieval</span>
+                <span class="how-step-tag">UNIFIEDSCORER</span>
+              </div>
+              <div class="how-step-desc">
+                The UnifiedScorer evaluates 11 signals in a single pass &mdash; combining dense vector similarity, BM25 trigram full-text search, recency decay, entity overlap, contradiction penalty, and pinned memory weights with calibrated <code>RRF_K=30</code>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Soft Lavender Card -->
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Compose Context Payload</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">TOKEN BUDGET</span>
+              </div>
+              <div class="how-step-desc">
+                Retrieved memory is dynamically assembled into a token-budget-aware context payload via <code>POST /api/v1/context/retrieve</code>. Redundant facts are compressed to preserve model context windows.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Crisp White Card -->
+          <div class="how-step-card">
+            <div class="how-num-badge">05</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span>Generate &amp; Self-Learn</span>
+                <span class="how-step-tag">BYOK ROUTING</span>
+              </div>
+              <div class="how-step-desc">
+                Context is injected into the system prompt for inference. Native BYOK encryption lets you route requests directly to OpenAI, Anthropic, Gemini, or DeepSeek while session mining captures user feedback.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matching Alternating Reference Table -->
+        <div class="doc-table-wrap">
+          <table class="doc-table how-table">
+            <thead>
+              <tr>
+                <th style="width:72px;"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div></th>
+                <th style="width:180px;">Pipeline Stage</th>
+                <th>Underlying Subsystem &amp; Protocols</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="table-num">01</span></td>
+                <td><strong>01 Capture</strong></td>
+                <td>WebSocket Ingestion, 12 CDC Connectors, Webhooks, <code>@piyapi/sdk</code></td>
+              </tr>
+              <tr>
+                <td><span class="table-num">02</span></td>
+                <td><strong>02 Store (Lavender)</strong></td>
+                <td>PostgreSQL 16 + <code>pgvector</code>, Bitemporal Graph, AES-256-GCM Envelope Encryption</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">03</span></td>
+                <td><strong>03 Retrieve</strong></td>
+                <td>UnifiedScorer (11 Signals), HNSW Cosine Similarity, BM25 Full-Text, Reciprocal Rank Fusion</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">04</span></td>
+                <td><strong>04 Compose (Lavender)</strong></td>
+                <td>Context Assembly Engine, Token Pruning, Deduplication Filter, <code>POST /api/v1/context/retrieve</code></td>
+              </tr>
+              <tr>
+                <td><span class="table-num">05</span></td>
+                <td><strong>05 Generate</strong></td>
+                <td>BYOK Multi-Provider Router, Model Inference, Adaptive Feedback Mining (<code>/api/v1/feedback</code>)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- WHAT'S NEXT -->
+        <h2 class="doc-h2" id="ov-next">What's Next?</h2>
+        <div class="next-cards">
+          <div class="next-card" onclick="showPage('architecture')">
+            <div class="next-card-arrow">&rarr; ARCHITECTURE</div>
+            <div class="next-card-title">Explore the architecture</div>
+            <div class="next-card-desc">Understand how PiyGraph, bitemporal valid_at/system_at tracking, and Speculative Memory Branching are structured.</div>
+          </div>
+          <div class="next-card" onclick="showPage('memory')">
+            <div class="next-card-arrow">&rarr; MEMORY LAYER</div>
+            <div class="next-card-title">Store your first memory</div>
+            <div class="next-card-desc">Create and persist your first record using POST /api/v1/memories or the TypeScript SDK.</div>
+          </div>
+          <div class="next-card" onclick="showPage('integrations')">
+            <div class="next-card-arrow">&rarr; AGENTS &amp; TOOLS</div>
+            <div class="next-card-title">Build an AI agent</div>
+            <div class="next-card-desc">Wire up memory and context using our MCP Server (@piyapi/mcp-server &mdash; 30 tools, 3 resources, 3 prompts).</div>
+          </div>
+          <div class="next-card" onclick="window.open('https://api.piyapi.cloud/docs/raw/openapi.json','_blank')">
+            <div class="next-card-arrow">&rarr; API REFERENCE</div>
+            <div class="next-card-title">Explore the API</div>
+            <div class="next-card-desc">Browse the full REST reference and OpenAPI JSON spec at api.piyapi.cloud/docs/raw/openapi.json.</div>
+          </div>
+        </div>
+
+        <!-- FOOTER ACTIONS & NAVIGATION -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid var(--border); flex-wrap:wrap; gap:1rem;">
+          <div style="display:flex; gap:1.25rem; font-size:0.8rem; color:var(--text-muted);">
+            <span style="cursor:pointer; display:flex; align-items:center; gap:0.4rem; transition:color 0.12s;" onmouseover="this.style.color='var(--text-heading)'" onmouseout="this.style.color='var(--text-muted)'" onclick="alert('Suggest edits feature')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Suggest edits
+            </span>
+            <span style="cursor:pointer; display:flex; align-items:center; gap:0.4rem; transition:color 0.12s;" onmouseover="this.style.color='var(--text-heading)'" onmouseout="this.style.color='var(--text-muted)'" onclick="alert('Raise issue feature')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Raise issue
+            </span>
+          </div>
+          <div style="display:flex; gap:1.5rem; font-size:0.82rem; font-weight:500;">
+            <span style="color:var(--text-muted); cursor:pointer;" onclick="alert('Previous page: Get Started')">&larr; PREVIOUS: Get Started</span>
+            <span style="color:var(--accent-light); cursor:pointer;" onclick="showPage('quickstart')">NEXT: Quickstart &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICKSTART -->
+            <!-- QUICKSTART -->
+      <div class="page" id="page-quickstart">
+        <div class="breadcrumb">Platform / Quickstart</div>
+        <div class="page-header-row">
+          <h1 class="page-title">5-Minute Client Quickstart</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Integrate persistent bitemporal memory into your agents and LLM applications in under five minutes.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Developer Onboarding</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>5 min setup &bull; Live Endpoints</span>
+          </div>
+        </div>
+
+        <p class="doc-p">PiyAPI decouples cognitive memory from stateless LLM inference. Follow the four-step setup pipeline below to store durable user preferences and recall them in real-time:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Install Official SDK or Connect via REST</span>
+                <span class="how-step-tag" >INGRESS PROTOCOL</span>
+              </div>
+              <div class="how-step-desc">Install the lightweight, production-hardened client for Node.js/TypeScript or Python with native streaming and auto-reconnecting WebSocket support.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Authenticate with Workspace API Key</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">AUTH & BYOK</span>
+              </div>
+              <div class="how-step-desc">Initialize the client using your live API key (<code>sk_live_...</code>). Optionally attach BYOK headers (OpenAI, Anthropic, Gemini, DeepSeek) to route inference directly through your enterprise accounts.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Persist Bitemporal Memory Facts</span>
+                <span class="how-step-tag" >O(1) MEMORY STORE</span>
+              </div>
+              <div class="how-step-desc">Store conversational statements, entity attributes, or structured metadata. PiyAPI automatically computes 1536-dim vector embeddings and stamps bitemporal intervals (<code>valid_at</code> vs <code>system_at</code>).</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Retrieve Context & Complete Model Prompts</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">HYBRID RECALL</span>
+              </div>
+              <div class="how-step-desc">Query memory via <code>client.search()</code> or dynamic context assembly via <code>POST /api/v1/context/retrieve</code> with token-budget enforcement and automatic PHI/PII redaction.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="qs-install">Step 1 &bull; Installation</h2>
+        <p class="doc-p">Choose between our official TypeScript library or Python package. Both clients feature automatic token-budget management, connection pooling, and resilient retry logic:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;"># Install TypeScript SDK
+npm install @piyapi/sdk
+
+# Or install Python SDK
+pip install piyapi-memory</pre>
+        </div>
+
+        <h2 class="doc-h2" id="qs-code">Step 2 &bull; Initialize Client &amp; Retrieve Context</h2>
+        <p class="doc-p">Authenticate your client and execute an end-to-end memory store and contextual recall in a single script:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">quickstart.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;">import { PiyAPIClient } from '@piyapi/sdk';
+
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_...',
+  namespace: 'enterprise_workspace_prod'
+});
+
+// 1. Store persistent fact
+await client.memories.create({
+  content: "User requested quarterly forecast in EUR currency with dark mode theme",
+  tags: ["preferences", "finance"],
+  metadata: { user_id: "usr_9918", session_id: "sess_441" }
+});
+
+// 2. Retrieve assembled context
+const context = await client.context.retrieve({
+  query: "What currency should we render the charts in?",
+  user_id: "usr_9918",
+  token_budget: 1500
+});
+
+console.log('Assembled Context:', context.rendered_prompt);</pre>
+        </div>
+
+        <div class="callout callout-tip" style="margin-top:1.5rem;">
+          <div class="callout-icon">💡</div>
+          <div><strong>Enterprise Tip:</strong> For high-throughput environments, set the <code>X-Namespace-Prefix</code> header to isolate multi-tenant customer records at the database partition layer.</div>
+        </div>
+      </div>
+
+      <!-- ARCHITECTURE -->
+            <!-- ARCHITECTURE -->
+      <div class="page" id="page-architecture">
+        <div class="breadcrumb">Platform / Architecture</div>
+        <div class="page-header-row">
+          <h1 class="page-title">System Architecture &amp; Request Lifecycle</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">A decoupled, four-tier cognitive memory architecture engineered for sub-20ms multi-signal recall.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Enterprise Architecture</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Production Architecture &bull; 4 Tiers</span>
+          </div>
+        </div>
+
+        <p class="doc-p">PiyAPI decomposes memory management into isolated layers, ensuring data persistence is physically separated from ephemeral model compute:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Client Ingress Tier</span>
+                <span class="how-step-tag" >LAYER 01</span>
+              </div>
+              <div class="how-step-desc">Official SDKs for TypeScript, Python, 30 MCP Tools for IDEs (Cursor, Windsurf, VS Code), and raw HTTPS REST gateways providing sub-15ms ingress latency.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Security & BYOK Gateway Tier</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">LAYER 02</span>
+              </div>
+              <div class="how-step-desc">Sliding-window rate limiters, HMAC-SHA256 request signing, automated PHI/PII regex redaction, and BYOK multi-provider key routing (OpenAI, Anthropic, Gemini, DeepSeek).</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Cognitive Memory & Reasoning Core</span>
+                <span class="how-step-tag" >LAYER 03</span>
+              </div>
+              <div class="how-step-desc">Unified 8-operator memory surface, PiyGraph bitemporal knowledge graph, speculative memory branching, and UnifiedScorer 11-signal hybrid search.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Persistent Vector & Data Substrate</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">LAYER 04</span>
+              </div>
+              <div class="how-step-desc">PostgreSQL 16 with pgvector HNSW indexing, Redis distributed semantic cache, AES-256-GCM envelope encryption, and dual-custody compliance audit logging.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="arch-lifecycle">End-to-End Request Lifecycle</h2>
+        <p class="doc-p">Every incoming transaction follows an atomic execution pipeline guaranteeing zero-loss consistency across distributed replicas:</p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table how-table">
+            <thead>
+              <tr>
+                <th style="width:72px;"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div></th>
+                <th style="width:170px;">Execution Stage</th>
+                <th>Underlying Subsystem &amp; Protocols</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="table-num">01</span></td>
+                <td><strong>Ingress &amp; Auth</strong></td>
+                <td>TLS 1.3 Termination &bull; API Key Validation &bull; Tenant Namespace Extraction (<code>X-Namespace-Prefix</code>)</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">02</span></td>
+                <td><strong>Privacy Redaction</strong></td>
+                <td>Pre-commit PII/PHI Tokenization &bull; Regex Scrubbing &bull; Semantic Hash Fingerprinting</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">03</span></td>
+                <td><strong>Cognitive Dispatch</strong></td>
+                <td>Unified 8-Operator Router &bull; Vector Embedding Generation (1536-dim) &bull; BM25 Token Indexing</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">04</span></td>
+                <td><strong>Dual Indexing</strong></td>
+                <td>PostgreSQL 16 + <code>pgvector</code> HNSW &bull; PiyGraph Bitemporal Edge Generation &bull; Redis L1 Cache Invalidation</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">05</span></td>
+                <td><strong>Response &amp; Telemetry</strong></td>
+                <td>JSON Envelope Delivery &bull; Prometheus Latency Logging &bull; Audit Trail Generation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MEMORY -->
+            <!-- MEMORY -->
+      <div class="page" id="page-memory">
+        <div class="breadcrumb">Platform / Memory</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Persistent Memory &amp; 8-Operator Surface</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Durable, bitemporal fact storage governed by an atomic eight-operator cognitive surface.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Memory Substrate</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Unified 8-Operator Surface &bull; Bitemporal</span>
+          </div>
+        </div>
+
+        <p class="doc-p">Persistent memory provides durable state retention across multiple conversational turns, user sessions, and AI agents. Explore the core architectural pillars below:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Unified 8-Operator Memory Surface</span>
+                <span class="how-step-tag" >ATOMIC ENGINE</span>
+              </div>
+              <div class="how-step-desc">A unified interface exposing <code>store</code>, <code>retrieve</code>, <code>update</code>, <code>delete</code>, <code>merge</code>, <code>summarize</code>, <code>pin</code>, and <code>verify</code> for fine-grained cognitive control.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Bitemporal Validity Tracking</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">TIME TRAVEL</span>
+              </div>
+              <div class="how-step-desc">Every memory record independently stores <code>valid_at</code> (when the event occurred in the real world) and <code>system_at</code> (when it was logged in the database) to eliminate factual drift.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Speculative Memory Branching</span>
+                <span class="how-step-tag" >WHAT-IF SIMULATION</span>
+              </div>
+              <div class="how-step-desc">Branch off memory graphs into isolated sandbox environments using <code>POST /api/v1/branches</code>, simulate agent actions, and merge diffs back to main after user approval.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Pinned Memory Guarantees</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">ZERO DECAY</span>
+              </div>
+              <div class="how-step-desc">Mark critical compliance rules, user constraints, and security policies as pinned to bypass recency decay curves and guarantee 100% prompt recall.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="mem-surface">The Unified 8-Operator Surface</h2>
+        <p class="doc-p">All mutations on persistent memory execute through eight standardized atomic operators:</p>
+
+        <div class="operators-grid">
+          <div class="operator-card is-active">
+            <div class="operator-name">store()</div>
+            <div class="operator-summary">Insert new facts with embeddings &amp; bitemporal timestamps.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">retrieve()</div>
+            <div class="operator-summary">Fetch context vectors via 11-signal UnifiedScorer.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">update()</div>
+            <div class="operator-summary">Patch fact content while maintaining historical audit trail.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">delete()</div>
+            <div class="operator-summary">Cryptographic shredding &amp; soft-delete compliance flags.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">merge()</div>
+            <div class="operator-summary">Synthesize multiple redundant memories into unified knowledge.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">summarize()</div>
+            <div class="operator-summary">Generate loss-less semantic summaries for long conversation threads.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">pin()</div>
+            <div class="operator-summary">Lock high-priority rules with infinite recency half-life.</div>
+          </div>
+          <div class="operator-card">
+            <div class="operator-name">verify()</div>
+            <div class="operator-summary">Cross-validate fact coherence against knowledge graph edges.</div>
+          </div>
+        </div>
+
+        <h2 class="doc-h2" id="mem-code">Python SDK Memory Implementation</h2>
+        <p class="doc-p">Execute atomic memory operations using the official Python client:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">memory_operations.py</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;">from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_...")
+
+# 1. Store memory with bitemporal valid_at interval
+mem = client.memories.store(
+    content="Patient is allergic to penicillin and penicillin-family antibiotics",
+    valid_at="2024-01-15T00:00:00Z",
+    tags=["medical", "allergies", "critical"],
+    user_id="pat_4091"
+)
+
+# 2. Pin memory to guarantee 100% recall priority
+client.memories.pin(memory_id=mem.id)
+
+# 3. Merge two related memories atomically
+merged = client.memories.merge(
+    source_ids=[mem.id, "mem_prev_819"],
+    summary="Patient has verified life-threatening allergy to all penicillin derivatives"
+)</pre>
+        </div>
+      </div>
+
+      <!-- CONTEXT -->
+            <!-- CONTEXT -->
+      <div class="page" id="page-context">
+        <div class="breadcrumb">Platform / Context</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Context Assembly &amp; Token Budgeting</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Transform vast historical memory into compact, token-budget-aware prompts ready for immediate LLM inference.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Context Engine</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Token-Budget Optimization &bull; POST /api/v1/context/retrieve</span>
+          </div>
+        </div>
+
+        <p class="doc-p">While memory stores everything, context delivers only what matters for the current task. Discover the four core capabilities of the context pipeline:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Token-Budget Aware Assembly</span>
+                <span class="how-step-tag" >DYNAMIC PACKING</span>
+              </div>
+              <div class="how-step-desc">Specify exact token budgets (e.g. <code>token_budget=2000</code>). PiyAPI packs high-scoring facts and prunes low-signal fluff so system prompts never overflow.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Contradiction & Duplication Pruning</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">FACT INTEGRITY</span>
+              </div>
+              <div class="how-step-desc">Before assembling context payloads, the engine eliminates conflicting statements, prioritizing facts with newer <code>valid_at</code> timestamps.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Dynamic Prompt Injection</span>
+                <span class="how-step-tag" >LLM INFERENCE</span>
+              </div>
+              <div class="how-step-desc">Retrieve pre-formatted markdown or XML context payloads ready for direct injection into OpenAI, Anthropic, or Gemini system prompts.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Sub-15ms Assembly Latency</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">EDGE OPTIMIZATION</span>
+              </div>
+              <div class="how-step-desc">Distributed semantic caching in Redis ensures identical or semantically equivalent context queries return in under 15 milliseconds.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="ctx-code">Retrieve Context via TypeScript SDK</h2>
+        <p class="doc-p">Assemble a token-aware context payload configured for prompt insertion:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">context_assembly.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;">import { PiyAPIClient } from '@piyapi/sdk';
+
+const client = new PiyAPIClient({ apiKey: 'sk_live_...' });
+
+// Retrieve token-optimized context payload
+const context = await client.context.retrieve({
+  query: "What are the client's preferred deployment targets and SLA?",
+  user_id: "usr_8821",
+  token_budget: 1200,
+  format: "markdown" // Or "xml", "json"
+});
+
+console.log('Token Count:', context.token_count);
+console.log('Injected Context:\n', context.payload);</pre>
+        </div>
+      </div>
+
+      <!-- RETRIEVAL -->
+            <!-- RETRIEVAL -->
+      <div class="page" id="page-retrieval">
+        <div class="breadcrumb">Platform / Retrieval</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Hybrid Search &amp; UnifiedScorer (11 Signals)</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">A multi-signal hybrid search engine combining pgvector HNSW with BM25 via calibrated Reciprocal Rank Fusion.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Search Subsystem</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>UnifiedScorer &bull; 11 Signals &bull; RRF_K=30</span>
+          </div>
+        </div>
+
+        <p class="doc-p">PiyAPI eliminates search blindspots by evaluating eleven contextual signals simultaneously:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >UnifiedScorer (11 Signals in 1 Pass)</span>
+                <span class="how-step-tag" >RRF_K=30</span>
+              </div>
+              <div class="how-step-desc">Simultaneously evaluates dense cosine similarity, BM25 trigram text score, recency half-life decay, entity overlap, contradiction penalty, and pin weights.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Dense Vector Search (pgvector HNSW)</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">EMBEDDING ENGINE</span>
+              </div>
+              <div class="how-step-desc">Indexes 1536-dimensional vectors using Hierarchical Navigable Small World (HNSW) graphs, yielding sub-10ms nearest neighbor recall with 99.2% precision.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Sparse BM25 Trigram Search</span>
+                <span class="how-step-tag" >EXACT KEYWORDS</span>
+              </div>
+              <div class="how-step-desc">Captures rare entity IDs, acronyms, code identifiers, and email addresses that dense embeddings frequently blur.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Configurable Hybrid Alpha Blend</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">SCORING CONTROL</span>
+              </div>
+              <div class="how-step-desc">Tune the balance between semantic meaning and exact keyword match using <code>alpha</code> (e.g. <code>alpha=0.7</code> for 70% vector + 30% BM25).</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="ret-signals">The 11 Scoring Signals</h2>
+        <div class="doc-table-wrap">
+          <table class="doc-table how-table">
+            <thead>
+              <tr>
+                <th style="width:72px;"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div></th>
+                <th style="width:170px;">Signal Name</th>
+                <th>Evaluation Logic &amp; Mathematical Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="table-num">01</span></td>
+                <td><strong>Dense Vector</strong></td>
+                <td>Cosine similarity across 1536-dim embedding space via <code>pgvector</code> HNSW</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">02</span></td>
+                <td><strong>BM25 Trigram</strong></td>
+                <td>Sparse term-frequency / inverse-document-frequency for exact code and identifier recall</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">03</span></td>
+                <td><strong>Recency Half-Life</strong></td>
+                <td>Exponential decay curve: <code>score = score * (0.5 ^ (days_elapsed / half_life))</code></td>
+              </tr>
+              <tr>
+                <td><span class="table-num">04</span></td>
+                <td><strong>Pin Weight</strong></td>
+                <td>Guaranteed +1.0 priority boost for immutable compliance rules and user constraints</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">05</span></td>
+                <td><strong>Entity Overlap</strong></td>
+                <td>Jaccard similarity on named entity recognition (NER) tokens extracted from query</td>
+              </tr>
+              <tr>
+                <td><span class="table-num">06</span></td>
+                <td><strong>Bitemporal Filter</strong></td>
+                <td>Hard boundary evaluation against <code>valid_at</code> intervals to prevent chronological anachronisms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="doc-h2" id="ret-code">Python Search Example</h2>
+        <p class="doc-p">Execute a hybrid multi-signal search with custom score thresholding:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">search_query.py</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;">from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_...")
+
+# Execute hybrid search with UnifiedScorer
+response = client.search(
+    query="What AWS region does the customer require for data residency?",
+    user_id="usr_8821",
+    limit=5,
+    min_score=0.35,
+    alpha=0.65 # 65% dense vector + 35% BM25
+)
+
+for item in response.results:
+    print(f"[{item.score:.3f}] {item.content} (Vector: {item.vector_score}, BM25: {item.bm25_score})")</pre>
+        </div>
+      </div>
+
+            <!-- USERS & SESSIONS -->
+      <div class="page" id="page-users">
+        <div class="breadcrumb">Platform / Users &amp; Sessions</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Identity, Multi-Tenancy &amp; Privacy Scoping</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Keep memory strictly scoped across multi-tenant organizations, individual users, and ephemeral sessions.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Identity &amp; Governance</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Namespace Scoping &bull; HIPAA/GDPR Redaction</span>
+          </div>
+        </div>
+
+        <p class="doc-p">PiyAPI ensures that memories belonging to User A can never be observed or recalled by User B:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Strict Multi-Tenant Namespace Isolation</span>
+                <span class="how-step-tag" >TENANT SECURITY</span>
+              </div>
+              <div class="how-step-desc">Enforce hard boundaries between enterprise customers using the <code>X-Namespace-Prefix</code> header. Data partitions prevent cross-tenant data leakage.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">3-Tier Identity Hierarchy</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">SCOPING MODEL</span>
+              </div>
+              <div class="how-step-desc">Structure memories hierarchically: Organization / Tenant &rarr; User ID (<code>usr_...</code>) &rarr; Session ID (<code>sess_...</code>).</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Automated PHI / PII Redaction</span>
+                <span class="how-step-tag" >HIPAA & GDPR</span>
+              </div>
+              <div class="how-step-desc">Integrated privacy pipeline automatically detects and tokenizes Social Security Numbers, credit cards, emails, and medical identifiers prior to vector storage.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Autonomous Session Mining</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">CONTINUOUS LEARNING</span>
+              </div>
+              <div class="how-step-desc">Use <code>POST /api/v1/sessions/mine</code> to automatically extract salient user preferences, goals, and facts from multi-turn chat sessions.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="usr-code">Namespace Scoping in TypeScript</h2>
+        <p class="doc-p">Isolate enterprise tenant partitions with headers:</p>
+                <div style="background: var(--bg-code); border: 1.5px solid var(--border-card); border-radius: 12px; overflow: hidden; margin: 1.25rem 0 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+          <div class="mac-terminal-bar">
+            <div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div>
+            <span class="mac-terminal-title">tenant_scoping.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre style="margin:0; padding:1.15rem 1.25rem; font-family:'JetBrains Mono',monospace; font-size:0.83rem; line-height:1.65; overflow-x:auto;">import { PiyAPIClient } from '@piyapi/sdk';
+
+// Scoped multi-tenant client instance
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY,
+  headers: {
+    'X-Namespace-Prefix': 'tenant_acme_corp_prod'
+  }
+});
+
+// Store facts scoped strictly to user and session
+await client.memories.store({
+  content: "User authorized enterprise SSO with Okta provider",
+  user_id: "usr_alex_88",
+  session_id: "sess_onboarding_992",
+  metadata: { org_id: "org_acme_corp" }
+});</pre>
+        </div>
+      </div>
+
+      <!-- DATA MANAGEMENT -->
+                        <!-- DATA MANAGEMENT -->
+      <div class="page" id="page-data">
+        <div class="breadcrumb">Platform / Data Management</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Data Lifecycle, Connectors &amp; Governance</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Continuous ingestion, AES-256-GCM envelope encryption, retention scheduling, and litigation hold controls.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Data Governance</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>12 CDC Connectors &bull; AES-256-GCM Encryption</span>
+          </div>
+        </div>
+
+        <p class="doc-p">Manage memory throughout its complete lifecycle &mdash; from continuous ingest to compliant cryptographic disposal:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >12 Native Change Data Capture (CDC) Connectors</span>
+                <span class="how-step-tag" >AUTO-SYNC</span>
+              </div>
+              <div class="how-step-desc">Continuously sync external knowledge from Google Drive, Notion, Slack, GitHub, Jira, Gmail, Salesforce, Zendesk, Intercom, Linear, Confluence, and Dropbox.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Cryptographic Deletion & GDPR Shredding</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">COMPLIANCE</span>
+              </div>
+              <div class="how-step-desc">Fulfill Right-to-be-Forgotten requests via <code>DELETE /api/v1/memories/:id</code> with cryptographic key shredding and automated replica eradication.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Enterprise Legal Hold & Litigation Blocks</span>
+                <span class="how-step-tag" >DUAL CUSTODY</span>
+              </div>
+              <div class="how-step-desc">Freeze tenant memory partitions during legal discovery using dual-custody approval keys, preventing standard retention deletion policies.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Automated Compliance Exports</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">AUDIT READY</span>
+              </div>
+              <div class="how-step-desc">Export all historical facts, bitemporal intervals, and mutation audit trails to signed S3 or GCS buckets using <code>POST /api/v1/compliance/export</code>.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <h2 class="doc-h2" id="data-connectors">12 Native CDC Connector Matrix</h2>
+        <div class="doc-table-wrap">
+          <table class="doc-table how-table">
+            <thead>
+              <tr>
+                <th style="width:72px;"><div class="mac-dots"><span class="mac-dot red"></span><span class="mac-dot yellow"></span><span class="mac-dot green"></span></div></th>
+                <th style="width:170px;">Provider</th>
+                <th>Sync Protocol &amp; Ingestion Capabilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="table-num">01</span></td><td><strong>Google Drive</strong></td><td>Change Log Webhooks &bull; Docs, Sheets &amp; Slides Parser &bull; ACL Preservation</td></tr>
+              <tr><td><span class="table-num">02</span></td><td><strong>Notion</strong></td><td>Incremental Page Sync &bull; Database Row Extraction &bull; Markdown Transpiler</td></tr>
+              <tr><td><span class="table-num">03</span></td><td><strong>Slack</strong></td><td>Real-Time Socket Mode &bull; Thread Summarization &bull; Channel Filter Rules</td></tr>
+              <tr><td><span class="table-num">04</span></td><td><strong>GitHub</strong></td><td>PR &amp; Issue Webhooks &bull; Codebase AST Parsing &bull; Commit Diff Ingestion</td></tr>
+              <tr><td><span class="table-num">05</span></td><td><strong>Jira &amp; Confluence</strong></td><td>Jira Cloud Webhooks &bull; Sprint Ticket Linking &bull; Bitemporal Status Updates</td></tr>
+              <tr><td><span class="table-num">06</span></td><td><strong>Gmail / Outlook</strong></td><td>OAuth 2.0 Ingress &bull; Automated Thread Deduplication &bull; PII Scrubbing</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INTEGRATIONS -->
+            <!-- INTEGRATIONS -->
+      <div class="page" id="page-integrations">
+        <div class="breadcrumb">Platform / Integrations</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Framework Connectors &amp; Agent Ecosystem</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Connect persistent memory into your existing agent frameworks, IDEs, and LLM providers.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Ecosystem</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>30 MCP Tools &bull; BYOK Multi-Provider Routing</span>
+          </div>
+        </div>
+
+        <p class="doc-p">PiyAPI integrates seamlessly across the modern AI development stack:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Model Context Protocol (MCP) Server</span>
+                <span class="how-step-tag" >30 TOOLS &bull; 3 RESOURCES</span>
+              </div>
+              <div class="how-step-desc">Plug PiyAPI natively into Cursor, Windsurf, Claude Desktop, and VS Code via <code>@piyapi/mcp-server</code> with standard stdio transport.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">LangChain & LlamaIndex Adapters</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">FRAMEWORK CONNECTORS</span>
+              </div>
+              <div class="how-step-desc">Drop-in <code>PiyAPIMemoryRetriever</code> and index stores for LangChain chains and LlamaIndex query engines.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Microsoft AutoGen & CrewAI Team Memory</span>
+                <span class="how-step-tag" >MULTI-AGENT SWARMS</span>
+              </div>
+              <div class="how-step-desc">Shared swarm memory allowing autonomous agents to coordinate tasks, persist findings, and avoid redundant API research calls.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">BYOK Multi-Provider Routing</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">KEY FREEDOM</span>
+              </div>
+              <div class="how-step-desc">Use your own API keys for OpenAI, Anthropic, Google Gemini, and DeepSeek with automated fallback routing and budget tracking.</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="callout callout-tip" style="margin-top:1.5rem;">
+          <div class="callout-icon">⚡</div>
+          <div><strong>MCP Ready:</strong> Run <code>npx @piyapi/mcp-server</code> in your IDE settings to give Claude, Cursor, and Windsurf real-time long-term memory across coding sessions.</div>
+        </div>
+      </div>
+
+      <!-- ANALYTICS -->
+      <!-- ANALYTICS -->
+      <div class="page" id="page-analytics">
+        <div class="breadcrumb">Platform / Analytics</div>
+        <div class="page-header-row">
+          <h1 class="page-title">Cognitive Observability &amp; Usage Telemetry</h1>
+          <button class="copy-btn" onclick="copyPage()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy page</button>
+        </div>
+        <p class="page-lead">Real-time performance metrics, memory recall quality, cache hit rates, and token cost analytics.</p>
+        
+        <div class="overview-meta-bar">
+          <div class="meta-pill-text"><span class="meta-live-dot"></span>Observability &amp; Telemetry</div>
+          <span class="meta-sep-dot">&bull;</span>
+          <div class="meta-time-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Prometheus Metrics &bull; /metrics &bull; /api/v1/dashboard</span>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <span class="kpi-label">Recall Accuracy</span>
+            <span class="kpi-val">98.4%</span>
+            <span class="kpi-sub"><span class="meta-live-dot"></span>+0.6% vs baseline</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">p95 Retrieval Latency</span>
+            <span class="kpi-val">12ms</span>
+            <span class="kpi-sub"><span class="meta-live-dot"></span>Sub-20ms SLA</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Cache Hit Rate</span>
+            <span class="kpi-val">84.2%</span>
+            <span class="kpi-sub"><span class="meta-live-dot"></span>Redis Semantic L1</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Context Efficiency</span>
+            <span class="kpi-val">4.8x</span>
+            <span class="kpi-sub"><span class="meta-live-dot"></span>Token compression</span>
+          </div>
+        </div>
+
+        <p class="doc-p">Monitor cognitive health across all memory partitions:</p>
+
+        <div class="how-pipeline-grid">
+          <div class="how-step-card">
+            <div class="how-num-badge">01</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >End-to-End Latency Tracking</span>
+                <span class="how-step-tag" >P95 &bull; 12MS</span>
+              </div>
+              <div class="how-step-desc">Real-time telemetry measuring request round-trips across embedding generation, pgvector HNSW lookup, and token assembly.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">02</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Semantic Cache Hit Ratio</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">REDIS L1 CACHE</span>
+              </div>
+              <div class="how-step-desc">Track percentage of queries resolved from distributed cache without hitting the database or invoking LLM token spend.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">03</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span >Memory Accuracy & Feedback Mining</span>
+                <span class="how-step-tag" >PRECISION 98.4%</span>
+              </div>
+              <div class="how-step-desc">Capture user upvotes, downvotes, and corrections via <code>/api/v1/feedback</code> to continuously refine retrieval weights.</div>
+            </div>
+          </div>
+          <div class="how-step-card">
+            <div class="how-num-badge">04</div>
+            <div class="how-step-content">
+              <div class="how-step-title">
+                <span style="color:#7c3aed;">Token Window Compression Efficiency</span>
+                <span class="how-step-tag" style="background:#7c3aed; color:#ffffff;">COST REDUCTION</span>
+              </div>
+              <div class="how-step-desc">Calculate LLM inference dollars saved through dynamic context pruning and deduplication before prompt dispatch.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /#content -->
+    <div id="toc">
+      <div class="toc-label">On this page</div>
+      <div id="toc-links"></div>
+    </div>
+  </div><!-- /#main -->
+</div><!-- /#layout -->
+
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-headline">Build with persistent intelligence.</div>
+    <div class="footer-sub">Explore the platform, connect your existing stack, and build AI applications that can use relevant information across interactions.</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="showPage('platform-overview')">Platform Overview</span>
+      <span class="footer-link" onclick="showPage('quickstart')">Quickstart</span>
+      <span class="footer-link" onclick="showPage('architecture')">Architecture</span>
+      <span class="footer-link" onclick="showPage('memory')">Memory</span>
+      <span class="footer-link" onclick="showPage('context')">Context</span>
+      <span class="footer-link" onclick="showPage('retrieval')">Retrieval</span>
+      <span class="footer-link" onclick="showPage('users')">Users &amp; Sessions</span>
+      <span class="footer-link" onclick="showPage('data')">Data Management</span>
+      <span class="footer-link" onclick="showPage('integrations')">Integrations</span>
+      <span class="footer-link" onclick="showPage('analytics')">Analytics</span>
+    </div>
+    <div class="footer-note">Product capabilities, API behavior, and integration availability depend on the deployed version and configuration. Refer to the current API reference and release notes for verified implementation details.</div>
+  </div>
+</footer>
+
+<script>
+const TOC_MAP = {
+  'platform-overview': [
+    {id:'ov-core', label:'Core Concepts'},
+    {id:'ov-arch', label:'Architecture'},
+    {id:'ov-init', label:'Initialize the Client'},
+    {id:'ov-store', label:'Store and Retrieve Context'},
+    {id:'ov-how', label:'How PiyAPI Works'},
+    {id:'ov-next', label:"What's Next?"}
+  ],
+  'quickstart': [{id:'qs-build',label:"What you'll build"},{id:'qs-before',label:'Before you begin'},{id:'qs-steps',label:'Steps'},{id:'qs-next',label:'What happens next?'}],
+  'architecture': [{id:'arch-glance',label:'At a glance'},{id:'arch-lifecycle',label:'Request lifecycle'},{id:'arch-memsep',label:'Memory vs context'},{id:'arch-principles',label:'Design principles'},{id:'arch-deployment',label:'Deployment'}],
+  'memory': [{id:'mem-what',label:'Persistent memory'},{id:'mem-ops',label:'Core operations'},{id:'mem-lifecycle',label:'Memory lifecycle'},{id:'mem-what-belongs',label:'What belongs'},{id:'mem-scope',label:'Scope & ownership'},{id:'mem-quality',label:'Memory quality'}],
+  'context': [{id:'ctx-vs',label:'Memory vs context'},{id:'ctx-how',label:'How assembly works'},{id:'ctx-token',label:'Token-aware context'},{id:'ctx-api',label:'Retrieval interface'},{id:'ctx-checklist',label:'Quality checklist'},{id:'ctx-practice',label:'Recommended practice'}],
+  'retrieval': [{id:'ret-flow',label:'Query to results'},{id:'ret-strategies',label:'Strategies'},{id:'ret-controls',label:'Controls'},{id:'ret-quality',label:'Evaluate quality'},{id:'ret-trouble',label:'Troubleshooting'}],
+  'users': [{id:'us-purpose',label:'Users & sessions'},{id:'us-model',label:'Scope model'},{id:'us-identity',label:'Identity model'},{id:'us-isolation',label:'Data isolation'},{id:'us-lifecycle',label:'Session lifecycle'},{id:'us-privacy',label:'Privacy & retention'},{id:'us-testing',label:'Testing checklist'}],
+  'data': [{id:'dm-lifecycle',label:'Data lifecycle'},{id:'dm-metadata',label:'Metadata'},{id:'dm-quality',label:'Data quality'},{id:'dm-retention',label:'Retention & deletion'},{id:'dm-backup',label:'Backups & recovery'},{id:'dm-ops',label:'Operational checklist'}],
+  'integrations': [{id:'int-paths',label:'Integration paths'},{id:'int-choose',label:'Choose your path'},{id:'int-catalog',label:'Integration catalog'},{id:'int-practices',label:'Best practices'},{id:'int-ready',label:'Ready to connect?'}],
+  'analytics': [{id:'an-what',label:'What to measure'},{id:'an-dashboard',label:'Dashboard layout'},{id:'an-quality',label:'Evaluate quality'},{id:'an-latency',label:'Monitor latency'},{id:'an-privacy',label:'Observability'},{id:'an-improvement',label:'From measurement to improvement'}],
+};
+
+let currentPage = 'platform-overview';
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + pageId);
+  if (navEl) navEl.classList.add('active');
+  buildToc(pageId);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentPage = pageId;
+}
+
+function buildToc(pageId) {
+  const tocContainer = document.getElementById('toc-links');
+  tocContainer.innerHTML = '';
+  const items = TOC_MAP[pageId] || [];
+  items.forEach((item, i) => {
+    const a = document.createElement('a');
+    a.className = 'toc-link' + (i === 0 ? ' active' : '');
+    a.textContent = item.label;
+    a.onclick = () => {
+      const el = document.getElementById(item.id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+      a.classList.add('active');
+    };
+    tocContainer.appendChild(a);
+  });
+}
+
+function switchTab(btn, groupId, tabId) {
+  const tabs = btn.closest('.code-tabs');
+  tabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  tabs.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(groupId + '-' + tabId);
+  if (panel) panel.classList.add('active');
+}
+
+function switchArchView(view) {
+  const diag = document.getElementById('arch-view-diagram');
+  const txt = document.getElementById('arch-view-txt');
+  const btnDiag = document.getElementById('btn-arch-diag');
+  const btnTxt = document.getElementById('btn-arch-txt');
+  if (view === 'diagram') {
+    if (diag) diag.style.display = 'flex';
+    if (txt) txt.style.display = 'none';
+    if (btnDiag) { btnDiag.classList.add('active'); btnDiag.style.fontWeight = '600'; }
+    if (btnTxt) { btnTxt.classList.remove('active'); btnTxt.style.fontWeight = '500'; }
+  } else {
+    if (diag) diag.style.display = 'none';
+    if (txt) txt.style.display = 'block';
+    if (btnDiag) { btnDiag.classList.remove('active'); btnDiag.style.fontWeight = '500'; }
+    if (btnTxt) { btnTxt.classList.add('active'); btnTxt.style.fontWeight = '600'; }
+  }
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.code-header').nextElementSibling;
+  const text = pre ? pre.innerText : '';
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+const copySnippet = copyCode;
+
+function copyPage() {
+  const content = document.querySelector('.page.active');
+  if (content) {
+    navigator.clipboard.writeText(content.innerText).then(() => {
+      alert('Page content copied to clipboard!');
+    }).catch(() => {});
+  }
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    root.removeAttribute('data-theme');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function focusSearch() {
+  const q = prompt('Search Platform documentation:');
+  if (q) {
+    const term = q.toLowerCase().trim();
+    const match = Object.keys(TOC_MAP).find(k => k.includes(term));
+    if (match) {
+      showPage(match);
+    } else {
+      alert('No matching section found for "' + q + '"');
+    }
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    focusSearch();
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  const sb = document.getElementById('scroll-bar');
+  if (sb) sb.style.width = pct + '%';
+  const tocLinks = document.querySelectorAll('.toc-link');
+  if (!tocLinks.length) return;
+  const items = TOC_MAP[currentPage] || [];
+  let activeIdx = 0;
+  items.forEach((item, i) => {
+    const el = document.getElementById(item.id);
+    if (el && el.getBoundingClientRect().top < 130) activeIdx = i;
+  });
+  tocLinks.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+});
+
+showPage('platform-overview');
+
+// =========================================================
+// 1. Core Concepts Interactive Selection (Lavender Shadow)
+// =========================================================
+const CONCEPT_DATA = {
+  'memory': {
+    title: 'Persistent Memory (Top-Left)',
+    layer: 'Core Memory Layer',
+    body: 'Persistent memory provides durable, bitemporal fact storage isolated by workspace and tenant. All state mutations run through the atomic 8-operator interface: store(), retrieve(), update(), delete(), merge(), summarize(), pin(), and verify().'
+  },
+  'context': {
+    title: 'Context (Top-Right)',
+    layer: 'Context Assembly',
+    body: 'Context manages dynamic assembly of relevant historical facts into prompt-ready payloads. Uses token-budget allocation to ensure system prompts never overflow LLM limits while prioritizing high-confidence memories.'
+  },
+  'retrieval': {
+    title: 'Retrieval (Centerpiece Square)',
+    layer: 'Hybrid Search Subsystem',
+    body: 'Executes unified multi-signal search combining dense pgvector HNSW embeddings and BM25 trigram full-text search fused with Reciprocal Rank Fusion (RRF_K=30). Evaluates 11 signals in a single database pass.'
+  },
+  'knowledge': {
+    title: 'Knowledge (Bottom-Left)',
+    layer: 'Bitemporal Knowledge Graph',
+    body: 'PiyGraph maintains a temporal entity-relationship graph. Valid-time (valid_at) tracks when an event happened in the real world, while system-time (system_at) tracks when it entered the database for accurate time travel.'
+  },
+  'users': {
+    title: 'Users & Sessions (Bottom-Right)',
+    layer: 'Identity & Multi-Tenancy',
+    body: 'Scopes memory graphs strictly by user_id and session_id. Multi-tenant security is enforced at the database level via X-Namespace-Prefix headers and automated tokenization for PHI/PII privacy compliance.'
+  }
+};
+
+function selectConcept(conceptKey) {
+  // Clear highlight on all 5 cells
+  document.querySelectorAll('.pyramid-cell').forEach(cell => {
+    cell.classList.remove('is-highlighted');
+  });
+
+  // Highlight only the clicked container with lavender shadow
+  const selectedCell = document.getElementById('concept-' + conceptKey);
+  if (selectedCell) {
+    selectedCell.classList.add('is-highlighted');
+  }
+
+  // Update Detail Box
+  const data = CONCEPT_DATA[conceptKey];
+  if (data) {
+    const titleEl = document.getElementById('concept-detail-title');
+    const bodyEl = document.getElementById('concept-detail-body');
+    if (titleEl) {
+      titleEl.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> <span>${data.title}</span>`;
+    }
+    if (bodyEl) {
+      bodyEl.innerHTML = data.body;
+    }
+  }
+}
+
+// =========================================================
+// 2. Interactive & Responsive Mermaid Graph Functionality
+// =========================================================
+let currentMermaidZoom = 1.0;
+
+function zoomMermaid(delta) {
+  currentMermaidZoom = Math.min(1.8, Math.max(0.6, currentMermaidZoom + delta));
+  const el = document.getElementById('mermaid-zoom-container');
+  if (el) el.style.transform = `scale(${currentMermaidZoom})`;
+}
+
+function resetZoomMermaid() {
+  currentMermaidZoom = 1.0;
+  const el = document.getElementById('mermaid-zoom-container');
+  if (el) el.style.transform = 'scale(1)';
+}
+
+const MERMAID_COMPONENTS = {
+  'typescript': {
+    title: 'TypeScript SDK (@piyapi/sdk)',
+    layer: 'Client Layer Ingress',
+    desc: 'Official TypeScript library providing strongly typed access to all 8 memory operators, bitemporal valid_at querying, auto-reconnecting WebSocket listeners, and token-aware context assembly.'
+  },
+  'python': {
+    title: 'Python SDK (piyapi-memory)',
+    layer: 'Client Layer Ingress',
+    desc: 'Python client featuring LangChain PiyAPIMemoryRetriever adapter, Microsoft AutoGen message hooks, CrewAI shared team memory tools, and asynchronous batch processing.'
+  },
+  'mcp': {
+    title: 'Model Context Protocol Server (@piyapi/mcp-server)',
+    layer: 'IDE & Agent Harness',
+    desc: 'Standard stdio transport server exposing 30 tools, 3 resources, and 3 prompt templates for Cursor, Windsurf, Claude Desktop, and VS Code.'
+  },
+  'curl': {
+    title: 'cURL / Direct HTTPS REST',
+    layer: 'HTTP Protocol Surface',
+    desc: 'Direct HTTPS requests to https://api.piyapi.cloud/api/v1 using standard Bearer token authentication and JSON request payloads.'
+  },
+  'gateway': {
+    title: 'PiyAPI REST Gateway',
+    layer: 'API Governance & Auth Ingress',
+    desc: 'High-throughput entrypoint providing sliding-window rate limiting, namespace scoping (X-Namespace-Prefix), BYOK key resolution, and HMAC-SHA256 signature verification.'
+  },
+  'memory': {
+    title: 'Memory Engine',
+    layer: 'Core Cognitive Substrate',
+    desc: 'Atomic execution layer for store(), retrieve(), update(), delete(), merge(), summarize(), pin(), and verify() operators with speculative branching support.'
+  },
+  'cognitive': {
+    title: 'Cognitive Engine & UnifiedScorer',
+    layer: 'Search & Evaluation Subsystem',
+    desc: 'Multi-signal ranking engine evaluating 11 signals in a single pass with Reciprocal Rank Fusion (RRF_K=30), half-life recency decay, and bitemporal valid_at intervals.'
+  },
+  'integrations': {
+    title: 'Integrations Layer & CDC Connectors',
+    layer: 'Continuous Ingestion',
+    desc: '12 Change Data Capture connectors (Google Drive, Notion, Slack, GitHub, Jira, Gmail) streaming workspace edits into memory graphs.'
+  },
+  'substrate': {
+    title: 'Data & Vector Substrate',
+    layer: 'Persistent Storage',
+    desc: 'PostgreSQL 16 with pgvector HNSW indexes, bitemporal knowledge graph storage, and Redis distributed semantic caching with AES-256-GCM envelope encryption.'
+  }
+};
+
+function initInteractiveMermaid() {
+  const container = document.getElementById('arch-view-diagram');
+  if (!container) return;
+  const svg = container.querySelector('svg');
+  if (!svg) {
+    setTimeout(initInteractiveMermaid, 350);
+    return;
+  }
+
+  // Ensure SVG responsiveness
+  svg.style.width = '100%';
+  svg.style.maxWidth = '860px';
+  svg.style.height = 'auto';
+  svg.style.display = 'block';
+
+  // Attach interactive click listeners to all nodes in the diagram
+  const nodeGroups = svg.querySelectorAll('g.node');
+  nodeGroups.forEach(node => {
+    node.style.cursor = 'pointer';
+    node.style.transition = 'all 0.2s ease';
+
+    node.addEventListener('mouseenter', () => {
+      node.style.filter = 'drop-shadow(0 0 8px rgba(124, 58, 237, 0.4))';
+    });
+    node.addEventListener('mouseleave', () => {
+      if (!node.classList.contains('mermaid-node-active')) {
+        node.style.filter = '';
+      }
+    });
+
+    node.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Reset all nodes
+      nodeGroups.forEach(n => {
+        n.classList.remove('mermaid-node-active');
+        n.style.filter = '';
+        const shape = n.querySelector('rect, polygon, circle, path');
+        if (shape) {
+          shape.style.stroke = '';
+          shape.style.strokeWidth = '';
+        }
+      });
+
+      // Highlight clicked node with glowing purple stroke
+      node.classList.add('mermaid-node-active');
+      node.style.filter = 'drop-shadow(0 0 14px rgba(124, 58, 237, 0.75))';
+      const activeShape = node.querySelector('rect, polygon, circle, path');
+      if (activeShape) {
+        activeShape.style.stroke = '#7c3aed';
+        activeShape.style.strokeWidth = '3.5px';
+      }
+
+      // Display Inspector Data
+      const text = node.textContent.toLowerCase();
+      let key = 'typescript';
+      if (text.includes('python')) key = 'python';
+      else if (text.includes('mcp')) key = 'mcp';
+      else if (text.includes('curl')) key = 'curl';
+      else if (text.includes('gateway')) key = 'gateway';
+      else if (text.includes('memory engine')) key = 'memory';
+      else if (text.includes('cognitive')) key = 'cognitive';
+      else if (text.includes('integration')) key = 'integrations';
+      else if (text.includes('substrate')) key = 'substrate';
+
+      const comp = MERMAID_COMPONENTS[key];
+      const insp = document.getElementById('mermaid-node-inspector');
+      const t = document.getElementById('inspector-node-title');
+      const l = document.getElementById('inspector-node-layer');
+      const d = document.getElementById('inspector-node-desc');
+      if (insp && comp) {
+        insp.style.display = 'block';
+        if (t) t.textContent = comp.title;
+        if (l) l.textContent = comp.layer;
+        if (d) d.textContent = comp.desc;
+        insp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+}
+
+// Post-load initialization for Mermaid interactivity
+window.addEventListener('DOMContentLoaded', () => {
+
+  // Operator card click handler
+  document.querySelectorAll('.operator-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.operator-card').forEach(c => c.classList.remove('is-active'));
+      card.classList.add('is-active');
+    });
+  });
+
+  setTimeout(initInteractiveMermaid, 500);
+});
+
+</script>
+</body>
+</html>

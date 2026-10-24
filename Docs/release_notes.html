@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release Notes — Negentro Platform Updates</title>
+  <meta name="description" content="Major product launches, features, improvements, and milestones across Negentro and PiAPI cognitive memory platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-sidebar:       #ffffff;
+      --bg-panel:         #ffffff;
+      --bg-card:          #ffffff;
+      --bg-code:          #0f172a;
+      --bg-code-header:   #1e293b;
+      --bg-hover:         #f8fafc;
+      --bg-active:        rgba(124, 58, 237, 0.08);
+      --border:           #f1f5f9;
+      --border-card:      #e2e8f0;
+      --border-muted:     #cbd5e1;
+      --accent:           #7c3aed;
+      --accent-hover:     #6d28d9;
+      --accent-light:     #8b5cf6;
+      --accent-dim:       rgba(124, 58, 237, 0.08);
+      --accent-glow:      rgba(124, 58, 237, 0.2);
+      --text-heading:     #0f172a;
+      --text-main:        #334155;
+      --text-muted:       #64748b;
+      --text-faint:       #94a3b8;
+      --text-code:        #e2e8f0;
+      --green:            #10b981;
+      --yellow:           #f59e0b;
+      --red:              #ef4444;
+      --blue:             #3b82f6;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --sidebar-w:        260px;
+      --toc-w:            220px;
+      --topbar-h:         64px;
+    }
+
+    [data-theme="dark"] {
+      --bg:               #0c0c0f;
+      --bg-sidebar:       #0e0e12;
+      --bg-panel:         #131318;
+      --bg-card:          #131318;
+      --bg-code:          #0a0a0f;
+      --bg-code-header:   #121218;
+      --bg-hover:         #1a1a24;
+      --bg-active:        rgba(167, 139, 250, 0.15);
+      --border:           #1e1e2a;
+      --border-card:      #272733;
+      --border-muted:     #323242;
+      --accent:           #a78bfa;
+      --accent-hover:     #c4b5fd;
+      --accent-light:     #c4b5fd;
+      --accent-dim:       rgba(167, 139, 250, 0.15);
+      --accent-glow:      rgba(167, 139, 250, 0.25);
+      --text-heading:     #f8fafc;
+      --text-main:        #cbd5e1;
+      --text-muted:       #94a3b8;
+      --text-faint:       #64748b;
+      --text-code:        #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* Top Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: transparent;
+      z-index: 1000;
+    }
+    #scroll-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Topbar */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 900;
+      gap: 1.5rem;
+    }
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: relative;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    .topbar-nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+    .topbar-nav a:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .topbar-nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .topbar-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -13px;
+      left: 10%;
+      right: 10%;
+      height: 2.5px;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-box:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+    .search-kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-card);
+      border-radius: 3px;
+      padding: 0.1rem 0.35rem;
+      color: var(--text-muted);
+    }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      background: var(--bg);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .icon-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+    .btn-dashboard {
+      background: #5850ec;
+      color: #ffffff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.48rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn-dashboard:hover {
+      background: #4f46e5;
+      box-shadow: 0 3px 12px rgba(88, 80, 236, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    #layout {
+      display: flex;
+      margin-top: var(--topbar-h);
+      min-height: calc(100vh - var(--topbar-h));
+    }
+
+    /* Left Sidebar */
+    #sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--topbar-h);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 0.85rem 3rem;
+      scrollbar-width: thin;
+      z-index: 100;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border-card); border-radius: 4px; }
+
+    .sidebar-group { margin-bottom: 1.5rem; }
+    .sidebar-group-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      padding: 0.35rem 0.75rem 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .sidebar-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.4rem 0.75rem 0.5rem;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.48rem 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 450;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s, transform 0.08s;
+      margin-bottom: 2px;
+      position: relative;
+      text-decoration: none;
+    }
+    [data-theme="dark"] .sidebar-link { color: #94a3b8; }
+    .sidebar-link:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .sidebar-link.active {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.12);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .sidebar-link.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.18);
+    }
+    .sidebar-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .sidebar-link.needs-docs {
+      color: #ef4444 !important;
+      font-weight: 500;
+    }
+    .sidebar-link.needs-docs:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: #dc2626 !important;
+    }
+    .sidebar-link.needs-docs.active {
+      background: rgba(239, 68, 68, 0.12) !important;
+      color: #dc2626 !important;
+    }
+    .sidebar-badge-red {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      letter-spacing: 0.02em;
+    }
+
+    /* Filter by links in sidebar */
+    .filter-link {
+      display: block;
+      padding: 0.38rem 0.75rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+    }
+    .filter-link:hover {
+      color: var(--text-heading);
+      background: var(--bg-hover);
+    }
+    .filter-link.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Main Content Area */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      max-width: calc(100vw - var(--sidebar-w));
+    }
+    #content {
+      flex: 1;
+      max-width: 860px;
+      padding: 2.5rem 3rem 6rem;
+      min-width: 0;
+    }
+
+    /* Right TOC */
+    #toc {
+      width: var(--toc-w);
+      flex-shrink: 0;
+      padding: 2.5rem 1.5rem 4rem 1rem;
+      position: sticky;
+      top: var(--topbar-h);
+      height: calc(100vh - var(--topbar-h));
+      overflow-y: auto;
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+    }
+    .toc-link {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0 0.35rem 0.75rem;
+      border-left: 2px solid transparent;
+      transition: all 0.12s;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .toc-link:hover {
+      color: var(--text-heading);
+    }
+    .toc-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+    .toc-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1rem 0;
+    }
+
+    /* Pages Container */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Header & Eyebrow */
+    .breadcrumb {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7c3aed;
+      margin-bottom: 0.65rem;
+    }
+    [data-theme="dark"] .breadcrumb { color: #a78bfa; }
+
+    .page-title {
+      font-size: 2.35rem;
+      font-weight: 750;
+      color: var(--text-heading);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+    .page-lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* Illustrative Sample Note */
+    .sample-note {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      margin-bottom: 2rem;
+    }
+    .sample-note svg { flex-shrink: 0; }
+
+    /* Filter & Search Bar */
+    .toolbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border-card);
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+    }
+    .toolbar-title {
+      font-size: 0.95rem;
+      font-weight: 650;
+      color: var(--text-heading);
+    }
+    .toolbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .rn-search-wrap {
+      position: relative;
+    }
+    .rn-search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-faint);
+    }
+    .rn-search-input {
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: 7px;
+      padding: 0.42rem 0.8rem 0.42rem 2.2rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      color: var(--text-heading);
+      outline: none;
+      width: 200px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .rn-search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+    .rn-select {
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: 7px;
+      padding: 0.42rem 1.6rem 0.42rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      color: var(--text-heading);
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      background-size: 13px;
+    }
+    [data-theme="dark"] .rn-select {
+      background-color: var(--bg-card);
+    }
+
+    /* Month Headings */
+    .month-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      margin: 2.5rem 0 1.75rem;
+    }
+
+    /* Release Timeline Entry */
+    .rn-entry {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      gap: 1.75rem;
+      padding-bottom: 2.25rem;
+      margin-bottom: 2.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .rn-entry:last-child {
+      border-bottom: none;
+    }
+
+    /* Left Metadata Column */
+    .rn-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .rn-date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #6366f1;
+    }
+    .rn-date-bar {
+      width: 2.5px;
+      height: 14px;
+      background: #7c3aed;
+      border-radius: 1px;
+    }
+    [data-theme="dark"] .rn-date-bar { background: #a78bfa; }
+    .rn-cat-tag {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding-left: 0.65rem;
+    }
+
+    /* Right Content Column */
+    .rn-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .rn-highlight-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #7c3aed;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    [data-theme="dark"] .rn-highlight-badge { color: #c4b5fd; }
+
+    .rn-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+    }
+    .rn-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Feature Details List */
+    .rn-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.35rem 0;
+    }
+    .rn-spec-item {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-main);
+    }
+    .rn-spec-key {
+      font-weight: 650;
+      color: var(--text-heading);
+      margin-right: 0.35rem;
+    }
+    .rn-spec-key::after { content: ':'; }
+
+    /* Custom Callouts inside Timeline */
+    .preview-box {
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: 10px;
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+      color: var(--text-main);
+      margin-top: 0.5rem;
+    }
+    [data-theme="dark"] .preview-box {
+      background: #1a162b;
+      border-color: #2b2347;
+      color: #cbd5e1;
+    }
+    .preview-icon {
+      color: #7c3aed;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .preview-icon { color: #a78bfa; }
+
+    .warning-box {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: 10px;
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+      color: #92400e;
+      margin-top: 0.5rem;
+    }
+    [data-theme="dark"] .warning-box {
+      background: #231c0e;
+      border-color: #3b2f15;
+      color: #fde68a;
+    }
+    .warning-icon {
+      color: #d97706;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Links inside timeline */
+    .rn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 0.35rem;
+      transition: color 0.12s, transform 0.1s;
+    }
+    .rn-link:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* Document Status */
+    .red-notice {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .red-notice-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ef4444;
+      margin-bottom: 0.4rem;
+    }
+    .red-notice-desc {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Bottom Action Buttons */
+    .doc-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 3.5rem 0 2rem;
+    }
+    .doc-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--bg);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.42rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+    }
+    .doc-action-btn:hover {
+      border-color: var(--accent-light);
+      color: var(--accent);
+      background: var(--bg-hover);
+    }
+
+    /* Next Card Split */
+    .next-card-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 3rem;
+    }
+    .next-card-split {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1.25rem 1.65rem;
+      min-width: 220px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .next-card-split:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    .split-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+    .split-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+    .split-arrow {
+      color: var(--accent);
+      font-size: 0.82rem;
+    }
+
+    /* Global Footer */
+    .global-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2.5rem;
+      margin-left: var(--sidebar-w);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .global-footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .global-footer-links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .global-footer-links a:hover { color: var(--accent); }
+    .global-footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 1200px) { #toc { display: none; } #content { max-width: 100%; } }
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
+      #sidebar.open { transform: translateX(0); }
+      #main { margin-left: 0; max-width: 100%; }
+      #content { padding: 1.75rem 1.25rem 4rem; }
+      .topbar-nav { display: none; }
+      .rn-entry { grid-template-columns: 1fr; gap: 0.75rem; }
+      .global-footer { margin-left: 0; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="topbar">
+  <a href="platform.html" class="topbar-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <nav class="topbar-nav">
+    <a href="get_started.html">Get Started</a>
+    <a href="platform.html">Platform</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="agent_plugins.html">Agent Plugins</a>
+    <a href="cookbooks.html">Cookbooks</a>
+    <a href="api_reference.html">API Reference</a>
+    <a href="release_notes.html" class="active">Release Notes</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="search-box" onclick="focusSearch()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+      <span class="search-kbd">⌘K</span>
+    </div>
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <a class="icon-btn" href="https://github.com/piyapi" target="_blank" title="GitHub Repository">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+    <button class="btn-dashboard" onclick="window.open('https://api.piyapi.cloud/dashboard','_blank')">Dashboard</button>
+  </div>
+</header>
+
+<div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+<div id="layout">
+  <!-- LEFT SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Release Notes</div>
+      <div class="sidebar-link active" id="nav-highlights" onclick="showView('highlights')">Highlights</div>
+            <div class="sidebar-link" id="nav-sdk-tools" onclick="showView(\'sdk-tools\')">SDKs &amp; Tools</div>
+      <div class="sidebar-link" id="nav-platform" onclick="showView(\'platform\')">Platform</div>
+    </div>
+
+    <div class="sidebar-group" style="margin-top: 1.5rem;">
+      <div class="sidebar-group-label">FILTER BY</div>
+      <div class="filter-link active" data-filter="all" onclick="applyFilter('all', this)">All</div>
+      <div class="filter-link" data-filter="Product" onclick="applyFilter('Product', this)">Product</div>
+      <div class="filter-link" data-filter="SDK" onclick="applyFilter('SDK', this)">SDK</div>
+      <div class="filter-link" data-filter="Integration" onclick="applyFilter('Integration', this)">Integration</div>
+      <div class="filter-link" data-filter="Plugin" onclick="applyFilter('Plugin', this)">Plugin</div>
+      <div class="filter-link" data-filter="Infrastructure" onclick="applyFilter('Infrastructure', this)">Infrastructure</div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEW -->
+  <div id="main">
+    <div id="content">
+
+      <!-- =============================================================== -->
+      <!-- VIEW: HIGHLIGHTS (MAIN RELEASE NOTES TIMELINE)                 -->
+      <!-- =============================================================== -->
+      <div class="page active" id="view-highlights">
+        <div class="breadcrumb">RELEASE NOTES</div>
+        <h1 class="page-title">Highlights</h1>
+        <p class="page-lead">Major product launches, features, improvements, and milestones across Negentro.</p>
+        <div class="sample-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Sample content &mdash; illustrative release notes for demonstration purposes.
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="toolbar-row">
+          <div class="toolbar-title" id="toolbar-count-label">All updates</div>
+          <div class="toolbar-controls">
+            <div class="rn-search-wrap">
+              <svg class="rn-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="text" class="rn-search-input" id="rn-search" placeholder="Search release notes..." oninput="handleSearch()">
+            </div>
+            <select class="rn-select" id="year-select" onchange="handleSelects()">
+              <option value="all">2026</option>
+              <option value="2026">2026</option>
+            </select>
+            <select class="rn-select" id="cat-select" onchange="handleDropdownFilter(this.value)">
+              <option value="all">All</option>
+              <option value="Product">Product</option>
+              <option value="SDK">SDK</option>
+              <option value="Integration">Integration</option>
+              <option value="Plugin">Plugin</option>
+              <option value="Infrastructure">Infrastructure</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- AUGUST 2026                                                   -->
+        <!-- ============================================================= -->
+        <div class="month-section" id="month-august-2026">
+          <h2 class="month-heading">August 2026</h2>
+
+          <!-- Entry 1: VS Code Agent Plugin -->
+          <article class="rn-entry" data-category="Plugin" data-tags="Plugin Agent Plugin VS Code IDE Editor">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-08-24</div>
+              <div class="rn-cat-tag">Agent Plugin</div>
+            </div>
+            <div class="rn-body">
+              <div class="rn-highlight-badge">HIGHLIGHT</div>
+              <h3 class="rn-title">Negentro Coding Agent Plugin launches for VS Code</h3>
+              <p class="rn-desc">Bring persistent project memory directly into your editor. The plugin recalls prior decisions, conventions, and context across every coding session.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Automatic memory</span>Captures relevant context from supported sessions without manual tagging.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Scoped recall</span>Queries <code>memory.search</code> filtered by <code>project_id</code> to avoid cross-rep leakage.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Inline suggestions</span>Surfaces relevant past fixes directly in the diff view.</div>
+              </div>
+              <div class="preview-box">
+                <svg class="preview-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.66 18A2 2 0 0 0 6.34 21h11.32a2 2 0 0 0 1.68-3L14 9.31V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></svg>
+                <span><strong>Developer preview.</strong> Available to design partners; general availability targeted for Q4.</span>
+              </div>
+              <a class="rn-link" href="agent_plugins.html">View documentation &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Entry 2: Python SDK v4.2 -->
+          <article class="rn-entry" data-category="SDK" data-tags="SDK Python Async Batched Writes AsyncMemoryClient">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-08-19</div>
+              <div class="rn-cat-tag">SDK</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Python SDK v4.2 &mdash; batched writes and async memory client</h3>
+              <p class="rn-desc">Faster ingestion for high-volume workloads and a fully async client for latency-sensitive apps.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Batch API</span>Write up to 500 memories per call, reducing round trips by 90%.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">AsyncClient</span>New <code>AsyncMemoryClient</code> mirrors the sync client for asyncio apps.</div>
+              </div>
+              <a class="rn-link" href="opensource.html#python-sdk">Migration guide &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Entry 3: Project vs Personal Memory Scoping -->
+          <article class="rn-entry" data-category="Infrastructure" data-tags="Infrastructure Memory Scoping Scope Project User Isolation">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-08-14</div>
+              <div class="rn-cat-tag">Memory</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Project vs. personal memory scoping</h3>
+              <p class="rn-desc">Memories can now be explicitly scoped so shared project knowledge never mixes with a user's private context.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Scope param</span>Pass <code>scope=project</code> or <code>scope=user</code> on every write and query.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Isolation guarantee</span>Enforced at the storage layer, keyed by <code>user_id</code> and <code>project_id</code>.</div>
+              </div>
+              <div class="warning-box">
+                <svg class="warning-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span><strong>Migration note.</strong> Existing memories default to <code>scope=user</code> &mdash; update calls that expect shared project context.</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 4: REST API v1.3 -->
+          <article class="rn-entry" data-category="SDK" data-tags="SDK API REST Filtering Memories Compounds Date">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-08-07</div>
+              <div class="rn-cat-tag">API</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">REST API v1.3 &mdash; richer filtering on /v1/memories</h3>
+              <p class="rn-desc">Query memories with compound filters and date range constraints in a single request.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Filter operators</span>Support for <code>AND/OR</code> groups on <code>/v1/memories</code>.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Session filter</span>Restrict results to a given <code>session_id</code> for conversation-level recall.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- JULY 2026                                                     -->
+        <!-- ============================================================= -->
+        <div class="month-section" id="month-july-2026">
+          <h2 class="month-heading">July 2026</h2>
+
+          <!-- Entry 5: Native MCP Support -->
+          <article class="rn-entry" data-category="Plugin" data-tags="Plugin Platform MCP Model Context Protocol Tools Host">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-07-29</div>
+              <div class="rn-cat-tag">Platform</div>
+            </div>
+            <div class="rn-body">
+              <div class="rn-highlight-badge">HIGHLIGHT</div>
+              <h3 class="rn-title">Native MCP support across the platform</h3>
+              <p class="rn-desc">Negentro now speaks Model Context Protocol natively, letting any MCP-compatible client read and write memory directly.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">MCP server</span>One-line install exposes memory tools to any <code>MCP</code> host.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Tool discovery</span>Hosts auto-detect <code>search</code>, <code>add</code>, and <code>update</code> tools.</div>
+              </div>
+              <a class="rn-link" href="integrations.html#page-mcp">View documentation &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Entry 6: TypeScript SDK v3.0 -->
+          <article class="rn-entry" data-category="SDK" data-tags="SDK TypeScript Edge Node.js Cloudflare Vercel Typings">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-07-22</div>
+              <div class="rn-cat-tag">SDK</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">TypeScript SDK v3.0 &mdash; full type-safe memory client</h3>
+              <p class="rn-desc">Rewritten from the ground up with strict typings, tree-shakeable exports, and Edge runtime support.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Edge-ready</span>Works in Vercel Edge and Cloudflare Workers with zero polyfills.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Breaking change</span><code>client.memories.add()</code> now returns a typed <code>Memory</code> object instead of raw JSON.</div>
+              </div>
+              <a class="rn-link" href="opensource.html#nodejs-quickstart">Migration guide &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Entry 7: LangChain and LlamaIndex Adapters -->
+          <article class="rn-entry" data-category="Integration" data-tags="Integration LangChain LlamaIndex Open Source Adapters BaseMemory ChatMemoryBuffer">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-07-16</div>
+              <div class="rn-cat-tag">Open Source</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">LangChain and LlamaIndex memory adapters</h3>
+              <p class="rn-desc">Drop-in memory backends for the two most popular open-source agent frameworks.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">LangChain</span>Implements <code>BaseMemory</code> with persistent cross-session recall.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">LlamaIndex</span>Ships as a <code>ChatMemoryBuffer</code> replacement with zero config.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 8: UX Pilot AI and Google Gemini Embeddings -->
+          <article class="rn-entry" data-category="Integration" data-tags="Integration Provider Embeddings Gemini UX Pilot AI OpenAI">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-07-09</div>
+              <div class="rn-cat-tag">Provider</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">UX Pilot AI and Google Gemini embedding support</h3>
+              <p class="rn-desc">Choose your embedding provider per project &mdash; Negentro now supports UX Pilot AI and Gemini alongside OpenAI.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Provider config</span>Set <code>embedding_provider</code> in project settings or per API call.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 9: Vector Retrieval Latency Reduced by 40% -->
+          <article class="rn-entry" data-category="Infrastructure" data-tags="Infrastructure Latency Vector HNSW Cache Performance">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-07-02</div>
+              <div class="rn-cat-tag">Infrastructure</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Vector retrieval latency reduced by 40%</h3>
+              <p class="rn-desc">Re-architected the retrieval index to shrink p95 query latency across all regions.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">HNSW tuning</span>Adaptive index parameters based on collection size.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Result caching</span>Repeated <code>memory.search</code> calls with the same filters are served from cache.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- JUNE 2026                                                     -->
+        <!-- ============================================================= -->
+        <div class="month-section" id="month-june-2026">
+          <h2 class="month-heading">June 2026</h2>
+
+          <!-- Entry 10: General Availability -->
+          <article class="rn-entry" data-category="Product" data-tags="Product General Availability GA SLA Enterprise Platform">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-06-26</div>
+              <div class="rn-cat-tag">Product</div>
+            </div>
+            <div class="rn-body">
+              <div class="rn-highlight-badge">HIGHLIGHT</div>
+              <h3 class="rn-title">Negentro Memory Platform &mdash; general availability</h3>
+              <p class="rn-desc">The core persistent memory infrastructure is now generally available with SLA-backed uptime and per-project isolation.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">GA SLA</span>99.9% uptime commitment for all production tiers.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Isolation model</span>Every memory is namespaced by <code>project_id</code> and <code>user_id</code>.</div>
+              </div>
+              <a class="rn-link" href="platform.html">View documentation &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Entry 11: CLI 1.0 -->
+          <article class="rn-entry" data-category="SDK" data-tags="SDK Developer Tools CLI Terminal Tail Seed Debug">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-06-19</div>
+              <div class="rn-cat-tag">Developer Tools</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Negentro CLI 1.0</h3>
+              <p class="rn-desc">Inspect, seed, and debug memory stores from the terminal without leaving your workflow.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">negentro tail</span>Streams live memory writes for a given <code>project_id</code>.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">negentro seed</span>Bulk import memories from a JSONL file for local testing.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 12: Memory Graph Visualizer -->
+          <article class="rn-entry" data-category="Product" data-tags="Product Platform Dashboard Graph Visualizer Clusters">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-06-12</div>
+              <div class="rn-cat-tag">Platform</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Dashboard: memory graph visualizer</h3>
+              <p class="rn-desc">Explore relationships between memories visually, with filters by recency, category, and user.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Graph view</span>Renders semantic clusters directly from your production dataset.</div>
+              </div>
+              <div class="preview-box">
+                <svg class="preview-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.66 18A2 2 0 0 0 6.34 21h11.32a2 2 0 0 0 1.68-3L14 9.31V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></svg>
+                <span><strong>Developer preview.</strong> Enable via feature flag in project settings.</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 13: Slack and Zendesk Connectors -->
+          <article class="rn-entry" data-category="Integration" data-tags="Integration Slack Zendesk Connectors CDC Support">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-06-05</div>
+              <div class="rn-cat-tag">Integration</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">Slack and Zendesk connectors</h3>
+              <p class="rn-desc">Pipe support conversations and team messages into memory automatically, scoped per customer.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">Zendesk sync</span>Tickets are converted to memories keyed by <code>user_id</code> on resolution.</div>
+                <div class="rn-spec-item"><span class="rn-spec-key">Slack app</span>Install via the Slack marketplace, authorize channels to index.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 14: Rate Limits Raised for Pro Tier -->
+          <article class="rn-entry" data-category="Infrastructure" data-tags="Infrastructure API Rate Limits Pro Quota Throughput">
+            <div class="rn-meta">
+              <div class="rn-date"><span class="rn-date-bar"></span>2026-06-01</div>
+              <div class="rn-cat-tag">API</div>
+            </div>
+            <div class="rn-body">
+              <h3 class="rn-title">REST API rate limits raised for Pro tier</h3>
+              <p class="rn-desc">Pro workspaces now get 5x the previous request ceiling on all memory endpoints.</p>
+              <div class="rn-specs">
+                <div class="rn-spec-item"><span class="rn-spec-key">New limit</span>5,000 requests/min per project on <code>REST API</code>.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="doc-actions-row">
+          <button class="doc-action-btn" onclick="alert('Suggest edits feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Suggest edits
+          </button>
+          <button class="doc-action-btn" onclick="alert('Raise issue feature coming soon')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Raise issue
+          </button>
+        </div>
+
+        <!-- Next Split Navigation -->
+        <div class="next-card-container">
+          <div class="next-card-split" onclick="showView('sdk-tools')">
+            <div class="split-label">
+              <span>Next</span>
+              <span class="split-arrow">Next &rarr;</span>
+            </div>
+            <div class="split-title">SDK &amp; Tools</div>
+          </div>
+        </div>
+
+      </div><!-- /#view-highlights -->
+
+      <!-- =============================================================== -->
+      <!-- =============================================================== -->
+      <!-- VIEW: SDK & TOOLS                                               -->
+      <!-- =============================================================== -->
+      <div class="page" id="view-sdk-tools">
+        <div class="breadcrumb">RELEASE NOTES / SDK &amp; TOOLS</div>
+        <h1 class="page-title">SDK &amp; Tools Releases</h1>
+        <p class="page-lead">Chronological release logs, client library updates, and MCP tooling specifications.</p>
+
+        <div class="timeline-block" style="margin-top: 2rem;">
+          <div class="timeline-item">
+            <div class="timeline-date">October 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill purple">SDK</span>
+                <span class="version-tag">@piyapi/sdk v1.4.0 &bull; TypeScript</span>
+              </div>
+              <h2 class="release-title">Bitemporal Validity Filtering &amp; Batch Memory Transactions</h2>
+              <p class="release-desc">Added native <code>valid_at</code> temporal query filters, bulk memory insertion operations, and automatic tokenization for private PHI/PII redaction.</p>
+              <ul class="release-bullets">
+                <li>Added <code>client.memories.batchCreate()</code> with automatic deduplication.</li>
+                <li>Added <code>client.kg.timeTravel()</code> point-in-time state querying.</li>
+                <li>Strict TypeScript types for all 8 memory operators.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="margin-top: 1.5rem;">
+            <div class="timeline-date">September 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill green">MCP</span>
+                <span class="version-tag">@piyapi/mcp-server v2.1.0 &bull; Stdio Protocol</span>
+              </div>
+              <h2 class="release-title">Full 30-Tool Model Context Protocol Bridge</h2>
+              <p class="release-desc">Standard stdio transport for Cursor, Windsurf, Claude Desktop, and VS Code with 30 active tools, 3 resources, and 3 prompt templates.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="margin-top: 1.5rem;">
+            <div class="timeline-date">August 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill blue">Python</span>
+                <span class="version-tag">piyapi-memory v1.2.0 &bull; Python SDK</span>
+              </div>
+              <h2 class="release-title">LangChain, AutoGen &amp; CrewAI Runtime Adapters</h2>
+              <p class="release-desc">Added seamless integration with popular agent frameworks via <code>PiyAPIMemoryRetriever</code> and memory synchronization hooks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- VIEW: PLATFORM                                                  -->
+      <!-- =============================================================== -->
+      <div class="page" id="view-platform">
+        <div class="breadcrumb">RELEASE NOTES / PLATFORM</div>
+        <h1 class="page-title">Platform Releases</h1>
+        <p class="page-lead">Major cognitive architecture releases, search upgrades, enterprise compliance, and infrastructure updates.</p>
+
+        <div class="timeline-block" style="margin-top: 2rem;">
+          <div class="timeline-item">
+            <div class="timeline-date">October 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill purple">Platform</span>
+                <span class="version-tag">Engine v2.0 &bull; UnifiedScorer</span>
+              </div>
+              <h2 class="release-title">11-Signal Multi-Signal Ranking &amp; Reciprocal Rank Fusion</h2>
+              <p class="release-desc">Upgraded retrieval engine with fused pgvector HNSW dense vectors and BM25 trigram full-text search with calibrated <code>RRF_K=30</code>.</p>
+              <ul class="release-bullets">
+                <li>Dynamic adaptive recency decay with custom half-life curves.</li>
+                <li>Session mining engine with automatic fact extraction confidence scoring.</li>
+                <li>Tenant-level namespace isolation with zero cross-tenant leakage.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="margin-top: 1.5rem;">
+            <div class="timeline-date">September 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill green">Enterprise</span>
+                <span class="version-tag">Compliance &amp; Security GA</span>
+              </div>
+              <h2 class="release-title">SAML 2.0 / OIDC SSO, Legal Holds &amp; GDPR Export API</h2>
+              <p class="release-desc">Full compliance surface including <code>POST /api/v1/compliance/export</code>, dual-custody breakglass access, and customer-managed KMS envelope encryption.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item" style="margin-top: 1.5rem;">
+            <div class="timeline-date">August 2024</div>
+            <div class="timeline-card">
+              <div class="release-header">
+                <span class="badge-pill blue">Data Ingestion</span>
+                <span class="version-tag">CDC Connectors (12 Providers)</span>
+              </div>
+              <h2 class="release-title">Change Data Capture for Notion, Google Drive, Slack &amp; GitHub</h2>
+              <p class="release-desc">Continuous background ingestion pipelines syncing enterprise documentation into the bitemporal memory graph.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /#content -->
+
+    <!-- RIGHT TOC ("ON THIS PAGE") -->
+    <div id="toc">
+      <div class="toc-label">On this page</div>
+      <a class="toc-link active" onclick="showView('highlights'); window.scrollTo({top:0, behavior:'smooth'})">Highlights</a>
+      <a class="toc-link" onclick="showView('sdk-tools')">SDK &amp; Tools</a>
+      <a class="toc-link" onclick="showView('platform')">Platform</a>
+
+      <div class="toc-divider"></div>
+
+      <a class="toc-link" onclick="scrollToMonth('month-august-2026')">August 2026</a>
+      <a class="toc-link" onclick="scrollToMonth('month-july-2026')">July 2026</a>
+      <a class="toc-link" onclick="scrollToMonth('month-june-2026')">June 2026</a>
+    </div>
+  </div><!-- /#main -->
+</div><!-- /#layout -->
+
+<footer class="global-footer">
+  <a href="platform.html" class="topbar-logo" style="font-size: 0.95rem;">
+    <div class="logo-icon" style="width: 24px; height: 24px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    Negentro
+  </a>
+  <div class="global-footer-links">
+    <a href="https://github.com/piyapi" target="_blank">GitHub</a>
+    <a href="#">X</a>
+    <a href="#">LinkedIn</a>
+    <a href="platform.html">Documentation</a>
+    <a href="opensource.html">Open Source</a>
+    <a href="#">API Reference</a>
+  </div>
+  <div class="global-footer-copy">&copy; 2024 Negentro. All rights reserved.</div>
+</footer>
+
+<script>
+let currentActiveFilter = 'all';
+
+function showView(viewId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('view-' + viewId);
+  if (target) target.classList.add('active');
+
+  // Sidebar navigation active state
+  document.querySelectorAll('#sidebar .sidebar-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + viewId);
+  if (navEl) navEl.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function applyFilter(filterVal, el) {
+  currentActiveFilter = filterVal;
+
+  // Sidebar filter links
+  document.querySelectorAll('.filter-link').forEach(l => l.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  // Sync toolbar select
+  const catSelect = document.getElementById('cat-select');
+  if (catSelect) catSelect.value = filterVal;
+
+  runFilter();
+}
+
+function handleDropdownFilter(val) {
+  currentActiveFilter = val;
+
+  // Sync sidebar link
+  document.querySelectorAll('.filter-link').forEach(l => {
+    l.classList.toggle('active', l.getAttribute('data-filter') === val);
+  });
+
+  runFilter();
+}
+
+function handleSearch() {
+  runFilter();
+}
+
+function handleSelects() {
+  runFilter();
+}
+
+function runFilter() {
+  const q = (document.getElementById('rn-search').value || '').toLowerCase().trim();
+  const entries = document.querySelectorAll('.rn-entry');
+  let visibleCount = 0;
+
+  entries.forEach(entry => {
+    const category = entry.getAttribute('data-category');
+    const tags = (entry.getAttribute('data-tags') || '').toLowerCase();
+    const title = (entry.querySelector('.rn-title').textContent || '').toLowerCase();
+    const desc = (entry.querySelector('.rn-desc').textContent || '').toLowerCase();
+
+    const matchesCat = (currentActiveFilter === 'all') || (category === currentActiveFilter) || tags.includes(currentActiveFilter.toLowerCase());
+    const matchesSearch = !q || title.includes(q) || desc.includes(q) || tags.includes(q);
+
+    if (matchesCat && matchesSearch) {
+      entry.style.display = 'grid';
+      visibleCount++;
+    } else {
+      entry.style.display = 'none';
+    }
+  });
+
+  // Handle month sections visibility
+  document.querySelectorAll('.month-section').forEach(sec => {
+    const visibleEntriesInMonth = sec.querySelectorAll('.rn-entry[style*="display: grid"], .rn-entry:not([style*="display: none"])');
+    const anyVisible = Array.from(sec.querySelectorAll('.rn-entry')).some(e => e.style.display !== 'none');
+    sec.style.display = anyVisible ? 'block' : 'none';
+  });
+
+  const label = document.getElementById('toolbar-count-label');
+  if (label) {
+    if (currentActiveFilter === 'all' && !q) {
+      label.textContent = 'All updates (' + visibleCount + ')';
+    } else {
+      label.textContent = 'Showing ' + visibleCount + ' updates';
+    }
+  }
+}
+
+function scrollToMonth(monthId) {
+  showView('highlights');
+  setTimeout(() => {
+    const el = document.getElementById(monthId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    root.removeAttribute('data-theme');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function focusSearch() {
+  const input = document.getElementById('rn-search');
+  if (input) {
+    input.focus();
+    input.select();
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    focusSearch();
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  const sb = document.getElementById('scroll-bar');
+  if (sb) sb.style.width = pct + '%';
+});
+
+// Run initial filter count
+runFilter();
+</script>
+</body>
+</html>

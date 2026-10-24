@@ -1,0 +1,904 @@
+{
+  "source_file": "platform.html",
+  "document_title": "PiyAPI Platform Documentation",
+  "meta_description": "Build AI applications with persistent memory, context assembly, and intelligent retrieval. PiyAPI Platform documentation.",
+  "topbar_navigation": [
+    {
+      "label": "Get Started",
+      "href": "get_started.html",
+      "is_active": false
+    },
+    {
+      "label": "Platform",
+      "href": "platform.html",
+      "is_active": true
+    },
+    {
+      "label": "Open Source",
+      "href": "opensource.html",
+      "is_active": false
+    },
+    {
+      "label": "Integrations",
+      "href": "integrations.html",
+      "is_active": false
+    },
+    {
+      "label": "Agent Plugins",
+      "href": "agent_plugins.html",
+      "is_active": false
+    },
+    {
+      "label": "Cookbooks",
+      "href": "cookbooks.html",
+      "is_active": false
+    },
+    {
+      "label": "API Reference",
+      "href": "api_reference.html",
+      "is_active": false
+    },
+    {
+      "label": "Release Notes",
+      "href": "release_notes.html",
+      "is_active": false
+    }
+  ],
+  "sidebar_navigation": [
+    {
+      "category": "Navigation",
+      "items": [
+        {
+          "title": "Platform Overview",
+          "target_id": "nav-platform-overview",
+          "is_active": true,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Quickstart",
+          "target_id": "nav-quickstart",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Architecture",
+          "target_id": "nav-architecture",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Memory",
+          "target_id": "nav-memory",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Context",
+          "target_id": "nav-context",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Retrieval",
+          "target_id": "nav-retrieval",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Users & Sessions",
+          "target_id": "nav-users",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Data Management",
+          "target_id": "nav-data",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Integrations",
+          "target_id": "nav-integrations",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        },
+        {
+          "title": "Analytics",
+          "target_id": "nav-analytics",
+          "is_active": false,
+          "needs_docs": false,
+          "badge": null
+        }
+      ]
+    }
+  ],
+  "table_of_contents": [],
+  "pages": [
+    {
+      "id": "page-platform-overview",
+      "title": "Platform Overview",
+      "breadcrumb": "Platform / Platform Overview",
+      "lead": "Everything you need to build, manage, and scale persistent intelligence with PiyAPI.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "POST",
+        "path": "/api/v1/context/retrieve"
+      },
+      "sections": [
+        {
+          "heading": "Core Concepts",
+          "level": 2,
+          "paragraphs": [
+            "Explore the five fundamental pillars of persistent intelligence. Click any concept frame to highlight it and inspect its active parameters:"
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Initialize the Client",
+          "level": 2,
+          "paragraphs": [
+            "Connect to PiyAPI through our official SDKs or raw REST requests. Supply your API key generated from the dashboard."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Store and Retrieve Context",
+          "level": 2,
+          "paragraphs": [
+            "A typical lifecycle integrates continuous memory persistence with targeted contextual recall before each model completion:"
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "How PiyAPI Works",
+          "level": 2,
+          "paragraphs": [
+            "The five-stage pipeline transforms raw multi-turn dialogue into high-signal context vectors with bitemporal validity. Styled in an alternating lavender and white architecture:"
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "What's Next?",
+          "level": 2,
+          "paragraphs": [],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Capture & Ingest CDC CONNECTORS",
+          "description": "Conversational or event data enters the system via API, SDK, or one of 12 native CDC connectors (Google Drive, Notion, GitHub, Slack, Jira, Gmail, and more). Automatic chunking and tokenization preserve private identifiers."
+        },
+        {
+          "number": "02",
+          "title": "Store & Bitemporal Index PGVECTOR HNSW",
+          "description": "Relevant facts are persisted in PostgreSQL with pgvector HNSW indexing. Every record is stamped with valid-time ( valid_at ) and transaction recording time ( system_at ) for zero-loss auditability."
+        },
+        {
+          "number": "03",
+          "title": "Multi-Signal Retrieval UNIFIEDSCORER",
+          "description": "The UnifiedScorer evaluates 11 signals in a single pass — combining dense vector similarity, BM25 trigram full-text search, recency decay, entity overlap, contradiction penalty, and pinned memory weights with calibrated RRF_K=30 ."
+        },
+        {
+          "number": "04",
+          "title": "Compose Context Payload TOKEN BUDGET",
+          "description": "Retrieved memory is dynamically assembled into a token-budget-aware context payload via POST /api/v1/context/retrieve . Redundant facts are compressed to preserve model context windows."
+        },
+        {
+          "number": "05",
+          "title": "Generate & Self-Learn BYOK ROUTING",
+          "description": "Context is injected into the system prompt for inference. Native BYOK encryption lets you route requests directly to OpenAI, Anthropic, Gemini, or DeepSeek while session mining captures user feedback."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "",
+          "code": "graph TD\n    classDef client fill:#ffffff,stroke:#6366f1,stroke-width:2px,color:#0f172a,rx:8px,ry:8px;\n    classDef perimeter fill:#f5f3ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b,font-weight:700,rx:10px,ry:10px;\n    classDef core fill:#ffffff,stroke:#7c3aed,stroke-width:2.5px,color:#1e1b4b,font-weight:600,rx:8px,ry:8px;\n    classDef substrate fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#0f172a,font-weight:600,rx:8px,ry:8px;\n\n    subgraph INGRESS [\"INGRESS LAYER &bull; CLIENT DEVELOPER SURFACES\"]\n        direction LR\n        C1[\"TypeScript SDK@piyapi/sdk\"]:::client\n        C2[\"Python Cognitive SDKpiyapi-memory\"]:::client\n        C3[\"Model Context Protocol@piyapi/mcp-server\"]:::client\n        C4[\"Direct HTTPS REST APIapi.piyapi.cloud/api/v1\"]:::client\n    end\n\n    INGRESS --> GATEWAY[\"PIYAPI INTELLIGENT GATEWAY&bull; Auth & Rate Limiter &bull; BYOK Multi-Model Router &bull; Namespace Scoping &bull; HIPAA PHI Redaction\"]:::perimeter\n\n    subgraph ENGINES [\"CORE COGNITIVE ENGINE (PROPRIETARY FABRIC)\"]\n        direction LR\n        ME[\"MEMORY FABRICUnified 8-Operator SurfaceSpeculative Memory Branching\"]:::core\n        CE[\"COGNITIVE SEARCH11-Signal UnifiedScorer (RRF_K=30)Dense HNSW + Sparse BM25\"]:::core\n        KG[\"PIYGRAPH KNOWLEDGE GRAPHBitemporal Entity Trackingvalid_at vs system_at Intervals\"]:::core\n        CDC[\"12 CDC CONNECTORSGoogle Drive &bull; Notion &bull; SlackGitHub &bull; Jira &bull; Gmail Sync\"]:::core\n    end\n\n    GATEWAY --> ENGINES\n\n    subgraph SUBSTRATE [\"ENTERPRISE VECTOR & DATA SUBSTRATE\"]\n        direction LR\n        PG[\"PostgreSQL 16 + pgvectorHNSW Vector Indexes (1536-dim)AES-256-GCM Envelope Encryption\"]:::substrate\n        REDIS[\"Distributed Redis Semantic CacheSub-12ms p95 Retrieval LatencyMulti-Region Read Replicas\"]:::substrate\n    end\n\n    ENGINES --> SUBSTRATE"
+        },
+        {
+          "title": "system-architecture.txt",
+          "language": "bash",
+          "code": "┌────────────────────────────────────────────────────────────┐\n│                      CLIENT LAYER                           │\n│  TypeScript SDK  │  Python SDK  │  MCP Server  │  cURL     │\n└──────────────────────────────┬─────────────────────────────┘\n                                │\n                                ▼\n┌────────────────────────────────────────────────────────────┐\n│          PIYAPI REST GATEWAY (api.piyapi.cloud)             │\n│     Namespace Scoping  │  Rate Limiter  │  Auth & BYOK Guard│\n└──────────────────────────────┬─────────────────────────────┘\n                                │\n              ┌─────────────────┼─────────────────┐\n              ▼                 ▼                  ▼\n    ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐\n    │  MEMORY ENGINE  │ │ COGNITIVE ENG.│ │ INTEGRATIONS  │\n    │ • 8-Operators   │ │ • Hybrid RAG  │ │ • BYOK Mgr    │\n    │ • Bitemporal    │ │ • PiyGraph KG │ │ • 12 CDC Conn │\n    │ • Branching     │ │ • UnifiedScrr │ │ • 30 MCP Tools│\n    └─────────────────┘ └───────────────┘ └───────────────┘\n                                │\n┌────────────────────────────────────────────────────────────┐\n│               DATA & VECTOR SUBSTRATE                       │\n│    PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache  │\n└────────────────────────────────────────────────────────────┘"
+        },
+        {
+          "title": "client.js",
+          "language": "javascript",
+          "code": "import { PiyAPIClient } from '@piyapi/sdk';\n\nconst client = new PiyAPIClient({\n  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_...'\n});"
+        },
+        {
+          "title": "client.py",
+          "language": "python",
+          "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_your_key_here\")"
+        },
+        {
+          "title": "verify.sh",
+          "language": "bash",
+          "code": "curl -s https://api.piyapi.cloud/api/v1/verify \\\n  -H \"Authorization: Bearer sk_live_...\"\n\n# Response: {\"status\":\"valid\",\"key_id\":\"...\",\"scopes\":[\"memory:read\",\"memory:write\"]}"
+        },
+        {
+          "title": "example.js",
+          "language": "javascript",
+          "code": "const memory = await client.memories.create({\n  content: 'User prefers dark mode UI and works primarily with React and TypeScript.',\n  tags: ['preferences', 'tech-stack'],\n  metadata: { source: 'onboarding_chat', user_id: 'usr_9918' }\n});"
+        },
+        {
+          "title": "example.js",
+          "language": "javascript",
+          "code": "const results = await client.search({\n  query: 'What frontend framework does the user prefer?',\n  limit: 5,\n  min_score: 0.25\n});"
+        }
+      ],
+      "cards": [
+        {
+          "title": "Persistent Memory",
+          "description": "Long-term storage referenced via memory_id . Backed by the Unified 8-Operator Surface .",
+          "badge": "store()",
+          "path": null
+        },
+        {
+          "title": "Context",
+          "description": "Assembled data passed via context object. Token-budget-aware context assembly for LLM system prompts via POST /api/v1/context/retrieve .",
+          "badge": null,
+          "path": null
+        },
+        {
+          "title": "Retrieval",
+          "description": "",
+          "badge": null,
+          "path": null
+        },
+        {
+          "title": "Knowledge",
+          "description": "Structured domain data accessible through knowledge.query() . PiyGraph Knowledge Graph tracking real-world validity ( valid_at ) separately from system recording time ( system_at ).",
+          "badge": null,
+          "path": null
+        },
+        {
+          "title": "Users & Sessions",
+          "description": "Scoped via user_id identifiers. Enterprise multi-tenancy enforced via strict namespace isolation ( X-Namespace-Prefix header) and automated PHI/PII privacy redaction.",
+          "badge": null,
+          "path": null
+        }
+      ],
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Pipeline Stage",
+            "Underlying Subsystem & Protocols"
+          ],
+          "rows": [
+            [
+              "01",
+              "01 Capture",
+              "WebSocket Ingestion, 12 CDC Connectors, Webhooks, @piyapi/sdk"
+            ],
+            [
+              "02",
+              "02 Store (Lavender)",
+              "PostgreSQL 16 + pgvector , Bitemporal Graph, AES-256-GCM Envelope Encryption"
+            ],
+            [
+              "03",
+              "03 Retrieve",
+              "UnifiedScorer (11 Signals), HNSW Cosine Similarity, BM25 Full-Text, Reciprocal Rank Fusion"
+            ],
+            [
+              "04",
+              "04 Compose (Lavender)",
+              "Context Assembly Engine, Token Pruning, Deduplication Filter, POST /api/v1/context/retrieve"
+            ],
+            [
+              "05",
+              "05 Generate",
+              "BYOK Multi-Provider Router, Model Inference, Adaptive Feedback Mining ( /api/v1/feedback )"
+            ]
+          ]
+        }
+      ],
+      "definition_lists": [],
+      "raw_text": "Platform / Platform Overview Platform Overview Copy page Everything you need to build, manage, and scale persistent intelligence with PiyAPI. Production Architecture &bull; Updated recently PiyAPI provides the infrastructure for persistent intelligence across AI applications. The platform manages memory, context, and retrieval as distinct layers, allowing applications to store relevant information and recall it precisely when needed rather than relying on ephemeral session state. This document introduces the core building blocks of PiyAPI and describes how they compose into a working system for AI agents and applications. Core Concepts Explore the five fundamental pillars of persistent intelligence. Click any concept frame to highlight it and inspect its active parameters: Persistent Memory Long-term storage referenced via memory_id . Backed by the Unified 8-Operator Surface . store() retrieve() update() delete() merge() summarize() pin() verify() Context Assembled data passed via context object. Token-budget-aware context assembly for LLM system prompts via POST /api/v1/context/retrieve . POST /api/v1/context/retrieve → Retrieval RRF_K=30 &bull; 11 Signals Query via client.search() . Hybrid search engine combining dense vector similarity (HNSW via pgvector ) and BM25 trigram full-text search, fused using Reciprocal Rank Fusion ( RRF_K=30 ). UnifiedScorer (11 Signals in 1 Database Pass) → Knowledge Structured domain data accessible through knowledge.query() . PiyGraph Knowledge Graph tracking real-world validity ( valid_at ) separately from system recording time ( system_at ). PiyGraph Temporal KG → Users & Sessions Scoped via user_id identifiers. Enterprise multi-tenancy enforced via strict namespace isolation ( X-Namespace-Prefix header) and automated PHI/PII privacy redaction. Namespace Scoping & Privacy → Persistent Memory Persistent memory provides durable, bitemporal fact storage isolated by workspace and tenant. All state mutations run through the atomic 8-operator interface: store() , retrieve() , update() , delete() , merge() , summarize() , pin() , and verify() . ℹ Platform Note: PiyAPI separates persistent memory from the application logic so your AI system can retrieve relevant context when it needs it. System Architecture Interactive Responsive Architecture Click any component node in the diagram (e.g. TypeScript SDK) to inspect it + &minus; &#8635; Diagram Raw Spec graph TD classDef client fill:#ffffff,stroke:#6366f1,stroke-width:2px,color:#0f172a,rx:8px,ry:8px; classDef perimeter fill:#f5f3ff,stroke:#4f46e5,stroke-width:2px,color:#1e1b4b,font-weight:700,rx:10px,ry:10px; classDef core fill:#ffffff,stroke:#7c3aed,stroke-width:2.5px,color:#1e1b4b,font-weight:600,rx:8px,ry:8px; classDef substrate fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#0f172a,font-weight:600,rx:8px,ry:8px; subgraph INGRESS [\"INGRESS LAYER &bull; CLIENT DEVELOPER SURFACES\"] direction LR C1[\"TypeScript SDK @piyapi/sdk \"]:::client C2[\"Python Cognitive SDK piyapi-memory \"]:::client C3[\"Model Context Protocol @piyapi/mcp-server \"]:::client C4[\"Direct HTTPS REST API api.piyapi.cloud/api/v1 \"]:::client end INGRESS --> GATEWAY[\"PIYAPI INTELLIGENT GATEWAY &bull; Auth & Rate Limiter &bull; BYOK Multi-Model Router &bull; Namespace Scoping &bull; HIPAA PHI Redaction\"]:::perimeter subgraph ENGINES [\"CORE COGNITIVE ENGINE (PROPRIETARY FABRIC)\"] direction LR ME[\"MEMORY FABRIC Unified 8-Operator Surface Speculative Memory Branching\"]:::core CE[\"COGNITIVE SEARCH 11-Signal UnifiedScorer (RRF_K=30) Dense HNSW + Sparse BM25\"]:::core KG[\"PIYGRAPH KNOWLEDGE GRAPH Bitemporal Entity Tracking valid_at vs system_at Intervals\"]:::core CDC[\"12 CDC CONNECTORS Google Drive &bull; Notion &bull; Slack GitHub &bull; Jira &bull; Gmail Sync\"]:::core end GATEWAY --> ENGINES subgraph SUBSTRATE [\"ENTERPRISE VECTOR & DATA SUBSTRATE\"] direction LR PG[\"PostgreSQL 16 + pgvector HNSW Vector Indexes (1536-dim) AES-256-GCM Envelope Encryption\"]:::substrate REDIS[\"Distributed Redis Semantic Cache Sub-12ms p95 Retrieval Latency Multi-Region Read Replicas\"]:::substrate end ENGINES --> SUBSTRATE Selected Component Client Layer Click on any node in the architecture diagram above to inspect its real-time capabilities and underlying APIs. system-architecture.txt Copy ┌────────────────────────────────────────────────────────────┐ │ CLIENT LAYER │ │ TypeScript SDK │ Python SDK │ MCP Server │ cURL │ └──────────────────────────────┬─────────────────────────────┘ │ ▼ ┌────────────────────────────────────────────────────────────┐ │ PIYAPI REST GATEWAY (api.piyapi.cloud) │ │ Namespace Scoping │ Rate Limiter │ Auth & BYOK Guard│ └──────────────────────────────┬─────────────────────────────┘ │ ┌─────────────────┼─────────────────┐ ▼ ▼ ▼ ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐ │ MEMORY ENGINE │ │ COGNITIVE ENG.│ │ INTEGRATIONS │ │ • 8-Operators │ │ • Hybrid RAG │ │ • BYOK Mgr │ │ • Bitemporal │ │ • PiyGraph KG │ │ • 12 CDC Conn │ │ • Branching │ │ • UnifiedScrr │ │ • 30 MCP Tools│ └─────────────────┘ └───────────────┘ └───────────────┘ │ ┌────────────────────────────────────────────────────────────┐ │ DATA & VECTOR SUBSTRATE │ │ PostgreSQL + pgvector │ Bitemporal KG │ Redis Cache │ └────────────────────────────────────────────────────────────┘ Initialize the Client Connect to PiyAPI through our official SDKs or raw REST requests. Supply your API key generated from the dashboard. JavaScript (@piyapi/sdk) Python (piyapi-memory) cURL client.js Copy import { PiyAPIClient } from '@piyapi/sdk' ; const client = new PiyAPIClient ({ apiKey : process . env . PIYAPI_API_KEY || 'sk_live_...' }); client.py Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient ( api_key = \"sk_live_your_key_here\" ) verify.sh Copy curl -s https://api.piyapi.cloud/api/v1/verify \\ -H \"Authorization: Bearer sk_live_...\" # Response: {\"status\":\"valid\",\"key_id\":\"...\",\"scopes\":[\"memory:read\",\"memory:write\"]} Store and Retrieve Context A typical lifecycle integrates continuous memory persistence with targeted contextual recall before each model completion: 1 Create or initialize the client 2 Send conversational information 3 Store relevant memory 4 Retrieve context when needed 5 Pass retrieved context to the model Store a memory example.js Copy const memory = await client . memories . create ({ content : 'User prefers dark mode UI and works primarily with React and TypeScript.' , tags : [ 'preferences' , 'tech-stack' ], metadata : { source : 'onboarding_chat' , user_id : 'usr_9918' } }); Retrieve via Hybrid Search example.js Copy const results = await client . search ({ query : 'What frontend framework does the user prefer?' , limit : 5 , min_score : 0.25 }); Response payload { \"query\" : \"What frontend framework does the user prefer?\" , \"total\" : 1 , \"results\" : [ { \"id\" : \"8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d\" , \"content\" : \"User prefers dark mode UI and works primarily with React and TypeScript.\" , \"score\" : 0.892 , \"vector_score\" : 0.854 , \"bm25_score\" : 0.931 } ] } 💡 Tip: Use retrieval selectively so your application only sends relevant context to the model. Configure min_score (default 0.25 ) and alpha (vector vs BM25 blend, default 0.7 ) for precise control over retrieval quality. How PiyAPI Works The five-stage pipeline transforms raw multi-turn dialogue into high-signal context vectors with bitemporal validity. Styled in an alternating lavender and white architecture: 01 Capture & Ingest CDC CONNECTORS Conversational or event data enters the system via API, SDK, or one of 12 native CDC connectors (Google Drive, Notion, GitHub, Slack, Jira, Gmail, and more). Automatic chunking and tokenization preserve private identifiers. 02 Store & Bitemporal Index PGVECTOR HNSW Relevant facts are persisted in PostgreSQL with pgvector HNSW indexing. Every record is stamped with valid-time ( valid_at ) and transaction recording time ( system_at ) for zero-loss auditability. 03 Multi-Signal Retrieval UNIFIEDSCORER The UnifiedScorer evaluates 11 signals in a single pass — combining dense vector similarity, BM25 trigram full-text search, recency decay, entity overlap, contradiction penalty, and pinned memory weights with calibrated RRF_K=30 . 04 Compose Context Payload TOKEN BUDGET Retrieved memory is dynamically assembled into a token-budget-aware context payload via POST /api/v1/context/retrieve . Redundant facts are compressed to preserve model context windows. 05 Generate & Self-Learn BYOK ROUTING Context is injected into the system prompt for inference. Native BYOK encryption lets you route requests directly to OpenAI, Anthropic, Gemini, or DeepSeek while session mining captures user feedback. Pipeline Stage Underlying Subsystem & Protocols 01 01 Capture WebSocket Ingestion, 12 CDC Connectors, Webhooks, @piyapi/sdk 02 02 Store (Lavender) PostgreSQL 16 + pgvector , Bitemporal Graph, AES-256-GCM Envelope Encryption 03 03 Retrieve UnifiedScorer (11 Signals), HNSW Cosine Similarity, BM25 Full-Text, Reciprocal Rank Fusion 04 04 Compose (Lavender) Context Assembly Engine, Token Pruning, Deduplication Filter, POST /api/v1/context/retrieve 05 05 Generate BYOK Multi-Provider Router, Model Inference, Adaptive Feedback Mining ( /api/v1/feedback ) What's Next? → ARCHITECTURE Explore the architecture Understand how PiyGraph, bitemporal valid_at/system_at tracking, and Speculative Memory Branching are structured. → MEMORY LAYER Store your first memory Create and persist your first record using POST /api/v1/memories or the TypeScript SDK. → AGENTS & TOOLS Build an AI agent Wire up memory and context using our MCP Server (@piyapi/mcp-server — 30 tools, 3 resources, 3 prompts). → API REFERENCE Explore the API Browse the full REST reference and OpenAPI JSON spec at api.piyapi.cloud/docs/raw/openapi.json. Suggest edits Raise issue ← PREVIOUS: Get Started NEXT: Quickstart →"
+    },
+    {
+      "id": "page-quickstart",
+      "title": "5-Minute Client Quickstart",
+      "breadcrumb": "Platform / Quickstart",
+      "lead": "Integrate persistent bitemporal memory into your agents and LLM applications in under five minutes.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "POST",
+        "path": "/api/v1/context/retrieve"
+      },
+      "sections": [
+        {
+          "heading": "Step 1 &bull; Installation",
+          "level": 2,
+          "paragraphs": [
+            "Choose between our official TypeScript library or Python package. Both clients feature automatic token-budget management, connection pooling, and resilient retry logic:"
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Step 2 &bull; Initialize Client & Retrieve Context",
+          "level": 2,
+          "paragraphs": [
+            "Authenticate your client and execute an end-to-end memory store and contextual recall in a single script:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Install Official SDK or Connect via REST INGRESS PROTOCOL",
+          "description": "Install the lightweight, production-hardened client for Node.js/TypeScript or Python with native streaming and auto-reconnecting WebSocket support."
+        },
+        {
+          "number": "02",
+          "title": "Authenticate with Workspace API Key AUTH & BYOK",
+          "description": "Initialize the client using your live API key ( sk_live_... ). Optionally attach BYOK headers (OpenAI, Anthropic, Gemini, DeepSeek) to route inference directly through your enterprise accounts."
+        },
+        {
+          "number": "03",
+          "title": "Persist Bitemporal Memory Facts O(1) MEMORY STORE",
+          "description": "Store conversational statements, entity attributes, or structured metadata. PiyAPI automatically computes 1536-dim vector embeddings and stamps bitemporal intervals ( valid_at vs system_at )."
+        },
+        {
+          "number": "04",
+          "title": "Retrieve Context & Complete Model Prompts HYBRID RECALL",
+          "description": "Query memory via client.search() or dynamic context assembly via POST /api/v1/context/retrieve with token-budget enforcement and automatic PHI/PII redaction."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "",
+          "code": "# Install TypeScript SDK\nnpm install @piyapi/sdk\n\n# Or install Python SDK\npip install piyapi-memory"
+        },
+        {
+          "title": "",
+          "language": "python",
+          "code": "import { PiyAPIClient } from '@piyapi/sdk';\n\nconst client = new PiyAPIClient({\n  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_...',\n  namespace: 'enterprise_workspace_prod'\n});\n\n// 1. Store persistent fact\nawait client.memories.create({\n  content: \"User requested quarterly forecast in EUR currency with dark mode theme\",\n  tags: [\"preferences\", \"finance\"],\n  metadata: { user_id: \"usr_9918\", session_id: \"sess_441\" }\n});\n\n// 2. Retrieve assembled context\nconst context = await client.context.retrieve({\n  query: \"What currency should we render the charts in?\",\n  user_id: \"usr_9918\",\n  token_budget: 1500\n});\n\nconsole.log('Assembled Context:', context.rendered_prompt);"
+        }
+      ],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Quickstart 5-Minute Client Quickstart Copy page Integrate persistent bitemporal memory into your agents and LLM applications in under five minutes. Developer Onboarding &bull; 5 min setup &bull; Live Endpoints PiyAPI decouples cognitive memory from stateless LLM inference. Follow the four-step setup pipeline below to store durable user preferences and recall them in real-time: 01 Install Official SDK or Connect via REST INGRESS PROTOCOL Install the lightweight, production-hardened client for Node.js/TypeScript or Python with native streaming and auto-reconnecting WebSocket support. 02 Authenticate with Workspace API Key AUTH & BYOK Initialize the client using your live API key ( sk_live_... ). Optionally attach BYOK headers (OpenAI, Anthropic, Gemini, DeepSeek) to route inference directly through your enterprise accounts. 03 Persist Bitemporal Memory Facts O(1) MEMORY STORE Store conversational statements, entity attributes, or structured metadata. PiyAPI automatically computes 1536-dim vector embeddings and stamps bitemporal intervals ( valid_at vs system_at ). 04 Retrieve Context & Complete Model Prompts HYBRID RECALL Query memory via client.search() or dynamic context assembly via POST /api/v1/context/retrieve with token-budget enforcement and automatic PHI/PII redaction. Step 1 &bull; Installation Choose between our official TypeScript library or Python package. Both clients feature automatic token-budget management, connection pooling, and resilient retry logic: terminal Copy # Install TypeScript SDK npm install @piyapi/sdk # Or install Python SDK pip install piyapi-memory Step 2 &bull; Initialize Client & Retrieve Context Authenticate your client and execute an end-to-end memory store and contextual recall in a single script: quickstart.ts Copy import { PiyAPIClient } from '@piyapi/sdk'; const client = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY || 'sk_live_...', namespace: 'enterprise_workspace_prod' }); // 1. Store persistent fact await client.memories.create({ content: \"User requested quarterly forecast in EUR currency with dark mode theme\", tags: [\"preferences\", \"finance\"], metadata: { user_id: \"usr_9918\", session_id: \"sess_441\" } }); // 2. Retrieve assembled context const context = await client.context.retrieve({ query: \"What currency should we render the charts in?\", user_id: \"usr_9918\", token_budget: 1500 }); console.log('Assembled Context:', context.rendered_prompt); 💡 Enterprise Tip: For high-throughput environments, set the X-Namespace-Prefix header to isolate multi-tenant customer records at the database partition layer."
+    },
+    {
+      "id": "page-architecture",
+      "title": "System Architecture & Request Lifecycle",
+      "breadcrumb": "Platform / Architecture",
+      "lead": "A decoupled, four-tier cognitive memory architecture engineered for sub-20ms multi-signal recall.",
+      "rule5_notice": null,
+      "endpoint": null,
+      "sections": [
+        {
+          "heading": "End-to-End Request Lifecycle",
+          "level": 2,
+          "paragraphs": [
+            "Every incoming transaction follows an atomic execution pipeline guaranteeing zero-loss consistency across distributed replicas:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Client Ingress Tier LAYER 01",
+          "description": "Official SDKs for TypeScript, Python, 30 MCP Tools for IDEs (Cursor, Windsurf, VS Code), and raw HTTPS REST gateways providing sub-15ms ingress latency."
+        },
+        {
+          "number": "02",
+          "title": "Security & BYOK Gateway Tier LAYER 02",
+          "description": "Sliding-window rate limiters, HMAC-SHA256 request signing, automated PHI/PII regex redaction, and BYOK multi-provider key routing (OpenAI, Anthropic, Gemini, DeepSeek)."
+        },
+        {
+          "number": "03",
+          "title": "Cognitive Memory & Reasoning Core LAYER 03",
+          "description": "Unified 8-operator memory surface, PiyGraph bitemporal knowledge graph, speculative memory branching, and UnifiedScorer 11-signal hybrid search."
+        },
+        {
+          "number": "04",
+          "title": "Persistent Vector & Data Substrate LAYER 04",
+          "description": "PostgreSQL 16 with pgvector HNSW indexing, Redis distributed semantic cache, AES-256-GCM envelope encryption, and dual-custody compliance audit logging."
+        }
+      ],
+      "code_blocks": [],
+      "cards": [],
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Execution Stage",
+            "Underlying Subsystem & Protocols"
+          ],
+          "rows": [
+            [
+              "01",
+              "Ingress & Auth",
+              "TLS 1.3 Termination &bull; API Key Validation &bull; Tenant Namespace Extraction ( X-Namespace-Prefix )"
+            ],
+            [
+              "02",
+              "Privacy Redaction",
+              "Pre-commit PII/PHI Tokenization &bull; Regex Scrubbing &bull; Semantic Hash Fingerprinting"
+            ],
+            [
+              "03",
+              "Cognitive Dispatch",
+              "Unified 8-Operator Router &bull; Vector Embedding Generation (1536-dim) &bull; BM25 Token Indexing"
+            ],
+            [
+              "04",
+              "Dual Indexing",
+              "PostgreSQL 16 + pgvector HNSW &bull; PiyGraph Bitemporal Edge Generation &bull; Redis L1 Cache Invalidation"
+            ],
+            [
+              "05",
+              "Response & Telemetry",
+              "JSON Envelope Delivery &bull; Prometheus Latency Logging &bull; Audit Trail Generation"
+            ]
+          ]
+        }
+      ],
+      "definition_lists": [],
+      "raw_text": "Platform / Architecture System Architecture & Request Lifecycle Copy page A decoupled, four-tier cognitive memory architecture engineered for sub-20ms multi-signal recall. Enterprise Architecture &bull; Production Architecture &bull; 4 Tiers PiyAPI decomposes memory management into isolated layers, ensuring data persistence is physically separated from ephemeral model compute: 01 Client Ingress Tier LAYER 01 Official SDKs for TypeScript, Python, 30 MCP Tools for IDEs (Cursor, Windsurf, VS Code), and raw HTTPS REST gateways providing sub-15ms ingress latency. 02 Security & BYOK Gateway Tier LAYER 02 Sliding-window rate limiters, HMAC-SHA256 request signing, automated PHI/PII regex redaction, and BYOK multi-provider key routing (OpenAI, Anthropic, Gemini, DeepSeek). 03 Cognitive Memory & Reasoning Core LAYER 03 Unified 8-operator memory surface, PiyGraph bitemporal knowledge graph, speculative memory branching, and UnifiedScorer 11-signal hybrid search. 04 Persistent Vector & Data Substrate LAYER 04 PostgreSQL 16 with pgvector HNSW indexing, Redis distributed semantic cache, AES-256-GCM envelope encryption, and dual-custody compliance audit logging. End-to-End Request Lifecycle Every incoming transaction follows an atomic execution pipeline guaranteeing zero-loss consistency across distributed replicas: Execution Stage Underlying Subsystem & Protocols 01 Ingress & Auth TLS 1.3 Termination &bull; API Key Validation &bull; Tenant Namespace Extraction ( X-Namespace-Prefix ) 02 Privacy Redaction Pre-commit PII/PHI Tokenization &bull; Regex Scrubbing &bull; Semantic Hash Fingerprinting 03 Cognitive Dispatch Unified 8-Operator Router &bull; Vector Embedding Generation (1536-dim) &bull; BM25 Token Indexing 04 Dual Indexing PostgreSQL 16 + pgvector HNSW &bull; PiyGraph Bitemporal Edge Generation &bull; Redis L1 Cache Invalidation 05 Response & Telemetry JSON Envelope Delivery &bull; Prometheus Latency Logging &bull; Audit Trail Generation"
+    },
+    {
+      "id": "page-memory",
+      "title": "Persistent Memory & 8-Operator Surface",
+      "breadcrumb": "Platform / Memory",
+      "lead": "Durable, bitemporal fact storage governed by an atomic eight-operator cognitive surface.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "POST",
+        "path": "/api/v1/branches"
+      },
+      "sections": [
+        {
+          "heading": "The Unified 8-Operator Surface",
+          "level": 2,
+          "paragraphs": [
+            "All mutations on persistent memory execute through eight standardized atomic operators:"
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "Python SDK Memory Implementation",
+          "level": 2,
+          "paragraphs": [
+            "Execute atomic memory operations using the official Python client:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Unified 8-Operator Memory Surface ATOMIC ENGINE",
+          "description": "A unified interface exposing store , retrieve , update , delete , merge , summarize , pin , and verify for fine-grained cognitive control."
+        },
+        {
+          "number": "02",
+          "title": "Bitemporal Validity Tracking TIME TRAVEL",
+          "description": "Every memory record independently stores valid_at (when the event occurred in the real world) and system_at (when it was logged in the database) to eliminate factual drift."
+        },
+        {
+          "number": "03",
+          "title": "Speculative Memory Branching WHAT-IF SIMULATION",
+          "description": "Branch off memory graphs into isolated sandbox environments using POST /api/v1/branches , simulate agent actions, and merge diffs back to main after user approval."
+        },
+        {
+          "number": "04",
+          "title": "Pinned Memory Guarantees ZERO DECAY",
+          "description": "Mark critical compliance rules, user constraints, and security policies as pinned to bypass recency decay curves and guarantee 100% prompt recall."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "python",
+          "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_...\")\n\n# 1. Store memory with bitemporal valid_at interval\nmem = client.memories.store(\n    content=\"Patient is allergic to penicillin and penicillin-family antibiotics\",\n    valid_at=\"2024-01-15T00:00:00Z\",\n    tags=[\"medical\", \"allergies\", \"critical\"],\n    user_id=\"pat_4091\"\n)\n\n# 2. Pin memory to guarantee 100% recall priority\nclient.memories.pin(memory_id=mem.id)\n\n# 3. Merge two related memories atomically\nmerged = client.memories.merge(\n    source_ids=[mem.id, \"mem_prev_819\"],\n    summary=\"Patient has verified life-threatening allergy to all penicillin derivatives\"\n)"
+        }
+      ],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Memory Persistent Memory & 8-Operator Surface Copy page Durable, bitemporal fact storage governed by an atomic eight-operator cognitive surface. Memory Substrate &bull; Unified 8-Operator Surface &bull; Bitemporal Persistent memory provides durable state retention across multiple conversational turns, user sessions, and AI agents. Explore the core architectural pillars below: 01 Unified 8-Operator Memory Surface ATOMIC ENGINE A unified interface exposing store , retrieve , update , delete , merge , summarize , pin , and verify for fine-grained cognitive control. 02 Bitemporal Validity Tracking TIME TRAVEL Every memory record independently stores valid_at (when the event occurred in the real world) and system_at (when it was logged in the database) to eliminate factual drift. 03 Speculative Memory Branching WHAT-IF SIMULATION Branch off memory graphs into isolated sandbox environments using POST /api/v1/branches , simulate agent actions, and merge diffs back to main after user approval. 04 Pinned Memory Guarantees ZERO DECAY Mark critical compliance rules, user constraints, and security policies as pinned to bypass recency decay curves and guarantee 100% prompt recall. The Unified 8-Operator Surface All mutations on persistent memory execute through eight standardized atomic operators: store() Insert new facts with embeddings & bitemporal timestamps. retrieve() Fetch context vectors via 11-signal UnifiedScorer. update() Patch fact content while maintaining historical audit trail. delete() Cryptographic shredding & soft-delete compliance flags. merge() Synthesize multiple redundant memories into unified knowledge. summarize() Generate loss-less semantic summaries for long conversation threads. pin() Lock high-priority rules with infinite recency half-life. verify() Cross-validate fact coherence against knowledge graph edges. Python SDK Memory Implementation Execute atomic memory operations using the official Python client: memory_operations.py Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_...\") # 1. Store memory with bitemporal valid_at interval mem = client.memories.store( content=\"Patient is allergic to penicillin and penicillin-family antibiotics\", valid_at=\"2024-01-15T00:00:00Z\", tags=[\"medical\", \"allergies\", \"critical\"], user_id=\"pat_4091\" ) # 2. Pin memory to guarantee 100% recall priority client.memories.pin(memory_id=mem.id) # 3. Merge two related memories atomically merged = client.memories.merge( source_ids=[mem.id, \"mem_prev_819\"], summary=\"Patient has verified life-threatening allergy to all penicillin derivatives\" )"
+    },
+    {
+      "id": "page-context",
+      "title": "Context Assembly & Token Budgeting",
+      "breadcrumb": "Platform / Context",
+      "lead": "Transform vast historical memory into compact, token-budget-aware prompts ready for immediate LLM inference.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "POST",
+        "path": "/api/v1/context/retrieve"
+      },
+      "sections": [
+        {
+          "heading": "Retrieve Context via TypeScript SDK",
+          "level": 2,
+          "paragraphs": [
+            "Assemble a token-aware context payload configured for prompt insertion:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Token-Budget Aware Assembly DYNAMIC PACKING",
+          "description": "Specify exact token budgets (e.g. token_budget=2000 ). PiyAPI packs high-scoring facts and prunes low-signal fluff so system prompts never overflow."
+        },
+        {
+          "number": "02",
+          "title": "Contradiction & Duplication Pruning FACT INTEGRITY",
+          "description": "Before assembling context payloads, the engine eliminates conflicting statements, prioritizing facts with newer valid_at timestamps."
+        },
+        {
+          "number": "03",
+          "title": "Dynamic Prompt Injection LLM INFERENCE",
+          "description": "Retrieve pre-formatted markdown or XML context payloads ready for direct injection into OpenAI, Anthropic, or Gemini system prompts."
+        },
+        {
+          "number": "04",
+          "title": "Sub-15ms Assembly Latency EDGE OPTIMIZATION",
+          "description": "Distributed semantic caching in Redis ensures identical or semantically equivalent context queries return in under 15 milliseconds."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "python",
+          "code": "import { PiyAPIClient } from '@piyapi/sdk';\n\nconst client = new PiyAPIClient({ apiKey: 'sk_live_...' });\n\n// Retrieve token-optimized context payload\nconst context = await client.context.retrieve({\n  query: \"What are the client's preferred deployment targets and SLA?\",\n  user_id: \"usr_8821\",\n  token_budget: 1200,\n  format: \"markdown\" // Or \"xml\", \"json\"\n});\n\nconsole.log('Token Count:', context.token_count);\nconsole.log('Injected Context:\\n', context.payload);"
+        }
+      ],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Context Context Assembly & Token Budgeting Copy page Transform vast historical memory into compact, token-budget-aware prompts ready for immediate LLM inference. Context Engine &bull; Token-Budget Optimization &bull; POST /api/v1/context/retrieve While memory stores everything, context delivers only what matters for the current task. Discover the four core capabilities of the context pipeline: 01 Token-Budget Aware Assembly DYNAMIC PACKING Specify exact token budgets (e.g. token_budget=2000 ). PiyAPI packs high-scoring facts and prunes low-signal fluff so system prompts never overflow. 02 Contradiction & Duplication Pruning FACT INTEGRITY Before assembling context payloads, the engine eliminates conflicting statements, prioritizing facts with newer valid_at timestamps. 03 Dynamic Prompt Injection LLM INFERENCE Retrieve pre-formatted markdown or XML context payloads ready for direct injection into OpenAI, Anthropic, or Gemini system prompts. 04 Sub-15ms Assembly Latency EDGE OPTIMIZATION Distributed semantic caching in Redis ensures identical or semantically equivalent context queries return in under 15 milliseconds. Retrieve Context via TypeScript SDK Assemble a token-aware context payload configured for prompt insertion: context_assembly.ts Copy import { PiyAPIClient } from '@piyapi/sdk'; const client = new PiyAPIClient({ apiKey: 'sk_live_...' }); // Retrieve token-optimized context payload const context = await client.context.retrieve({ query: \"What are the client's preferred deployment targets and SLA?\", user_id: \"usr_8821\", token_budget: 1200, format: \"markdown\" // Or \"xml\", \"json\" }); console.log('Token Count:', context.token_count); console.log('Injected Context:\\n', context.payload);"
+    },
+    {
+      "id": "page-retrieval",
+      "title": "Hybrid Search & UnifiedScorer (11 Signals)",
+      "breadcrumb": "Platform / Retrieval",
+      "lead": "A multi-signal hybrid search engine combining pgvector HNSW with BM25 via calibrated Reciprocal Rank Fusion.",
+      "rule5_notice": null,
+      "endpoint": null,
+      "sections": [
+        {
+          "heading": "The 11 Scoring Signals",
+          "level": 2,
+          "paragraphs": [],
+          "bullets": []
+        },
+        {
+          "heading": "Python Search Example",
+          "level": 2,
+          "paragraphs": [
+            "Execute a hybrid multi-signal search with custom score thresholding:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "UnifiedScorer (11 Signals in 1 Pass) RRF_K=30",
+          "description": "Simultaneously evaluates dense cosine similarity, BM25 trigram text score, recency half-life decay, entity overlap, contradiction penalty, and pin weights."
+        },
+        {
+          "number": "02",
+          "title": "Dense Vector Search (pgvector HNSW) EMBEDDING ENGINE",
+          "description": "Indexes 1536-dimensional vectors using Hierarchical Navigable Small World (HNSW) graphs, yielding sub-10ms nearest neighbor recall with 99.2% precision."
+        },
+        {
+          "number": "03",
+          "title": "Sparse BM25 Trigram Search EXACT KEYWORDS",
+          "description": "Captures rare entity IDs, acronyms, code identifiers, and email addresses that dense embeddings frequently blur."
+        },
+        {
+          "number": "04",
+          "title": "Configurable Hybrid Alpha Blend SCORING CONTROL",
+          "description": "Tune the balance between semantic meaning and exact keyword match using alpha (e.g. alpha=0.7 for 70% vector + 30% BM25)."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "python",
+          "code": "from piyapi_memory import PiyAPIClient\n\nclient = PiyAPIClient(api_key=\"sk_live_...\")\n\n# Execute hybrid search with UnifiedScorer\nresponse = client.search(\n    query=\"What AWS region does the customer require for data residency?\",\n    user_id=\"usr_8821\",\n    limit=5,\n    min_score=0.35,\n    alpha=0.65 # 65% dense vector + 35% BM25\n)\n\nfor item in response.results:\n    print(f\"[{item.score:.3f}] {item.content} (Vector: {item.vector_score}, BM25: {item.bm25_score})\")"
+        }
+      ],
+      "cards": [],
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Signal Name",
+            "Evaluation Logic & Mathematical Weight"
+          ],
+          "rows": [
+            [
+              "01",
+              "Dense Vector",
+              "Cosine similarity across 1536-dim embedding space via pgvector HNSW"
+            ],
+            [
+              "02",
+              "BM25 Trigram",
+              "Sparse term-frequency / inverse-document-frequency for exact code and identifier recall"
+            ],
+            [
+              "03",
+              "Recency Half-Life",
+              "Exponential decay curve: score = score * (0.5 ^ (days_elapsed / half_life))"
+            ],
+            [
+              "04",
+              "Pin Weight",
+              "Guaranteed +1.0 priority boost for immutable compliance rules and user constraints"
+            ],
+            [
+              "05",
+              "Entity Overlap",
+              "Jaccard similarity on named entity recognition (NER) tokens extracted from query"
+            ],
+            [
+              "06",
+              "Bitemporal Filter",
+              "Hard boundary evaluation against valid_at intervals to prevent chronological anachronisms"
+            ]
+          ]
+        }
+      ],
+      "definition_lists": [],
+      "raw_text": "Platform / Retrieval Hybrid Search & UnifiedScorer (11 Signals) Copy page A multi-signal hybrid search engine combining pgvector HNSW with BM25 via calibrated Reciprocal Rank Fusion. Search Subsystem &bull; UnifiedScorer &bull; 11 Signals &bull; RRF_K=30 PiyAPI eliminates search blindspots by evaluating eleven contextual signals simultaneously: 01 UnifiedScorer (11 Signals in 1 Pass) RRF_K=30 Simultaneously evaluates dense cosine similarity, BM25 trigram text score, recency half-life decay, entity overlap, contradiction penalty, and pin weights. 02 Dense Vector Search (pgvector HNSW) EMBEDDING ENGINE Indexes 1536-dimensional vectors using Hierarchical Navigable Small World (HNSW) graphs, yielding sub-10ms nearest neighbor recall with 99.2% precision. 03 Sparse BM25 Trigram Search EXACT KEYWORDS Captures rare entity IDs, acronyms, code identifiers, and email addresses that dense embeddings frequently blur. 04 Configurable Hybrid Alpha Blend SCORING CONTROL Tune the balance between semantic meaning and exact keyword match using alpha (e.g. alpha=0.7 for 70% vector + 30% BM25). The 11 Scoring Signals Signal Name Evaluation Logic & Mathematical Weight 01 Dense Vector Cosine similarity across 1536-dim embedding space via pgvector HNSW 02 BM25 Trigram Sparse term-frequency / inverse-document-frequency for exact code and identifier recall 03 Recency Half-Life Exponential decay curve: score = score * (0.5 ^ (days_elapsed / half_life)) 04 Pin Weight Guaranteed +1.0 priority boost for immutable compliance rules and user constraints 05 Entity Overlap Jaccard similarity on named entity recognition (NER) tokens extracted from query 06 Bitemporal Filter Hard boundary evaluation against valid_at intervals to prevent chronological anachronisms Python Search Example Execute a hybrid multi-signal search with custom score thresholding: search_query.py Copy from piyapi_memory import PiyAPIClient client = PiyAPIClient(api_key=\"sk_live_...\") # Execute hybrid search with UnifiedScorer response = client.search( query=\"What AWS region does the customer require for data residency?\", user_id=\"usr_8821\", limit=5, min_score=0.35, alpha=0.65 # 65% dense vector + 35% BM25 ) for item in response.results: print(f\"[{item.score:.3f}] {item.content} (Vector: {item.vector_score}, BM25: {item.bm25_score})\")"
+    },
+    {
+      "id": "page-users",
+      "title": "Identity, Multi-Tenancy & Privacy Scoping",
+      "breadcrumb": "Platform / Users & Sessions",
+      "lead": "Keep memory strictly scoped across multi-tenant organizations, individual users, and ephemeral sessions.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "POST",
+        "path": "/api/v1/sessions/mine"
+      },
+      "sections": [
+        {
+          "heading": "Namespace Scoping in TypeScript",
+          "level": 2,
+          "paragraphs": [
+            "Isolate enterprise tenant partitions with headers:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Strict Multi-Tenant Namespace Isolation TENANT SECURITY",
+          "description": "Enforce hard boundaries between enterprise customers using the X-Namespace-Prefix header. Data partitions prevent cross-tenant data leakage."
+        },
+        {
+          "number": "02",
+          "title": "3-Tier Identity Hierarchy SCOPING MODEL",
+          "description": "Structure memories hierarchically: Organization / Tenant → User ID ( usr_... ) → Session ID ( sess_... )."
+        },
+        {
+          "number": "03",
+          "title": "Automated PHI / PII Redaction HIPAA & GDPR",
+          "description": "Integrated privacy pipeline automatically detects and tokenizes Social Security Numbers, credit cards, emails, and medical identifiers prior to vector storage."
+        },
+        {
+          "number": "04",
+          "title": "Autonomous Session Mining CONTINUOUS LEARNING",
+          "description": "Use POST /api/v1/sessions/mine to automatically extract salient user preferences, goals, and facts from multi-turn chat sessions."
+        }
+      ],
+      "code_blocks": [
+        {
+          "title": "",
+          "language": "python",
+          "code": "import { PiyAPIClient } from '@piyapi/sdk';\n\n// Scoped multi-tenant client instance\nconst client = new PiyAPIClient({\n  apiKey: process.env.PIYAPI_API_KEY,\n  headers: {\n    'X-Namespace-Prefix': 'tenant_acme_corp_prod'\n  }\n});\n\n// Store facts scoped strictly to user and session\nawait client.memories.store({\n  content: \"User authorized enterprise SSO with Okta provider\",\n  user_id: \"usr_alex_88\",\n  session_id: \"sess_onboarding_992\",\n  metadata: { org_id: \"org_acme_corp\" }\n});"
+        }
+      ],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Users & Sessions Identity, Multi-Tenancy & Privacy Scoping Copy page Keep memory strictly scoped across multi-tenant organizations, individual users, and ephemeral sessions. Identity & Governance &bull; Namespace Scoping &bull; HIPAA/GDPR Redaction PiyAPI ensures that memories belonging to User A can never be observed or recalled by User B: 01 Strict Multi-Tenant Namespace Isolation TENANT SECURITY Enforce hard boundaries between enterprise customers using the X-Namespace-Prefix header. Data partitions prevent cross-tenant data leakage. 02 3-Tier Identity Hierarchy SCOPING MODEL Structure memories hierarchically: Organization / Tenant → User ID ( usr_... ) → Session ID ( sess_... ). 03 Automated PHI / PII Redaction HIPAA & GDPR Integrated privacy pipeline automatically detects and tokenizes Social Security Numbers, credit cards, emails, and medical identifiers prior to vector storage. 04 Autonomous Session Mining CONTINUOUS LEARNING Use POST /api/v1/sessions/mine to automatically extract salient user preferences, goals, and facts from multi-turn chat sessions. Namespace Scoping in TypeScript Isolate enterprise tenant partitions with headers: tenant_scoping.ts Copy import { PiyAPIClient } from '@piyapi/sdk'; // Scoped multi-tenant client instance const client = new PiyAPIClient({ apiKey: process.env.PIYAPI_API_KEY, headers: { 'X-Namespace-Prefix': 'tenant_acme_corp_prod' } }); // Store facts scoped strictly to user and session await client.memories.store({ content: \"User authorized enterprise SSO with Okta provider\", user_id: \"usr_alex_88\", session_id: \"sess_onboarding_992\", metadata: { org_id: \"org_acme_corp\" } });"
+    },
+    {
+      "id": "page-data",
+      "title": "Data Lifecycle, Connectors & Governance",
+      "breadcrumb": "Platform / Data Management",
+      "lead": "Continuous ingestion, AES-256-GCM envelope encryption, retention scheduling, and litigation hold controls.",
+      "rule5_notice": null,
+      "endpoint": {
+        "method": "DELETE",
+        "path": "/api/v1/memories/:id"
+      },
+      "sections": [
+        {
+          "heading": "12 Native CDC Connector Matrix",
+          "level": 2,
+          "paragraphs": [],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "12 Native Change Data Capture (CDC) Connectors AUTO-SYNC",
+          "description": "Continuously sync external knowledge from Google Drive, Notion, Slack, GitHub, Jira, Gmail, Salesforce, Zendesk, Intercom, Linear, Confluence, and Dropbox."
+        },
+        {
+          "number": "02",
+          "title": "Cryptographic Deletion & GDPR Shredding COMPLIANCE",
+          "description": "Fulfill Right-to-be-Forgotten requests via DELETE /api/v1/memories/:id with cryptographic key shredding and automated replica eradication."
+        },
+        {
+          "number": "03",
+          "title": "Enterprise Legal Hold & Litigation Blocks DUAL CUSTODY",
+          "description": "Freeze tenant memory partitions during legal discovery using dual-custody approval keys, preventing standard retention deletion policies."
+        },
+        {
+          "number": "04",
+          "title": "Automated Compliance Exports AUDIT READY",
+          "description": "Export all historical facts, bitemporal intervals, and mutation audit trails to signed S3 or GCS buckets using POST /api/v1/compliance/export ."
+        }
+      ],
+      "code_blocks": [],
+      "cards": [],
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Provider",
+            "Sync Protocol & Ingestion Capabilities"
+          ],
+          "rows": [
+            [
+              "01",
+              "Google Drive",
+              "Change Log Webhooks &bull; Docs, Sheets & Slides Parser &bull; ACL Preservation"
+            ],
+            [
+              "02",
+              "Notion",
+              "Incremental Page Sync &bull; Database Row Extraction &bull; Markdown Transpiler"
+            ],
+            [
+              "03",
+              "Slack",
+              "Real-Time Socket Mode &bull; Thread Summarization &bull; Channel Filter Rules"
+            ],
+            [
+              "04",
+              "GitHub",
+              "PR & Issue Webhooks &bull; Codebase AST Parsing &bull; Commit Diff Ingestion"
+            ],
+            [
+              "05",
+              "Jira & Confluence",
+              "Jira Cloud Webhooks &bull; Sprint Ticket Linking &bull; Bitemporal Status Updates"
+            ],
+            [
+              "06",
+              "Gmail / Outlook",
+              "OAuth 2.0 Ingress &bull; Automated Thread Deduplication &bull; PII Scrubbing"
+            ]
+          ]
+        }
+      ],
+      "definition_lists": [],
+      "raw_text": "Platform / Data Management Data Lifecycle, Connectors & Governance Copy page Continuous ingestion, AES-256-GCM envelope encryption, retention scheduling, and litigation hold controls. Data Governance &bull; 12 CDC Connectors &bull; AES-256-GCM Encryption Manage memory throughout its complete lifecycle — from continuous ingest to compliant cryptographic disposal: 01 12 Native Change Data Capture (CDC) Connectors AUTO-SYNC Continuously sync external knowledge from Google Drive, Notion, Slack, GitHub, Jira, Gmail, Salesforce, Zendesk, Intercom, Linear, Confluence, and Dropbox. 02 Cryptographic Deletion & GDPR Shredding COMPLIANCE Fulfill Right-to-be-Forgotten requests via DELETE /api/v1/memories/:id with cryptographic key shredding and automated replica eradication. 03 Enterprise Legal Hold & Litigation Blocks DUAL CUSTODY Freeze tenant memory partitions during legal discovery using dual-custody approval keys, preventing standard retention deletion policies. 04 Automated Compliance Exports AUDIT READY Export all historical facts, bitemporal intervals, and mutation audit trails to signed S3 or GCS buckets using POST /api/v1/compliance/export . 12 Native CDC Connector Matrix Provider Sync Protocol & Ingestion Capabilities 01 Google Drive Change Log Webhooks &bull; Docs, Sheets & Slides Parser &bull; ACL Preservation 02 Notion Incremental Page Sync &bull; Database Row Extraction &bull; Markdown Transpiler 03 Slack Real-Time Socket Mode &bull; Thread Summarization &bull; Channel Filter Rules 04 GitHub PR & Issue Webhooks &bull; Codebase AST Parsing &bull; Commit Diff Ingestion 05 Jira & Confluence Jira Cloud Webhooks &bull; Sprint Ticket Linking &bull; Bitemporal Status Updates 06 Gmail / Outlook OAuth 2.0 Ingress &bull; Automated Thread Deduplication &bull; PII Scrubbing"
+    },
+    {
+      "id": "page-integrations",
+      "title": "Framework Connectors & Agent Ecosystem",
+      "breadcrumb": "Platform / Integrations",
+      "lead": "Connect persistent memory into your existing agent frameworks, IDEs, and LLM providers.",
+      "rule5_notice": null,
+      "endpoint": null,
+      "sections": [
+        {
+          "heading": "Framework Connectors & Agent Ecosystem",
+          "level": 2,
+          "paragraphs": [
+            "Copy page Connect persistent memory into your existing agent frameworks, IDEs, and LLM providers.",
+            "30 MCP Tools &bull; BYOK Multi-Provider Routing PiyAPI integrates seamlessly across the modern AI development stack:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Model Context Protocol (MCP) Server 30 TOOLS &bull; 3 RESOURCES",
+          "description": "Plug PiyAPI natively into Cursor, Windsurf, Claude Desktop, and VS Code via @piyapi/mcp-server with standard stdio transport."
+        },
+        {
+          "number": "02",
+          "title": "LangChain & LlamaIndex Adapters FRAMEWORK CONNECTORS",
+          "description": "Drop-in PiyAPIMemoryRetriever and index stores for LangChain chains and LlamaIndex query engines."
+        },
+        {
+          "number": "03",
+          "title": "Microsoft AutoGen & CrewAI Team Memory MULTI-AGENT SWARMS",
+          "description": "Shared swarm memory allowing autonomous agents to coordinate tasks, persist findings, and avoid redundant API research calls."
+        },
+        {
+          "number": "04",
+          "title": "BYOK Multi-Provider Routing KEY FREEDOM",
+          "description": "Use your own API keys for OpenAI, Anthropic, Google Gemini, and DeepSeek with automated fallback routing and budget tracking."
+        }
+      ],
+      "code_blocks": [],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Integrations Framework Connectors & Agent Ecosystem Copy page Connect persistent memory into your existing agent frameworks, IDEs, and LLM providers. Ecosystem &bull; 30 MCP Tools &bull; BYOK Multi-Provider Routing PiyAPI integrates seamlessly across the modern AI development stack: 01 Model Context Protocol (MCP) Server 30 TOOLS &bull; 3 RESOURCES Plug PiyAPI natively into Cursor, Windsurf, Claude Desktop, and VS Code via @piyapi/mcp-server with standard stdio transport. 02 LangChain & LlamaIndex Adapters FRAMEWORK CONNECTORS Drop-in PiyAPIMemoryRetriever and index stores for LangChain chains and LlamaIndex query engines. 03 Microsoft AutoGen & CrewAI Team Memory MULTI-AGENT SWARMS Shared swarm memory allowing autonomous agents to coordinate tasks, persist findings, and avoid redundant API research calls. 04 BYOK Multi-Provider Routing KEY FREEDOM Use your own API keys for OpenAI, Anthropic, Google Gemini, and DeepSeek with automated fallback routing and budget tracking. ⚡ MCP Ready: Run npx @piyapi/mcp-server in your IDE settings to give Claude, Cursor, and Windsurf real-time long-term memory across coding sessions."
+    },
+    {
+      "id": "page-analytics",
+      "title": "Cognitive Observability & Usage Telemetry",
+      "breadcrumb": "Platform / Analytics",
+      "lead": "Real-time performance metrics, memory recall quality, cache hit rates, and token cost analytics.",
+      "rule5_notice": null,
+      "endpoint": null,
+      "sections": [
+        {
+          "heading": "Cognitive Observability & Usage Telemetry",
+          "level": 2,
+          "paragraphs": [
+            "Copy page Real-time performance metrics, memory recall quality, cache hit rates, and token cost analytics.",
+            "Prometheus Metrics &bull; /metrics &bull; /api/v1/dashboard Recall Accuracy 98.4% +0.6% vs baseline p95 Retrieval Latency 12ms Sub-20ms SLA Cache Hit Rate 84.2% Redis Semantic L1 Context Efficiency 4.8x Token compression Monitor cognitive health across all memory partitions:"
+          ],
+          "bullets": []
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "End-to-End Latency Tracking P95 &bull; 12MS",
+          "description": "Real-time telemetry measuring request round-trips across embedding generation, pgvector HNSW lookup, and token assembly."
+        },
+        {
+          "number": "02",
+          "title": "Semantic Cache Hit Ratio REDIS L1 CACHE",
+          "description": "Track percentage of queries resolved from distributed cache without hitting the database or invoking LLM token spend."
+        },
+        {
+          "number": "03",
+          "title": "Memory Accuracy & Feedback Mining PRECISION 98.4%",
+          "description": "Capture user upvotes, downvotes, and corrections via /api/v1/feedback to continuously refine retrieval weights."
+        },
+        {
+          "number": "04",
+          "title": "Token Window Compression Efficiency COST REDUCTION",
+          "description": "Calculate LLM inference dollars saved through dynamic context pruning and deduplication before prompt dispatch."
+        }
+      ],
+      "code_blocks": [],
+      "cards": [],
+      "tables": [],
+      "definition_lists": [],
+      "raw_text": "Platform / Analytics Cognitive Observability & Usage Telemetry Copy page Real-time performance metrics, memory recall quality, cache hit rates, and token cost analytics. Observability & Telemetry &bull; Prometheus Metrics &bull; /metrics &bull; /api/v1/dashboard Recall Accuracy 98.4% +0.6% vs baseline p95 Retrieval Latency 12ms Sub-20ms SLA Cache Hit Rate 84.2% Redis Semantic L1 Context Efficiency 4.8x Token compression Monitor cognitive health across all memory partitions: 01 End-to-End Latency Tracking P95 &bull; 12MS Real-time telemetry measuring request round-trips across embedding generation, pgvector HNSW lookup, and token assembly. 02 Semantic Cache Hit Ratio REDIS L1 CACHE Track percentage of queries resolved from distributed cache without hitting the database or invoking LLM token spend. 03 Memory Accuracy & Feedback Mining PRECISION 98.4% Capture user upvotes, downvotes, and corrections via /api/v1/feedback to continuously refine retrieval weights. 04 Token Window Compression Efficiency COST REDUCTION Calculate LLM inference dollars saved through dynamic context pruning and deduplication before prompt dispatch. On this page Build with persistent intelligence. Explore the platform, connect your existing stack, and build AI applications that can use relevant information across interactions. Platform Overview Quickstart Architecture Memory Context Retrieval Users & Sessions Data Management Integrations Analytics Product capabilities, API behavior, and integration availability depend on the deployed version and configuration. Refer to the current API reference and release notes for verified implementation details."
+    }
+  ]
+}
